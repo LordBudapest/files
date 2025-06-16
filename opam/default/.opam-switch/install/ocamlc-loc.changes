@@ -1,0 +1,31 @@
+opam-version: "2.0"
+added: [
+  "doc/ocamlc-loc" {"D"}
+  "doc/ocamlc-loc/CHANGES.md" {"F:S180352T1749654251.93"}
+  "doc/ocamlc-loc/LICENSE.md" {"F:S1111T1749654251.93"}
+  "doc/ocamlc-loc/README.md" {"F:S5829T1749654251.93"}
+  "lib/ocamlc-loc" {"D"}
+  "lib/ocamlc-loc/META" {"F:S188T1749654251.93"}
+  "lib/ocamlc-loc/dune-package" {"F:S1424T1749654251.93"}
+  "lib/ocamlc-loc/lexer.ml" {"F:S46491T1749654251.93"}
+  "lib/ocamlc-loc/lexer.mli" {"F:S795T1749654251.93"}
+  "lib/ocamlc-loc/ocamlc_loc.a" {"F:S74472T1749654251.93"}
+  "lib/ocamlc-loc/ocamlc_loc.cma" {"F:S76815T1749654251.93"}
+  "lib/ocamlc-loc/ocamlc_loc.cmi" {"F:S2717T1749654251.93"}
+  "lib/ocamlc-loc/ocamlc_loc.cmt" {"F:S78193T1749654251.93"}
+  "lib/ocamlc-loc/ocamlc_loc.cmti" {"F:S12374T1749654251.93"}
+  "lib/ocamlc-loc/ocamlc_loc.cmx" {"F:S3102T1749654251.93"}
+  "lib/ocamlc-loc/ocamlc_loc.cmxa" {"F:S1444T1749654251.93"}
+  "lib/ocamlc-loc/ocamlc_loc.cmxs" {"F:S75136T1749654251.93"}
+  "lib/ocamlc-loc/ocamlc_loc.ml" {"F:S5341T1749654251.93"}
+  "lib/ocamlc-loc/ocamlc_loc.mli" {"F:S781T1749654251.93"}
+  "lib/ocamlc-loc/ocamlc_loc__.cmi" {"F:S425T1749654251.93"}
+  "lib/ocamlc-loc/ocamlc_loc__.cmt" {"F:S3429T1749654251.93"}
+  "lib/ocamlc-loc/ocamlc_loc__.cmx" {"F:S150T1749654251.93"}
+  "lib/ocamlc-loc/ocamlc_loc__.ml" {"F:S168T1749654251.93"}
+  "lib/ocamlc-loc/ocamlc_loc__Lexer.cmi" {"F:S2653T1749654251.93"}
+  "lib/ocamlc-loc/ocamlc_loc__Lexer.cmt" {"F:S82741T1749654251.93"}
+  "lib/ocamlc-loc/ocamlc_loc__Lexer.cmti" {"F:S12273T1749654251.93"}
+  "lib/ocamlc-loc/ocamlc_loc__Lexer.cmx" {"F:S10147T1749654251.93"}
+  "lib/ocamlc-loc/opam" {"F:S962T1749654251.93"}
+]

@@ -1,0 +1,27 @@
+opam-version: "2.0"
+added: [
+  "lib/stublibs/dllzarith.so" {"F:S92576T1749656004.45"}
+  "lib/stublibs/dllzarith.so.owner" {"F:S7T1749656004.81"}
+  "lib/zarith" {"D"}
+  "lib/zarith/META" {"F:S473T1720596810."}
+  "lib/zarith/big_int_Z.cmi" {"F:S7228T1749656000.3"}
+  "lib/zarith/big_int_Z.cmti" {"F:S30303T1749656000.3"}
+  "lib/zarith/big_int_Z.cmx" {"F:S5026T1749656004.69"}
+  "lib/zarith/big_int_Z.mli" {"F:S2766T1720596810."}
+  "lib/zarith/libzarith.a" {"F:S89564T1749656004.45"}
+  "lib/zarith/q.cmi" {"F:S8137T1749656000.15"}
+  "lib/zarith/q.cmti" {"F:S48950T1749656000.16"}
+  "lib/zarith/q.cmx" {"F:S4451T1749656004.65"}
+  "lib/zarith/q.mli" {"F:S7394T1720596810."}
+  "lib/zarith/z.cmi" {"F:S20139T1749656000.02"}
+  "lib/zarith/z.cmti" {"F:S131443T1749656000.02"}
+  "lib/zarith/z.cmx" {"F:S5132T1749656004.57"}
+  "lib/zarith/z.mli" {"F:S28065T1720596810."}
+  "lib/zarith/zarith.a" {"F:S143874T1749656004.7"}
+  "lib/zarith/zarith.cma" {"F:S163973T1749656000.36"}
+  "lib/zarith/zarith.cmxa" {"F:S2489T1749656004.7"}
+  "lib/zarith/zarith.cmxs" {"F:S202640T1749656004.75"}
+  "lib/zarith/zarith.h" {"F:S1168T1720596810."}
+  "lib/zarith/zarith_top.cma" {"F:S6112T1749656004.47"}
+  "lib/zarith/zarith_version.cmx" {"F:S208T1749656004.49"}
+]
