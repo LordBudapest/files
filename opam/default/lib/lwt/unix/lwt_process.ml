@@ -134,8 +134,8 @@ let unix_redirect fd redirection = match redirection with
     Unix.dup2 ~cloexec:false fd' fd;
     Unix.close fd'
 
-# 137 "src/unix/lwt_process.cppo.ml"
-external unix_exit : int -> 'a = "caml_unix_exit"
+# 139 "src/unix/lwt_process.cppo.ml"
+external unix_exit : int -> 'a = "unix_exit"
 
 # 142 "src/unix/lwt_process.cppo.ml"
 let unix_spawn

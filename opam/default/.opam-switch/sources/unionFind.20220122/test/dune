@@ -1,0 +1,6 @@
+(test
+  (name TestUnionFind)
+  (modules TestUnionFind)
+  (libraries unix unionFind)
+  (flags -w A-70)
+)

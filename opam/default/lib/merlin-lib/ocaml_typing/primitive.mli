@@ -23,7 +23,7 @@ type native_repr =
   | Same_as_ocaml_repr
   | Unboxed_float
   | Unboxed_integer of boxed_integer
-  | Untagged_immediate
+  | Untagged_int
 
 type description = private
   { prim_name: string;         (* Name of primitive  or C function *)

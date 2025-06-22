@@ -1,0 +1,53 @@
+type t = int -> int[@@deriving ezjsonm]
+include
+  struct
+    let _ = fun (_ : t) -> ()
+    let to_ezjsonm = [%ocaml.error "Functions cannot be converted ezjsonm"]
+    let _ = to_ezjsonm
+    let of_ezjsonm = [%ocaml.error "Functions cannot be converted ezjsonm"]
+    let _ = of_ezjsonm
+  end[@@ocaml.doc "@inline"][@@merlin.hide ]
+type u = int -> int[@@deriving ezjsonm]
+include
+  struct
+    let _ = fun (_ : u) -> ()
+    let u_to_ezjsonm = [%ocaml.error "Functions cannot be converted ezjsonm"]
+    let _ = u_to_ezjsonm
+    let u_of_ezjsonm = [%ocaml.error "Functions cannot be converted ezjsonm"]
+    let _ = u_of_ezjsonm
+  end[@@ocaml.doc "@inline"][@@merlin.hide ]
+type v = int[@@deriving ezjsonm]
+include
+  struct
+    let _ = fun (_ : v) -> ()
+    let v_to_ezjsonm (x : int) = `Float (float_of_int x)
+    let _ = v_to_ezjsonm
+    let v_of_ezjsonm =
+      function
+      | `Float x -> Ok (int_of_float x)
+      | _ -> Error (`Msg "Was expecting 'int' but got a different type")
+    let _ = v_of_ezjsonm
+  end[@@ocaml.doc "@inline"][@@merlin.hide ]
+type w = ..[@@deriving ezjsonm]
+include
+  struct
+    let _ = fun (_ : w) -> ()
+    let error_encountered =
+      [%ocaml.error "Cannot derive anything for this type"]
+    let _ = error_encountered
+    let error = [%ocaml.error "Cannot derive anything for this type"]
+    let _ = error
+  end[@@ocaml.doc "@inline"][@@merlin.hide ]
+type x[@@deriving ezjsonm]
+include
+  struct
+    let _ = fun (_ : x) -> ()
+    let error_encountered =
+      [%ocaml.error "Cannot derive anything for this type"]
+    let _ = error_encountered
+    let error_encountered =
+      [%ocaml.error
+        "Failed to derive something for an abstract type with no manifest!"]
+    let _ = error_encountered
+  end[@@ocaml.doc "@inline"][@@merlin.hide ]
+let _ = v_of_ezjsonm

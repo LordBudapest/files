@@ -1,0 +1,155 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/yaml/META"
+  "_build/install/default/lib/yaml/bindings/types/yaml_bindings_types.a"
+    {"bindings/types/yaml_bindings_types.a"}
+  "_build/install/default/lib/yaml/bindings/types/yaml_bindings_types.cma"
+    {"bindings/types/yaml_bindings_types.cma"}
+  "_build/install/default/lib/yaml/bindings/types/yaml_bindings_types.cmi"
+    {"bindings/types/yaml_bindings_types.cmi"}
+  "_build/install/default/lib/yaml/bindings/types/yaml_bindings_types.cmt"
+    {"bindings/types/yaml_bindings_types.cmt"}
+  "_build/install/default/lib/yaml/bindings/types/yaml_bindings_types.cmti"
+    {"bindings/types/yaml_bindings_types.cmti"}
+  "_build/install/default/lib/yaml/bindings/types/yaml_bindings_types.cmx"
+    {"bindings/types/yaml_bindings_types.cmx"}
+  "_build/install/default/lib/yaml/bindings/types/yaml_bindings_types.cmxa"
+    {"bindings/types/yaml_bindings_types.cmxa"}
+  "_build/install/default/lib/yaml/bindings/types/yaml_bindings_types.ml"
+    {"bindings/types/yaml_bindings_types.ml"}
+  "_build/install/default/lib/yaml/bindings/types/yaml_bindings_types.mli"
+    {"bindings/types/yaml_bindings_types.mli"}
+  "_build/install/default/lib/yaml/bindings/yaml_bindings.a"
+    {"bindings/yaml_bindings.a"}
+  "_build/install/default/lib/yaml/bindings/yaml_bindings.cma"
+    {"bindings/yaml_bindings.cma"}
+  "_build/install/default/lib/yaml/bindings/yaml_bindings.cmi"
+    {"bindings/yaml_bindings.cmi"}
+  "_build/install/default/lib/yaml/bindings/yaml_bindings.cmt"
+    {"bindings/yaml_bindings.cmt"}
+  "_build/install/default/lib/yaml/bindings/yaml_bindings.cmx"
+    {"bindings/yaml_bindings.cmx"}
+  "_build/install/default/lib/yaml/bindings/yaml_bindings.cmxa"
+    {"bindings/yaml_bindings.cmxa"}
+  "_build/install/default/lib/yaml/bindings/yaml_bindings.ml"
+    {"bindings/yaml_bindings.ml"}
+  "_build/install/default/lib/yaml/c/libyaml_c_stubs.a"
+    {"c/libyaml_c_stubs.a"}
+  "_build/install/default/lib/yaml/c/yaml_c.a" {"c/yaml_c.a"}
+  "_build/install/default/lib/yaml/c/yaml_c.cma" {"c/yaml_c.cma"}
+  "_build/install/default/lib/yaml/c/yaml_c.cmi" {"c/yaml_c.cmi"}
+  "_build/install/default/lib/yaml/c/yaml_c.cmt" {"c/yaml_c.cmt"}
+  "_build/install/default/lib/yaml/c/yaml_c.cmx" {"c/yaml_c.cmx"}
+  "_build/install/default/lib/yaml/c/yaml_c.cmxa" {"c/yaml_c.cmxa"}
+  "_build/install/default/lib/yaml/c/yaml_c.ml" {"c/yaml_c.ml"}
+  "_build/install/default/lib/yaml/dune-package"
+  "_build/install/default/lib/yaml/ffi/g.ml" {"ffi/g.ml"}
+  "_build/install/default/lib/yaml/ffi/libyaml_ffi_stubs.a"
+    {"ffi/libyaml_ffi_stubs.a"}
+  "_build/install/default/lib/yaml/ffi/m.ml" {"ffi/m.ml"}
+  "_build/install/default/lib/yaml/ffi/yaml_ffi.a" {"ffi/yaml_ffi.a"}
+  "_build/install/default/lib/yaml/ffi/yaml_ffi.cma" {"ffi/yaml_ffi.cma"}
+  "_build/install/default/lib/yaml/ffi/yaml_ffi.cmi" {"ffi/yaml_ffi.cmi"}
+  "_build/install/default/lib/yaml/ffi/yaml_ffi.cmt" {"ffi/yaml_ffi.cmt"}
+  "_build/install/default/lib/yaml/ffi/yaml_ffi.cmx" {"ffi/yaml_ffi.cmx"}
+  "_build/install/default/lib/yaml/ffi/yaml_ffi.cmxa" {"ffi/yaml_ffi.cmxa"}
+  "_build/install/default/lib/yaml/ffi/yaml_ffi.ml" {"ffi/yaml_ffi.ml"}
+  "_build/install/default/lib/yaml/ffi/yaml_ffi__G.cmi"
+    {"ffi/yaml_ffi__G.cmi"}
+  "_build/install/default/lib/yaml/ffi/yaml_ffi__G.cmt"
+    {"ffi/yaml_ffi__G.cmt"}
+  "_build/install/default/lib/yaml/ffi/yaml_ffi__G.cmx"
+    {"ffi/yaml_ffi__G.cmx"}
+  "_build/install/default/lib/yaml/ffi/yaml_ffi__M.cmi"
+    {"ffi/yaml_ffi__M.cmi"}
+  "_build/install/default/lib/yaml/ffi/yaml_ffi__M.cmt"
+    {"ffi/yaml_ffi__M.cmt"}
+  "_build/install/default/lib/yaml/ffi/yaml_ffi__M.cmx"
+    {"ffi/yaml_ffi__M.cmx"}
+  "_build/install/default/lib/yaml/opam"
+  "_build/install/default/lib/yaml/stream.ml"
+  "_build/install/default/lib/yaml/types.ml"
+  "_build/install/default/lib/yaml/types/g.ml" {"types/g.ml"}
+  "_build/install/default/lib/yaml/types/m.ml" {"types/m.ml"}
+  "_build/install/default/lib/yaml/types/yaml_types.a" {"types/yaml_types.a"}
+  "_build/install/default/lib/yaml/types/yaml_types.cma"
+    {"types/yaml_types.cma"}
+  "_build/install/default/lib/yaml/types/yaml_types.cmi"
+    {"types/yaml_types.cmi"}
+  "_build/install/default/lib/yaml/types/yaml_types.cmt"
+    {"types/yaml_types.cmt"}
+  "_build/install/default/lib/yaml/types/yaml_types.cmx"
+    {"types/yaml_types.cmx"}
+  "_build/install/default/lib/yaml/types/yaml_types.cmxa"
+    {"types/yaml_types.cmxa"}
+  "_build/install/default/lib/yaml/types/yaml_types.ml"
+    {"types/yaml_types.ml"}
+  "_build/install/default/lib/yaml/types/yaml_types__G.cmi"
+    {"types/yaml_types__G.cmi"}
+  "_build/install/default/lib/yaml/types/yaml_types__G.cmt"
+    {"types/yaml_types__G.cmt"}
+  "_build/install/default/lib/yaml/types/yaml_types__G.cmx"
+    {"types/yaml_types__G.cmx"}
+  "_build/install/default/lib/yaml/types/yaml_types__M.cmi"
+    {"types/yaml_types__M.cmi"}
+  "_build/install/default/lib/yaml/types/yaml_types__M.cmt"
+    {"types/yaml_types__M.cmt"}
+  "_build/install/default/lib/yaml/types/yaml_types__M.cmx"
+    {"types/yaml_types__M.cmx"}
+  "_build/install/default/lib/yaml/unix/yaml_unix.a" {"unix/yaml_unix.a"}
+  "_build/install/default/lib/yaml/unix/yaml_unix.cma" {"unix/yaml_unix.cma"}
+  "_build/install/default/lib/yaml/unix/yaml_unix.cmi" {"unix/yaml_unix.cmi"}
+  "_build/install/default/lib/yaml/unix/yaml_unix.cmt" {"unix/yaml_unix.cmt"}
+  "_build/install/default/lib/yaml/unix/yaml_unix.cmti"
+    {"unix/yaml_unix.cmti"}
+  "_build/install/default/lib/yaml/unix/yaml_unix.cmx" {"unix/yaml_unix.cmx"}
+  "_build/install/default/lib/yaml/unix/yaml_unix.cmxa"
+    {"unix/yaml_unix.cmxa"}
+  "_build/install/default/lib/yaml/unix/yaml_unix.ml" {"unix/yaml_unix.ml"}
+  "_build/install/default/lib/yaml/unix/yaml_unix.mli" {"unix/yaml_unix.mli"}
+  "_build/install/default/lib/yaml/util.ml"
+  "_build/install/default/lib/yaml/yaml.a"
+  "_build/install/default/lib/yaml/yaml.cma"
+  "_build/install/default/lib/yaml/yaml.cmi"
+  "_build/install/default/lib/yaml/yaml.cmt"
+  "_build/install/default/lib/yaml/yaml.cmti"
+  "_build/install/default/lib/yaml/yaml.cmx"
+  "_build/install/default/lib/yaml/yaml.cmxa"
+  "_build/install/default/lib/yaml/yaml.ml"
+  "_build/install/default/lib/yaml/yaml.mli"
+  "_build/install/default/lib/yaml/yaml__.cmi"
+  "_build/install/default/lib/yaml/yaml__.cmt"
+  "_build/install/default/lib/yaml/yaml__.cmx"
+  "_build/install/default/lib/yaml/yaml__.ml"
+  "_build/install/default/lib/yaml/yaml__Stream.cmi"
+  "_build/install/default/lib/yaml/yaml__Stream.cmt"
+  "_build/install/default/lib/yaml/yaml__Stream.cmx"
+  "_build/install/default/lib/yaml/yaml__Types.cmi"
+  "_build/install/default/lib/yaml/yaml__Types.cmt"
+  "_build/install/default/lib/yaml/yaml__Types.cmx"
+  "_build/install/default/lib/yaml/yaml__Util.cmi"
+  "_build/install/default/lib/yaml/yaml__Util.cmt"
+  "_build/install/default/lib/yaml/yaml__Util.cmx"
+]
+stublibs: [
+  "_build/install/default/lib/stublibs/dllyaml_c_stubs.so"
+  "_build/install/default/lib/stublibs/dllyaml_ffi_stubs.so"
+]
+doc: [
+  "_build/install/default/doc/yaml/CHANGES.md"
+  "_build/install/default/doc/yaml/LICENSE.md"
+  "_build/install/default/doc/yaml/README.md"
+]
+libexec: [
+  "_build/install/default/lib/yaml/bindings/types/yaml_bindings_types.cmxs"
+    {"bindings/types/yaml_bindings_types.cmxs"}
+  "_build/install/default/lib/yaml/bindings/yaml_bindings.cmxs"
+    {"bindings/yaml_bindings.cmxs"}
+  "_build/install/default/lib/yaml/c/yaml_c.cmxs" {"c/yaml_c.cmxs"}
+  "_build/install/default/lib/yaml/ffi/yaml_ffi.cmxs" {"ffi/yaml_ffi.cmxs"}
+  "_build/install/default/lib/yaml/types/yaml_types.cmxs"
+    {"types/yaml_types.cmxs"}
+  "_build/install/default/lib/yaml/unix/yaml_unix.cmxs"
+    {"unix/yaml_unix.cmxs"}
+  "_build/install/default/lib/yaml/yaml.cmxs"
+]

@@ -1,0 +1,26 @@
+version = "v0.4.0"
+description = ""
+requires(ppx_driver) = "ppx_deriving_yaml.common ppxlib ppxlib.ast"
+archive(ppx_driver,byte) = "ppx_deriving_yaml.cma"
+archive(ppx_driver,native) = "ppx_deriving_yaml.cmxa"
+plugin(ppx_driver,byte) = "ppx_deriving_yaml.cma"
+plugin(ppx_driver,native) = "ppx_deriving_yaml.cmxs"
+# This is what dune uses to find out the runtime dependencies of
+# a preprocessor
+ppx_runtime_deps = "yaml"
+# This line makes things transparent for people mixing preprocessors
+# and normal dependencies
+requires(-ppx_driver) = "yaml"
+requires(-ppx_driver,-custom_ppx) += "ppx_deriving"
+ppxopt(-ppx_driver,-custom_ppx) = "ppx_deriving,package:ppx_deriving_yaml"
+library_kind = "ppx_deriver"
+package "common" (
+  directory = "common"
+  version = "v0.4.0"
+  description = ""
+  requires = "ppxlib ppxlib.ast"
+  archive(byte) = "ppx_deriving_yaml_common.cma"
+  archive(native) = "ppx_deriving_yaml_common.cmxa"
+  plugin(byte) = "ppx_deriving_yaml_common.cma"
+  plugin(native) = "ppx_deriving_yaml_common.cmxs"
+)

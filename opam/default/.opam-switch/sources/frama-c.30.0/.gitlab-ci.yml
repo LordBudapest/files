@@ -1,0 +1,777 @@
+################################################################################
+### STAGES
+
+stages:
+  - prepare
+  - build
+  - tests
+  - distrib
+  - compatibility
+  - release
+  - publish
+
+################################################################################
+### DEFAULT JOB PARAMETERS
+
+default:
+  interruptible: true
+  tags: [ nix-v2 ]
+
+################################################################################
+### VARIABLES
+
+variables:
+  DEFAULT: "stable/zinc"
+  OCAML: "4.14"
+  OPAM_OPTS: "--with-test --with-doc"
+  NODE: "22"
+  PUBLISH: "no"
+  RELEASE: "no"
+
+################################################################################
+### ONLY/EXCEPT TEMPLATES
+
+.build_template: &manual_when_not_special_pipeline
+  except:
+    refs:
+      - schedules
+    variables:
+      - $RELEASE == "yes"
+  when: manual
+
+.build_template: &when_release
+  only:
+    variables:
+      - $RELEASE == "yes"
+
+.build_template: &when_schedules
+  only:
+    refs:
+      - schedules
+
+.build_template: &when_publish
+  only:
+    variables:
+      - $PUBLISH == "yes"
+
+################################################################################
+### IVETTE SETUP TEMPLATE
+
+.build_template: &ivette_setup
+  image: "ocaml/opam:ubuntu-lts-ocaml-$OCAML"
+  before_script:
+    # Prepare
+    - sudo apt update
+    # TS
+    - sudo apt install -y xvfb curl unzip libnss3 libasound2-plugins
+    - sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+    - export NVM_DIR="$HOME/.nvm"
+    - . "$NVM_DIR/nvm.sh"
+    - nvm install $NODE
+    - nvm use node $NODE
+    - corepack enable
+    # Opam
+    - opam switch create --empty .
+    - eval $(opam env --switch=. --set-switch)
+    - opam pin . -n -k path
+    - opam depext frama-c
+    - opam install headache
+    - opam install --jobs 2 --deps-only .
+    # Build Frama-C API
+    - dune build -j2 @install
+    - make -C ivette api
+
+################################################################################
+### PREPARE
+
+check-makefile:
+  stage: prepare
+  script:
+    - ./nix/shell-checkers.sh "make --warn-undefined-variables help > /dev/null 2> errors && [[ "$(cat errors)" == "" ]]"
+
+check-no-old-frama-c:
+  stage: prepare
+  script:
+    - (! git merge-base --is-ancestor a1e186c68a6418a53b3dc06237f49e8dcbf75f4a HEAD)
+    - git merge-base --is-ancestor a35d2118fe6999dddce9e1847eff626fae9cc37c HEAD
+
+.build_template: &do_not_stop_pipeline_template
+  stage: prepare
+  interruptible: false
+  script:
+    - echo "This pipeline won't be interrupted"
+
+unstoppable-pipeline:
+  <<: *do_not_stop_pipeline_template
+  only:
+    variables:
+      - $DEFAULT == $CI_COMMIT_BRANCH
+
+do-not-stop-pipeline:
+  <<: *do_not_stop_pipeline_template
+  when: manual
+  except:
+    variables:
+      - $DEFAULT == $CI_COMMIT_BRANCH
+
+check-publish:
+  stage: prepare
+  script: >
+    [[ "$RELEASE" == "no" ]] &&
+    [[ "$DEFAULT" == "$CI_COMMIT_BRANCH" ]] &&
+    [[ "$DEFAULT" == "master" ]]
+  <<: *when_publish
+
+check-release:
+  stage: prepare
+  script:
+    - ./nix/frama-c-public/check-release.sh
+  <<: *when_release
+
+# Observed: when several shell with same dependencies are started, deadlock may
+#           occur when building these dependencies. We build these dependencies
+#           before running the rest of the pipeline to avoid that.
+prepare-shell-checkers:
+  stage: prepare
+  script:
+    - ./nix/shell-checkers.sh "true"
+
+prepare-wp-cache:
+  stage: prepare
+  script:
+    - ./nix/wp-cache.nix.sh
+  artifacts:
+    paths:
+      - ./nix/wp-cache.nix
+
+################################################################################
+### BUILD
+
+frama-c:
+  stage: build
+  script:
+    - ./nix/build-proxy.sh frama-c
+  artifacts:
+    when: on_failure
+    paths:
+      - commits.nix
+      - results.log
+    expire_in: 1 day
+
+ivette:
+  stage: build
+  <<: *ivette_setup
+  script:
+    - make -C ivette dist
+  tags:
+    - docker
+
+################################################################################
+### TESTS
+
+.build_template: &coverage_artifacts
+  artifacts:
+    name: coverage-$CI_JOB_NAME
+    paths:
+      - _bisect/*.tar.xz
+    expire_in: 24h
+
+.build_template: &coverage
+  variables:
+    OUT: "_bisect"
+  <<: *coverage_artifacts
+
+e-acsl-tests:
+  stage: tests
+  script:
+    - ./nix/build-proxy.sh e-acsl-tests
+  <<: *coverage
+
+.build_template: &eva_template
+  stage: tests
+  script:
+    - ./nix/build-proxy.sh eva-$CONFIG-tests
+  <<: *coverage_artifacts
+  # Do not add OUT here, the parallel rule in Eva domains overload variables
+
+eva-default-tests:
+  variables:
+    CONFIG: "default"
+    OUT:    "_bisect"
+  <<: *eva_template
+
+.build_template: &eva_domains
+  parallel:
+    matrix:
+      - OUT: "_bisect"
+        CONFIG: [
+          "apron",
+          "bitwise",
+          "equality",
+          "gauges",
+          "multidim",
+          "octagon",
+          "symblocs"
+        ]
+
+eva-domains:
+  <<: *eva_template
+  <<: *eva_domains
+
+kernel-tests:
+  stage: tests
+  script:
+    - ./nix/build-proxy.sh kernel-tests
+  <<: *coverage
+
+plugins-tests:
+  stage: tests
+  script:
+    - ./nix/build-proxy.sh plugins-tests
+  <<: *coverage
+
+wp-tests:
+  stage: tests
+  script:
+    - ./nix/build-proxy.sh wp-tests
+  <<: *coverage
+
+ivette-tests:
+  stage: tests
+  when: manual
+  <<: *ivette_setup
+  script:
+    - make -C ivette dist
+    - cd ivette
+    - xvfb-run --auto-servernum -e /dev/stdout -s "-screen 0 1920x1080x24 -ac -nolisten tcp -nolisten unix" dune exec -- yarn playwright test --headed
+  artifacts:
+    paths:
+      - ivette/tests/test-results
+      - ivette/screenshots
+    when: always
+    expire_in: 1 day
+  tags:
+    - docker
+
+external-plugins:
+  stage: tests
+  script:
+    - ./nix/external-plugin-ci.sh $PLUGIN
+  parallel:
+    matrix:
+      - PLUGIN: [
+          "acsl-importer",
+          "caveat-importer",
+          "context-from-precondition",
+          "frama-clang",
+          "genassigns",
+          "meta",
+          "minimal",
+          "mthread",
+          "pathcrawler",
+          "security",
+          "volatile"
+        ]
+
+################################################################################
+### DISTRIB
+
+# API documentation
+
+api-doc:
+  stage: distrib
+  variables:
+    OUT: "api"
+  script:
+    - ./nix/build-proxy.sh api-doc
+  artifacts:
+    paths:
+      - api/frama-c-api.tar.gz
+      - api/frama-c-server-api.tar.gz
+    expire_in: 7 days
+
+api-json-doc:
+  stage: distrib
+  variables:
+    OUT: "api"
+  script:
+    - ./nix/build-proxy.sh api-json-doc
+  artifacts:
+    paths:
+      - api/frama-c-api-json.tar.gz
+    expire_in: 7 days
+
+# Build distribution tarball
+
+build-distrib-tarball:
+  stage: distrib
+  variables:
+    OPEN_SOURCE: "yes"
+    CI_LINK: "yes"
+    HDRCK: "frama-c-hdrck"
+  script:
+    - ./nix/shell-checkers.sh "./dev/make-distrib.sh"
+  artifacts:
+    paths:
+      - ./*.tar.gz
+    expire_in: 1 week
+
+# Build ivette apps
+
+.build_template: &ivette_linux_build_template
+  stage: distrib
+  <<: *ivette_setup
+  script:
+    - make -C ivette dist-linux
+    - mv ivette/dist/Ivette-arm64.AppImage ./frama-c-ivette-linux-ARM64.AppImage
+    - mv ivette/dist/Ivette-x86_64.AppImage ./frama-c-ivette-linux-x86-64.AppImage
+  artifacts:
+    paths:
+      - ./*.AppImage
+  tags:
+    - docker
+
+build-ivette-linux-packages:
+  <<: *ivette_linux_build_template
+  <<: *manual_when_not_special_pipeline
+
+build-ivette-linux-packages-release:
+  <<: *ivette_linux_build_template
+  <<: *when_release
+
+.build_template: &ivette_macos_build_template
+  stage: distrib
+  script:
+    # TS
+    - export NVM_DIR="$HOME/.nvm"
+    - . "$NVM_DIR/nvm.sh"
+    - nvm install $NODE
+    - nvm use $NODE
+    - corepack enable
+    # Opam
+    - opam switch create --empty .
+    - eval $(opam env --switch=. --set-switch)
+    - opam pin . -n -k path
+    - opam install headache -y
+    - opam install --jobs 2 --deps-only . -y
+    # Build Frama-C API
+    - dune build -j2 @install
+    - make -C ivette api
+    # Build Ivette
+    - make -C ivette dist-macOS
+    - mv ivette/dist/Ivette-universal.dmg ./frama-c-ivette-macos-universal.dmg
+  artifacts:
+    paths:
+      - ./*.dmg
+  tags:
+    - macos-arm
+
+build-ivette-macos-packages:
+  <<: *ivette_macos_build_template
+  <<: *manual_when_not_special_pipeline
+
+build-ivette-macos-packages-release:
+  <<: *ivette_macos_build_template
+  <<: *when_release
+
+# Coverage
+
+coverage:
+  stage: distrib
+  variables:
+    BISECT_DIR: "_bisect"
+  script:
+    - ./nix/shell-checkers.sh "./nix/coverage.sh"
+  coverage: '/Coverage: \d+\.\d+\%/'
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: report.xml
+    expire_in: 1 week
+
+# Check files header
+
+header-check:
+  stage: distrib
+  script:
+    - ./nix/shell-checkers.sh "make -f share/Makefile.headers check-headers"
+
+# Lint files
+
+lint:
+  stage: distrib
+  script:
+    - ./nix/shell-checkers.sh "make -f share/Makefile.linting check-lint LINTCK_EXTRA=-s"
+
+# Manuals
+
+.build_template: &manuals_build_template
+  stage: distrib
+  variables:
+    OUT: "manuals"
+  script:
+    - ./nix/build-proxy.sh manuals
+
+.build_template: &manuals_artifacts_template
+  artifacts:
+    paths:
+      - manuals/*.pdf
+      - manuals/*.tar.gz
+      - manuals/*.txt
+    expire_in: 7 days # Note: the LAST artifact of the ref is always kept
+
+manuals:
+  <<: *manuals_build_template
+
+manuals-artifacts:
+  <<: *manuals_build_template
+  <<: *manuals_artifacts_template
+  <<: *manual_when_not_special_pipeline
+
+manuals-nightly:
+  <<: *manuals_build_template
+  <<: *manuals_artifacts_template
+  <<: *when_publish
+
+manuals-for-release:
+  <<: *manuals_build_template
+  <<: *manuals_artifacts_template
+  <<: *when_release
+
+# Release artifacts
+
+release-content:
+  stage: distrib
+  script:
+    - ./nix/shell-checkers.sh "./dev/build-release.sh"
+  needs:
+    - api-doc
+    - build-distrib-tarball
+    - build-ivette-linux-packages-release
+    - build-ivette-macos-packages-release
+    - manuals-for-release
+  artifacts:
+    paths:
+      - website
+      - wiki
+      - opam-repository
+      - release-data.json
+  <<: *when_release
+
+################################################################################
+### COMPATIBILITY
+
+# Internalized plugins tests
+
+.build_template: &internal_template
+  stage: compatibility
+  script:
+    - ./nix/internal-tests.sh
+
+internal:
+  <<: *internal_template
+  when: manual
+  except:
+    - schedules
+
+internal-nightly:
+  <<: *internal_template
+  # The Opam target may affect this job
+  timeout: 2h
+  only:
+    - schedules
+
+# Linux ARM & MacOS
+
+.build_template: &additional_arch_template
+  stage: compatibility
+  script:
+    - opam update
+    - opam switch create --empty .
+    - eval $(opam env --switch=. --set-switch)
+    # Note: we use this to get an exact version corresponding to a minor version
+    - opam pin add ocaml $(grep $OCAML nix/ocaml-versions.txt) -n
+    - opam install . --deps-only --with-test -y
+    - dune build --display short --error-reporting=twice @install
+    - dune exec -- frama-c-ptests tests src/plugins/*/tests
+    - dune build --display short @ptests_config
+  timeout: 2h
+  tags:
+    - ${ARCH}
+
+additional-arch:
+  <<: *additional_arch_template
+  <<: *manual_when_not_special_pipeline
+  parallel:
+    matrix:
+      - ARCH: [linux-arm, macos-x86, macos-arm]
+
+additional-arch-nightly:
+  <<: *additional_arch_template
+  <<: *when_publish
+  parallel:
+    matrix:
+      - ARCH: [linux-arm, macos-x86, macos-arm]
+
+additional-arch-release:
+  <<: *additional_arch_template
+  <<: *when_release
+  parallel:
+    matrix:
+      - ARCH: [linux-arm, macos-x86, macos-arm]
+
+# OCaml versions
+
+.build_template: &ocaml_always_additional_versions_template
+  parallel:
+    matrix:
+      - OCAML: ["5.2"]
+
+# Uncomment this block when there are intermediate versions to check manually
+# Beware that some targets may fail if the target job does not provide the
+# version (for example Opam provide version N but Nix does not)
+.build_template: &ocaml_manual_additional_versions_template
+  parallel:
+    matrix:
+      - OCAML: ["5.1"]
+      - OCAML: ["5.3-beta1"]
+        OPAM_OPTS: [ "--with-test" ] # odoc not ported to 5.3 for now
+  when: manual
+
+.build_template: &ocaml_versions_template
+  stage: compatibility
+  script:
+    - ./nix/build-proxy.sh default-config-tests
+
+ocaml-versions:
+  <<: *ocaml_versions_template
+  <<: *ocaml_always_additional_versions_template
+  # in schedules, each OCAML is tested in its own complete pipeline
+  except:
+    - schedules
+
+# Uncomment this section when there are additional versions of OCaml to test
+ocaml-versions-more:
+  <<: *ocaml_versions_template
+  <<: *ocaml_manual_additional_versions_template
+
+ocaml-versions-nightly:
+  <<: *ocaml_versions_template
+  <<: *ocaml_always_additional_versions_template
+  # in publish schedule, we still check additional versions of OCaml
+  <<: *when_publish
+
+# Opam pin
+
+.build_template: &opam_pin_template
+  stage: compatibility
+  image: 'ocaml/opam:ubuntu-20.04-ocaml-$OCAML'
+  script:
+    - sudo ln -f /usr/bin/opam-2.1 /usr/bin/opam
+    - opam init --reinit -ni
+    - sudo apt update
+    - opam pin . -n -k path
+    - opam install --jobs 2 frama-c $OPAM_OPTS
+    - frama-c --plugins
+  tags:
+    - docker
+
+opam-pin:
+  <<: *opam_pin_template
+  <<: *manual_when_not_special_pipeline
+
+opam-pin-manual:
+  <<: *opam_pin_template
+  <<: *ocaml_manual_additional_versions_template
+
+opam-pin-nightly:
+  <<: *opam_pin_template
+  <<: *when_schedules
+
+opam-pin-release:
+  <<: *opam_pin_template
+  <<: *when_release
+
+.build_template: &opam_pin_minimal_template
+  stage: compatibility
+  image: 'ocaml/opam:ubuntu-20.04-ocaml-$OCAML'
+  variables:
+    OPAMDOWNLOADJOBS: "1"
+    OPAMERRLOGLEN: "0"
+    OPAMSOLVERTIMEOUT: "500"
+    OPAMPRECISETRACKING: "1"
+  script:
+    - sudo ln -f /usr/bin/opam-2.1 /usr/bin/opam
+    - opam --version
+    - opam init --reinit -ni
+    - sudo apt update
+    - export OPAMCRITERIA="-removed,-count[avoid-version,changed],-count[version-lag,request],-count[version-lag,changed],-count[missing-depexts,changed],-changed"
+    - export OPAMFIXUPCRITERIA="-removed,-count[avoid-version,changed],-count[version-lag,request],-count[version-lag,changed],-count[missing-depexts,changed],-changed"
+    - export OPAMUPGRADECRITERIA="-removed,-count[avoid-version,changed],-count[version-lag,request],-count[version-lag,changed],-count[missing-depexts,changed],-changed"
+    - opam pin . -n -k path
+    - opam update --depexts
+    - opam depext --jobs 2 frama-c
+    - export OPAMCRITERIA="+removed,+count[version-lag,solution]"
+    - export OPAMFIXUPCRITERIA="+removed,+count[version-lag,solution]"
+    - export OPAMUPGRADECRITERIA="+removed,+count[version-lag,solution]"
+    - export OPAMEXTERNALSOLVER="builtin-0install"
+    - opam update --depexts
+    - opam reinstall --jobs 2 frama-c
+    - frama-c --plugins
+  timeout: 2h
+  tags:
+    - docker
+
+opam-pin-minimal:
+  <<: *opam_pin_minimal_template
+  <<: *manual_when_not_special_pipeline
+
+opam-pin-minimal-nightly:
+  <<: *opam_pin_minimal_template
+  <<: *when_schedules
+
+opam-pin-minimal-release:
+  <<: *opam_pin_minimal_template
+  <<: *when_release
+
+# Distrib
+
+.build_template: &src_distrib_tests_template
+  stage: compatibility
+  variables:
+    DIR: "extracted"
+  script:
+    - mkdir $DIR && tar -xzf frama-c.tar.gz --strip-components 1 -C ./extracted
+    - ./nix/build-proxy.sh src-distrib-tests
+  # The Opam target may affect this job
+  timeout: 2h
+
+src-distrib-tests:
+  <<: *src_distrib_tests_template
+  <<: *manual_when_not_special_pipeline
+
+src-distrib-tests-scheduled:
+  <<: *src_distrib_tests_template
+  <<: *when_schedules
+
+src-distrib-tests-release:
+  <<: *src_distrib_tests_template
+  <<: *when_release
+
+################################################################################
+### RELEASE
+
+.build_template: &prepare_ssh_template
+  before_script:
+    - export GIT_SSH=$PWD/nix/frama-c-public/ssh.sh
+
+release-branch:
+  stage: release
+  variables:
+    REPOSITORY: "frama-c"
+  <<: *prepare_ssh_template
+  script:
+    - (! git merge-base --is-ancestor a1e186c68a6418a53b3dc06237f49e8dcbf75f4a origin/$CI_COMMIT_BRANCH)
+    - BRANCH="$CI_COMMIT_BRANCH" nix-shell -p coreutils openssh --run './nix/frama-c-public/publish-branch.sh'
+    # Note: BRANCH must be defined here, since we cannot *evaluate* a variable in 'variables'
+  <<: *when_release
+  when: manual
+  interruptible: false
+
+release-create:
+  stage: release
+  <<: *prepare_ssh_template
+  script:
+    - nix-shell -p git git-lfs coreutils openssh curl --run './nix/frama-c-public/publish-release.sh'
+  needs:
+    - release-branch
+    - release-content
+  <<: *when_release
+  when: manual
+  interruptible: false
+
+release-opam:
+  stage: release
+  <<: *prepare_ssh_template
+  script:
+    - nix-shell -p git git-lfs coreutils openssh --run './nix/frama-c-public/publish-opam.sh'
+  <<: *when_release
+  interruptible: false
+
+release-website:
+  stage: release
+  <<: *prepare_ssh_template
+  script:
+    - nix-shell -p git git-lfs coreutils openssh --run './nix/frama-c-public/publish-website.sh'
+  <<: *when_release
+  interruptible: false
+
+release-wiki:
+  stage: release
+  <<: *prepare_ssh_template
+  script:
+    - nix-shell -p git git-lfs coreutils openssh --run './nix/frama-c-public/publish-wiki.sh'
+  <<: *when_release
+  interruptible: false
+
+################################################################################
+### PUBLISH
+
+# publish stage is used to push the current master branch of Frama-C and
+# associated plugins from the internal frama-c group to the public pub group.
+#
+# For that, it uses the 'frama-c to frama-c-public' publish key. Thus, to publish
+# a new plugin (while keeping its main repository internal), you can add a new
+# target to this stage, adapting the script for MetAcsl or Frama-Clang to your
+# own plugin.
+#
+# You must also activate the publish key on both frama-c/my_plugin
+# and pub/my_plugin repositories (the former should be read-only, the latter
+# must provide write access to the publish key).
+# Do not forget to trigger the target only on schedules, so that all public
+# repositories stay synchronized.
+
+publish-frama-c:
+  stage: publish
+  variables:
+    BRANCH: "master"
+    REPOSITORY: "frama-c"
+  <<: *prepare_ssh_template
+  script:
+    - (! git merge-base --is-ancestor a1e186c68a6418a53b3dc06237f49e8dcbf75f4a origin/master)
+    -  nix-shell -p coreutils openssh --run './nix/frama-c-public/publish-branch.sh'
+  <<: *when_publish
+  interruptible: false
+
+publish-fclang:
+  stage: publish
+  variables:
+    BRANCH: "master"
+    REPOSITORY: "frama-clang"
+  <<: *prepare_ssh_template
+  script:
+    - nix-shell -p coreutils openssh --run './nix/frama-c-public/publish-branch.sh'
+  <<: *when_publish
+  interruptible: false
+
+publish-meta:
+  stage: publish
+  variables:
+    BRANCH: "master"
+    REPOSITORY: "meta"
+  <<: *prepare_ssh_template
+  script:
+    - nix-shell -p coreutils openssh --run './nix/frama-c-public/publish-branch.sh'
+  <<: *when_publish
+  interruptible: false
+
+publish-frama-c-api:
+  stage: publish
+  <<: *prepare_ssh_template
+  script:
+    - nix-shell -p coreutils openssh --run './nix/frama-c-public/publish-api.sh'
+  only:
+    variables:
+      - $PUBLISH == "yes"
+  interruptible: false

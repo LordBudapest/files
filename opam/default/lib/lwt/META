@@ -9,7 +9,7 @@ package "unix" (
   directory = "unix"
   version = "5.9.1"
   description = "Unix support for Lwt"
-  requires = "lwt ocplib-endian.bigstring threads unix"
+  requires = "bigarray lwt ocplib-endian.bigstring threads unix"
   archive(byte) = "lwt_unix.cma"
   archive(native) = "lwt_unix.cmxa"
   plugin(byte) = "lwt_unix.cma"

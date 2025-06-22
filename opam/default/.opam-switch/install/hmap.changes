@@ -1,0 +1,18 @@
+opam-version: "2.0"
+added: [
+  "doc/hmap" {"D"}
+  "doc/hmap/CHANGES.md" {"F:S162T1750607087.25"}
+  "doc/hmap/LICENSE.md" {"F:S768T1750607087.25"}
+  "doc/hmap/README.md" {"F:S1268T1750607087.25"}
+  "lib/hmap" {"D"}
+  "lib/hmap/META" {"F:S195T1750607087.22"}
+  "lib/hmap/hmap.a" {"F:S21404T1750607087.22"}
+  "lib/hmap/hmap.cma" {"F:S36614T1750607087.22"}
+  "lib/hmap/hmap.cmi" {"F:S8725T1750607087.22"}
+  "lib/hmap/hmap.cmti" {"F:S47047T1750607087.22"}
+  "lib/hmap/hmap.cmx" {"F:S2659T1750607087.22"}
+  "lib/hmap/hmap.cmxa" {"F:S337T1750607087.22"}
+  "lib/hmap/hmap.cmxs" {"F:S28616T1750607087.22"}
+  "lib/hmap/hmap.mli" {"F:S7002T1750607087.22"}
+  "lib/hmap/opam" {"F:S611T1750607087.22"}
+]

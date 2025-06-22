@@ -1,0 +1,63 @@
+(lang dune 3.19)
+(name frama-c-nonterm)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-nonterm)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-nonterm)
+ (doc /home/bhaskar/.opam/default/doc/frama-c-nonterm))
+(files
+ (lib
+  (META
+   core/Nonterm.ml
+   core/nonterm.a
+   core/nonterm.cma
+   core/nonterm.cmi
+   core/nonterm.cmt
+   core/nonterm.cmx
+   core/nonterm.cmxa
+   core/nonterm__.cmi
+   core/nonterm__.cmt
+   core/nonterm__.cmx
+   core/nonterm__.ml
+   core/nonterm__Nonterm_run.cmi
+   core/nonterm__Nonterm_run.cmt
+   core/nonterm__Nonterm_run.cmti
+   core/nonterm__Nonterm_run.cmx
+   core/nonterm_run.ml
+   core/nonterm_run.mli
+   dune-package
+   opam))
+ (lib_root (frama-c/plugins/nonterm/META))
+ (libexec (core/nonterm.cmxs))
+ (doc (README.md)))
+(library
+ (name frama-c-nonterm.core)
+ (kind normal)
+ (archives (byte core/nonterm.cma) (native core/nonterm.cmxa))
+ (plugins (byte core/nonterm.cma) (native core/nonterm.cmxs))
+ (native_archives core/nonterm.a)
+ (requires frama-c.kernel frama-c-eva.core)
+ (main_module_name Nonterm)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name nonterm__)
+     (visibility public)
+     (kind alias)
+     (source (path Nonterm__) (impl (path core/nonterm__.ml-gen))))
+    (name Nonterm)
+    (modules
+     (module
+      (obj_name nonterm)
+      (visibility public)
+      (source (path Nonterm) (impl (path core/Nonterm.ml))))
+     (module
+      (obj_name nonterm__Nonterm_run)
+      (visibility public)
+      (source
+       (path Nonterm_run)
+       (intf (path core/nonterm_run.mli))
+       (impl (path core/nonterm_run.ml))))))
+   (wrapped true))))

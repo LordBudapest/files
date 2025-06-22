@@ -1,0 +1,136 @@
+(lang dune 3.19)
+(name frama-c-scope)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-scope)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-scope))
+(files
+ (lib
+  (META
+   core/datascope.ml
+   core/datascope.mli
+   core/defs.ml
+   core/defs.mli
+   core/scope.a
+   core/scope.cma
+   core/scope.cmi
+   core/scope.cmt
+   core/scope.cmti
+   core/scope.cmx
+   core/scope.cmxa
+   core/scope.ml
+   core/scope.mli
+   core/scope__.cmi
+   core/scope__.cmt
+   core/scope__.cmx
+   core/scope__.ml
+   core/scope__Datascope.cmi
+   core/scope__Datascope.cmt
+   core/scope__Datascope.cmti
+   core/scope__Datascope.cmx
+   core/scope__Defs.cmi
+   core/scope__Defs.cmt
+   core/scope__Defs.cmti
+   core/scope__Defs.cmx
+   core/scope__Zones.cmi
+   core/scope__Zones.cmt
+   core/scope__Zones.cmti
+   core/scope__Zones.cmx
+   core/zones.ml
+   core/zones.mli
+   dune-package
+   gui/dpds_gui.ml
+   gui/dpds_gui.mli
+   gui/scope_gui.a
+   gui/scope_gui.cma
+   gui/scope_gui.cmi
+   gui/scope_gui.cmt
+   gui/scope_gui.cmx
+   gui/scope_gui.cmxa
+   gui/scope_gui.ml
+   gui/scope_gui__Dpds_gui.cmi
+   gui/scope_gui__Dpds_gui.cmt
+   gui/scope_gui__Dpds_gui.cmti
+   gui/scope_gui__Dpds_gui.cmx
+   opam))
+ (lib_root (frama-c/plugins/scope/META frama-c/plugins_gui/scope/META))
+ (libexec (core/scope.cmxs gui/scope_gui.cmxs)))
+(library
+ (name frama-c-scope.core)
+ (kind normal)
+ (archives (byte core/scope.cma) (native core/scope.cmxa))
+ (plugins (byte core/scope.cma) (native core/scope.cmxs))
+ (native_archives core/scope.a)
+ (requires
+  frama-c.kernel
+  frama-c-eva.core
+  frama-c-inout.core
+  frama-c-pdg.core)
+ (main_module_name Scope)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name scope__)
+     (visibility public)
+     (kind alias)
+     (source (path Scope__) (impl (path core/scope__.ml-gen))))
+    (name Scope)
+    (modules
+     (module
+      (obj_name scope__Datascope)
+      (visibility public)
+      (source
+       (path Datascope)
+       (intf (path core/datascope.mli))
+       (impl (path core/datascope.ml))))
+     (module
+      (obj_name scope__Defs)
+      (visibility public)
+      (source
+       (path Defs)
+       (intf (path core/defs.mli))
+       (impl (path core/defs.ml))))
+     (module
+      (obj_name scope)
+      (visibility public)
+      (source
+       (path Scope)
+       (intf (path core/scope.mli))
+       (impl (path core/scope.ml))))
+     (module
+      (obj_name scope__Zones)
+      (visibility public)
+      (source
+       (path Zones)
+       (intf (path core/zones.mli))
+       (impl (path core/zones.ml))))))
+   (wrapped true))))
+(library
+ (name frama-c-scope.gui)
+ (kind normal)
+ (archives (byte gui/scope_gui.cma) (native gui/scope_gui.cmxa))
+ (plugins (byte gui/scope_gui.cma) (native gui/scope_gui.cmxs))
+ (native_archives gui/scope_gui.a)
+ (requires frama-c.kernel frama-c.gui frama-c-scope.core)
+ (main_module_name Scope_gui)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name scope_gui)
+     (visibility public)
+     (kind alias)
+     (source (path Scope_gui) (impl (path gui/scope_gui.ml-gen))))
+    (name Scope_gui)
+    (modules
+     (module
+      (obj_name scope_gui__Dpds_gui)
+      (visibility public)
+      (source
+       (path Dpds_gui)
+       (intf (path gui/dpds_gui.mli))
+       (impl (path gui/dpds_gui.ml))))))
+   (wrapped true))))

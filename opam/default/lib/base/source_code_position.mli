@@ -22,11 +22,10 @@ val sexp_of_t : t -> Sexplib0.Sexp.t
 [@@@end]
 
 include Comparable.S with type t := t
-include Ppx_compare_lib.Equal.S_local with type t := t
-include Ppx_compare_lib.Comparable.S_local with type t := t
 
 (** [to_string t] converts [t] to the form ["FILE:LINE:COL"]. *)
 val to_string : t -> string
 
 (** [of_pos Stdlib.__POS__] is like [[%here]] but without using ppx. *)
 val of_pos : string * int * int * int -> t
+

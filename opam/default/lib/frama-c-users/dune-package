@@ -1,0 +1,66 @@
+(lang dune 3.19)
+(name frama-c-users)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-users)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-users))
+(files
+ (lib
+  (META
+   core/Users.a
+   core/Users.cma
+   core/Users.cmxa
+   core/Users.ml
+   core/Users.mli
+   core/users.cmi
+   core/users.cmt
+   core/users.cmti
+   core/users.cmx
+   core/users__.cmi
+   core/users__.cmt
+   core/users__.cmx
+   core/users__.ml
+   core/users__Users_register.cmi
+   core/users__Users_register.cmt
+   core/users__Users_register.cmti
+   core/users__Users_register.cmx
+   core/users_register.ml
+   core/users_register.mli
+   dune-package
+   opam))
+ (lib_root (frama-c/plugins/users/META))
+ (libexec (core/Users.cmxs)))
+(library
+ (name frama-c-users.core)
+ (kind normal)
+ (archives (byte core/Users.cma) (native core/Users.cmxa))
+ (plugins (byte core/Users.cma) (native core/Users.cmxs))
+ (native_archives core/Users.a)
+ (requires frama-c.kernel frama-c-callgraph.core)
+ (main_module_name Users)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name users__)
+     (visibility public)
+     (kind alias)
+     (source (path Users__) (impl (path core/users__.ml-gen))))
+    (name Users)
+    (modules
+     (module
+      (obj_name users)
+      (visibility public)
+      (source
+       (path Users)
+       (intf (path core/Users.mli))
+       (impl (path core/Users.ml))))
+     (module
+      (obj_name users__Users_register)
+      (visibility public)
+      (source
+       (path Users_register)
+       (intf (path core/users_register.mli))
+       (impl (path core/users_register.ml))))))
+   (wrapped true))))

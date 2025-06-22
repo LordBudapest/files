@@ -1,0 +1,9 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires = "frama-c-server.core frama-c.kernel"
+  archive(byte) = "api_generator.cma"
+  archive(native) = "api_generator.cmxa"
+  plugin(byte) = "api_generator.cma"
+  plugin(native) = "api_generator.cmxs"
+)

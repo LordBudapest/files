@@ -115,11 +115,23 @@ external ( && ) : bool -> bool -> bool = "%sequand"
 There is not equivalent functionality in Base or Stdio at the moment,
 so you need to use [Stdlib.( && )] instead"]
 
+external ( & ) : bool -> bool -> bool = "%sequand"
+[@@deprecated "\
+[2016-09] this element comes from the stdlib distributed with OCaml.
+There is not equivalent functionality in Base or Stdio at the moment,
+so you need to use [Stdlib.( & )] instead"]
+
 external ( || ) : bool -> bool -> bool = "%sequor"
 [@@deprecated "\
 [2016-09] this element comes from the stdlib distributed with OCaml.
 There is not equivalent functionality in Base or Stdio at the moment,
 so you need to use [Stdlib.( || )] instead"]
+
+external ( or ) : bool -> bool -> bool = "%sequor"
+[@@deprecated "\
+[2016-09] this element comes from the stdlib distributed with OCaml.
+There is not equivalent functionality in Base or Stdio at the moment,
+so you need to use [Stdlib.( or )] instead"]
 
 external __LOC__ : string = "%loc_LOC"
 [@@deprecated "\
@@ -1063,12 +1075,6 @@ val do_at_exit : unit -> unit
 There is not equivalent functionality in Base or Stdio at the moment,
 so you need to use [Stdlib.do_at_exit] instead"]
 
-val do_domain_local_at_exit : (unit -> unit) ref
-[@@deprecated "\
-[2016-09] this element comes from the stdlib distributed with OCaml.
-There is not equivalent functionality in Base or Stdio at the moment,
-so you need to use [Stdlib.do_domain_local_at_exit] instead"]
-
 module Arg = Stdlib.Arg 
 [@@deprecated "\
 [2016-09] this element comes from the stdlib distributed with OCaml.
@@ -1146,40 +1152,12 @@ Referring to the stdlib directly is discouraged by Base. You should either
 use the equivalent functionality offered by Base, or if you really want to
 refer to the stdlib, use Stdlib.Complex instead"]
 
-module Condition = Stdlib.Condition 
-[@@deprecated "\
-[2016-09] this element comes from the stdlib distributed with OCaml.
-Referring to the stdlib directly is discouraged by Base. You should either
-use the equivalent functionality offered by Base, or if you really want to
-refer to the stdlib, use Stdlib.Condition instead"]
-
 module Digest = Stdlib.Digest 
 [@@deprecated "\
 [2016-09] this element comes from the stdlib distributed with OCaml.
 Referring to the stdlib directly is discouraged by Base. You should either
 use the equivalent functionality offered by Base, or if you really want to
 refer to the stdlib, use Stdlib.Digest instead"]
-
-module Domain = Stdlib.Domain 
-[@@deprecated "\
-[2016-09] this element comes from the stdlib distributed with OCaml.
-Referring to the stdlib directly is discouraged by Base. You should either
-use the equivalent functionality offered by Base, or if you really want to
-refer to the stdlib, use Stdlib.Domain instead"]
-
-module Dynarray = Stdlib.Dynarray 
-[@@deprecated "\
-[2016-09] this element comes from the stdlib distributed with OCaml.
-Referring to the stdlib directly is discouraged by Base. You should either
-use the equivalent functionality offered by Base, or if you really want to
-refer to the stdlib, use Stdlib.Dynarray instead"]
-
-module Effect = Stdlib.Effect 
-[@@deprecated "\
-[2016-09] this element comes from the stdlib distributed with OCaml.
-Referring to the stdlib directly is discouraged by Base. You should either
-use the equivalent functionality offered by Base, or if you really want to
-refer to the stdlib, use Stdlib.Effect instead"]
 
 module Either = Stdlib.Either 
 [@@deprecated "\
@@ -1226,6 +1204,13 @@ module Gc = Stdlib.Gc
 [2016-09] this element comes from the stdlib distributed with OCaml.
 There is not equivalent functionality in Base or Stdio at the moment,
 so you need to use [Stdlib.Gc] instead"]
+
+module Genlex = Stdlib.Genlex 
+[@@deprecated "\
+[2016-09] this element comes from the stdlib distributed with OCaml.
+Referring to the stdlib directly is discouraged by Base. You should either
+use the equivalent functionality offered by Base, or if you really want to
+refer to the stdlib, use Stdlib.Genlex instead"]
 
 module Hashtbl = Stdlib.Hashtbl 
 [@@deprecated "\
@@ -1311,13 +1296,6 @@ Referring to the stdlib directly is discouraged by Base. You should either
 use the equivalent functionality offered by Base, or if you really want to
 refer to the stdlib, use Stdlib.MoreLabels instead"]
 
-module Mutex = Stdlib.Mutex 
-[@@deprecated "\
-[2016-09] this element comes from the stdlib distributed with OCaml.
-Referring to the stdlib directly is discouraged by Base. You should either
-use the equivalent functionality offered by Base, or if you really want to
-refer to the stdlib, use Stdlib.Mutex instead"]
-
 module Nativeint = Stdlib.Nativeint 
 [@@deprecated "\
 [2016-09] this element comes from the stdlib distributed with OCaml.
@@ -1360,6 +1338,13 @@ Referring to the stdlib directly is discouraged by Base. You should either
 use the equivalent functionality offered by Base, or if you really want to
 refer to the stdlib, use Stdlib.Parsing instead"]
 
+module Pervasives = Stdlib.Pervasives 
+[@@deprecated "\
+[2016-09] this element comes from the stdlib distributed with OCaml.
+Referring to the stdlib directly is discouraged by Base. You should either
+use the equivalent functionality offered by Base, or if you really want to
+refer to the stdlib, use Stdlib.Pervasives instead"]
+
 module Printexc = Stdlib.Printexc 
 [@@deprecated "\
 [2016-09] this element comes from the stdlib distributed with OCaml.
@@ -1400,13 +1385,6 @@ Referring to the stdlib directly is discouraged by Base. You should either
 use the equivalent functionality offered by Base, or if you really want to
 refer to the stdlib, use Stdlib.Scanf instead"]
 
-module Semaphore = Stdlib.Semaphore 
-[@@deprecated "\
-[2016-09] this element comes from the stdlib distributed with OCaml.
-Referring to the stdlib directly is discouraged by Base. You should either
-use the equivalent functionality offered by Base, or if you really want to
-refer to the stdlib, use Stdlib.Semaphore instead"]
-
 module Seq = Stdlib.Seq 
 [@@deprecated "\
 [2016-09] this element comes from the stdlib distributed with OCaml.
@@ -1436,6 +1414,13 @@ Referring to the stdlib directly is discouraged by Base. You should either
 use the equivalent functionality offered by Base, or if you really want to
 refer to the stdlib, use Stdlib.StdLabels instead"]
 
+module Stream = Stdlib.Stream 
+[@@deprecated "\
+[2016-09] this element comes from the stdlib distributed with OCaml.
+Referring to the stdlib directly is discouraged by Base. You should either
+use the equivalent functionality offered by Base, or if you really want to
+refer to the stdlib, use Stdlib.Stream instead"]
+
 module String = Stdlib.String 
 [@@deprecated "\
 [2016-09] this element comes from the stdlib distributed with OCaml.
@@ -1456,13 +1441,6 @@ module Sys = Stdlib.Sys
 Referring to the stdlib directly is discouraged by Base. You should either
 use the equivalent functionality offered by Base, or if you really want to
 refer to the stdlib, use Stdlib.Sys instead"]
-
-module Type = Stdlib.Type 
-[@@deprecated "\
-[2016-09] this element comes from the stdlib distributed with OCaml.
-Referring to the stdlib directly is discouraged by Base. You should either
-use the equivalent functionality offered by Base, or if you really want to
-refer to the stdlib, use Stdlib.Type instead"]
 
 module Uchar = Stdlib.Uchar 
 [@@deprecated "\

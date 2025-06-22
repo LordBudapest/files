@@ -29,7 +29,7 @@ module Cheap_option = struct
     val is_some : _ t -> bool
     val value_exn : 'a t -> 'a
     val value_unsafe : 'a t -> 'a
-    val iter_some : 'a t -> f:('a -> unit) -> unit
+    val iter_some : 'a t -> f:(('a -> unit)[@local]) -> unit
   end = struct
     type +'a t
 
@@ -90,7 +90,6 @@ module Cheap_option = struct
     ;;
 
     let[@inline] to_option x = if is_some x then Some (value_unsafe x) else None
-    let[@inline] to_option_local x = if is_some x then Some (value_unsafe x) else None
     let to_sexpable = to_option
     let of_sexpable = of_option
 
@@ -130,7 +129,6 @@ let init n ~f = Uniform_array.init n ~f:(fun i -> Cheap_option.of_option (f i)) 
 let init_some n ~f = Uniform_array.init n ~f:(fun i -> Cheap_option.some (f i)) [@nontail]
 let length = Uniform_array.length
 let[@inline] get t i = Cheap_option.to_option (Uniform_array.get t i)
-let[@inline] get_local t i = Cheap_option.to_option_local (Uniform_array.get t i)
 let get_some_exn t i = Cheap_option.value_exn (Uniform_array.get t i)
 let is_none t i = Cheap_option.is_none (Uniform_array.get t i)
 let is_some t i = Cheap_option.is_some (Uniform_array.get t i)
@@ -173,15 +171,15 @@ let foldi input ~init ~f =
 let fold input ~init ~f = foldi input ~init ~f:(fun (_ : int) acc x -> f acc x) [@nontail]
 
 include Indexed_container.Make_gen (struct
-  type nonrec ('a, _, _) t = 'a t
-  type 'a elt = 'a option
+    type nonrec ('a, _) t = 'a t
+    type 'a elt = 'a option
 
-  let fold = fold
-  let foldi = `Custom foldi
-  let iter = `Custom iter
-  let iteri = `Custom iteri
-  let length = `Custom length
-end)
+    let fold = fold
+    let foldi = `Custom foldi
+    let iter = `Custom iter
+    let iteri = `Custom iteri
+    let length = `Custom length
+  end)
 
 let length = Uniform_array.length
 
@@ -214,12 +212,12 @@ let of_array_some array =
 let to_array t = Array.init (length t) ~f:(fun i -> unsafe_get t i)
 
 include Blit.Make1_generic (struct
-  type nonrec 'a t = 'a t
+    type nonrec 'a t = 'a t
 
-  let length = length
-  let create_like ~len _ = create ~len
-  let unsafe_blit = Uniform_array.unsafe_blit
-end)
+    let length = length
+    let create_like ~len _ = create ~len
+    let unsafe_blit = Uniform_array.unsafe_blit
+  end)
 
 let copy = Uniform_array.copy
 

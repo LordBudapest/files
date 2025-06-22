@@ -119,19 +119,14 @@ let unit_of_uid uid =
   | Predef _ -> None
   | Internal -> None
 
-# 123 "shape_tools.cppo.ml"
-let rec traverse_aliases = function
-   | Shape_reduce.Resolved uid -> Some uid
-   | Approximated id -> id
-   | Resolved_alias (_,x) -> traverse_aliases x
-   | _ -> None
 
 # 130 "shape_tools.cppo.ml"
 let lookup_shape : Env.t -> Shape.t -> Identifier.SourceLocation.t option =
  fun env query ->
   
-# 149 "shape_tools.cppo.ml"
-  let module Reduce = Shape_reduce.Make(struct
+# 133 "shape_tools.cppo.ml"
+  let module Reduce = Shape.Make_reduce (struct
+    type env = unit
     let fuel = 10
     let read_unit_shape ~unit_name =
       match Env.lookup_impl unit_name env with
@@ -139,10 +134,12 @@ let lookup_shape : Env.t -> Shape.t -> Identifier.SourceLocation.t option =
           match impl.shape_info with
           | Some (shape, _) -> Some shape
           | None -> None)
-       | _ -> None
+      | _ -> None
+    let find_shape _ _ = raise Not_found
   end) in
-  let result = try Some (Reduce.reduce_for_uid Ocaml_env.empty query) with Not_found -> None in
-  result >>= traverse_aliases >>= fun uid ->
+  let result = try Some (Reduce.reduce () query) with Not_found -> None in
+  result >>= fun result ->
+  result.uid >>= fun uid ->
   
 # 162 "shape_tools.cppo.ml"
   unit_of_uid uid >>= fun unit_name ->

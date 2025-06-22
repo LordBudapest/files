@@ -24,7 +24,7 @@ let default_string_of_float =
 
 let read_old_option_format = ref true
 let write_old_option_format = ref true
-let list_map f l = List.map l ~f
+let list_map f l = List.rev (List.rev_map l ~f)
 let sexp_of_unit () = List []
 let sexp_of_bool b = Atom (string_of_bool b)
 let sexp_of_string str = Atom str
@@ -51,7 +51,9 @@ let sexp_of_triple sexp_of__a sexp_of__b sexp_of__c (a, b, c) =
   List [ sexp_of__a a; sexp_of__b b; sexp_of__c c ]
 ;;
 
-let sexp_of_list sexp_of__a lst = List (List.map lst ~f:sexp_of__a)
+(* List.rev (List.rev_map ...) is tail recursive, the OCaml standard
+   library List.map is NOT. *)
+let sexp_of_list sexp_of__a lst = List (List.rev (List.rev_map lst ~f:sexp_of__a))
 
 let sexp_of_array sexp_of__a ar =
   let lst_ref = ref [] in
@@ -88,11 +90,11 @@ module Exn_converter = struct
   end
 
   module Exn_table = Ephemeron.K1.Make (struct
-    type t = extension_constructor
+      type t = extension_constructor
 
-    let equal = ( == )
-    let hash = Obj.Extension_constructor.id
-  end)
+      let equal = ( == )
+      let hash = Obj.Extension_constructor.id
+    end)
 
   let the_exn_table : Registration.t Exn_table.t = Exn_table.create 17
 
@@ -272,7 +274,9 @@ let triple_of_sexp a__of_sexp b__of_sexp c__of_sexp sexp =
 
 let list_of_sexp a__of_sexp sexp =
   match sexp with
-  | List lst -> List.map lst ~f:a__of_sexp
+  | List lst ->
+    let rev_lst = List.rev_map lst ~f:a__of_sexp in
+    List.rev rev_lst
   | Atom _ -> of_sexp_error "list_of_sexp: list needed" sexp
 ;;
 

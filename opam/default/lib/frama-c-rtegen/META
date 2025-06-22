@@ -1,0 +1,18 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires = "frama-c.kernel"
+  archive(byte) = "RteGen.cma"
+  archive(native) = "RteGen.cmxa"
+  plugin(byte) = "RteGen.cma"
+  plugin(native) = "RteGen.cmxs"
+)
+package "gui" (
+  directory = "gui"
+  description = ""
+  requires = "frama-c-rtegen.core frama-c.gui frama-c.kernel"
+  archive(byte) = "rtegen_gui.cma"
+  archive(native) = "rtegen_gui.cmxa"
+  plugin(byte) = "rtegen_gui.cma"
+  plugin(native) = "rtegen_gui.cmxs"
+)

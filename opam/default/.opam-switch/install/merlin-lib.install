@@ -1,8 +1,6 @@
 opam-version: "2.0"
 lib: [
   "_build/install/default/lib/merlin-lib/META"
-  "_build/install/default/lib/merlin-lib/analysis/ast_iterators.ml"
-    {"analysis/ast_iterators.ml"}
   "_build/install/default/lib/merlin-lib/analysis/browse_misc.ml"
     {"analysis/browse_misc.ml"}
   "_build/install/default/lib/merlin-lib/analysis/browse_tree.ml"
@@ -25,16 +23,10 @@ lib: [
     {"analysis/destruct.ml"}
   "_build/install/default/lib/merlin-lib/analysis/destruct.mli"
     {"analysis/destruct.mli"}
-  "_build/install/default/lib/merlin-lib/analysis/env_lookup.ml"
-    {"analysis/env_lookup.ml"}
-  "_build/install/default/lib/merlin-lib/analysis/env_lookup.mli"
-    {"analysis/env_lookup.mli"}
   "_build/install/default/lib/merlin-lib/analysis/expansion.ml"
     {"analysis/expansion.ml"}
   "_build/install/default/lib/merlin-lib/analysis/expansion.mli"
     {"analysis/expansion.mli"}
-  "_build/install/default/lib/merlin-lib/analysis/index_occurrences.ml"
-    {"analysis/index_occurrences.ml"}
   "_build/install/default/lib/merlin-lib/analysis/inlay_hints.ml"
     {"analysis/inlay_hints.ml"}
   "_build/install/default/lib/merlin-lib/analysis/inlay_hints.mli"
@@ -61,12 +53,6 @@ lib: [
     {"analysis/merlin_analysis.cmxa"}
   "_build/install/default/lib/merlin-lib/analysis/merlin_analysis.ml"
     {"analysis/merlin_analysis.ml"}
-  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Ast_iterators.cmi"
-    {"analysis/merlin_analysis__Ast_iterators.cmi"}
-  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Ast_iterators.cmt"
-    {"analysis/merlin_analysis__Ast_iterators.cmt"}
-  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Ast_iterators.cmx"
-    {"analysis/merlin_analysis__Ast_iterators.cmx"}
   "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Browse_misc.cmi"
     {"analysis/merlin_analysis__Browse_misc.cmi"}
   "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Browse_misc.cmt"
@@ -113,14 +99,6 @@ lib: [
     {"analysis/merlin_analysis__Destruct.cmti"}
   "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Destruct.cmx"
     {"analysis/merlin_analysis__Destruct.cmx"}
-  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Env_lookup.cmi"
-    {"analysis/merlin_analysis__Env_lookup.cmi"}
-  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Env_lookup.cmt"
-    {"analysis/merlin_analysis__Env_lookup.cmt"}
-  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Env_lookup.cmti"
-    {"analysis/merlin_analysis__Env_lookup.cmti"}
-  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Env_lookup.cmx"
-    {"analysis/merlin_analysis__Env_lookup.cmx"}
   "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Expansion.cmi"
     {"analysis/merlin_analysis__Expansion.cmi"}
   "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Expansion.cmt"
@@ -129,12 +107,6 @@ lib: [
     {"analysis/merlin_analysis__Expansion.cmti"}
   "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Expansion.cmx"
     {"analysis/merlin_analysis__Expansion.cmx"}
-  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Index_occurrences.cmi"
-    {"analysis/merlin_analysis__Index_occurrences.cmi"}
-  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Index_occurrences.cmt"
-    {"analysis/merlin_analysis__Index_occurrences.cmt"}
-  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Index_occurrences.cmx"
-    {"analysis/merlin_analysis__Index_occurrences.cmx"}
   "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Inlay_hints.cmi"
     {"analysis/merlin_analysis__Inlay_hints.cmi"}
   "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Inlay_hints.cmt"
@@ -167,20 +139,20 @@ lib: [
     {"analysis/merlin_analysis__Misc_utils.cmti"}
   "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Misc_utils.cmx"
     {"analysis/merlin_analysis__Misc_utils.cmx"}
+  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Namespaced_path.cmi"
+    {"analysis/merlin_analysis__Namespaced_path.cmi"}
+  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Namespaced_path.cmt"
+    {"analysis/merlin_analysis__Namespaced_path.cmt"}
+  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Namespaced_path.cmti"
+    {"analysis/merlin_analysis__Namespaced_path.cmti"}
+  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Namespaced_path.cmx"
+    {"analysis/merlin_analysis__Namespaced_path.cmx"}
   "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Ocamldoc.cmi"
     {"analysis/merlin_analysis__Ocamldoc.cmi"}
   "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Ocamldoc.cmt"
     {"analysis/merlin_analysis__Ocamldoc.cmt"}
   "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Ocamldoc.cmx"
     {"analysis/merlin_analysis__Ocamldoc.cmx"}
-  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Occurrences.cmi"
-    {"analysis/merlin_analysis__Occurrences.cmi"}
-  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Occurrences.cmt"
-    {"analysis/merlin_analysis__Occurrences.cmt"}
-  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Occurrences.cmti"
-    {"analysis/merlin_analysis__Occurrences.cmti"}
-  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Occurrences.cmx"
-    {"analysis/merlin_analysis__Occurrences.cmx"}
   "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Outline.cmi"
     {"analysis/merlin_analysis__Outline.cmi"}
   "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Outline.cmt"
@@ -189,14 +161,6 @@ lib: [
     {"analysis/merlin_analysis__Outline.cmti"}
   "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Outline.cmx"
     {"analysis/merlin_analysis__Outline.cmx"}
-  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Parsetree_utils.cmi"
-    {"analysis/merlin_analysis__Parsetree_utils.cmi"}
-  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Parsetree_utils.cmt"
-    {"analysis/merlin_analysis__Parsetree_utils.cmt"}
-  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Parsetree_utils.cmti"
-    {"analysis/merlin_analysis__Parsetree_utils.cmti"}
-  "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Parsetree_utils.cmx"
-    {"analysis/merlin_analysis__Parsetree_utils.cmx"}
   "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Polarity_search.cmi"
     {"analysis/merlin_analysis__Polarity_search.cmi"}
   "_build/install/default/lib/merlin-lib/analysis/merlin_analysis__Polarity_search.cmt"
@@ -287,20 +251,16 @@ lib: [
     {"analysis/misc_utils.ml"}
   "_build/install/default/lib/merlin-lib/analysis/misc_utils.mli"
     {"analysis/misc_utils.mli"}
+  "_build/install/default/lib/merlin-lib/analysis/namespaced_path.ml"
+    {"analysis/namespaced_path.ml"}
+  "_build/install/default/lib/merlin-lib/analysis/namespaced_path.mli"
+    {"analysis/namespaced_path.mli"}
   "_build/install/default/lib/merlin-lib/analysis/ocamldoc.ml"
     {"analysis/ocamldoc.ml"}
-  "_build/install/default/lib/merlin-lib/analysis/occurrences.ml"
-    {"analysis/occurrences.ml"}
-  "_build/install/default/lib/merlin-lib/analysis/occurrences.mli"
-    {"analysis/occurrences.mli"}
   "_build/install/default/lib/merlin-lib/analysis/outline.ml"
     {"analysis/outline.ml"}
   "_build/install/default/lib/merlin-lib/analysis/outline.mli"
     {"analysis/outline.mli"}
-  "_build/install/default/lib/merlin-lib/analysis/parsetree_utils.ml"
-    {"analysis/parsetree_utils.ml"}
-  "_build/install/default/lib/merlin-lib/analysis/parsetree_utils.mli"
-    {"analysis/parsetree_utils.mli"}
   "_build/install/default/lib/merlin-lib/analysis/polarity_search.ml"
     {"analysis/polarity_search.ml"}
   "_build/install/default/lib/merlin-lib/analysis/ppx_expand.ml"
@@ -456,48 +416,6 @@ lib: [
     {"extend/merlin_extend__Extend_protocol.cmt"}
   "_build/install/default/lib/merlin-lib/extend/merlin_extend__Extend_protocol.cmx"
     {"extend/merlin_extend__Extend_protocol.cmx"}
-  "_build/install/default/lib/merlin-lib/index_format/index_cache.ml"
-    {"index_format/index_cache.ml"}
-  "_build/install/default/lib/merlin-lib/index_format/index_format.ml"
-    {"index_format/index_format.ml"}
-  "_build/install/default/lib/merlin-lib/index_format/index_format.mli"
-    {"index_format/index_format.mli"}
-  "_build/install/default/lib/merlin-lib/index_format/merlin_index_format.a"
-    {"index_format/merlin_index_format.a"}
-  "_build/install/default/lib/merlin-lib/index_format/merlin_index_format.cma"
-    {"index_format/merlin_index_format.cma"}
-  "_build/install/default/lib/merlin-lib/index_format/merlin_index_format.cmi"
-    {"index_format/merlin_index_format.cmi"}
-  "_build/install/default/lib/merlin-lib/index_format/merlin_index_format.cmt"
-    {"index_format/merlin_index_format.cmt"}
-  "_build/install/default/lib/merlin-lib/index_format/merlin_index_format.cmx"
-    {"index_format/merlin_index_format.cmx"}
-  "_build/install/default/lib/merlin-lib/index_format/merlin_index_format.cmxa"
-    {"index_format/merlin_index_format.cmxa"}
-  "_build/install/default/lib/merlin-lib/index_format/merlin_index_format.ml"
-    {"index_format/merlin_index_format.ml"}
-  "_build/install/default/lib/merlin-lib/index_format/merlin_index_format__Index_cache.cmi"
-    {"index_format/merlin_index_format__Index_cache.cmi"}
-  "_build/install/default/lib/merlin-lib/index_format/merlin_index_format__Index_cache.cmt"
-    {"index_format/merlin_index_format__Index_cache.cmt"}
-  "_build/install/default/lib/merlin-lib/index_format/merlin_index_format__Index_cache.cmx"
-    {"index_format/merlin_index_format__Index_cache.cmx"}
-  "_build/install/default/lib/merlin-lib/index_format/merlin_index_format__Index_format.cmi"
-    {"index_format/merlin_index_format__Index_format.cmi"}
-  "_build/install/default/lib/merlin-lib/index_format/merlin_index_format__Index_format.cmt"
-    {"index_format/merlin_index_format__Index_format.cmt"}
-  "_build/install/default/lib/merlin-lib/index_format/merlin_index_format__Index_format.cmti"
-    {"index_format/merlin_index_format__Index_format.cmti"}
-  "_build/install/default/lib/merlin-lib/index_format/merlin_index_format__Index_format.cmx"
-    {"index_format/merlin_index_format__Index_format.cmx"}
-  "_build/install/default/lib/merlin-lib/index_format/merlin_index_format__Union_find.cmi"
-    {"index_format/merlin_index_format__Union_find.cmi"}
-  "_build/install/default/lib/merlin-lib/index_format/merlin_index_format__Union_find.cmt"
-    {"index_format/merlin_index_format__Union_find.cmt"}
-  "_build/install/default/lib/merlin-lib/index_format/merlin_index_format__Union_find.cmx"
-    {"index_format/merlin_index_format__Union_find.cmx"}
-  "_build/install/default/lib/merlin-lib/index_format/union_find.ml"
-    {"index_format/union_find.ml"}
   "_build/install/default/lib/merlin-lib/kernel/extension.ml"
     {"kernel/extension.ml"}
   "_build/install/default/lib/merlin-lib/kernel/extension.mli"
@@ -718,20 +636,6 @@ lib: [
     {"kernel/pparse.mli"}
   "_build/install/default/lib/merlin-lib/kernel/standard_library.ml"
     {"kernel/standard_library.ml"}
-  "_build/install/default/lib/merlin-lib/ocaml_compression/ocaml_compression.a"
-    {"ocaml_compression/ocaml_compression.a"}
-  "_build/install/default/lib/merlin-lib/ocaml_compression/ocaml_compression.cma"
-    {"ocaml_compression/ocaml_compression.cma"}
-  "_build/install/default/lib/merlin-lib/ocaml_compression/ocaml_compression.cmi"
-    {"ocaml_compression/ocaml_compression.cmi"}
-  "_build/install/default/lib/merlin-lib/ocaml_compression/ocaml_compression.cmt"
-    {"ocaml_compression/ocaml_compression.cmt"}
-  "_build/install/default/lib/merlin-lib/ocaml_compression/ocaml_compression.cmx"
-    {"ocaml_compression/ocaml_compression.cmx"}
-  "_build/install/default/lib/merlin-lib/ocaml_compression/ocaml_compression.cmxa"
-    {"ocaml_compression/ocaml_compression.cmxa"}
-  "_build/install/default/lib/merlin-lib/ocaml_compression/ocaml_compression.ml"
-    {"ocaml_compression/ocaml_compression.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_merlin_specific/browse_raw.ml"
     {"ocaml_merlin_specific/browse_raw.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_merlin_specific/browse_raw.mli"
@@ -790,8 +694,6 @@ lib: [
     {"ocaml_parsing/ast_mapper.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_parsing/ast_mapper.mli"
     {"ocaml_parsing/ast_mapper.mli"}
-  "_build/install/default/lib/merlin-lib/ocaml_parsing/asttypes.ml"
-    {"ocaml_parsing/asttypes.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_parsing/asttypes.mli"
     {"ocaml_parsing/asttypes.mli"}
   "_build/install/default/lib/merlin-lib/ocaml_parsing/attr_helper.ml"
@@ -814,8 +716,6 @@ lib: [
     {"ocaml_parsing/fake.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_parsing/fake.mli"
     {"ocaml_parsing/fake.mli"}
-  "_build/install/default/lib/merlin-lib/ocaml_parsing/lexer.ml"
-    {"ocaml_parsing/lexer.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_parsing/location.ml"
     {"ocaml_parsing/location.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_parsing/location.mli"
@@ -870,12 +770,8 @@ lib: [
     {"ocaml_parsing/ocaml_parsing__Ast_mapper.cmx"}
   "_build/install/default/lib/merlin-lib/ocaml_parsing/ocaml_parsing__Asttypes.cmi"
     {"ocaml_parsing/ocaml_parsing__Asttypes.cmi"}
-  "_build/install/default/lib/merlin-lib/ocaml_parsing/ocaml_parsing__Asttypes.cmt"
-    {"ocaml_parsing/ocaml_parsing__Asttypes.cmt"}
   "_build/install/default/lib/merlin-lib/ocaml_parsing/ocaml_parsing__Asttypes.cmti"
     {"ocaml_parsing/ocaml_parsing__Asttypes.cmti"}
-  "_build/install/default/lib/merlin-lib/ocaml_parsing/ocaml_parsing__Asttypes.cmx"
-    {"ocaml_parsing/ocaml_parsing__Asttypes.cmx"}
   "_build/install/default/lib/merlin-lib/ocaml_parsing/ocaml_parsing__Attr_helper.cmi"
     {"ocaml_parsing/ocaml_parsing__Attr_helper.cmi"}
   "_build/install/default/lib/merlin-lib/ocaml_parsing/ocaml_parsing__Attr_helper.cmt"
@@ -916,12 +812,6 @@ lib: [
     {"ocaml_parsing/ocaml_parsing__Fake.cmti"}
   "_build/install/default/lib/merlin-lib/ocaml_parsing/ocaml_parsing__Fake.cmx"
     {"ocaml_parsing/ocaml_parsing__Fake.cmx"}
-  "_build/install/default/lib/merlin-lib/ocaml_parsing/ocaml_parsing__Lexer.cmi"
-    {"ocaml_parsing/ocaml_parsing__Lexer.cmi"}
-  "_build/install/default/lib/merlin-lib/ocaml_parsing/ocaml_parsing__Lexer.cmt"
-    {"ocaml_parsing/ocaml_parsing__Lexer.cmt"}
-  "_build/install/default/lib/merlin-lib/ocaml_parsing/ocaml_parsing__Lexer.cmx"
-    {"ocaml_parsing/ocaml_parsing__Lexer.cmx"}
   "_build/install/default/lib/merlin-lib/ocaml_parsing/ocaml_parsing__Location.cmi"
     {"ocaml_parsing/ocaml_parsing__Location.cmi"}
   "_build/install/default/lib/merlin-lib/ocaml_parsing/ocaml_parsing__Location.cmt"
@@ -980,14 +870,6 @@ lib: [
     {"ocaml_parsing/ocaml_parsing__Syntaxerr.cmti"}
   "_build/install/default/lib/merlin-lib/ocaml_parsing/ocaml_parsing__Syntaxerr.cmx"
     {"ocaml_parsing/ocaml_parsing__Syntaxerr.cmx"}
-  "_build/install/default/lib/merlin-lib/ocaml_parsing/ocaml_parsing__Unit_info.cmi"
-    {"ocaml_parsing/ocaml_parsing__Unit_info.cmi"}
-  "_build/install/default/lib/merlin-lib/ocaml_parsing/ocaml_parsing__Unit_info.cmt"
-    {"ocaml_parsing/ocaml_parsing__Unit_info.cmt"}
-  "_build/install/default/lib/merlin-lib/ocaml_parsing/ocaml_parsing__Unit_info.cmti"
-    {"ocaml_parsing/ocaml_parsing__Unit_info.cmti"}
-  "_build/install/default/lib/merlin-lib/ocaml_parsing/ocaml_parsing__Unit_info.cmx"
-    {"ocaml_parsing/ocaml_parsing__Unit_info.cmx"}
   "_build/install/default/lib/merlin-lib/ocaml_parsing/parsetree.mli"
     {"ocaml_parsing/parsetree.mli"}
   "_build/install/default/lib/merlin-lib/ocaml_parsing/pprintast.ml"
@@ -1002,10 +884,6 @@ lib: [
     {"ocaml_parsing/syntaxerr.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_parsing/syntaxerr.mli"
     {"ocaml_parsing/syntaxerr.mli"}
-  "_build/install/default/lib/merlin-lib/ocaml_parsing/unit_info.ml"
-    {"ocaml_parsing/unit_info.ml"}
-  "_build/install/default/lib/merlin-lib/ocaml_parsing/unit_info.mli"
-    {"ocaml_parsing/unit_info.mli"}
   "_build/install/default/lib/merlin-lib/ocaml_preprocess/lexer_ident.ml"
     {"ocaml_preprocess/lexer_ident.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_preprocess/lexer_ident.mli"
@@ -1138,10 +1016,6 @@ lib: [
     {"ocaml_typing/errortrace.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/errortrace.mli"
     {"ocaml_typing/errortrace.mli"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/errortrace_report.ml"
-    {"ocaml_typing/errortrace_report.ml"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/errortrace_report.mli"
-    {"ocaml_typing/errortrace_report.mli"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/ident.ml"
     {"ocaml_typing/ident.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/ident.mli"
@@ -1162,8 +1036,6 @@ lib: [
     {"ocaml_typing/includemod_errorprinter.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/includemod_errorprinter.mli"
     {"ocaml_typing/includemod_errorprinter.mli"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/lambda.ml"
-    {"ocaml_typing/lambda.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/magic_numbers.ml"
     {"ocaml_typing/magic_numbers.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/msupport.ml"
@@ -1272,14 +1144,6 @@ lib: [
     {"ocaml_typing/ocaml_typing__Errortrace.cmti"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Errortrace.cmx"
     {"ocaml_typing/ocaml_typing__Errortrace.cmx"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Errortrace_report.cmi"
-    {"ocaml_typing/ocaml_typing__Errortrace_report.cmi"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Errortrace_report.cmt"
-    {"ocaml_typing/ocaml_typing__Errortrace_report.cmt"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Errortrace_report.cmti"
-    {"ocaml_typing/ocaml_typing__Errortrace_report.cmti"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Errortrace_report.cmx"
-    {"ocaml_typing/ocaml_typing__Errortrace_report.cmx"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Ident.cmi"
     {"ocaml_typing/ocaml_typing__Ident.cmi"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Ident.cmt"
@@ -1320,12 +1184,6 @@ lib: [
     {"ocaml_typing/ocaml_typing__Includemod_errorprinter.cmti"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Includemod_errorprinter.cmx"
     {"ocaml_typing/ocaml_typing__Includemod_errorprinter.cmx"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Lambda.cmi"
-    {"ocaml_typing/ocaml_typing__Lambda.cmi"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Lambda.cmt"
-    {"ocaml_typing/ocaml_typing__Lambda.cmt"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Lambda.cmx"
-    {"ocaml_typing/ocaml_typing__Lambda.cmx"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Magic_numbers.cmi"
     {"ocaml_typing/ocaml_typing__Magic_numbers.cmi"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Magic_numbers.cmt"
@@ -1364,14 +1222,6 @@ lib: [
     {"ocaml_typing/ocaml_typing__Oprint.cmti"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Oprint.cmx"
     {"ocaml_typing/ocaml_typing__Oprint.cmx"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Out_type.cmi"
-    {"ocaml_typing/ocaml_typing__Out_type.cmi"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Out_type.cmt"
-    {"ocaml_typing/ocaml_typing__Out_type.cmt"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Out_type.cmti"
-    {"ocaml_typing/ocaml_typing__Out_type.cmti"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Out_type.cmx"
-    {"ocaml_typing/ocaml_typing__Out_type.cmx"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Outcometree.cmi"
     {"ocaml_typing/ocaml_typing__Outcometree.cmi"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Outcometree.cmti"
@@ -1448,14 +1298,14 @@ lib: [
     {"ocaml_typing/ocaml_typing__Printtyped.cmti"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Printtyped.cmx"
     {"ocaml_typing/ocaml_typing__Printtyped.cmx"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Rawprinttyp.cmi"
-    {"ocaml_typing/ocaml_typing__Rawprinttyp.cmi"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Rawprinttyp.cmt"
-    {"ocaml_typing/ocaml_typing__Rawprinttyp.cmt"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Rawprinttyp.cmti"
-    {"ocaml_typing/ocaml_typing__Rawprinttyp.cmti"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Rawprinttyp.cmx"
-    {"ocaml_typing/ocaml_typing__Rawprinttyp.cmx"}
+  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Rec_check.cmi"
+    {"ocaml_typing/ocaml_typing__Rec_check.cmi"}
+  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Rec_check.cmt"
+    {"ocaml_typing/ocaml_typing__Rec_check.cmt"}
+  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Rec_check.cmti"
+    {"ocaml_typing/ocaml_typing__Rec_check.cmti"}
+  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Rec_check.cmx"
+    {"ocaml_typing/ocaml_typing__Rec_check.cmx"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Saved_parts.cmi"
     {"ocaml_typing/ocaml_typing__Saved_parts.cmi"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Saved_parts.cmt"
@@ -1472,14 +1322,6 @@ lib: [
     {"ocaml_typing/ocaml_typing__Shape.cmti"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Shape.cmx"
     {"ocaml_typing/ocaml_typing__Shape.cmx"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Shape_reduce.cmi"
-    {"ocaml_typing/ocaml_typing__Shape_reduce.cmi"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Shape_reduce.cmt"
-    {"ocaml_typing/ocaml_typing__Shape_reduce.cmt"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Shape_reduce.cmti"
-    {"ocaml_typing/ocaml_typing__Shape_reduce.cmti"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Shape_reduce.cmx"
-    {"ocaml_typing/ocaml_typing__Shape_reduce.cmx"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Short_paths.cmi"
     {"ocaml_typing/ocaml_typing__Short_paths.cmi"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Short_paths.cmt"
@@ -1656,26 +1498,10 @@ lib: [
     {"ocaml_typing/ocaml_typing__Untypeast.cmti"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Untypeast.cmx"
     {"ocaml_typing/ocaml_typing__Untypeast.cmx"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Value_rec_check.cmi"
-    {"ocaml_typing/ocaml_typing__Value_rec_check.cmi"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Value_rec_check.cmt"
-    {"ocaml_typing/ocaml_typing__Value_rec_check.cmt"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Value_rec_check.cmti"
-    {"ocaml_typing/ocaml_typing__Value_rec_check.cmti"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Value_rec_check.cmx"
-    {"ocaml_typing/ocaml_typing__Value_rec_check.cmx"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Value_rec_types.cmi"
-    {"ocaml_typing/ocaml_typing__Value_rec_types.cmi"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/ocaml_typing__Value_rec_types.cmti"
-    {"ocaml_typing/ocaml_typing__Value_rec_types.cmti"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/oprint.ml"
     {"ocaml_typing/oprint.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/oprint.mli"
     {"ocaml_typing/oprint.mli"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/out_type.ml"
-    {"ocaml_typing/out_type.ml"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/out_type.mli"
-    {"ocaml_typing/out_type.mli"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/outcometree.mli"
     {"ocaml_typing/outcometree.mli"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/parmatch.ml"
@@ -1714,10 +1540,10 @@ lib: [
     {"ocaml_typing/printtyped.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/printtyped.mli"
     {"ocaml_typing/printtyped.mli"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/rawprinttyp.ml"
-    {"ocaml_typing/rawprinttyp.ml"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/rawprinttyp.mli"
-    {"ocaml_typing/rawprinttyp.mli"}
+  "_build/install/default/lib/merlin-lib/ocaml_typing/rec_check.ml"
+    {"ocaml_typing/rec_check.ml"}
+  "_build/install/default/lib/merlin-lib/ocaml_typing/rec_check.mli"
+    {"ocaml_typing/rec_check.mli"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/saved_parts.ml"
     {"ocaml_typing/saved_parts.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/saved_parts.mli"
@@ -1726,10 +1552,6 @@ lib: [
     {"ocaml_typing/shape.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/shape.mli"
     {"ocaml_typing/shape.mli"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/shape_reduce.ml"
-    {"ocaml_typing/shape_reduce.ml"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/shape_reduce.mli"
-    {"ocaml_typing/shape_reduce.mli"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/short_paths.ml"
     {"ocaml_typing/short_paths.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/short_paths.mli"
@@ -1818,12 +1640,6 @@ lib: [
     {"ocaml_typing/untypeast.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_typing/untypeast.mli"
     {"ocaml_typing/untypeast.mli"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/value_rec_check.ml"
-    {"ocaml_typing/value_rec_check.ml"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/value_rec_check.mli"
-    {"ocaml_typing/value_rec_check.mli"}
-  "_build/install/default/lib/merlin-lib/ocaml_typing/value_rec_types.mli"
-    {"ocaml_typing/value_rec_types.mli"}
   "_build/install/default/lib/merlin-lib/ocaml_utils/build_path_prefix_map.ml"
     {"ocaml_utils/build_path_prefix_map.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_utils/build_path_prefix_map.mli"
@@ -1832,10 +1648,6 @@ lib: [
     {"ocaml_utils/clflags.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_utils/clflags.mli"
     {"ocaml_utils/clflags.mli"}
-  "_build/install/default/lib/merlin-lib/ocaml_utils/compression.ml"
-    {"ocaml_utils/compression.ml"}
-  "_build/install/default/lib/merlin-lib/ocaml_utils/compression.mli"
-    {"ocaml_utils/compression.mli"}
   "_build/install/default/lib/merlin-lib/ocaml_utils/config.ml"
     {"ocaml_utils/config.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_utils/config.mli"
@@ -1862,10 +1674,6 @@ lib: [
     {"ocaml_utils/lazy_backtrack.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_utils/lazy_backtrack.mli"
     {"ocaml_utils/lazy_backtrack.mli"}
-  "_build/install/default/lib/merlin-lib/ocaml_utils/linkdeps.ml"
-    {"ocaml_utils/linkdeps.ml"}
-  "_build/install/default/lib/merlin-lib/ocaml_utils/linkdeps.mli"
-    {"ocaml_utils/linkdeps.mli"}
   "_build/install/default/lib/merlin-lib/ocaml_utils/load_path.ml"
     {"ocaml_utils/load_path.ml"}
   "_build/install/default/lib/merlin-lib/ocaml_utils/load_path.mli"
@@ -1904,14 +1712,6 @@ lib: [
     {"ocaml_utils/ocaml_utils__Clflags.cmti"}
   "_build/install/default/lib/merlin-lib/ocaml_utils/ocaml_utils__Clflags.cmx"
     {"ocaml_utils/ocaml_utils__Clflags.cmx"}
-  "_build/install/default/lib/merlin-lib/ocaml_utils/ocaml_utils__Compression.cmi"
-    {"ocaml_utils/ocaml_utils__Compression.cmi"}
-  "_build/install/default/lib/merlin-lib/ocaml_utils/ocaml_utils__Compression.cmt"
-    {"ocaml_utils/ocaml_utils__Compression.cmt"}
-  "_build/install/default/lib/merlin-lib/ocaml_utils/ocaml_utils__Compression.cmti"
-    {"ocaml_utils/ocaml_utils__Compression.cmti"}
-  "_build/install/default/lib/merlin-lib/ocaml_utils/ocaml_utils__Compression.cmx"
-    {"ocaml_utils/ocaml_utils__Compression.cmx"}
   "_build/install/default/lib/merlin-lib/ocaml_utils/ocaml_utils__Config.cmi"
     {"ocaml_utils/ocaml_utils__Config.cmi"}
   "_build/install/default/lib/merlin-lib/ocaml_utils/ocaml_utils__Config.cmt"
@@ -1966,14 +1766,6 @@ lib: [
     {"ocaml_utils/ocaml_utils__Lazy_backtrack.cmti"}
   "_build/install/default/lib/merlin-lib/ocaml_utils/ocaml_utils__Lazy_backtrack.cmx"
     {"ocaml_utils/ocaml_utils__Lazy_backtrack.cmx"}
-  "_build/install/default/lib/merlin-lib/ocaml_utils/ocaml_utils__Linkdeps.cmi"
-    {"ocaml_utils/ocaml_utils__Linkdeps.cmi"}
-  "_build/install/default/lib/merlin-lib/ocaml_utils/ocaml_utils__Linkdeps.cmt"
-    {"ocaml_utils/ocaml_utils__Linkdeps.cmt"}
-  "_build/install/default/lib/merlin-lib/ocaml_utils/ocaml_utils__Linkdeps.cmti"
-    {"ocaml_utils/ocaml_utils__Linkdeps.cmti"}
-  "_build/install/default/lib/merlin-lib/ocaml_utils/ocaml_utils__Linkdeps.cmx"
-    {"ocaml_utils/ocaml_utils__Linkdeps.cmx"}
   "_build/install/default/lib/merlin-lib/ocaml_utils/ocaml_utils__Load_path.cmi"
     {"ocaml_utils/ocaml_utils__Load_path.cmi"}
   "_build/install/default/lib/merlin-lib/ocaml_utils/ocaml_utils__Load_path.cmt"
@@ -2176,10 +1968,6 @@ lib: [
     {"utils/file_id.ml"}
   "_build/install/default/lib/merlin-lib/utils/file_id.mli"
     {"utils/file_id.mli"}
-  "_build/install/default/lib/merlin-lib/utils/format_doc.ml"
-    {"utils/format_doc.ml"}
-  "_build/install/default/lib/merlin-lib/utils/format_doc.mli"
-    {"utils/format_doc.mli"}
   "_build/install/default/lib/merlin-lib/utils/lib_config.ml"
     {"utils/lib_config.ml"}
   "_build/install/default/lib/merlin-lib/utils/lib_config.mli"
@@ -2221,14 +2009,6 @@ lib: [
     {"utils/merlin_utils__File_id.cmti"}
   "_build/install/default/lib/merlin-lib/utils/merlin_utils__File_id.cmx"
     {"utils/merlin_utils__File_id.cmx"}
-  "_build/install/default/lib/merlin-lib/utils/merlin_utils__Format_doc.cmi"
-    {"utils/merlin_utils__Format_doc.cmi"}
-  "_build/install/default/lib/merlin-lib/utils/merlin_utils__Format_doc.cmt"
-    {"utils/merlin_utils__Format_doc.cmt"}
-  "_build/install/default/lib/merlin-lib/utils/merlin_utils__Format_doc.cmti"
-    {"utils/merlin_utils__Format_doc.cmti"}
-  "_build/install/default/lib/merlin-lib/utils/merlin_utils__Format_doc.cmx"
-    {"utils/merlin_utils__Format_doc.cmx"}
   "_build/install/default/lib/merlin-lib/utils/merlin_utils__Lib_config.cmi"
     {"utils/merlin_utils__Lib_config.cmi"}
   "_build/install/default/lib/merlin-lib/utils/merlin_utils__Lib_config.cmt"
@@ -2325,12 +2105,8 @@ libexec: [
     {"dot_protocol/merlin_dot_protocol.cmxs"}
   "_build/install/default/lib/merlin-lib/extend/merlin_extend.cmxs"
     {"extend/merlin_extend.cmxs"}
-  "_build/install/default/lib/merlin-lib/index_format/merlin_index_format.cmxs"
-    {"index_format/merlin_index_format.cmxs"}
   "_build/install/default/lib/merlin-lib/kernel/merlin_kernel.cmxs"
     {"kernel/merlin_kernel.cmxs"}
-  "_build/install/default/lib/merlin-lib/ocaml_compression/ocaml_compression.cmxs"
-    {"ocaml_compression/ocaml_compression.cmxs"}
   "_build/install/default/lib/merlin-lib/ocaml_merlin_specific/merlin_specific.cmxs"
     {"ocaml_merlin_specific/merlin_specific.cmxs"}
   "_build/install/default/lib/merlin-lib/ocaml_parsing/ocaml_parsing.cmxs"

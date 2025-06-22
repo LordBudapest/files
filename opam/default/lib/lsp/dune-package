@@ -1,6 +1,6 @@
 (lang dune 3.19)
 (name lsp)
-(version 1.22.0)
+(version 1.20.1)
 (sections (lib .) (libexec .) (doc ../../doc/lsp))
 (files
  (lib

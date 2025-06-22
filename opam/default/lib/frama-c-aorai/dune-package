@@ -1,0 +1,264 @@
+(lang dune 3.19)
+(name frama-c-aorai)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-aorai)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-aorai))
+(files
+ (lib
+  (META
+   core/Aorai.ml
+   core/aorai.a
+   core/aorai.cma
+   core/aorai.cmi
+   core/aorai.cmt
+   core/aorai.cmx
+   core/aorai.cmxa
+   core/aorai__.cmi
+   core/aorai__.cmt
+   core/aorai__.cmx
+   core/aorai__.ml
+   core/aorai__Aorai_dataflow.cmi
+   core/aorai__Aorai_dataflow.cmt
+   core/aorai__Aorai_dataflow.cmti
+   core/aorai__Aorai_dataflow.cmx
+   core/aorai__Aorai_eva_analysis.cmi
+   core/aorai__Aorai_eva_analysis.cmt
+   core/aorai__Aorai_eva_analysis.cmti
+   core/aorai__Aorai_eva_analysis.cmx
+   core/aorai__Aorai_graph.cmi
+   core/aorai__Aorai_graph.cmt
+   core/aorai__Aorai_graph.cmti
+   core/aorai__Aorai_graph.cmx
+   core/aorai__Aorai_metavariables.cmi
+   core/aorai__Aorai_metavariables.cmt
+   core/aorai__Aorai_metavariables.cmti
+   core/aorai__Aorai_metavariables.cmx
+   core/aorai__Aorai_option.cmi
+   core/aorai__Aorai_option.cmt
+   core/aorai__Aorai_option.cmti
+   core/aorai__Aorai_option.cmx
+   core/aorai__Aorai_register.cmi
+   core/aorai__Aorai_register.cmt
+   core/aorai__Aorai_register.cmti
+   core/aorai__Aorai_register.cmx
+   core/aorai__Aorai_utils.cmi
+   core/aorai__Aorai_utils.cmt
+   core/aorai__Aorai_utils.cmti
+   core/aorai__Aorai_utils.cmx
+   core/aorai__Aorai_visitors.cmi
+   core/aorai__Aorai_visitors.cmt
+   core/aorai__Aorai_visitors.cmti
+   core/aorai__Aorai_visitors.cmx
+   core/aorai__Automaton_ast.cmi
+   core/aorai__Automaton_ast.cmt
+   core/aorai__Automaton_ast.cmx
+   core/aorai__Bool3.cmi
+   core/aorai__Bool3.cmt
+   core/aorai__Bool3.cmti
+   core/aorai__Bool3.cmx
+   core/aorai__Data_for_aorai.cmi
+   core/aorai__Data_for_aorai.cmt
+   core/aorai__Data_for_aorai.cmti
+   core/aorai__Data_for_aorai.cmx
+   core/aorai__Logic_simplification.cmi
+   core/aorai__Logic_simplification.cmt
+   core/aorai__Logic_simplification.cmti
+   core/aorai__Logic_simplification.cmx
+   core/aorai__Path_analysis.cmi
+   core/aorai__Path_analysis.cmt
+   core/aorai__Path_analysis.cmti
+   core/aorai__Path_analysis.cmx
+   core/aorai__Pretty_automaton.cmi
+   core/aorai__Pretty_automaton.cmt
+   core/aorai__Pretty_automaton.cmti
+   core/aorai__Pretty_automaton.cmx
+   core/aorai__Utils_parser.cmi
+   core/aorai__Utils_parser.cmt
+   core/aorai__Utils_parser.cmti
+   core/aorai__Utils_parser.cmx
+   core/aorai__Yalexer.cmi
+   core/aorai__Yalexer.cmt
+   core/aorai__Yalexer.cmti
+   core/aorai__Yalexer.cmx
+   core/aorai__Yaparser.cmi
+   core/aorai__Yaparser.cmt
+   core/aorai__Yaparser.cmti
+   core/aorai__Yaparser.cmx
+   core/aorai_dataflow.ml
+   core/aorai_dataflow.mli
+   core/aorai_eva_analysis.ml
+   core/aorai_eva_analysis.mli
+   core/aorai_graph.ml
+   core/aorai_graph.mli
+   core/aorai_metavariables.ml
+   core/aorai_metavariables.mli
+   core/aorai_option.ml
+   core/aorai_option.mli
+   core/aorai_register.ml
+   core/aorai_register.mli
+   core/aorai_utils.ml
+   core/aorai_utils.mli
+   core/aorai_visitors.ml
+   core/aorai_visitors.mli
+   core/automaton_ast.ml
+   core/bool3.ml
+   core/bool3.mli
+   core/data_for_aorai.ml
+   core/data_for_aorai.mli
+   core/logic_simplification.ml
+   core/logic_simplification.mli
+   core/path_analysis.ml
+   core/path_analysis.mli
+   core/pretty_automaton.ml
+   core/pretty_automaton.mli
+   core/utils_parser.ml
+   core/utils_parser.mli
+   core/yalexer.ml
+   core/yalexer.mli
+   core/yaparser.ml
+   core/yaparser.mli
+   dune-package
+   opam))
+ (lib_root (frama-c/plugins/aorai/META))
+ (libexec (core/aorai.cmxs)))
+(library
+ (name frama-c-aorai.core)
+ (kind normal)
+ (archives (byte core/aorai.cma) (native core/aorai.cmxa))
+ (plugins (byte core/aorai.cma) (native core/aorai.cmxs))
+ (native_archives core/aorai.a)
+ (requires frama-c.kernel frama-c-eva.core)
+ (main_module_name Aorai)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name aorai__)
+     (visibility public)
+     (kind alias)
+     (source (path Aorai__) (impl (path core/aorai__.ml-gen))))
+    (name Aorai)
+    (modules
+     (module
+      (obj_name aorai)
+      (visibility public)
+      (source (path Aorai) (impl (path core/Aorai.ml))))
+     (module
+      (obj_name aorai__Aorai_dataflow)
+      (visibility public)
+      (source
+       (path Aorai_dataflow)
+       (intf (path core/aorai_dataflow.mli))
+       (impl (path core/aorai_dataflow.ml))))
+     (module
+      (obj_name aorai__Aorai_eva_analysis)
+      (visibility public)
+      (source
+       (path Aorai_eva_analysis)
+       (intf (path core/aorai_eva_analysis.mli))
+       (impl (path core/aorai_eva_analysis.ml))))
+     (module
+      (obj_name aorai__Aorai_graph)
+      (visibility public)
+      (source
+       (path Aorai_graph)
+       (intf (path core/aorai_graph.mli))
+       (impl (path core/aorai_graph.ml))))
+     (module
+      (obj_name aorai__Aorai_metavariables)
+      (visibility public)
+      (source
+       (path Aorai_metavariables)
+       (intf (path core/aorai_metavariables.mli))
+       (impl (path core/aorai_metavariables.ml))))
+     (module
+      (obj_name aorai__Aorai_option)
+      (visibility public)
+      (source
+       (path Aorai_option)
+       (intf (path core/aorai_option.mli))
+       (impl (path core/aorai_option.ml))))
+     (module
+      (obj_name aorai__Aorai_register)
+      (visibility public)
+      (source
+       (path Aorai_register)
+       (intf (path core/aorai_register.mli))
+       (impl (path core/aorai_register.ml))))
+     (module
+      (obj_name aorai__Aorai_utils)
+      (visibility public)
+      (source
+       (path Aorai_utils)
+       (intf (path core/aorai_utils.mli))
+       (impl (path core/aorai_utils.ml))))
+     (module
+      (obj_name aorai__Aorai_visitors)
+      (visibility public)
+      (source
+       (path Aorai_visitors)
+       (intf (path core/aorai_visitors.mli))
+       (impl (path core/aorai_visitors.ml))))
+     (module
+      (obj_name aorai__Automaton_ast)
+      (visibility public)
+      (source (path Automaton_ast) (impl (path core/automaton_ast.ml))))
+     (module
+      (obj_name aorai__Bool3)
+      (visibility public)
+      (source
+       (path Bool3)
+       (intf (path core/bool3.mli))
+       (impl (path core/bool3.ml))))
+     (module
+      (obj_name aorai__Data_for_aorai)
+      (visibility public)
+      (source
+       (path Data_for_aorai)
+       (intf (path core/data_for_aorai.mli))
+       (impl (path core/data_for_aorai.ml))))
+     (module
+      (obj_name aorai__Logic_simplification)
+      (visibility public)
+      (source
+       (path Logic_simplification)
+       (intf (path core/logic_simplification.mli))
+       (impl (path core/logic_simplification.ml))))
+     (module
+      (obj_name aorai__Path_analysis)
+      (visibility public)
+      (source
+       (path Path_analysis)
+       (intf (path core/path_analysis.mli))
+       (impl (path core/path_analysis.ml))))
+     (module
+      (obj_name aorai__Pretty_automaton)
+      (visibility public)
+      (source
+       (path Pretty_automaton)
+       (intf (path core/pretty_automaton.mli))
+       (impl (path core/pretty_automaton.ml))))
+     (module
+      (obj_name aorai__Utils_parser)
+      (visibility public)
+      (source
+       (path Utils_parser)
+       (intf (path core/utils_parser.mli))
+       (impl (path core/utils_parser.ml))))
+     (module
+      (obj_name aorai__Yalexer)
+      (visibility public)
+      (source
+       (path Yalexer)
+       (intf (path core/yalexer.mli))
+       (impl (path core/yalexer.ml))))
+     (module
+      (obj_name aorai__Yaparser)
+      (visibility public)
+      (source
+       (path Yaparser)
+       (intf (path core/yaparser.mli))
+       (impl (path core/yaparser.ml))))))
+   (wrapped true))))

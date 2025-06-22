@@ -1,0 +1,88 @@
+(lang dune 3.19)
+(name lablgtk3-sourceview3)
+(version 3.1.5)
+(sections
+ (lib .)
+ (libexec .)
+ (doc ../../doc/lablgtk3-sourceview3)
+ (stublibs ../stublibs))
+(files
+ (lib
+  (META
+   dune-package
+   gSourceView3.cmi
+   gSourceView3.cmt
+   gSourceView3.cmti
+   gSourceView3.cmx
+   gSourceView3.ml
+   gSourceView3.mli
+   gtkSourceView3.cmi
+   gtkSourceView3.cmt
+   gtkSourceView3.cmx
+   gtkSourceView3.ml
+   gtkSourceView3Props.cmi
+   gtkSourceView3Props.cmt
+   gtkSourceView3Props.cmx
+   gtkSourceView3Props.ml
+   gtkSourceView3_types.cmi
+   gtkSourceView3_types.cmti
+   gtkSourceView3_types.mli
+   lablgtk3_sourceview3.a
+   lablgtk3_sourceview3.cma
+   lablgtk3_sourceview3.cmxa
+   liblablgtk3_sourceview3_stubs.a
+   ogtkSourceView3Props.cmi
+   ogtkSourceView3Props.cmt
+   ogtkSourceView3Props.cmx
+   ogtkSourceView3Props.ml
+   opam
+   sourceView3Enums.cmi
+   sourceView3Enums.cmt
+   sourceView3Enums.cmx
+   sourceView3Enums.ml))
+ (libexec (lablgtk3_sourceview3.cmxs))
+ (doc (CHANGELOG.API CHANGES.md LICENSE README.dune.md README.md))
+ (stublibs (dlllablgtk3_sourceview3_stubs.so)))
+(library
+ (name lablgtk3-sourceview3)
+ (kind normal)
+ (archives (byte lablgtk3_sourceview3.cma) (native lablgtk3_sourceview3.cmxa))
+ (plugins (byte lablgtk3_sourceview3.cma) (native lablgtk3_sourceview3.cmxs))
+ (foreign_objects ml_gtksourceview3.o)
+ (foreign_archives
+  (archives (for all) (files liblablgtk3_sourceview3_stubs.a)))
+ (foreign_dll_files ../stublibs/dlllablgtk3_sourceview3_stubs.so)
+ (native_archives lablgtk3_sourceview3.a)
+ (requires lablgtk3)
+ (modes byte native)
+ (modules
+  (unwrapped
+   (module
+    (obj_name gSourceView3)
+    (visibility public)
+    (source
+     (path GSourceView3)
+     (intf (path gSourceView3.mli))
+     (impl (path gSourceView3.ml))))
+   (module
+    (obj_name gtkSourceView3)
+    (visibility public)
+    (source (path GtkSourceView3) (impl (path gtkSourceView3.ml))))
+   (module
+    (obj_name gtkSourceView3Props)
+    (visibility public)
+    (source (path GtkSourceView3Props) (impl (path gtkSourceView3Props.ml))))
+   (module
+    (obj_name gtkSourceView3_types)
+    (visibility public)
+    (source
+     (path GtkSourceView3_types)
+     (intf (path gtkSourceView3_types.mli))))
+   (module
+    (obj_name ogtkSourceView3Props)
+    (visibility public)
+    (source (path OgtkSourceView3Props) (impl (path ogtkSourceView3Props.ml))))
+   (module
+    (obj_name sourceView3Enums)
+    (visibility public)
+    (source (path SourceView3Enums) (impl (path sourceView3Enums.ml)))))))

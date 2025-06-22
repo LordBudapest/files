@@ -1,0 +1,18 @@
+version = "0.10"
+description = ""
+requires =
+"dolmen
+ dolmen.class
+ dolmen.intf
+ dolmen.smtlib2
+ dolmen.std
+ dolmen.tptp
+ dolmen_type
+ fmt
+ gen
+ pp_loc
+ unix"
+archive(byte) = "dolmen_loop.cma"
+archive(native) = "dolmen_loop.cmxa"
+plugin(byte) = "dolmen_loop.cma"
+plugin(native) = "dolmen_loop.cmxs"

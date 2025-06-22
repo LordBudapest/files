@@ -21,13 +21,11 @@ open! Import
     This is a similar issue to the identifiability of [Nothing.t].  As discussed below,
     another case where [[@deriving enumerate]] could be useful is when this type is part
     of some larger type.
-
-    Similar arguments apply for other derivers, like [globalize] and [sexp_grammar]. *)
-type t = | [@@deriving_inline enumerate, globalize, sexp_grammar]
+*)
+type t = | [@@deriving_inline enumerate, sexp_grammar]
 
 include Ppx_enumerate_lib.Enumerable.S with type t := t
 
-val globalize : t -> t
 val t_sexp_grammar : t Sexplib0.Sexp_grammar.t
 
 [@@@end]
@@ -53,9 +51,6 @@ val t_sexp_grammar : t Sexplib0.Sexp_grammar.t
 *)
 val unreachable_code : t -> _
 
-(** The same as [unreachable_code], but for local [t]s. *)
-val unreachable_code_local : t -> _
-
 (** It may seem weird that this is identifiable, but we're just trying to anticipate all
     the contexts in which people may need this. It would be a crying shame if you had some
     variant type involving [Nothing.t] that you wished to make identifiable, but were
@@ -63,26 +58,3 @@ val unreachable_code_local : t -> _
 
     Obviously, [of_string] and [t_of_sexp] will raise an exception. *)
 include Identifiable.S with type t := t
-
-include Ppx_compare_lib.Equal.S_local with type t := t
-include Ppx_compare_lib.Comparable.S_local with type t := t
-
-(** Ignores [None] and guarantees there is no [Some _]. A better replacement for
-    [ignore]. *)
-val must_be_none : t option -> unit
-
-(** Ignores [ [] ] and guarantees there is no [_ :: _]. A better replacement for
-    [ignore]. *)
-val must_be_empty : t list -> unit
-
-(** Returns [ok] from [Ok ok] and guarantees there is no [Error _]. *)
-val must_be_ok : ('ok, t) Result.t -> 'ok
-
-(** Returns [err] from [Error err] and guarantees there is no [Ok _]. *)
-val must_be_error : (t, 'err) Result.t -> 'err
-
-(** Returns [fst] from [First fst] and guarantees there is no [Second _]. *)
-val must_be_first : ('fst, t) Either.t -> 'fst
-
-(** Returns [snd] from [Second snd] and guarantees there is no [First _]. *)
-val must_be_second : (t, 'snd) Either.t -> 'snd

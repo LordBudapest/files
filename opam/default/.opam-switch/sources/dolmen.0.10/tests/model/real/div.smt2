@@ -1,0 +1,7 @@
+(set-logic ALL)
+(declare-fun a () Real)
+(declare-fun b () Real)
+(declare-fun c () Real)
+(assert (not (= b 0.0)))
+(assert (= c (/ a b)))
+(check-sat)

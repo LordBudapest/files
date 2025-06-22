@@ -1,0 +1,71 @@
+opam-version: "2.0"
+added: [
+  "doc/unionFind" {"D"}
+  "doc/unionFind/CHANGES.md" {"F:S2063T1750607101.66"}
+  "doc/unionFind/LICENSE" {"F:S26545T1750607101.66"}
+  "doc/unionFind/README.md" {"F:S587T1750607101.66"}
+  "doc/unionFind/odoc-pages" {"D"}
+  "doc/unionFind/odoc-pages/index.mld" {"F:S1477T1750607101.66"}
+  "lib/unionFind" {"D"}
+  "lib/unionFind/META" {"F:S210T1750607101.64"}
+  "lib/unionFind/Store.ml" {"F:S4387T1750607101.64"}
+  "lib/unionFind/StoreMap.ml" {"F:S3090T1750607101.64"}
+  "lib/unionFind/StoreMap.mli" {"F:S1556T1750607101.64"}
+  "lib/unionFind/StoreRef.ml" {"F:S1135T1750607101.64"}
+  "lib/unionFind/StoreRef.mli" {"F:S988T1750607101.64"}
+  "lib/unionFind/StoreTransactionalRef.ml" {"F:S3871T1750607101.64"}
+  "lib/unionFind/StoreTransactionalRef.mli" {"F:S1678T1750607101.64"}
+  "lib/unionFind/StoreVector.ml" {"F:S3705T1750607101.64"}
+  "lib/unionFind/StoreVector.mli" {"F:S995T1750607101.64"}
+  "lib/unionFind/UnionFind.ml" {"F:S1534T1750607101.64"}
+  "lib/unionFind/UnionFindBasic.ml" {"F:S7106T1750607101.64"}
+  "lib/unionFind/UnionFindBasic.mli" {"F:S3506T1750607101.64"}
+  "lib/unionFind/UnionFindOverStore.ml" {"F:S8261T1750607101.64"}
+  "lib/unionFind/UnionFindOverStore.mli" {"F:S4042T1750607101.64"}
+  "lib/unionFind/dune-package" {"F:S3542T1750607101.64"}
+  "lib/unionFind/opam" {"F:S531T1750607101.64"}
+  "lib/unionFind/unionFind.a" {"F:S81854T1750607101.66"}
+  "lib/unionFind/unionFind.cma" {"F:S80375T1750607101.66"}
+  "lib/unionFind/unionFind.cmi" {"F:S1979T1750607101.66"}
+  "lib/unionFind/unionFind.cmt" {"F:S9715T1750607101.66"}
+  "lib/unionFind/unionFind.cmx" {"F:S1584T1750607101.66"}
+  "lib/unionFind/unionFind.cmxa" {"F:S2755T1750607101.66"}
+  "lib/unionFind/unionFind.cmxs" {"F:S72432T1750607101.66"}
+  "lib/unionFind/unionFind__.cmi" {"F:S856T1750607101.66"}
+  "lib/unionFind/unionFind__.cmt" {"F:S5375T1750607101.66"}
+  "lib/unionFind/unionFind__.cmx" {"F:S293T1750607101.66"}
+  "lib/unionFind/unionFind__.ml" {"F:S643T1750607101.66"}
+  "lib/unionFind/unionFind__Store.cmi" {"F:S1189T1750607101.66"}
+  "lib/unionFind/unionFind__Store.cmt" {"F:S13826T1750607101.66"}
+  "lib/unionFind/unionFind__Store.cmx" {"F:S211T1750607101.66"}
+  "lib/unionFind/unionFind__StoreMap.cmi" {"F:S1707T1750607101.66"}
+  "lib/unionFind/unionFind__StoreMap.cmt" {"F:S35767T1750607101.66"}
+  "lib/unionFind/unionFind__StoreMap.cmti" {"F:S9252T1750607101.66"}
+  "lib/unionFind/unionFind__StoreMap.cmx" {"F:S1386T1750607101.66"}
+  "lib/unionFind/unionFind__StoreRef.cmi" {"F:S1269T1750607101.66"}
+  "lib/unionFind/unionFind__StoreRef.cmt" {"F:S9580T1750607101.66"}
+  "lib/unionFind/unionFind__StoreRef.cmti" {"F:S7098T1750607101.66"}
+  "lib/unionFind/unionFind__StoreRef.cmx" {"F:S978T1750607101.66"}
+  "lib/unionFind/unionFind__StoreTransactionalRef.cmi"
+    {"F:S1407T1750607101.66"}
+  "lib/unionFind/unionFind__StoreTransactionalRef.cmt"
+    {"F:S24113T1750607101.66"}
+  "lib/unionFind/unionFind__StoreTransactionalRef.cmti"
+    {"F:S8081T1750607101.66"}
+  "lib/unionFind/unionFind__StoreTransactionalRef.cmx"
+    {"F:S2021T1750607101.66"}
+  "lib/unionFind/unionFind__StoreVector.cmi" {"F:S1208T1750607101.66"}
+  "lib/unionFind/unionFind__StoreVector.cmt" {"F:S25414T1750607101.66"}
+  "lib/unionFind/unionFind__StoreVector.cmti" {"F:S6022T1750607101.66"}
+  "lib/unionFind/unionFind__StoreVector.cmx" {"F:S1240T1750607101.66"}
+  "lib/unionFind/unionFind__UnionFindBasic.cmi" {"F:S1284T1750607101.66"}
+  "lib/unionFind/unionFind__UnionFindBasic.cmt" {"F:S40517T1750607101.66"}
+  "lib/unionFind/unionFind__UnionFindBasic.cmti" {"F:S13485T1750607101.66"}
+  "lib/unionFind/unionFind__UnionFindBasic.cmx" {"F:S846T1750607101.66"}
+  "lib/unionFind/unionFind__UnionFindOverStore.cmi" {"F:S2151T1750607101.66"}
+  "lib/unionFind/unionFind__UnionFindOverStore.cmt"
+    {"F:S56212T1750607101.66"}
+  "lib/unionFind/unionFind__UnionFindOverStore.cmti"
+    {"F:S17310T1750607101.66"}
+  "lib/unionFind/unionFind__UnionFindOverStore.cmx" {"F:S765T1750607101.66"}
+]

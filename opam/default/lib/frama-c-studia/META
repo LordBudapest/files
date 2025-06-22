@@ -1,0 +1,18 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires = "frama-c-eva.core frama-c-inout.core frama-c.kernel"
+  archive(byte) = "studia.cma"
+  archive(native) = "studia.cmxa"
+  plugin(byte) = "studia.cma"
+  plugin(native) = "studia.cmxs"
+)
+package "gui" (
+  directory = "gui"
+  description = ""
+  requires = "frama-c-eva.gui frama-c-studia.core frama-c.gui frama-c.kernel"
+  archive(byte) = "studia_gui.cma"
+  archive(native) = "studia_gui.cmxa"
+  plugin(byte) = "studia_gui.cma"
+  plugin(native) = "studia_gui.cmxs"
+)

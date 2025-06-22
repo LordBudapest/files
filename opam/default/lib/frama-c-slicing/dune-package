@@ -1,0 +1,277 @@
+(lang dune 3.19)
+(name frama-c-slicing)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-slicing)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-slicing))
+(files
+ (lib
+  (META
+   core/api.ml
+   core/api.mli
+   core/fct_slice.ml
+   core/fct_slice.mli
+   core/printSlice.ml
+   core/printSlice.mli
+   core/register.ml
+   core/register.mli
+   core/slicing.a
+   core/slicing.cma
+   core/slicing.cmi
+   core/slicing.cmt
+   core/slicing.cmx
+   core/slicing.cmxa
+   core/slicing.ml
+   core/slicingActions.ml
+   core/slicingActions.mli
+   core/slicingCmds.ml
+   core/slicingCmds.mli
+   core/slicingInternals.ml
+   core/slicingInternals.mli
+   core/slicingMacros.ml
+   core/slicingMacros.mli
+   core/slicingMarks.ml
+   core/slicingMarks.mli
+   core/slicingParameters.ml
+   core/slicingParameters.mli
+   core/slicingProject.ml
+   core/slicingProject.mli
+   core/slicingSelect.ml
+   core/slicingSelect.mli
+   core/slicingState.ml
+   core/slicingState.mli
+   core/slicingTransform.ml
+   core/slicingTransform.mli
+   core/slicingTypes.ml
+   core/slicingTypes.mli
+   core/slicing__Api.cmi
+   core/slicing__Api.cmt
+   core/slicing__Api.cmti
+   core/slicing__Api.cmx
+   core/slicing__Fct_slice.cmi
+   core/slicing__Fct_slice.cmt
+   core/slicing__Fct_slice.cmti
+   core/slicing__Fct_slice.cmx
+   core/slicing__PrintSlice.cmi
+   core/slicing__PrintSlice.cmt
+   core/slicing__PrintSlice.cmti
+   core/slicing__PrintSlice.cmx
+   core/slicing__Register.cmi
+   core/slicing__Register.cmt
+   core/slicing__Register.cmti
+   core/slicing__Register.cmx
+   core/slicing__SlicingActions.cmi
+   core/slicing__SlicingActions.cmt
+   core/slicing__SlicingActions.cmti
+   core/slicing__SlicingActions.cmx
+   core/slicing__SlicingCmds.cmi
+   core/slicing__SlicingCmds.cmt
+   core/slicing__SlicingCmds.cmti
+   core/slicing__SlicingCmds.cmx
+   core/slicing__SlicingInternals.cmi
+   core/slicing__SlicingInternals.cmt
+   core/slicing__SlicingInternals.cmti
+   core/slicing__SlicingInternals.cmx
+   core/slicing__SlicingMacros.cmi
+   core/slicing__SlicingMacros.cmt
+   core/slicing__SlicingMacros.cmti
+   core/slicing__SlicingMacros.cmx
+   core/slicing__SlicingMarks.cmi
+   core/slicing__SlicingMarks.cmt
+   core/slicing__SlicingMarks.cmti
+   core/slicing__SlicingMarks.cmx
+   core/slicing__SlicingParameters.cmi
+   core/slicing__SlicingParameters.cmt
+   core/slicing__SlicingParameters.cmti
+   core/slicing__SlicingParameters.cmx
+   core/slicing__SlicingProject.cmi
+   core/slicing__SlicingProject.cmt
+   core/slicing__SlicingProject.cmti
+   core/slicing__SlicingProject.cmx
+   core/slicing__SlicingSelect.cmi
+   core/slicing__SlicingSelect.cmt
+   core/slicing__SlicingSelect.cmti
+   core/slicing__SlicingSelect.cmx
+   core/slicing__SlicingState.cmi
+   core/slicing__SlicingState.cmt
+   core/slicing__SlicingState.cmti
+   core/slicing__SlicingState.cmx
+   core/slicing__SlicingTransform.cmi
+   core/slicing__SlicingTransform.cmt
+   core/slicing__SlicingTransform.cmti
+   core/slicing__SlicingTransform.cmx
+   core/slicing__SlicingTypes.cmi
+   core/slicing__SlicingTypes.cmt
+   core/slicing__SlicingTypes.cmti
+   core/slicing__SlicingTypes.cmx
+   dune-package
+   gui/register_gui.ml
+   gui/register_gui.mli
+   gui/slicing_gui.a
+   gui/slicing_gui.cma
+   gui/slicing_gui.cmi
+   gui/slicing_gui.cmt
+   gui/slicing_gui.cmx
+   gui/slicing_gui.cmxa
+   gui/slicing_gui.ml
+   gui/slicing_gui__Register_gui.cmi
+   gui/slicing_gui__Register_gui.cmt
+   gui/slicing_gui__Register_gui.cmti
+   gui/slicing_gui__Register_gui.cmx
+   opam))
+ (lib_root
+  (frama-c/plugins/slicing/META frama-c/plugins_gui/slicing-gui/META))
+ (libexec (core/slicing.cmxs gui/slicing_gui.cmxs)))
+(library
+ (name frama-c-slicing.core)
+ (kind normal)
+ (archives (byte core/slicing.cma) (native core/slicing.cmxa))
+ (plugins (byte core/slicing.cma) (native core/slicing.cmxs))
+ (native_archives core/slicing.a)
+ (requires
+  frama-c.kernel
+  frama-c-inout.core
+  frama-c-pdg.core
+  frama-c-sparecode.core)
+ (main_module_name Slicing)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name slicing)
+     (visibility public)
+     (kind alias)
+     (source (path Slicing) (impl (path core/slicing.ml-gen))))
+    (name Slicing)
+    (modules
+     (module
+      (obj_name slicing__Api)
+      (visibility public)
+      (source (path Api) (intf (path core/api.mli)) (impl (path core/api.ml))))
+     (module
+      (obj_name slicing__Fct_slice)
+      (visibility public)
+      (source
+       (path Fct_slice)
+       (intf (path core/fct_slice.mli))
+       (impl (path core/fct_slice.ml))))
+     (module
+      (obj_name slicing__PrintSlice)
+      (visibility public)
+      (source
+       (path PrintSlice)
+       (intf (path core/printSlice.mli))
+       (impl (path core/printSlice.ml))))
+     (module
+      (obj_name slicing__Register)
+      (visibility public)
+      (source
+       (path Register)
+       (intf (path core/register.mli))
+       (impl (path core/register.ml))))
+     (module
+      (obj_name slicing__SlicingActions)
+      (visibility public)
+      (source
+       (path SlicingActions)
+       (intf (path core/slicingActions.mli))
+       (impl (path core/slicingActions.ml))))
+     (module
+      (obj_name slicing__SlicingCmds)
+      (visibility public)
+      (source
+       (path SlicingCmds)
+       (intf (path core/slicingCmds.mli))
+       (impl (path core/slicingCmds.ml))))
+     (module
+      (obj_name slicing__SlicingInternals)
+      (visibility public)
+      (source
+       (path SlicingInternals)
+       (intf (path core/slicingInternals.mli))
+       (impl (path core/slicingInternals.ml))))
+     (module
+      (obj_name slicing__SlicingMacros)
+      (visibility public)
+      (source
+       (path SlicingMacros)
+       (intf (path core/slicingMacros.mli))
+       (impl (path core/slicingMacros.ml))))
+     (module
+      (obj_name slicing__SlicingMarks)
+      (visibility public)
+      (source
+       (path SlicingMarks)
+       (intf (path core/slicingMarks.mli))
+       (impl (path core/slicingMarks.ml))))
+     (module
+      (obj_name slicing__SlicingParameters)
+      (visibility public)
+      (source
+       (path SlicingParameters)
+       (intf (path core/slicingParameters.mli))
+       (impl (path core/slicingParameters.ml))))
+     (module
+      (obj_name slicing__SlicingProject)
+      (visibility public)
+      (source
+       (path SlicingProject)
+       (intf (path core/slicingProject.mli))
+       (impl (path core/slicingProject.ml))))
+     (module
+      (obj_name slicing__SlicingSelect)
+      (visibility public)
+      (source
+       (path SlicingSelect)
+       (intf (path core/slicingSelect.mli))
+       (impl (path core/slicingSelect.ml))))
+     (module
+      (obj_name slicing__SlicingState)
+      (visibility public)
+      (source
+       (path SlicingState)
+       (intf (path core/slicingState.mli))
+       (impl (path core/slicingState.ml))))
+     (module
+      (obj_name slicing__SlicingTransform)
+      (visibility public)
+      (source
+       (path SlicingTransform)
+       (intf (path core/slicingTransform.mli))
+       (impl (path core/slicingTransform.ml))))
+     (module
+      (obj_name slicing__SlicingTypes)
+      (visibility public)
+      (source
+       (path SlicingTypes)
+       (intf (path core/slicingTypes.mli))
+       (impl (path core/slicingTypes.ml))))))
+   (wrapped true))))
+(library
+ (name frama-c-slicing.gui)
+ (kind normal)
+ (archives (byte gui/slicing_gui.cma) (native gui/slicing_gui.cmxa))
+ (plugins (byte gui/slicing_gui.cma) (native gui/slicing_gui.cmxs))
+ (native_archives gui/slicing_gui.a)
+ (requires frama-c.kernel frama-c.gui frama-c-slicing.core)
+ (main_module_name Slicing_gui)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name slicing_gui)
+     (visibility public)
+     (kind alias)
+     (source (path Slicing_gui) (impl (path gui/slicing_gui.ml-gen))))
+    (name Slicing_gui)
+    (modules
+     (module
+      (obj_name slicing_gui__Register_gui)
+      (visibility public)
+      (source
+       (path Register_gui)
+       (intf (path gui/register_gui.mli))
+       (impl (path gui/register_gui.ml))))))
+   (wrapped true))))

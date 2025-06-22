@@ -40,6 +40,7 @@ type 'a with_create_args =
 val create : (string -> t) with_create_args
 val with_file : (string -> f:(t -> 'a) -> 'a) with_create_args
 
+
 (** [close t] flushes and closes [t], and may raise an exception.  [close] returns () and
     does not raise if [t] is already closed.  [close] raises an exception if the close()
     system call on the underlying file descriptor fails (i.e. returns -1), which would
@@ -84,9 +85,6 @@ val newline : t -> unit
 (** Outputs a list of lines, each terminated by a newline character *)
 val output_lines : t -> string list -> unit
 
-(** Outputs a single line, terminated by a newline character *)
-val output_line : t -> string -> unit
-
 (** Formatted printing to an out channel.  This is the same as [Printf.sprintf] except
     that it outputs to [t] instead of returning a string.  Similarly, the function
     arguments corresponding to conversions specifications such as [%a] or [%t] takes [t]
@@ -96,14 +94,12 @@ val fprintf : t -> ('a, t, unit) format -> 'a
 (** [printf fmt] is the same as [fprintf stdout fmt] *)
 val printf : ('a, t, unit) format -> 'a
 
-(** [fprint_s t sexp] outputs [sexp] to [t], by default using [Sexp.to_string_hum], or,
-    with [~mach:()], [Sexp.to_string_mach]. *)
-val fprint_s : ?mach:unit -> t -> Sexp.t -> unit
-
-(** [print_s ?mach sexp] is the same as [fprint_s ?mach stdout sexp]. *)
+(** [print_s sexp] outputs [sexp] on [stdout], by default using [Sexp.to_string_hum],
+    or, with [~mach:()], [Sexp.to_string_mach]. *)
 val print_s : ?mach:unit -> Sexp.t -> unit
 
-(** [eprint_s ?mach sexp] is the same as [fprint_s ?mach stderr sexp]. *)
+(** [eprint_s sexp] outputs [sexp] on [stderr], by default using [Sexp.to_string_hum],
+    or, with [~mach:()], [Sexp.to_string_mach]. *)
 val eprint_s : ?mach:unit -> Sexp.t -> unit
 
 (** [eprintf fmt] is the same as [fprintf stderr fmt] *)
@@ -132,3 +128,5 @@ val length : t -> int64
 val write_lines : string -> string list -> unit
 
 val write_all : string -> data:string -> unit
+
+

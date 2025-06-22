@@ -54,9 +54,6 @@ module Bytes = Base__Bytes
 (** @canonical Base.Bytes0 *)
 module Bytes0 = Base__Bytes0
 
-(** @canonical Base.Bytes_intf *)
-module Bytes_intf = Base__Bytes_intf
-
 (** @canonical Base.Bytes_tr *)
 module Bytes_tr = Base__Bytes_tr
 
@@ -83,18 +80,6 @@ module Container = Base__Container
 
 (** @canonical Base.Container_intf *)
 module Container_intf = Base__Container_intf
-
-(** @canonical Base.Dictionary_immutable *)
-module Dictionary_immutable = Base__Dictionary_immutable
-
-(** @canonical Base.Dictionary_immutable_intf *)
-module Dictionary_immutable_intf = Base__Dictionary_immutable_intf
-
-(** @canonical Base.Dictionary_mutable *)
-module Dictionary_mutable = Base__Dictionary_mutable
-
-(** @canonical Base.Dictionary_mutable_intf *)
-module Dictionary_mutable_intf = Base__Dictionary_mutable_intf
 
 (** @canonical Base.Either *)
 module Either = Base__Either
@@ -218,9 +203,6 @@ module Int_intf = Base__Int_intf
 
 (** @canonical Base.Int_math *)
 module Int_math = Base__Int_math
-
-(** @canonical Base.Int_string_conversions *)
-module Int_string_conversions = Base__Int_string_conversions
 
 (** @canonical Base.Intable *)
 module Intable = Base__Intable
@@ -384,9 +366,6 @@ module String = Base__String
 (** @canonical Base.String0 *)
 module String0 = Base__String0
 
-(** @canonical Base.String_intf *)
-module String_intf = Base__String_intf
-
 (** @canonical Base.Stringable *)
 module Stringable = Base__Stringable
 
@@ -402,17 +381,11 @@ module T = Base__T
 (** @canonical Base.Type_equal *)
 module Type_equal = Base__Type_equal
 
-(** @canonical Base.Type_equal_intf *)
-module Type_equal_intf = Base__Type_equal_intf
-
 (** @canonical Base.Uchar *)
 module Uchar = Base__Uchar
 
 (** @canonical Base.Uchar0 *)
 module Uchar0 = Base__Uchar0
-
-(** @canonical Base.Uchar_intf *)
-module Uchar_intf = Base__Uchar_intf
 
 (** @canonical Base.Uniform_array *)
 module Uniform_array = Base__Uniform_array
@@ -431,6 +404,3 @@ module With_return = Base__With_return
 
 (** @canonical Base.Word_size *)
 module Word_size = Base__Word_size
-
-module Base__ = struct end
-[@@deprecated "this module is shadowed"]

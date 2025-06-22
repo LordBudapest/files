@@ -1,0 +1,8 @@
+version = "0.10"
+description = ""
+requires =
+"dolmen dolmen.intf dolmen.smtlib2 dolmen.std dolmen.tptp spelll uutf"
+archive(byte) = "dolmen_type.cma"
+archive(native) = "dolmen_type.cmxa"
+plugin(byte) = "dolmen_type.cma"
+plugin(native) = "dolmen_type.cmxs"

@@ -1,6 +1,6 @@
 (lang dune 3.19)
 (name base)
-(version v0.17.2)
+(version v0.16.4)
 (sections (lib .) (libexec .) (doc ../../doc/base) (stublibs ../stublibs))
 (files
  (lib
@@ -92,9 +92,6 @@
    base__Bytes0.cmi
    base__Bytes0.cmt
    base__Bytes0.cmx
-   base__Bytes_intf.cmi
-   base__Bytes_intf.cmt
-   base__Bytes_intf.cmx
    base__Bytes_tr.cmi
    base__Bytes_tr.cmt
    base__Bytes_tr.cmx
@@ -126,20 +123,6 @@
    base__Container_intf.cmi
    base__Container_intf.cmt
    base__Container_intf.cmx
-   base__Dictionary_immutable.cmi
-   base__Dictionary_immutable.cmt
-   base__Dictionary_immutable.cmti
-   base__Dictionary_immutable.cmx
-   base__Dictionary_immutable_intf.cmi
-   base__Dictionary_immutable_intf.cmt
-   base__Dictionary_immutable_intf.cmx
-   base__Dictionary_mutable.cmi
-   base__Dictionary_mutable.cmt
-   base__Dictionary_mutable.cmti
-   base__Dictionary_mutable.cmx
-   base__Dictionary_mutable_intf.cmi
-   base__Dictionary_mutable_intf.cmt
-   base__Dictionary_mutable_intf.cmx
    base__Either.cmi
    base__Either.cmt
    base__Either.cmti
@@ -286,10 +269,6 @@
    base__Int_math.cmt
    base__Int_math.cmti
    base__Int_math.cmx
-   base__Int_string_conversions.cmi
-   base__Int_string_conversions.cmt
-   base__Int_string_conversions.cmti
-   base__Int_string_conversions.cmx
    base__Intable.cmi
    base__Intable.cmt
    base__Intable.cmx
@@ -490,9 +469,6 @@
    base__String0.cmi
    base__String0.cmt
    base__String0.cmx
-   base__String_intf.cmi
-   base__String_intf.cmt
-   base__String_intf.cmx
    base__Stringable.cmi
    base__Stringable.cmt
    base__Stringable.cmx
@@ -510,9 +486,6 @@
    base__Type_equal.cmt
    base__Type_equal.cmti
    base__Type_equal.cmx
-   base__Type_equal_intf.cmi
-   base__Type_equal_intf.cmt
-   base__Type_equal_intf.cmx
    base__Uchar.cmi
    base__Uchar.cmt
    base__Uchar.cmti
@@ -520,9 +493,6 @@
    base__Uchar0.cmi
    base__Uchar0.cmt
    base__Uchar0.cmx
-   base__Uchar_intf.cmi
-   base__Uchar_intf.cmt
-   base__Uchar_intf.cmx
    base__Uniform_array.cmi
    base__Uniform_array.cmt
    base__Uniform_array.cmti
@@ -574,8 +544,14 @@
    bytes.ml
    bytes.mli
    bytes0.ml
-   bytes_intf.ml
    bytes_tr.ml
+   caml/caml.a
+   caml/caml.cma
+   caml/caml.cmi
+   caml/caml.cmt
+   caml/caml.cmx
+   caml/caml.cmxa
+   caml/caml.ml
    char.ml
    char.mli
    char0.ml
@@ -588,12 +564,6 @@
    container.ml
    container.mli
    container_intf.ml
-   dictionary_immutable.ml
-   dictionary_immutable.mli
-   dictionary_immutable_intf.ml
-   dictionary_mutable.ml
-   dictionary_mutable.mli
-   dictionary_mutable_intf.ml
    dune-package
    either.ml
    either.mli
@@ -659,8 +629,6 @@
    int_intf.ml
    int_math.ml
    int_math.mli
-   int_string_conversions.ml
-   int_string_conversions.mli
    intable.ml
    invariant.ml
    invariant.mli
@@ -774,7 +742,6 @@
    string.ml
    string.mli
    string0.ml
-   string_intf.ml
    stringable.ml
    sys.ml
    sys.mli
@@ -782,11 +749,9 @@
    t.ml
    type_equal.ml
    type_equal.mli
-   type_equal_intf.ml
    uchar.ml
    uchar.mli
    uchar0.ml
-   uchar_intf.ml
    uniform_array.ml
    uniform_array.mli
    unit.ml
@@ -801,6 +766,7 @@
  (libexec
   (base.cmxs
    base_internalhash_types/base_internalhash_types.cmxs
+   caml/caml.cmxs
    md5/md5_lib.cmxs
    shadow_stdlib/shadow_stdlib.cmxs))
  (doc (CHANGES.md LICENSE.md README.org odoc-pages/index.mld))
@@ -815,17 +781,12 @@
   bytes_stubs.o
   exn_stubs.o
   hash_stubs.o
-  int_math_stubs.o
-  obj_stubs.o)
+  int_math_stubs.o)
  (foreign_archives (archives (for all) (files libbase_stubs.a)))
  (foreign_dll_files ../stublibs/dllbase_stubs.so)
  (native_archives base.a)
  (jsoo_runtime runtime.js)
- (requires
-  base.base_internalhash_types
-  sexplib0
-  base.shadow_stdlib
-  ocaml_intrinsics_kernel)
+ (requires base.base_internalhash_types base.caml sexplib0 base.shadow_stdlib)
  (main_module_name Base)
  (modes byte native)
  (modules
@@ -932,10 +893,6 @@
       (visibility public)
       (source (path Bytes0) (impl (path bytes0.ml))))
      (module
-      (obj_name base__Bytes_intf)
-      (visibility public)
-      (source (path Bytes_intf) (impl (path bytes_intf.ml))))
-     (module
       (obj_name base__Bytes_tr)
       (visibility public)
       (source (path Bytes_tr) (impl (path bytes_tr.ml))))
@@ -980,32 +937,6 @@
       (obj_name base__Container_intf)
       (visibility public)
       (source (path Container_intf) (impl (path container_intf.ml))))
-     (module
-      (obj_name base__Dictionary_immutable)
-      (visibility public)
-      (source
-       (path Dictionary_immutable)
-       (intf (path dictionary_immutable.mli))
-       (impl (path dictionary_immutable.ml))))
-     (module
-      (obj_name base__Dictionary_immutable_intf)
-      (visibility public)
-      (source
-       (path Dictionary_immutable_intf)
-       (impl (path dictionary_immutable_intf.ml))))
-     (module
-      (obj_name base__Dictionary_mutable)
-      (visibility public)
-      (source
-       (path Dictionary_mutable)
-       (intf (path dictionary_mutable.mli))
-       (impl (path dictionary_mutable.ml))))
-     (module
-      (obj_name base__Dictionary_mutable_intf)
-      (visibility public)
-      (source
-       (path Dictionary_mutable_intf)
-       (impl (path dictionary_mutable_intf.ml))))
      (module
       (obj_name base__Either)
       (visibility public)
@@ -1205,13 +1136,6 @@
        (path Int_math)
        (intf (path int_math.mli))
        (impl (path int_math.ml))))
-     (module
-      (obj_name base__Int_string_conversions)
-      (visibility public)
-      (source
-       (path Int_string_conversions)
-       (intf (path int_string_conversions.mli))
-       (impl (path int_string_conversions.ml))))
      (module
       (obj_name base__Intable)
       (visibility public)
@@ -1494,10 +1418,6 @@
       (visibility public)
       (source (path String0) (impl (path string0.ml))))
      (module
-      (obj_name base__String_intf)
-      (visibility public)
-      (source (path String_intf) (impl (path string_intf.ml))))
-     (module
       (obj_name base__Stringable)
       (visibility public)
       (source (path Stringable) (impl (path stringable.ml))))
@@ -1521,10 +1441,6 @@
        (intf (path type_equal.mli))
        (impl (path type_equal.ml))))
      (module
-      (obj_name base__Type_equal_intf)
-      (visibility public)
-      (source (path Type_equal_intf) (impl (path type_equal_intf.ml))))
-     (module
       (obj_name base__Uchar)
       (visibility public)
       (source (path Uchar) (intf (path uchar.mli)) (impl (path uchar.ml))))
@@ -1532,10 +1448,6 @@
       (obj_name base__Uchar0)
       (visibility public)
       (source (path Uchar0) (impl (path uchar0.ml))))
-     (module
-      (obj_name base__Uchar_intf)
-      (visibility public)
-      (source (path Uchar_intf) (impl (path uchar_intf.ml))))
      (module
       (obj_name base__Uniform_array)
       (visibility public)
@@ -1599,6 +1511,19 @@
    (source
     (path Base_internalhash_types)
     (impl (path base_internalhash_types/base_internalhash_types.ml))))))
+(library
+ (name base.caml)
+ (kind normal)
+ (archives (byte caml/caml.cma) (native caml/caml.cmxa))
+ (plugins (byte caml/caml.cma) (native caml/caml.cmxs))
+ (native_archives caml/caml.a)
+ (main_module_name Caml)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name caml)
+   (visibility public)
+   (source (path Caml) (impl (path caml/caml.ml))))))
 (library
  (name base.md5)
  (kind normal)

@@ -1,0 +1,166 @@
+opam-version: "2.0"
+added: [
+  "bin/alt-ergo" {"F:S20990584T1750607227.83"}
+  "doc/alt-ergo" {"D"}
+  "doc/alt-ergo/CHANGES.md" {"F:S31672T1750607227.86"}
+  "doc/alt-ergo/LICENSE.md" {"F:S1703T1750607227.86"}
+  "doc/alt-ergo/README.md" {"F:S2739T1750607227.86"}
+  "doc/alt-ergo/odoc-pages" {"D"}
+  "doc/alt-ergo/odoc-pages/index.mld" {"F:S741T1750607227.86"}
+  "doc/alt-ergo/odoc-pages/index_common.mld" {"F:S1115T1750607227.86"}
+  "doc/alt-ergo/odoc-pages/index_fmsimplex.mld" {"F:S23T1750607227.86"}
+  "lib/alt-ergo" {"D"}
+  "lib/alt-ergo/META" {"F:S1085T1750607227.83"}
+  "lib/alt-ergo/__private__" {"D"}
+  "lib/alt-ergo/__private__/alt_ergo_common" {"D"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi" {"D"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common.cmi"
+    {"F:S961T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common.cmt"
+    {"F:S5602T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common__AltErgoSites.cmi"
+    {"F:S1122T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common__AltErgoSites.cmt"
+    {"F:S19635T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common__Config.cmi"
+    {"F:S3390T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common__Config.cmt"
+    {"F:S24058T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common__Input_frontend.cmi"
+    {"F:S405T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common__Input_frontend.cmt"
+    {"F:S18679T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common__Input_frontend.cmti"
+    {"F:S6206T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common__MyDynlink.cmi"
+    {"F:S754T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common__MyDynlink.cmt"
+    {"F:S28091T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common__MyDynlink.cmti"
+    {"F:S9007T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common__Parse_command.cmi"
+    {"F:S496T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common__Parse_command.cmt"
+    {"F:S728611T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common__Parse_command.cmti"
+    {"F:S7030T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common__Signals_profiling.cmi"
+    {"F:S508T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common__Signals_profiling.cmt"
+    {"F:S23430T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common__Signals_profiling.cmti"
+    {"F:S6822T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common__Solving_loop.cmi"
+    {"F:S387T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common__Solving_loop.cmt"
+    {"F:S457166T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/.public_cmi/alt_ergo_common__Solving_loop.cmti"
+    {"F:S6120T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/AltErgoSites.ml"
+    {"F:S8732T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/alt_ergo_common.a"
+    {"F:S433310T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/alt_ergo_common.cma"
+    {"F:S530782T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/alt_ergo_common.cmx"
+    {"F:S337T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/alt_ergo_common.cmxa"
+    {"F:S25901T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/alt_ergo_common.cmxs"
+    {"F:S448944T1750607227.86"}
+  "lib/alt-ergo/__private__/alt_ergo_common/alt_ergo_common.ml"
+    {"F:S721T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/alt_ergo_common__AltErgoSites.cmx"
+    {"F:S1437T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/alt_ergo_common__Config.cmx"
+    {"F:S3290T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/alt_ergo_common__Input_frontend.cmx"
+    {"F:S3039T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/alt_ergo_common__MyDynlink.cmx"
+    {"F:S4282T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/alt_ergo_common__Parse_command.cmx"
+    {"F:S14623T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/alt_ergo_common__Signals_profiling.cmx"
+    {"F:S2925T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/alt_ergo_common__Solving_loop.cmx"
+    {"F:S9556T1750607227.84"}
+  "lib/alt-ergo/__private__/alt_ergo_common/config.ml"
+    {"F:S2893T1750607227.85"}
+  "lib/alt-ergo/__private__/alt_ergo_common/input_frontend.ml"
+    {"F:S2788T1750607227.85"}
+  "lib/alt-ergo/__private__/alt_ergo_common/input_frontend.mli"
+    {"F:S2131T1750607227.85"}
+  "lib/alt-ergo/__private__/alt_ergo_common/myDynlink.ml"
+    {"F:S2918T1750607227.85"}
+  "lib/alt-ergo/__private__/alt_ergo_common/myDynlink.mli"
+    {"F:S2639T1750607227.85"}
+  "lib/alt-ergo/__private__/alt_ergo_common/parse_command.ml"
+    {"F:S54815T1750607227.85"}
+  "lib/alt-ergo/__private__/alt_ergo_common/parse_command.mli"
+    {"F:S2354T1750607227.85"}
+  "lib/alt-ergo/__private__/alt_ergo_common/signals_profiling.ml"
+    {"F:S3660T1750607227.85"}
+  "lib/alt-ergo/__private__/alt_ergo_common/signals_profiling.mli"
+    {"F:S2189T1750607227.85"}
+  "lib/alt-ergo/__private__/alt_ergo_common/solving_loop.ml"
+    {"F:S36060T1750607227.85"}
+  "lib/alt-ergo/__private__/alt_ergo_common/solving_loop.mli"
+    {"F:S2072T1750607227.85"}
+  "lib/alt-ergo/dune-package" {"F:S8898T1750607227.85"}
+  "lib/alt-ergo/opam" {"F:S1328T1750607227.85"}
+  "lib/alt-ergo/plugins" {"D"}
+  "lib/alt-ergo/plugins/fm-simplex" {"D"}
+  "lib/alt-ergo/plugins/fm-simplex/FmSimplexPlugin.a"
+    {"F:S274660T1750607227.85"}
+  "lib/alt-ergo/plugins/fm-simplex/FmSimplexPlugin.cma"
+    {"F:S428212T1750607227.85"}
+  "lib/alt-ergo/plugins/fm-simplex/FmSimplexPlugin.cmxa"
+    {"F:S6878T1750607227.85"}
+  "lib/alt-ergo/plugins/fm-simplex/FmSimplexPlugin.cmxs"
+    {"F:S268392T1750607227.86"}
+  "lib/alt-ergo/plugins/fm-simplex/META" {"F:S41T1750607227.86"}
+  "lib/alt-ergo/plugins/fm-simplex/fmSimplexIneqs.ml"
+    {"F:S12801T1750607227.85"}
+  "lib/alt-ergo/plugins/fm-simplex/fmSimplexIneqs.mli"
+    {"F:S1337T1750607227.85"}
+  "lib/alt-ergo/plugins/fm-simplex/fmSimplexPlugin.cmi"
+    {"F:S509T1750607227.85"}
+  "lib/alt-ergo/plugins/fm-simplex/fmSimplexPlugin.cmt"
+    {"F:S3648T1750607227.85"}
+  "lib/alt-ergo/plugins/fm-simplex/fmSimplexPlugin.cmx"
+    {"F:S203T1750607227.85"}
+  "lib/alt-ergo/plugins/fm-simplex/fmSimplexPlugin.ml"
+    {"F:S318T1750607227.85"}
+  "lib/alt-ergo/plugins/fm-simplex/fmSimplexPlugin__FmSimplexIneqs.cmi"
+    {"F:S271T1750607227.85"}
+  "lib/alt-ergo/plugins/fm-simplex/fmSimplexPlugin__FmSimplexIneqs.cmt"
+    {"F:S309480T1750607227.85"}
+  "lib/alt-ergo/plugins/fm-simplex/fmSimplexPlugin__FmSimplexIneqs.cmti"
+    {"F:S6032T1750607227.85"}
+  "lib/alt-ergo/plugins/fm-simplex/fmSimplexPlugin__FmSimplexIneqs.cmx"
+    {"F:S7769T1750607227.85"}
+  "lib/alt-ergo/plugins/fm-simplex/fmSimplexPlugin__Simplex.cmi"
+    {"F:S42311T1750607227.85"}
+  "lib/alt-ergo/plugins/fm-simplex/fmSimplexPlugin__Simplex.cmt"
+    {"F:S566960T1750607227.85"}
+  "lib/alt-ergo/plugins/fm-simplex/fmSimplexPlugin__Simplex.cmx"
+    {"F:S8456T1750607227.85"}
+  "lib/alt-ergo/plugins/fm-simplex/fmSimplexPlugin__Simplex_cache.cmi"
+    {"F:S18536T1750607227.85"}
+  "lib/alt-ergo/plugins/fm-simplex/fmSimplexPlugin__Simplex_cache.cmt"
+    {"F:S98752T1750607227.85"}
+  "lib/alt-ergo/plugins/fm-simplex/fmSimplexPlugin__Simplex_cache.cmx"
+    {"F:S4771T1750607227.85"}
+  "lib/alt-ergo/plugins/fm-simplex/simplex.ml" {"F:S35604T1750607227.85"}
+  "lib/alt-ergo/plugins/fm-simplex/simplex_cache.ml"
+    {"F:S4409T1750607227.85"}
+  "man/man1/alt-ergo.1" {"F:S18593T1750607227.86"}
+  "share/alt-ergo" {"D"}
+  "share/alt-ergo/preludes" {"D"}
+  "share/alt-ergo/preludes/fpa-theory-2017-01-04-16h00.ae"
+    {"F:S28507T1750607227.86"}
+  "share/alt-ergo/preludes/fpa-theory-2019-06-14-11h00.ae"
+    {"F:S29248T1750607227.86"}
+  "share/alt-ergo/preludes/fpa-theory-2019-10-08-19h00.ae"
+    {"F:S28772T1750607227.86"}
+]

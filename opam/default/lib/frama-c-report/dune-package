@@ -1,0 +1,129 @@
+(lang dune 3.19)
+(name frama-c-report)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-report)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-report))
+(files
+ (lib
+  (META
+   core/.private/report__Classify.cmi
+   core/.private/report__Classify.cmt
+   core/.private/report__Classify.cmti
+   core/.private/report__Csv.cmi
+   core/.private/report__Csv.cmt
+   core/.private/report__Csv.cmti
+   core/.private/report__Dump.cmi
+   core/.private/report__Dump.cmt
+   core/.private/report__Dump.cmti
+   core/.private/report__Register.cmi
+   core/.private/report__Register.cmt
+   core/.private/report__Register.cmti
+   core/.private/report__Report_parameters.cmi
+   core/.private/report__Report_parameters.cmt
+   core/.private/report__Report_parameters.cmti
+   core/.private/report__Scan.cmi
+   core/.private/report__Scan.cmt
+   core/.private/report__Scan.cmti
+   core/Report.ml
+   core/Report.mli
+   core/classify.ml
+   core/classify.mli
+   core/csv.ml
+   core/csv.mli
+   core/dump.ml
+   core/dump.mli
+   core/register.ml
+   core/register.mli
+   core/report.a
+   core/report.cma
+   core/report.cmi
+   core/report.cmt
+   core/report.cmti
+   core/report.cmx
+   core/report.cmxa
+   core/report__.cmi
+   core/report__.cmt
+   core/report__.cmx
+   core/report__.ml
+   core/report__Classify.cmx
+   core/report__Csv.cmx
+   core/report__Dump.cmx
+   core/report__Register.cmx
+   core/report__Report_parameters.cmx
+   core/report__Scan.cmx
+   core/report_parameters.ml
+   core/report_parameters.mli
+   core/scan.ml
+   core/scan.mli
+   dune-package
+   opam))
+ (lib_root (frama-c/plugins/report/META))
+ (libexec (core/report.cmxs)))
+(library
+ (name frama-c-report.core)
+ (kind normal)
+ (archives (byte core/report.cma) (native core/report.cmxa))
+ (plugins (byte core/report.cma) (native core/report.cmxs))
+ (native_archives core/report.a)
+ (requires frama-c.kernel)
+ (main_module_name Report)
+ (modes byte native)
+ (obj_dir (private_dir .private))
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name report__)
+     (visibility public)
+     (kind alias)
+     (source (path Report__) (impl (path core/report__.ml-gen))))
+    (name Report)
+    (modules
+     (module
+      (obj_name report__Classify)
+      (visibility private)
+      (source
+       (path Classify)
+       (intf (path core/classify.mli))
+       (impl (path core/classify.ml))))
+     (module
+      (obj_name report__Csv)
+      (visibility private)
+      (source (path Csv) (intf (path core/csv.mli)) (impl (path core/csv.ml))))
+     (module
+      (obj_name report__Dump)
+      (visibility private)
+      (source
+       (path Dump)
+       (intf (path core/dump.mli))
+       (impl (path core/dump.ml))))
+     (module
+      (obj_name report__Register)
+      (visibility private)
+      (source
+       (path Register)
+       (intf (path core/register.mli))
+       (impl (path core/register.ml))))
+     (module
+      (obj_name report)
+      (visibility public)
+      (source
+       (path Report)
+       (intf (path core/Report.mli))
+       (impl (path core/Report.ml))))
+     (module
+      (obj_name report__Report_parameters)
+      (visibility private)
+      (source
+       (path Report_parameters)
+       (intf (path core/report_parameters.mli))
+       (impl (path core/report_parameters.ml))))
+     (module
+      (obj_name report__Scan)
+      (visibility private)
+      (source
+       (path Scan)
+       (intf (path core/scan.mli))
+       (impl (path core/scan.ml))))))
+   (wrapped true))))

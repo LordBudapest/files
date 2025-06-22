@@ -1,0 +1,7 @@
+version = "3.1.5"
+description = ""
+requires = "lablgtk3"
+archive(byte) = "lablgtk3_sourceview3.cma"
+archive(native) = "lablgtk3_sourceview3.cmxa"
+plugin(byte) = "lablgtk3_sourceview3.cma"
+plugin(native) = "lablgtk3_sourceview3.cmxs"

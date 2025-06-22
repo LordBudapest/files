@@ -19,10 +19,10 @@ val non : ('a -> bool) -> 'a -> bool
 
 (** [forever f] runs [f ()] until it throws an exception and returns the
     exception. This function is useful for read_line loops, etc. *)
-val forever : (unit -> unit) -> exn
+val forever : ((unit -> unit)[@local]) -> exn
 
 (** [apply_n_times ~n f x] is the [n]-fold application of [f] to [x]. *)
-val apply_n_times : n:int -> ('a -> 'a) -> 'a -> 'a
+val apply_n_times : n:int -> (('a -> 'a)[@local]) -> 'a -> 'a
 
 (** The identity function.
 
@@ -34,3 +34,4 @@ val compose : ('b -> 'c) -> ('a -> 'b) -> 'a -> 'c
 
 (** Reverses the order of arguments for a binary function. *)
 val flip : ('a -> 'b -> 'c) -> 'b -> 'a -> 'c
+

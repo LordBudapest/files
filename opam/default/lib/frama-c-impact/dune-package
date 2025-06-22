@@ -1,0 +1,156 @@
+(lang dune 3.19)
+(name frama-c-impact)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-impact)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-impact))
+(files
+ (lib
+  (META
+   core/compute_impact.ml
+   core/compute_impact.mli
+   core/impact.a
+   core/impact.cma
+   core/impact.cmi
+   core/impact.cmt
+   core/impact.cmx
+   core/impact.cmxa
+   core/impact.ml
+   core/impact__Compute_impact.cmi
+   core/impact__Compute_impact.cmt
+   core/impact__Compute_impact.cmti
+   core/impact__Compute_impact.cmx
+   core/impact__Options.cmi
+   core/impact__Options.cmt
+   core/impact__Options.cmti
+   core/impact__Options.cmx
+   core/impact__Pdg_aux.cmi
+   core/impact__Pdg_aux.cmt
+   core/impact__Pdg_aux.cmti
+   core/impact__Pdg_aux.cmx
+   core/impact__Reason_graph.cmi
+   core/impact__Reason_graph.cmt
+   core/impact__Reason_graph.cmti
+   core/impact__Reason_graph.cmx
+   core/impact__Register.cmi
+   core/impact__Register.cmt
+   core/impact__Register.cmti
+   core/impact__Register.cmx
+   core/options.ml
+   core/options.mli
+   core/pdg_aux.ml
+   core/pdg_aux.mli
+   core/reason_graph.ml
+   core/reason_graph.mli
+   core/register.ml
+   core/register.mli
+   dune-package
+   gui/impact_gui.a
+   gui/impact_gui.cma
+   gui/impact_gui.cmi
+   gui/impact_gui.cmt
+   gui/impact_gui.cmx
+   gui/impact_gui.cmxa
+   gui/impact_gui.ml
+   gui/impact_gui__Register_gui.cmi
+   gui/impact_gui__Register_gui.cmt
+   gui/impact_gui__Register_gui.cmti
+   gui/impact_gui__Register_gui.cmx
+   gui/register_gui.ml
+   gui/register_gui.mli
+   opam))
+ (lib_root (frama-c/plugins/impact/META frama-c/plugins_gui/impact-gui/META))
+ (libexec (core/impact.cmxs gui/impact_gui.cmxs)))
+(library
+ (name frama-c-impact.core)
+ (kind normal)
+ (archives (byte core/impact.cma) (native core/impact.cmxa))
+ (plugins (byte core/impact.cma) (native core/impact.cmxs))
+ (native_archives core/impact.a)
+ (requires
+  frama-c.kernel
+  frama-c-pdg.core
+  frama-c-slicing.core
+  frama-c-callgraph.core
+  frama-c-inout.core)
+ (main_module_name Impact)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name impact)
+     (visibility public)
+     (kind alias)
+     (source (path Impact) (impl (path core/impact.ml-gen))))
+    (name Impact)
+    (modules
+     (module
+      (obj_name impact__Compute_impact)
+      (visibility public)
+      (source
+       (path Compute_impact)
+       (intf (path core/compute_impact.mli))
+       (impl (path core/compute_impact.ml))))
+     (module
+      (obj_name impact__Options)
+      (visibility public)
+      (source
+       (path Options)
+       (intf (path core/options.mli))
+       (impl (path core/options.ml))))
+     (module
+      (obj_name impact__Pdg_aux)
+      (visibility public)
+      (source
+       (path Pdg_aux)
+       (intf (path core/pdg_aux.mli))
+       (impl (path core/pdg_aux.ml))))
+     (module
+      (obj_name impact__Reason_graph)
+      (visibility public)
+      (source
+       (path Reason_graph)
+       (intf (path core/reason_graph.mli))
+       (impl (path core/reason_graph.ml))))
+     (module
+      (obj_name impact__Register)
+      (visibility public)
+      (source
+       (path Register)
+       (intf (path core/register.mli))
+       (impl (path core/register.ml))))))
+   (wrapped true))))
+(library
+ (name frama-c-impact.gui)
+ (kind normal)
+ (archives (byte gui/impact_gui.cma) (native gui/impact_gui.cmxa))
+ (plugins (byte gui/impact_gui.cma) (native gui/impact_gui.cmxs))
+ (native_archives gui/impact_gui.a)
+ (requires
+  frama-c.kernel
+  frama-c.gui
+  frama-c-pdg.core
+  frama-c-impact.core
+  frama-c-slicing.core
+  frama-c-callgraph.core)
+ (main_module_name Impact_gui)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name impact_gui)
+     (visibility public)
+     (kind alias)
+     (source (path Impact_gui) (impl (path gui/impact_gui.ml-gen))))
+    (name Impact_gui)
+    (modules
+     (module
+      (obj_name impact_gui__Register_gui)
+      (visibility public)
+      (source
+       (path Register_gui)
+       (intf (path gui/register_gui.mli))
+       (impl (path gui/register_gui.ml))))))
+   (wrapped true))))

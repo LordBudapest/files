@@ -15,6 +15,8 @@
 
 open Asttypes
 open Types
+open Format
+
 type 'a class_info = {
   cls_id : Ident.t;
   cls_id_loc : string loc;
@@ -23,6 +25,7 @@ type 'a class_info = {
   cls_ty_decl : class_type_declaration;
   cls_obj_id : Ident.t;
   cls_obj_abbr : type_declaration;
+  cls_typesharp_id : Ident.t;
   cls_abbr : type_declaration;
   cls_arity : int;
   cls_pub_methods : string list;
@@ -35,6 +38,7 @@ type class_type_info = {
   clsty_ty_decl : class_type_declaration;
   clsty_obj_id : Ident.t;
   clsty_obj_abbr : type_declaration;
+  clsty_typesharp_id : Ident.t;
   clsty_abbr : type_declaration;
   clsty_info : Typedtree.class_type_declaration;
 }
@@ -66,7 +70,7 @@ and class_type_declaration =
 *)
 
 val approx_class_declarations:
-  Env.t -> Parsetree.class_description list -> class_type_info list * Env.t
+  Env.t -> Parsetree.class_description list -> class_type_info list
 
 (*
 val type_classes :
@@ -105,16 +109,12 @@ type error =
   | Undeclared_methods of kind * string list
   | Parameter_arity_mismatch of Longident.t * int * int
   | Parameter_mismatch of Errortrace.unification_error
-  | Bad_parameters of Ident.t * type_expr list * type_expr list
-  | Bad_class_type_parameters of Ident.t * type_expr list * type_expr list
+  | Bad_parameters of Ident.t * type_expr * type_expr
   | Class_match_failure of Ctype.class_match_failure list
   | Unbound_val of string
-  | Unbound_type_var of Format_doc.t * Ctype.closed_class_failure
-  | Non_generalizable_class of
-      { id : Ident.t
-      ; clty : Types.class_declaration
-      ; nongen_vars : type_expr list
-      }
+  | Unbound_type_var of
+      (formatter -> unit) * (type_expr * bool * string * type_expr)
+  | Non_generalizable_class of Ident.t * Types.class_declaration
   | Cannot_coerce_self of type_expr
   | Non_collapsable_conjunction of
       Ident.t * Types.class_declaration * Errortrace.unification_error
@@ -127,8 +127,7 @@ type error =
 exception Error of Location.t * Env.t * error
 exception Error_forward of Location.error
 
-val report_error : Env.t -> Format.formatter -> error -> unit
-val report_error_doc : Env.t -> error Format_doc.printer
+val report_error : Env.t -> formatter -> error -> unit
 
 (* Forward decl filled in by Typemod.type_open_descr *)
 val type_open_descr :

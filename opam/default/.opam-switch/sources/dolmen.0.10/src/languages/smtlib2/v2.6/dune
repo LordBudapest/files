@@ -1,0 +1,10 @@
+
+; Language library definition
+(library
+  (name           dolmen_smtlib2_v6)
+  (public_name    dolmen.smtlib2.v6)
+  (instrumentation (backend bisect_ppx))
+  (libraries      dolmen_smtlib2_v6_script dolmen_smtlib2_v6_response)
+  (modules        Dolmen_smtlib2_v6)
+)
+

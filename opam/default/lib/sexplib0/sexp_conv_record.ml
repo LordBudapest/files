@@ -27,9 +27,9 @@ module Fields = struct
   let length =
     let rec length_loop : type a. a t -> int -> int =
       fun t acc ->
-      match t with
-      | Field { rest; _ } -> length_loop rest (acc + 1)
-      | Empty -> acc
+        match t with
+        | Field { rest; _ } -> length_loop rest (acc + 1)
+        | Empty -> acc
     in
     fun t -> length_loop t 0
   ;;
@@ -63,8 +63,8 @@ module Malformed = struct
   let raise t ~caller ~context =
     match t with
     | Bool_payload -> record_sexp_bool_with_payload caller context
-    | Extras names -> record_extra_fields caller names context
-    | Dups names -> record_duplicate_fields caller names context
+    | Extras names -> record_extra_fields caller (List.rev names) context
+    | Dups names -> record_duplicate_fields caller (List.rev names) context
     | Missing names ->
       List.map names ~f:(fun name -> true, name)
       |> record_undefined_elements caller context
@@ -264,13 +264,13 @@ let parse_record_fast ~fields ~index ~extra sexps =
 (* Entry points. *)
 
 let record_of_sexps
-  ~caller
-  ~context
-  ~fields
-  ~index_of_field
-  ~allow_extra_fields
-  ~create
-  sexps
+      ~caller
+      ~context
+      ~fields
+      ~index_of_field
+      ~allow_extra_fields
+      ~create
+      sexps
   =
   let allow_extra_fields =
     allow_extra_fields || not !Sexp_conv.record_check_extra_fields

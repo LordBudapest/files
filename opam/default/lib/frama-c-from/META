@@ -1,0 +1,18 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires = "frama-c-callgraph.core frama-c-eva.core frama-c.kernel"
+  archive(byte) = "from.cma"
+  archive(native) = "from.cmxa"
+  plugin(byte) = "from.cma"
+  plugin(native) = "from.cmxs"
+)
+package "gui" (
+  directory = "gui"
+  description = ""
+  requires = "frama-c-from.core frama-c.gui frama-c.kernel"
+  archive(byte) = "from_gui.cma"
+  archive(native) = "from_gui.cmxa"
+  plugin(byte) = "from_gui.cma"
+  plugin(native) = "from_gui.cmxs"
+)

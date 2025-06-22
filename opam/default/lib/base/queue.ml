@@ -1,5 +1,6 @@
 open! Import
 
+
 (* [t] stores the [t.length] queue elements at consecutive increasing indices of [t.elts],
    mod the capacity of [t], which is [Option_array.length t.elts].  The capacity is
    required to be a power of two (user-requested capacities are rounded up to the nearest
@@ -18,51 +19,42 @@ type 'a t =
 
 let sexp_of_t : 'a. ('a -> Sexplib0.Sexp.t) -> 'a t -> Sexplib0.Sexp.t =
   fun _of_a__001_
-      { num_mutations = num_mutations__003_
-      ; front = front__005_
-      ; mask = mask__007_
-      ; length = length__009_
-      ; elts = elts__011_
-      } ->
-  let bnds__002_ = ([] : _ Stdlib.List.t) in
-  let bnds__002_ =
-    let arg__012_ = Option_array.sexp_of_t _of_a__001_ elts__011_ in
-    (Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "elts"; arg__012_ ] :: bnds__002_
-      : _ Stdlib.List.t)
-  in
-  let bnds__002_ =
-    let arg__010_ = sexp_of_int length__009_ in
-    (Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "length"; arg__010_ ] :: bnds__002_
-      : _ Stdlib.List.t)
-  in
-  let bnds__002_ =
-    let arg__008_ = sexp_of_int mask__007_ in
-    (Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "mask"; arg__008_ ] :: bnds__002_
-      : _ Stdlib.List.t)
-  in
-  let bnds__002_ =
-    let arg__006_ = sexp_of_int front__005_ in
-    (Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "front"; arg__006_ ] :: bnds__002_
-      : _ Stdlib.List.t)
-  in
-  let bnds__002_ =
-    let arg__004_ = sexp_of_int num_mutations__003_ in
-    (Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "num_mutations"; arg__004_ ] :: bnds__002_
-      : _ Stdlib.List.t)
-  in
-  Sexplib0.Sexp.List bnds__002_
+    { num_mutations = num_mutations__003_
+    ; front = front__005_
+    ; mask = mask__007_
+    ; length = length__009_
+    ; elts = elts__011_
+    } ->
+    let bnds__002_ = ([] : _ Stdlib.List.t) in
+    let bnds__002_ =
+      let arg__012_ = Option_array.sexp_of_t _of_a__001_ elts__011_ in
+      (Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "elts"; arg__012_ ] :: bnds__002_
+       : _ Stdlib.List.t)
+    in
+    let bnds__002_ =
+      let arg__010_ = sexp_of_int length__009_ in
+      (Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "length"; arg__010_ ] :: bnds__002_
+       : _ Stdlib.List.t)
+    in
+    let bnds__002_ =
+      let arg__008_ = sexp_of_int mask__007_ in
+      (Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "mask"; arg__008_ ] :: bnds__002_
+       : _ Stdlib.List.t)
+    in
+    let bnds__002_ =
+      let arg__006_ = sexp_of_int front__005_ in
+      (Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "front"; arg__006_ ] :: bnds__002_
+       : _ Stdlib.List.t)
+    in
+    let bnds__002_ =
+      let arg__004_ = sexp_of_int num_mutations__003_ in
+      (Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "num_mutations"; arg__004_ ] :: bnds__002_
+       : _ Stdlib.List.t)
+    in
+    Sexplib0.Sexp.List bnds__002_
 ;;
 
 [@@@end]
-
-let globalize _ t =
-  { num_mutations = t.num_mutations
-  ; front = t.front
-  ; mask = t.mask
-  ; length = t.length
-  ; elts = Option_array.copy t.elts
-  }
-;;
 
 module type S = Queue_intf.S
 
@@ -97,18 +89,16 @@ let set t i a =
 let is_empty t = t.length = 0
 let length { length; _ } = length
 
-let[@cold] [@inline never] raise_mutation_during_iteration t =
-  Error.raise_s
-    (Sexp.message
-       "mutation of queue during iteration"
-       [ "", t |> globalize () |> sexp_of_t (fun _ -> Sexp.Atom "_") ])
-;;
-
 let ensure_no_mutation t num_mutations =
-  if t.num_mutations <> num_mutations then raise_mutation_during_iteration t
+  if t.num_mutations <> num_mutations
+  then
+    Error.raise_s
+      (Sexp.message
+         "mutation of queue during iteration"
+         [ "", t |> sexp_of_t (fun _ -> Sexp.Atom "_") ])
 ;;
 
-let compare__local =
+let compare =
   let rec unsafe_compare_from compare_elt pos ~t1 ~t2 ~len1 ~len2 ~mut1 ~mut2 =
     match pos = len1, pos = len2 with
     | true, true -> 0
@@ -137,9 +127,7 @@ let compare__local =
         ~mut2:t2.num_mutations
 ;;
 
-let compare compare_elt t1 t2 = compare__local compare_elt t1 t2
-
-let equal__local =
+let equal =
   let rec unsafe_equal_from equal_elt pos ~t1 ~t2 ~mut1 ~mut2 ~len =
     pos = len
     ||
@@ -163,8 +151,6 @@ let equal__local =
          ~mut1:t1.num_mutations
          ~mut2:t2.num_mutations
 ;;
-
-let equal equal_elt t1 t2 = equal__local equal_elt t1 t2
 
 let invariant invariant_a t =
   let { num_mutations; mask = _; elts; front; length } = t in
@@ -239,15 +225,6 @@ let enqueue t a =
   t.length <- t.length + 1
 ;;
 
-let enqueue_front t a =
-  inc_num_mutations t;
-  if t.length = capacity t then set_capacity_internal t (2 * t.length);
-  let front = (t.front - 1) land t.mask in
-  t.front <- front;
-  t.length <- t.length + 1;
-  unsafe_set t 0 a
-;;
-
 let dequeue_nonempty t =
   inc_num_mutations t;
   let elts = t.elts in
@@ -259,42 +236,15 @@ let dequeue_nonempty t =
   res
 ;;
 
-let back_index t = elts_index t (t.length - 1)
-
-let dequeue_back_nonempty t =
-  inc_num_mutations t;
-  let elts = t.elts in
-  let back = back_index t in
-  let res = Option_array.get_some_exn elts back in
-  Option_array.set_none elts back;
-  t.length <- t.length - 1;
-  res
-;;
-
 let dequeue_exn t = if is_empty t then raise Stdlib.Queue.Empty else dequeue_nonempty t
 let dequeue t = if is_empty t then None else Some (dequeue_nonempty t)
 let dequeue_and_ignore_exn (type elt) (t : elt t) = ignore (dequeue_exn t : elt)
-
-let dequeue_back_exn t =
-  if is_empty t then raise Stdlib.Queue.Empty else dequeue_back_nonempty t
-;;
-
-let dequeue_back t = if is_empty t then None else Some (dequeue_back_nonempty t)
 let front_nonempty t = Option_array.unsafe_get_some_exn t.elts t.front
-let back_nonempty t = Option_array.unsafe_get_some_exn t.elts (back_index t)
 let last_nonempty t = unsafe_get t (t.length - 1)
 let peek t = if is_empty t then None else Some (front_nonempty t)
 let peek_exn t = if is_empty t then raise Stdlib.Queue.Empty else front_nonempty t
-let peek_back t = if is_empty t then None else Some (back_nonempty t)
-let peek_back_exn t = if is_empty t then raise Stdlib.Queue.Empty else back_nonempty t
 let last t = if is_empty t then None else Some (last_nonempty t)
 let last_exn t = if is_empty t then raise Stdlib.Queue.Empty else last_nonempty t
-
-let drain t ~f ~while_ =
-  while (not (is_empty t)) && while_ (front_nonempty t) do
-    f (dequeue_nonempty t)
-  done
-;;
 
 let clear t =
   inc_num_mutations t;
@@ -369,6 +319,7 @@ let foldi t ~init ~f =
     acc) [@nontail]
 ;;
 
+
 (* [iter] is implemented directly because implementing it in terms of [fold] is
    slower. *)
 let iter t ~f =
@@ -396,14 +347,14 @@ let to_list t =
 ;;
 
 module C = Indexed_container.Make (struct
-  type nonrec 'a t = 'a t
+    type nonrec 'a t = 'a t
 
-  let fold = fold
-  let iter = `Custom iter
-  let length = `Custom length
-  let foldi = `Custom foldi
-  let iteri = `Custom iteri
-end)
+    let fold = fold
+    let iter = `Custom iter
+    let length = `Custom length
+    let foldi = `Custom foldi
+    let iteri = `Custom iteri
+  end)
 
 let count = C.count
 let exists = C.exists
@@ -421,6 +372,7 @@ let existsi = C.existsi
 let find_mapi = C.find_mapi
 let findi = C.findi
 let for_alli = C.for_alli
+
 
 (* For [concat_map], [filter_map], and [filter], we don't create [t_result] with [t]'s
    capacity because we have no idea how many elements [t_result] will ultimately hold. *)
@@ -549,10 +501,3 @@ let t_sexp_grammar (type a) (grammar : a Sexplib0.Sexp_grammar.t)
   =
   Sexplib0.Sexp_grammar.coerce (List.t_sexp_grammar grammar)
 ;;
-
-module Iteration = struct
-  type t = int
-
-  let start q = q.num_mutations
-  let assert_no_mutation_since_start t q = ensure_no_mutation q t
-end

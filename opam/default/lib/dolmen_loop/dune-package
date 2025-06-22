@@ -1,0 +1,201 @@
+(lang dune 3.19)
+(name dolmen_loop)
+(version 0.10)
+(sections (lib .) (libexec .) (doc ../../doc/dolmen_loop))
+(files
+ (lib
+  (META
+   alarm.ml
+   alarm.mli
+   code.ml
+   code.mli
+   dolmen_loop.a
+   dolmen_loop.cma
+   dolmen_loop.cmi
+   dolmen_loop.cmt
+   dolmen_loop.cmx
+   dolmen_loop.cmxa
+   dolmen_loop.ml
+   dolmen_loop__Alarm.cmi
+   dolmen_loop__Alarm.cmt
+   dolmen_loop__Alarm.cmti
+   dolmen_loop__Alarm.cmx
+   dolmen_loop__Code.cmi
+   dolmen_loop__Code.cmt
+   dolmen_loop__Code.cmti
+   dolmen_loop__Code.cmx
+   dolmen_loop__Expr_intf.cmi
+   dolmen_loop__Expr_intf.cmt
+   dolmen_loop__Expr_intf.cmx
+   dolmen_loop__Flow.cmi
+   dolmen_loop__Flow.cmt
+   dolmen_loop__Flow.cmti
+   dolmen_loop__Flow.cmx
+   dolmen_loop__Flow_intf.cmi
+   dolmen_loop__Flow_intf.cmt
+   dolmen_loop__Flow_intf.cmx
+   dolmen_loop__Headers.cmi
+   dolmen_loop__Headers.cmt
+   dolmen_loop__Headers.cmti
+   dolmen_loop__Headers.cmx
+   dolmen_loop__Headers_intf.cmi
+   dolmen_loop__Headers_intf.cmt
+   dolmen_loop__Headers_intf.cmx
+   dolmen_loop__Logic.cmi
+   dolmen_loop__Logic.cmt
+   dolmen_loop__Logic.cmti
+   dolmen_loop__Logic.cmx
+   dolmen_loop__Parser.cmi
+   dolmen_loop__Parser.cmt
+   dolmen_loop__Parser.cmti
+   dolmen_loop__Parser.cmx
+   dolmen_loop__Parser_intf.cmi
+   dolmen_loop__Parser_intf.cmt
+   dolmen_loop__Parser_intf.cmx
+   dolmen_loop__Pipeline.cmi
+   dolmen_loop__Pipeline.cmt
+   dolmen_loop__Pipeline.cmti
+   dolmen_loop__Pipeline.cmx
+   dolmen_loop__Report.cmi
+   dolmen_loop__Report.cmt
+   dolmen_loop__Report.cmti
+   dolmen_loop__Report.cmx
+   dolmen_loop__Response.cmi
+   dolmen_loop__Response.cmt
+   dolmen_loop__Response.cmx
+   dolmen_loop__State.cmi
+   dolmen_loop__State.cmt
+   dolmen_loop__State.cmx
+   dolmen_loop__Typer.cmi
+   dolmen_loop__Typer.cmt
+   dolmen_loop__Typer.cmti
+   dolmen_loop__Typer.cmx
+   dolmen_loop__Typer_intf.cmi
+   dolmen_loop__Typer_intf.cmt
+   dolmen_loop__Typer_intf.cmx
+   dune-package
+   expr_intf.ml
+   flow.ml
+   flow.mli
+   flow_intf.ml
+   headers.ml
+   headers.mli
+   headers_intf.ml
+   logic.ml
+   logic.mli
+   opam
+   parser.ml
+   parser.mli
+   parser_intf.ml
+   pipeline.ml
+   pipeline.mli
+   report.ml
+   report.mli
+   response.ml
+   state.ml
+   typer.ml
+   typer.mli
+   typer_intf.ml))
+ (libexec (dolmen_loop.cmxs))
+ (doc (CHANGES.md LICENSE README.md)))
+(library
+ (name dolmen_loop)
+ (kind normal)
+ (archives (byte dolmen_loop.cma) (native dolmen_loop.cmxa))
+ (plugins (byte dolmen_loop.cma) (native dolmen_loop.cmxs))
+ (native_archives dolmen_loop.a)
+ (requires
+  gen
+  unix
+  fmt
+  pp_loc
+  dolmen
+  dolmen.intf
+  dolmen.std
+  dolmen.class
+  dolmen.smtlib2
+  dolmen.tptp
+  dolmen_type)
+ (main_module_name Dolmen_loop)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dolmen_loop)
+     (visibility public)
+     (kind alias)
+     (source (path Dolmen_loop) (impl (path dolmen_loop.ml-gen))))
+    (name Dolmen_loop)
+    (modules
+     (module
+      (obj_name dolmen_loop__Alarm)
+      (visibility public)
+      (source (path Alarm) (intf (path alarm.mli)) (impl (path alarm.ml))))
+     (module
+      (obj_name dolmen_loop__Code)
+      (visibility public)
+      (source (path Code) (intf (path code.mli)) (impl (path code.ml))))
+     (module
+      (obj_name dolmen_loop__Expr_intf)
+      (visibility public)
+      (source (path Expr_intf) (impl (path expr_intf.ml))))
+     (module
+      (obj_name dolmen_loop__Flow)
+      (visibility public)
+      (source (path Flow) (intf (path flow.mli)) (impl (path flow.ml))))
+     (module
+      (obj_name dolmen_loop__Flow_intf)
+      (visibility public)
+      (source (path Flow_intf) (impl (path flow_intf.ml))))
+     (module
+      (obj_name dolmen_loop__Headers)
+      (visibility public)
+      (source
+       (path Headers)
+       (intf (path headers.mli))
+       (impl (path headers.ml))))
+     (module
+      (obj_name dolmen_loop__Headers_intf)
+      (visibility public)
+      (source (path Headers_intf) (impl (path headers_intf.ml))))
+     (module
+      (obj_name dolmen_loop__Logic)
+      (visibility public)
+      (source (path Logic) (intf (path logic.mli)) (impl (path logic.ml))))
+     (module
+      (obj_name dolmen_loop__Parser)
+      (visibility public)
+      (source (path Parser) (intf (path parser.mli)) (impl (path parser.ml))))
+     (module
+      (obj_name dolmen_loop__Parser_intf)
+      (visibility public)
+      (source (path Parser_intf) (impl (path parser_intf.ml))))
+     (module
+      (obj_name dolmen_loop__Pipeline)
+      (visibility public)
+      (source
+       (path Pipeline)
+       (intf (path pipeline.mli))
+       (impl (path pipeline.ml))))
+     (module
+      (obj_name dolmen_loop__Report)
+      (visibility public)
+      (source (path Report) (intf (path report.mli)) (impl (path report.ml))))
+     (module
+      (obj_name dolmen_loop__Response)
+      (visibility public)
+      (source (path Response) (impl (path response.ml))))
+     (module
+      (obj_name dolmen_loop__State)
+      (visibility public)
+      (source (path State) (impl (path state.ml))))
+     (module
+      (obj_name dolmen_loop__Typer)
+      (visibility public)
+      (source (path Typer) (intf (path typer.mli)) (impl (path typer.ml))))
+     (module
+      (obj_name dolmen_loop__Typer_intf)
+      (visibility public)
+      (source (path Typer_intf) (impl (path typer_intf.ml))))))
+   (wrapped true))))

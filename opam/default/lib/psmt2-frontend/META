@@ -1,0 +1,7 @@
+version = "0.4.0"
+description = ""
+requires = ""
+archive(byte) = "psmt2Frontend.cma"
+archive(native) = "psmt2Frontend.cmxa"
+plugin(byte) = "psmt2Frontend.cma"
+plugin(native) = "psmt2Frontend.cmxs"

@@ -1,6 +1,6 @@
 (lang dune 3.19)
 (name ocaml-lsp-server)
-(version 1.22.0)
+(version 1.20.1-4.14)
 (sections (lib .) (bin ../../bin) (doc ../../doc/ocaml-lsp-server))
 (files
  (lib (META dune-package opam))

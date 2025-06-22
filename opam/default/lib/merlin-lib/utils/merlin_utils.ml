@@ -6,9 +6,6 @@ module File_cache = Merlin_utils__File_cache
 (** @canonical Merlin_utils.File_id *)
 module File_id = Merlin_utils__File_id
 
-(** @canonical Merlin_utils.Format_doc *)
-module Format_doc = Merlin_utils__Format_doc
-
 (** @canonical Merlin_utils.Lib_config *)
 module Lib_config = Merlin_utils__Lib_config
 

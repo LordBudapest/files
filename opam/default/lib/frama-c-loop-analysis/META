@@ -1,0 +1,9 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires = "frama-c-eva.core frama-c.kernel"
+  archive(byte) = "LoopAnalysis.cma"
+  archive(native) = "LoopAnalysis.cmxa"
+  plugin(byte) = "LoopAnalysis.cma"
+  plugin(native) = "LoopAnalysis.cmxs"
+)

@@ -81,7 +81,7 @@ let slot t key =
 let add_worker t ~replace ~key ~data =
   let i = slot t key in
   let root = t.table.(i) in
-  let added = ref false in
+  let added =  (ref false) in
   let new_root =
     (* The avl tree might replace the value [replace=true] or do nothing [replace=false]
        to the entry, in that case the table did not get bigger, so we should not
@@ -114,8 +114,6 @@ let maybe_resize_table t =
         Avltree.iter old_table.(i) ~f
       done))
 ;;
-
-let capacity t = Array.length t.table
 
 let set t ~key ~data =
   ensure_mutation_allowed t;
@@ -234,10 +232,12 @@ let remove t key =
   ensure_mutation_allowed t;
   let i = slot t key in
   let root = t.table.(i) in
-  let removed = ref false in
-  let new_root = Avltree.remove root ~removed ~compare:(compare_key t) key in
+  let added_or_removed =  (ref false) in
+  let new_root =
+    Avltree.remove root ~removed:added_or_removed ~compare:(compare_key t) key
+  in
   if not (phys_equal root new_root) then t.table.(i) <- new_root;
-  if !removed then t.length <- t.length - 1
+  if !added_or_removed then t.length <- t.length - 1
 ;;
 
 let length t = t.length
@@ -356,7 +356,7 @@ let for_all t ~f = not (existsi t ~f:(fun ~key:_ ~data -> not (f data)))
 
 let counti t ~f =
   fold t ~init:0 ~f:(fun ~key ~data acc -> if f ~key ~data then acc + 1 else acc) [@nontail
-                                                                                    ]
+  ]
 ;;
 
 let count t ~f =
@@ -417,7 +417,8 @@ let partitioni_tf t ~f =
 
 let partition_tf t ~f = partitioni_tf t ~f:(fun ~key:_ ~data -> f data) [@nontail]
 
-let find_or_add t id ~default =
+
+let find_or_add t id ~default:(default [@local]) =
   find_and_call
     t
     id
@@ -446,6 +447,7 @@ let find_and_remove t id =
   if Option.is_some result then remove t id;
   result
 ;;
+
 
 let change t id ~f =
   match f (find t id) with
@@ -583,9 +585,9 @@ let t_of_sexp ~hashable k_of_sexp d_of_sexp sexp =
 ;;
 
 let t_sexp_grammar
-  (type k v)
-  (k_grammar : k Sexplib0.Sexp_grammar.t)
-  (v_grammar : v Sexplib0.Sexp_grammar.t)
+      (type k v)
+      (k_grammar : k Sexplib0.Sexp_grammar.t)
+      (v_grammar : v Sexplib0.Sexp_grammar.t)
   : (k, v) t Sexplib0.Sexp_grammar.t
   =
   Sexplib0.Sexp_grammar.coerce (List.Assoc.t_sexp_grammar k_grammar v_grammar)
@@ -671,7 +673,7 @@ let merge_into ~src ~dst ~f =
       (match dst_data with
        | None -> set dst ~key ~data
        | Some dst_data -> if not (phys_equal dst_data data) then set dst ~key ~data)) [@nontail
-                                                                                        ]
+  ]
 ;;
 
 let filteri_inplace t ~f =
@@ -707,12 +709,12 @@ let map_inplace t ~f = mapi_inplace t ~f:(fun ~key:_ ~data -> f data) [@nontail]
 let equal equal t t' =
   length t = length t'
   && (with_return (fun r ->
-        without_mutating t' (fun () ->
-          iteri t ~f:(fun ~key ~data ->
-            match find t' key with
-            | None -> r.return false
-            | Some data' -> if not (equal data data') then r.return false) [@nontail]);
-        true) [@nontail])
+    without_mutating t' (fun () ->
+      iteri t ~f:(fun ~key ~data ->
+        match find t' key with
+        | None -> r.return false
+        | Some data' -> if not (equal data data') then r.return false) [@nontail]);
+    true) [@nontail])
 ;;
 
 let similar = equal
@@ -790,20 +792,20 @@ module Accessors = struct
 end
 
 module Creators (Key : sig
-  type 'a t
+    type 'a t
 
-  val hashable : 'a t Hashable.t
-end) : sig
+    val hashable : 'a t Hashable.t
+  end) : sig
   type ('a, 'b) t_ = ('a Key.t, 'b) t
 
   val t_of_sexp : (Sexp.t -> 'a Key.t) -> (Sexp.t -> 'b) -> Sexp.t -> ('a, 'b) t_
 
   include
     Creators_generic
-      with type ('a, 'b) t := ('a, 'b) t_
-      with type 'a key := 'a Key.t
-      with type ('key, 'data, 'a) create_options :=
-        ('key, 'data, 'a) create_options_without_first_class_module
+    with type ('a, 'b) t := ('a, 'b) t_
+    with type 'a key := 'a Key.t
+    with type ('key, 'data, 'a) create_options :=
+      ('key, 'data, 'a) create_options_without_first_class_module
 end = struct
   let hashable = Key.hashable
 
@@ -856,13 +858,12 @@ module Poly = struct
   type 'a key = 'a
 
   let hashable = Hashable.poly
-  let capacity = capacity
 
   include Creators (struct
-    type 'a t = 'a
+      type 'a t = 'a
 
-    let hashable = hashable
-  end)
+      let hashable = hashable
+    end)
 
   include Accessors
 

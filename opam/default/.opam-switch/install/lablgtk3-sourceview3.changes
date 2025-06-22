@@ -1,0 +1,60 @@
+opam-version: "2.0"
+added: [
+  "doc/lablgtk3-sourceview3" {"D"}
+  "doc/lablgtk3-sourceview3/CHANGELOG.API" {"F:S2006T1750607136.21"}
+  "doc/lablgtk3-sourceview3/CHANGES.md" {"F:S56223T1750607136.21"}
+  "doc/lablgtk3-sourceview3/LICENSE" {"F:S1828T1750607136.21"}
+  "doc/lablgtk3-sourceview3/README.dune.md" {"F:S2971T1750607136.21"}
+  "doc/lablgtk3-sourceview3/README.md" {"F:S14650T1750607136.21"}
+  "lib/lablgtk3-sourceview3" {"D"}
+  "lib/lablgtk3-sourceview3/META" {"F:S232T1750607136.14"}
+  "lib/lablgtk3-sourceview3/dune-package" {"F:S2494T1750607136.14"}
+  "lib/lablgtk3-sourceview3/gSourceView3.cmi" {"F:S121239T1750607136.14"}
+  "lib/lablgtk3-sourceview3/gSourceView3.cmt" {"F:S894425T1750607136.14"}
+  "lib/lablgtk3-sourceview3/gSourceView3.cmti" {"F:S638615T1750607136.14"}
+  "lib/lablgtk3-sourceview3/gSourceView3.cmx" {"F:S6106T1750607136.14"}
+  "lib/lablgtk3-sourceview3/gSourceView3.ml" {"F:S23267T1750607136.14"}
+  "lib/lablgtk3-sourceview3/gSourceView3.mli" {"F:S21347T1750607136.14"}
+  "lib/lablgtk3-sourceview3/gtkSourceView3.cmi" {"F:S32568T1750607136.14"}
+  "lib/lablgtk3-sourceview3/gtkSourceView3.cmt" {"F:S111631T1750607136.17"}
+  "lib/lablgtk3-sourceview3/gtkSourceView3.cmx" {"F:S11069T1750607136.17"}
+  "lib/lablgtk3-sourceview3/gtkSourceView3.ml" {"F:S11151T1750607136.17"}
+  "lib/lablgtk3-sourceview3/gtkSourceView3Props.cmi"
+    {"F:S35119T1750607136.17"}
+  "lib/lablgtk3-sourceview3/gtkSourceView3Props.cmt"
+    {"F:S205433T1750607136.17"}
+  "lib/lablgtk3-sourceview3/gtkSourceView3Props.cmx"
+    {"F:S15432T1750607136.17"}
+  "lib/lablgtk3-sourceview3/gtkSourceView3Props.ml"
+    {"F:S20302T1750607136.19"}
+  "lib/lablgtk3-sourceview3/gtkSourceView3_types.cmi"
+    {"F:S2421T1750607136.19"}
+  "lib/lablgtk3-sourceview3/gtkSourceView3_types.cmti"
+    {"F:S13805T1750607136.19"}
+  "lib/lablgtk3-sourceview3/gtkSourceView3_types.mli"
+    {"F:S3321T1750607136.19"}
+  "lib/lablgtk3-sourceview3/lablgtk3_sourceview3.a"
+    {"F:S500858T1750607136.19"}
+  "lib/lablgtk3-sourceview3/lablgtk3_sourceview3.cma"
+    {"F:S963029T1750607136.19"}
+  "lib/lablgtk3-sourceview3/lablgtk3_sourceview3.cmxa"
+    {"F:S6034T1750607136.19"}
+  "lib/lablgtk3-sourceview3/lablgtk3_sourceview3.cmxs"
+    {"F:S571536T1750607136.21"}
+  "lib/lablgtk3-sourceview3/liblablgtk3_sourceview3_stubs.a"
+    {"F:S197746T1750607136.21"}
+  "lib/lablgtk3-sourceview3/ogtkSourceView3Props.cmi"
+    {"F:S36182T1750607136.21"}
+  "lib/lablgtk3-sourceview3/ogtkSourceView3Props.cmt"
+    {"F:S284739T1750607136.21"}
+  "lib/lablgtk3-sourceview3/ogtkSourceView3Props.cmx"
+    {"F:S4272T1750607136.21"}
+  "lib/lablgtk3-sourceview3/ogtkSourceView3Props.ml"
+    {"F:S14252T1750607136.21"}
+  "lib/lablgtk3-sourceview3/opam" {"F:S967T1750607136.21"}
+  "lib/lablgtk3-sourceview3/sourceView3Enums.cmi" {"F:S1846T1750607136.21"}
+  "lib/lablgtk3-sourceview3/sourceView3Enums.cmt" {"F:S9569T1750607136.21"}
+  "lib/lablgtk3-sourceview3/sourceView3Enums.cmx" {"F:S530T1750607136.21"}
+  "lib/lablgtk3-sourceview3/sourceView3Enums.ml" {"F:S946T1750607136.21"}
+  "lib/stublibs/dlllablgtk3_sourceview3_stubs.so" {"F:S144024T1750607136.21"}
+]

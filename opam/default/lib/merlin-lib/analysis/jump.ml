@@ -42,6 +42,10 @@ let is_node_let = function
   | Value_binding _ -> true
   | _ -> false
 
+let is_node_pattern = function
+  | Case _ -> true
+  | _ -> false
+
 let fun_pred all =
   (* For:
      `let f x y z = ...` jump to f
@@ -50,13 +54,15 @@ let fun_pred all =
      For
      `List.map l ~f:(fun x -> ...)` jump to fun
 
+     Every fun is immediately followed by pattern in the typed tree.
      Invariant: head is a fun.
   *)
   let rec normalize_fun = function
     (* fun pat fun something *)
-    | node1 :: node2 :: tail when is_node_fun node2 ->
+    | node1 :: node2 :: node3 :: tail when is_node_fun node3 ->
       assert (is_node_fun node1);
-      normalize_fun (node2 :: tail)
+      assert (is_node_pattern node2);
+      normalize_fun (node3 :: tail)
     (* fun let something *)
     | node1 :: node2 :: _ when is_node_let node2 ->
       assert (is_node_fun node1);
@@ -119,7 +125,7 @@ let rec skip_non_moving pos = function
 
 let get_cases_from_match node =
   match node with
-  | Expression { exp_desc = Texp_match (_, cases, _, _); _ } -> cases
+  | Expression { exp_desc = Texp_match (_, cases, _); _ } -> cases
   | _ -> []
 
 let find_case_pos cases pos direction =

@@ -1,0 +1,62 @@
+version = "3.19.1"
+description = ""
+requires = "dune-private-libs.dune-section dune-site.private"
+exports = "dune-private-libs.dune-section"
+archive(byte) = "dune_site.cma"
+archive(native) = "dune_site.cmxa"
+plugin(byte) = "dune_site.cma"
+plugin(native) = "dune_site.cmxs"
+package "dynlink" (
+  directory = "dynlink"
+  version = "3.19.1"
+  description = ""
+  requires = "dune-site.linker dynlink"
+  archive(byte) = "dune_site_dynlink_linker.cma"
+  archive(native) = "dune_site_dynlink_linker.cmxa"
+  plugin(byte) = "dune_site_dynlink_linker.cma"
+  plugin(native) = "dune_site_dynlink_linker.cmxs"
+)
+package "linker" (
+  directory = "linker"
+  version = "3.19.1"
+  description = ""
+  requires = ""
+  archive(byte) = ""
+  archive(native) = ""
+  plugin(byte) = ""
+  plugin(native) = ""
+)
+package "plugins" (
+  directory = "plugins"
+  version = "3.19.1"
+  description = ""
+  requires =
+  "dune-private-libs.dune-section
+   dune-private-libs.meta_parser
+   dune-site
+   dune-site.linker"
+  archive(byte) = "dune_site_plugins.cma"
+  archive(native) = "dune_site_plugins.cmxa"
+  plugin(byte) = "dune_site_plugins.cma"
+  plugin(native) = "dune_site_plugins.cmxs"
+)
+package "private" (
+  directory = "private"
+  version = "3.19.1"
+  description = ""
+  requires = "dune-private-libs.dune-section"
+  archive(byte) = "dune_site_private.cma"
+  archive(native) = "dune_site_private.cmxa"
+  plugin(byte) = "dune_site_private.cma"
+  plugin(native) = "dune_site_private.cmxs"
+)
+package "toplevel" (
+  directory = "toplevel"
+  version = "3.19.1"
+  description = ""
+  requires = "compiler-libs.toplevel dune-site.linker"
+  archive(byte) = "dune_site_toplevel_linker.cma"
+  archive(native) = ""
+  plugin(byte) = "dune_site_toplevel_linker.cma"
+  plugin(native) = ""
+)

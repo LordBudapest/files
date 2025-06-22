@@ -1,30 +1,21 @@
 
-type t = Stdlib.Random.State.t Stdlib.Domain.DLS.key
+module Array = Array0
 
 module Repr = struct
-  open Stdlib.Bigarray
-
-  type t = (int64, int64_elt, c_layout) Array1.t
+  type t =
+    { st : int array
+    ; mutable idx : int
+    }
 
   let of_state : Stdlib.Random.State.t -> t = Stdlib.Obj.magic
 end
 
-let assign t state =
-  let dst = Repr.of_state (Stdlib.Domain.DLS.get t) in
-  let src = Repr.of_state state in
-  Stdlib.Bigarray.Array1.blit src dst
-;;
+let assign t1 t2 =
+  let t1 = Repr.of_state (Lazy.force t1) in
+  let t2 = Repr.of_state (Lazy.force t2) in
+  Array.blit ~src:t2.st ~src_pos:0 ~dst:t1.st ~dst_pos:0 ~len:(Array.length t1.st);
+  t1.idx <- t2.idx
 
-let make state =
-  let split_from_parent v = Stdlib.Random.State.split v in
-  let t = Stdlib.Domain.DLS.new_key ~split_from_parent (fun () -> state) in
-  Stdlib.Domain.DLS.get t |> ignore;
-  t
-;;
+let make_default default = default
 
-let make_lazy ~f =
-  let split_from_parent v = Stdlib.Random.State.split v in
-  Stdlib.Domain.DLS.new_key ~split_from_parent f
-;;
-
-let[@inline always] get_state t = Stdlib.Domain.DLS.get t
+let[@inline always] get_state state = state

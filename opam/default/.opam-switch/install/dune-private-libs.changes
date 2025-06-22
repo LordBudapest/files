@@ -1,0 +1,211 @@
+opam-version: "2.0"
+added: [
+  "doc/dune-private-libs" {"D"}
+  "doc/dune-private-libs/CHANGES.md" {"F:S180522T1750607023.04"}
+  "doc/dune-private-libs/LICENSE.md" {"F:S1111T1750607023.04"}
+  "doc/dune-private-libs/README.md" {"F:S5829T1750607023.04"}
+  "lib/dune-private-libs" {"D"}
+  "lib/dune-private-libs/META" {"F:S868T1750607023.02"}
+  "lib/dune-private-libs/dune-package" {"F:S8901T1750607023.02"}
+  "lib/dune-private-libs/dune-section" {"D"}
+  "lib/dune-private-libs/dune-section/dune_section.a"
+    {"F:S10546T1750607023.02"}
+  "lib/dune-private-libs/dune-section/dune_section.cma"
+    {"F:S5264T1750607023.02"}
+  "lib/dune-private-libs/dune-section/dune_section.cmi"
+    {"F:S1145T1750607023.02"}
+  "lib/dune-private-libs/dune-section/dune_section.cmt"
+    {"F:S10536T1750607023.02"}
+  "lib/dune-private-libs/dune-section/dune_section.cmti"
+    {"F:S5252T1750607023.02"}
+  "lib/dune-private-libs/dune-section/dune_section.cmx"
+    {"F:S1936T1750607023.02"}
+  "lib/dune-private-libs/dune-section/dune_section.cmxa"
+    {"F:S316T1750607023.02"}
+  "lib/dune-private-libs/dune-section/dune_section.cmxs"
+    {"F:S25112T1750607023.03"}
+  "lib/dune-private-libs/dune-section/dune_section.ml"
+    {"F:S650T1750607023.02"}
+  "lib/dune-private-libs/dune-section/dune_section.mli"
+    {"F:S252T1750607023.02"}
+  "lib/dune-private-libs/dune_re" {"D"}
+  "lib/dune-private-libs/dune_re/automata.ml" {"F:S19093T1750607023.02"}
+  "lib/dune-private-libs/dune_re/automata.mli" {"F:S2626T1750607023.02"}
+  "lib/dune-private-libs/dune_re/category.ml" {"F:S596T1750607023.02"}
+  "lib/dune-private-libs/dune_re/category.mli" {"F:S512T1750607023.02"}
+  "lib/dune-private-libs/dune_re/color_map.ml" {"F:S944T1750607023.02"}
+  "lib/dune-private-libs/dune_re/color_map.mli" {"F:S460T1750607023.02"}
+  "lib/dune-private-libs/dune_re/core.ml" {"F:S37420T1750607023.02"}
+  "lib/dune-private-libs/dune_re/core.mli" {"F:S22575T1750607023.02"}
+  "lib/dune-private-libs/dune_re/cset.ml" {"F:S3713T1750607023.02"}
+  "lib/dune-private-libs/dune_re/cset.mli" {"F:S1620T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re.a" {"F:S595542T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re.cma" {"F:S709403T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re.cmi" {"F:S16188T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re.cmt" {"F:S46778T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re.cmx" {"F:S12742T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re.cmxa" {"F:S12869T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re.cmxs" {"F:S492440T1750607023.04"}
+  "lib/dune-private-libs/dune_re/dune_re.ml" {"F:S11T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re__.cmi" {"F:S1469T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re__.cmt" {"F:S8719T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re__.cmx" {"F:S391T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re__.ml" {"F:S1035T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re__Automata.cmi"
+    {"F:S9200T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re__Automata.cmt"
+    {"F:S267187T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re__Automata.cmti"
+    {"F:S32975T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re__Automata.cmx"
+    {"F:S10261T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re__Category.cmi"
+    {"F:S1695T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re__Category.cmt"
+    {"F:S15971T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re__Category.cmti"
+    {"F:S8313T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re__Category.cmx"
+    {"F:S1466T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re__Color_map.cmi"
+    {"F:S920T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re__Color_map.cmt"
+    {"F:S13064T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re__Color_map.cmti"
+    {"F:S4864T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re__Color_map.cmx"
+    {"F:S906T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re__Core.cmi"
+    {"F:S25858T1750607023.02"}
+  "lib/dune-private-libs/dune_re/dune_re__Core.cmt"
+    {"F:S452498T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Core.cmti"
+    {"F:S129250T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Core.cmx"
+    {"F:S15677T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Cset.cmi"
+    {"F:S10059T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Cset.cmt"
+    {"F:S69959T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Cset.cmti"
+    {"F:S29385T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Cset.cmx" {"F:S5216T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Emacs.cmi"
+    {"F:S1227T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Emacs.cmt"
+    {"F:S42673T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Emacs.cmti"
+    {"F:S6839T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Emacs.cmx"
+    {"F:S1485T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Fmt.cmi" {"F:S33085T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Fmt.cmt"
+    {"F:S110851T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Fmt.cmx" {"F:S25335T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Glob.cmi" {"F:S1722T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Glob.cmt"
+    {"F:S109523T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Glob.cmti"
+    {"F:S12658T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Glob.cmx" {"F:S3731T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Group.cmi"
+    {"F:S2281T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Group.cmt"
+    {"F:S39970T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Group.cmti"
+    {"F:S12287T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Group.cmx"
+    {"F:S1685T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Pcre.cmi" {"F:S3474T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Pcre.cmt"
+    {"F:S53838T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Pcre.cmti"
+    {"F:S16653T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Pcre.cmx" {"F:S2983T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Perl.cmi" {"F:S1420T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Perl.cmt"
+    {"F:S107840T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Perl.cmti"
+    {"F:S7770T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Perl.cmx" {"F:S2471T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Pmark.cmi"
+    {"F:S6630T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Pmark.cmt"
+    {"F:S19156T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Pmark.cmti"
+    {"F:S16978T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Pmark.cmx"
+    {"F:S4044T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Posix.cmi"
+    {"F:S1374T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Posix.cmt"
+    {"F:S51865T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Posix.cmti"
+    {"F:S10673T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Posix.cmx"
+    {"F:S1526T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Re.cmi" {"F:S16160T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Re.cmt" {"F:S47196T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Re.cmx" {"F:S12716T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Str.cmi" {"F:S4589T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Str.cmt"
+    {"F:S108239T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Str.cmti"
+    {"F:S39584T1750607023.03"}
+  "lib/dune-private-libs/dune_re/dune_re__Str.cmx" {"F:S5226T1750607023.03"}
+  "lib/dune-private-libs/dune_re/emacs.ml" {"F:S3832T1750607023.03"}
+  "lib/dune-private-libs/dune_re/emacs.mli" {"F:S1297T1750607023.03"}
+  "lib/dune-private-libs/dune_re/fmt.ml" {"F:S893T1750607023.03"}
+  "lib/dune-private-libs/dune_re/glob.ml" {"F:S10694T1750607023.03"}
+  "lib/dune-private-libs/dune_re/glob.mli" {"F:S3499T1750607023.03"}
+  "lib/dune-private-libs/dune_re/group.ml" {"F:S1760T1750607023.03"}
+  "lib/dune-private-libs/dune_re/group.mli" {"F:S1780T1750607023.03"}
+  "lib/dune-private-libs/dune_re/pcre.ml" {"F:S3458T1750607023.03"}
+  "lib/dune-private-libs/dune_re/pcre.mli" {"F:S1694T1750607023.03"}
+  "lib/dune-private-libs/dune_re/perl.ml" {"F:S9384T1750607023.03"}
+  "lib/dune-private-libs/dune_re/perl.mli" {"F:S1397T1750607023.03"}
+  "lib/dune-private-libs/dune_re/pmark.ml" {"F:S249T1750607023.03"}
+  "lib/dune-private-libs/dune_re/pmark.mli" {"F:S174T1750607023.03"}
+  "lib/dune-private-libs/dune_re/posix.ml" {"F:S4994T1750607023.03"}
+  "lib/dune-private-libs/dune_re/posix.mli" {"F:S3633T1750607023.03"}
+  "lib/dune-private-libs/dune_re/re.ml" {"F:S130T1750607023.03"}
+  "lib/dune-private-libs/dune_re/str.ml" {"F:S8416T1750607023.03"}
+  "lib/dune-private-libs/dune_re/str.mli" {"F:S10593T1750607023.03"}
+  "lib/dune-private-libs/meta_parser" {"D"}
+  "lib/dune-private-libs/meta_parser/dune_meta_parser.a"
+    {"F:S41136T1750607023.03"}
+  "lib/dune-private-libs/meta_parser/dune_meta_parser.cma"
+    {"F:S39285T1750607023.03"}
+  "lib/dune-private-libs/meta_parser/dune_meta_parser.cmi"
+    {"F:S415T1750607023.03"}
+  "lib/dune-private-libs/meta_parser/dune_meta_parser.cmt"
+    {"F:S3233T1750607023.03"}
+  "lib/dune-private-libs/meta_parser/dune_meta_parser.cmx"
+    {"F:S172T1750607023.03"}
+  "lib/dune-private-libs/meta_parser/dune_meta_parser.cmxa"
+    {"F:S1363T1750607023.03"}
+  "lib/dune-private-libs/meta_parser/dune_meta_parser.cmxs"
+    {"F:S48056T1750607023.04"}
+  "lib/dune-private-libs/meta_parser/dune_meta_parser.ml"
+    {"F:S219T1750607023.03"}
+  "lib/dune-private-libs/meta_parser/dune_meta_parser__Meta_lexer.cmi"
+    {"F:S1119T1750607023.03"}
+  "lib/dune-private-libs/meta_parser/dune_meta_parser__Meta_lexer.cmt"
+    {"F:S28136T1750607023.03"}
+  "lib/dune-private-libs/meta_parser/dune_meta_parser__Meta_lexer.cmti"
+    {"F:S5250T1750607023.03"}
+  "lib/dune-private-libs/meta_parser/dune_meta_parser__Meta_lexer.cmx"
+    {"F:S4175T1750607023.03"}
+  "lib/dune-private-libs/meta_parser/dune_meta_parser__Meta_parser.cmi"
+    {"F:S4556T1750607023.03"}
+  "lib/dune-private-libs/meta_parser/dune_meta_parser__Meta_parser.cmt"
+    {"F:S53290T1750607023.03"}
+  "lib/dune-private-libs/meta_parser/dune_meta_parser__Meta_parser.cmx"
+    {"F:S1815T1750607023.03"}
+  "lib/dune-private-libs/meta_parser/meta_lexer.ml"
+    {"F:S16518T1750607023.03"}
+  "lib/dune-private-libs/meta_parser/meta_lexer.mli" {"F:S248T1750607023.03"}
+  "lib/dune-private-libs/meta_parser/meta_parser.ml"
+    {"F:S4864T1750607023.03"}
+  "lib/dune-private-libs/opam" {"F:S1109T1750607023.03"}
+]

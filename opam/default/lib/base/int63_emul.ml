@@ -6,14 +6,13 @@
 open! Import
 include Int64_replace_polymorphic_compare
 
+
 module T0 = struct
   module T = struct
-    type t = int64
-    [@@deriving_inline compare ~localize, globalize, hash, sexp, sexp_grammar]
+    type t = int64 [@@deriving_inline compare, globalize, hash, sexp, sexp_grammar]
 
-    let compare__local = (compare_int64__local : t -> t -> int)
-    let compare = (fun a b -> compare__local a b : t -> t -> int)
-    let (globalize : t -> t) = (globalize_int64 : t -> t)
+    let compare = (compare_int64 : t -> t -> int)
+    let (globalize : (t[@ocaml.local]) -> t) = (globalize_int64 : (t[@ocaml.local]) -> t)
 
     let (hash_fold_t : Ppx_hash_lib.Std.Hash.state -> t -> Ppx_hash_lib.Std.Hash.state) =
       hash_fold_int64
@@ -39,6 +38,7 @@ end
 module Conv = Int_conversions
 
 module W : sig
+
   include module type of struct
     include T0
   end
@@ -78,8 +78,6 @@ module W : sig
   val of_int64_exn : Stdlib.Int64.t -> t
   val of_int64_trunc : Stdlib.Int64.t -> t
   val compare : t -> t -> int
-  val compare__local : t -> t -> int
-  val equal__local : t -> t -> bool
   val ceil_pow2 : t -> t
   val floor_pow2 : t -> t
   val ceil_log2 : t -> int
@@ -143,8 +141,6 @@ end = struct
   let t_of_sexp x = wrap_exn (int64_of_sexp x)
   let sexp_of_t x = sexp_of_int64 (unwrap x)
   let compare (x : t) y = compare x y
-  let compare__local (x : t) y = compare__local x y
-  let equal__local (x : t) y = equal__local x y
   let is_pow2 x = Int64.is_pow2 (unwrap x)
 
   let clz x =
@@ -165,7 +161,7 @@ open W
 module T = struct
   type t = W.t [@@deriving_inline globalize, hash, sexp, sexp_grammar]
 
-  let (globalize : t -> t) = (W.globalize : t -> t)
+  let (globalize : (t[@ocaml.local]) -> t) = (W.globalize : (t[@ocaml.local]) -> t)
 
   let (hash_fold_t : Ppx_hash_lib.Std.Hash.state -> t -> Ppx_hash_lib.Std.Hash.state) =
     W.hash_fold_t
@@ -185,8 +181,6 @@ module T = struct
 
   let comparator = W.comparator
   let compare = W.compare
-  let compare__local = W.compare__local
-  let equal__local = W.equal__local
   let invariant = W.invariant
 
   (* We don't expect [hash] to follow the behavior of int in 64bit architecture *)
@@ -322,13 +316,13 @@ let of_int64_trunc = of_int64_trunc
 let to_int64 = to_int64
 
 include Comparable.With_zero (struct
-  include T
+    include T
 
-  let zero = zero
-end)
+    let zero = zero
+  end)
 
 let between t ~low ~high = low <= t && t <= high
-let clamp_unchecked t ~min:min_ ~max:max_ = min t max_ |> max min_
+let clamp_unchecked t ~min ~max = if t < min then min else if t <= max then t else max
 
 let clamp_exn t ~min ~max =
   assert (min <= max);
@@ -372,43 +366,42 @@ let to_nativeint x = Conv.int64_to_nativeint (unwrap x)
 let to_nativeint_exn x = Conv.int64_to_nativeint_exn (unwrap x)
 let to_nativeint_trunc x = Conv.int64_to_nativeint_trunc (unwrap x)
 
-include Int_string_conversions.Make (T)
+include Conv.Make (T)
 
-include Int_string_conversions.Make_hex (struct
-  type t = T.t [@@deriving_inline compare ~localize, hash]
+include Conv.Make_hex (struct
+    type t = T.t [@@deriving_inline compare, hash]
 
-  let compare__local = (T.compare__local : t -> t -> int)
-  let compare = (fun a b -> compare__local a b : t -> t -> int)
+    let compare = (T.compare : t -> t -> int)
 
-  let (hash_fold_t : Ppx_hash_lib.Std.Hash.state -> t -> Ppx_hash_lib.Std.Hash.state) =
-    T.hash_fold_t
+    let (hash_fold_t : Ppx_hash_lib.Std.Hash.state -> t -> Ppx_hash_lib.Std.Hash.state) =
+      T.hash_fold_t
 
-  and (hash : t -> Ppx_hash_lib.Std.Hash.hash_value) =
-    let func = T.hash in
-    fun x -> func x
-  ;;
+    and (hash : t -> Ppx_hash_lib.Std.Hash.hash_value) =
+      let func = T.hash in
+      fun x -> func x
+    ;;
 
-  [@@@end]
+    [@@@end]
 
-  let zero = zero
-  let neg = ( ~- )
-  let ( < ) = ( < )
+    let zero = zero
+    let neg = ( ~- )
+    let ( < ) = ( < )
 
-  let to_string i =
-    (* the use of [unwrap_unsigned] here is important for the case of [min_value] *)
-    Printf.sprintf "%Lx" (unwrap_unsigned i)
-  ;;
+    let to_string i =
+      (* the use of [unwrap_unsigned] here is important for the case of [min_value] *)
+      Printf.sprintf "%Lx" (unwrap_unsigned i)
+    ;;
 
-  let of_string s = of_string ("0x" ^ s)
-  let module_name = "Base.Int63.Hex"
-end)
+    let of_string s = of_string ("0x" ^ s)
+    let module_name = "Base.Int63.Hex"
+  end)
 
 include Pretty_printer.Register (struct
-  type nonrec t = t
+    type nonrec t = t
 
-  let to_string x = to_string x
-  let module_name = "Base.Int63"
-end)
+    let to_string x = to_string x
+    let module_name = "Base.Int63"
+  end)
 
 module Pre_O = struct
   let ( + ) = ( + )
@@ -430,16 +423,16 @@ module O = struct
   include Pre_O
 
   include Int_math.Make (struct
-    type nonrec t = t
+      type nonrec t = t
 
-    include Pre_O
+      include Pre_O
 
-    let rem = rem
-    let to_float = to_float
-    let of_float = of_float
-    let of_string = T.of_string
-    let to_string = T.to_string
-  end)
+      let rem = rem
+      let to_float = to_float
+      let of_float = of_float
+      let of_string = T.of_string
+      let to_string = T.to_string
+    end)
 
   let ( land ) = bit_and
   let ( lor ) = bit_or
@@ -451,33 +444,6 @@ module O = struct
 end
 
 include O
-
-include Int_string_conversions.Make_binary (struct
-  type t = T.t [@@deriving_inline compare ~localize, equal ~localize, hash]
-
-  let compare__local = (T.compare__local : t -> t -> int)
-  let compare = (fun a b -> compare__local a b : t -> t -> int)
-  let equal__local = (T.equal__local : t -> t -> bool)
-  let equal = (fun a b -> equal__local a b : t -> t -> bool)
-
-  let (hash_fold_t : Ppx_hash_lib.Std.Hash.state -> t -> Ppx_hash_lib.Std.Hash.state) =
-    T.hash_fold_t
-
-  and (hash : t -> Ppx_hash_lib.Std.Hash.hash_value) =
-    let func = T.hash in
-    fun x -> func x
-  ;;
-
-  [@@@end]
-
-  let ( land ) = ( land )
-  let ( lsr ) = ( lsr )
-  let clz = clz
-  let num_bits = num_bits
-  let one = one
-  let to_int_exn = to_int_exn
-  let zero = zero
-end)
 
 (* [Int63] and [Int63.O] agree value-wise *)
 

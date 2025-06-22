@@ -6,9 +6,6 @@ module Build_path_prefix_map = Ocaml_utils__Build_path_prefix_map
 (** @canonical Ocaml_utils.Clflags *)
 module Clflags = Ocaml_utils__Clflags
 
-(** @canonical Ocaml_utils.Compression *)
-module Compression = Ocaml_utils__Compression
-
 (** @canonical Ocaml_utils.Config *)
 module Config = Ocaml_utils__Config
 
@@ -29,9 +26,6 @@ module Identifiable = Ocaml_utils__Identifiable
 
 (** @canonical Ocaml_utils.Lazy_backtrack *)
 module Lazy_backtrack = Ocaml_utils__Lazy_backtrack
-
-(** @canonical Ocaml_utils.Linkdeps *)
-module Linkdeps = Ocaml_utils__Linkdeps
 
 (** @canonical Ocaml_utils.Load_path *)
 module Load_path = Ocaml_utils__Load_path

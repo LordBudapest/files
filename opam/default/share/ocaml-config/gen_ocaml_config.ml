@@ -37,14 +37,7 @@ let () =
     let rec r acc = try r (input_line ic::acc) with End_of_file -> acc in
     let lines = List.rev (r []) in
     close_in ic;
-    let sep = if Sys.os_type = "Win32" then ";" else ":" in
-    String.concat sep lines
-  in
-  let has_native_dynlink =
-    let check_dir libdir =
-      Sys.file_exists (Filename.concat libdir "dynlink.cmxa")
-    in
-    List.exists check_dir [Filename.concat libdir "dynlink"; libdir]
+    String.concat ":" lines
   in
   let p fmt = Printf.fprintf oc (fmt ^^ "\n") in
   p "opam-version: \"2.0\"";
@@ -52,14 +45,12 @@ let () =
   p "  native: %b"
     (Sys.file_exists (ocaml^"opt"^suffix));
   p "  native-tools: %b"
-    (* The variable [ocamlc] already has a suffix on Windows
-       (ex. '...\bin\ocamlc.exe') so we use [ocaml] to check *)
-    (Sys.file_exists (ocaml^"c.opt"^suffix));
+    (Sys.file_exists (ocamlc^".opt"^suffix));
   p "  native-dynlink: %b"
-    has_native_dynlink;
+    (Sys.file_exists (Filename.concat libdir "dynlink.cmxa"));
   p "  stubsdir: %S"
     stubsdir;
-  p "  preinstalled: false";
-  p "  compiler: \"5.3.0\"";
+  p "  preinstalled: true";
+  p "  compiler: \"system\"";
   p "}";
   close_out oc

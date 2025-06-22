@@ -1,0 +1,9 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires = "frama-c-eva.core frama-c.kernel"
+  archive(byte) = "aorai.cma"
+  archive(native) = "aorai.cmxa"
+  plugin(byte) = "aorai.cma"
+  plugin(native) = "aorai.cmxs"
+)

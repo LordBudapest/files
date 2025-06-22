@@ -1,0 +1,245 @@
+(lang dune 3.19)
+(name frama-c-instantiate)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-instantiate)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-instantiate)
+ (doc /home/bhaskar/.opam/default/doc/frama-c-instantiate))
+(files
+ (lib
+  (META
+   core/Instantiate.ml
+   core/basic_blocks.ml
+   core/basic_blocks.mli
+   core/global_context.ml
+   core/global_context.mli
+   core/instantiate.a
+   core/instantiate.cma
+   core/instantiate.cmi
+   core/instantiate.cmt
+   core/instantiate.cmx
+   core/instantiate.cmxa
+   core/instantiate__.cmi
+   core/instantiate__.cmt
+   core/instantiate__.cmx
+   core/instantiate__.ml
+   core/instantiate__Basic_alloc.cmi
+   core/instantiate__Basic_alloc.cmt
+   core/instantiate__Basic_alloc.cmti
+   core/instantiate__Basic_alloc.cmx
+   core/instantiate__Basic_blocks.cmi
+   core/instantiate__Basic_blocks.cmt
+   core/instantiate__Basic_blocks.cmti
+   core/instantiate__Basic_blocks.cmx
+   core/instantiate__Calloc.cmi
+   core/instantiate__Calloc.cmt
+   core/instantiate__Calloc.cmti
+   core/instantiate__Calloc.cmx
+   core/instantiate__Free.cmi
+   core/instantiate__Free.cmt
+   core/instantiate__Free.cmti
+   core/instantiate__Free.cmx
+   core/instantiate__Global_context.cmi
+   core/instantiate__Global_context.cmt
+   core/instantiate__Global_context.cmti
+   core/instantiate__Global_context.cmx
+   core/instantiate__Instantiator_builder.cmi
+   core/instantiate__Instantiator_builder.cmt
+   core/instantiate__Instantiator_builder.cmti
+   core/instantiate__Instantiator_builder.cmx
+   core/instantiate__Malloc.cmi
+   core/instantiate__Malloc.cmt
+   core/instantiate__Malloc.cmti
+   core/instantiate__Malloc.cmx
+   core/instantiate__Mem_utils.cmi
+   core/instantiate__Mem_utils.cmt
+   core/instantiate__Mem_utils.cmti
+   core/instantiate__Mem_utils.cmx
+   core/instantiate__Memcmp.cmi
+   core/instantiate__Memcmp.cmt
+   core/instantiate__Memcmp.cmti
+   core/instantiate__Memcmp.cmx
+   core/instantiate__Memcpy.cmi
+   core/instantiate__Memcpy.cmt
+   core/instantiate__Memcpy.cmti
+   core/instantiate__Memcpy.cmx
+   core/instantiate__Memmove.cmi
+   core/instantiate__Memmove.cmt
+   core/instantiate__Memmove.cmti
+   core/instantiate__Memmove.cmx
+   core/instantiate__Memset.cmi
+   core/instantiate__Memset.cmt
+   core/instantiate__Memset.cmti
+   core/instantiate__Memset.cmx
+   core/instantiate__Options.cmi
+   core/instantiate__Options.cmt
+   core/instantiate__Options.cmti
+   core/instantiate__Options.cmx
+   core/instantiate__Register.cmi
+   core/instantiate__Register.cmt
+   core/instantiate__Register.cmti
+   core/instantiate__Register.cmx
+   core/instantiate__Transform.cmi
+   core/instantiate__Transform.cmt
+   core/instantiate__Transform.cmti
+   core/instantiate__Transform.cmx
+   core/instantiator_builder.ml
+   core/instantiator_builder.mli
+   core/options.ml
+   core/options.mli
+   core/register.ml
+   core/register.mli
+   core/stdlib/basic_alloc.ml
+   core/stdlib/basic_alloc.mli
+   core/stdlib/calloc.ml
+   core/stdlib/calloc.mli
+   core/stdlib/free.ml
+   core/stdlib/free.mli
+   core/stdlib/malloc.ml
+   core/stdlib/malloc.mli
+   core/string/mem_utils.ml
+   core/string/mem_utils.mli
+   core/string/memcmp.ml
+   core/string/memcmp.mli
+   core/string/memcpy.ml
+   core/string/memcpy.mli
+   core/string/memmove.ml
+   core/string/memmove.mli
+   core/string/memset.ml
+   core/string/memset.mli
+   core/transform.ml
+   core/transform.mli
+   dune-package
+   opam))
+ (lib_root (frama-c/plugins/instantiate/META))
+ (libexec (core/instantiate.cmxs))
+ (doc (README.md)))
+(library
+ (name frama-c-instantiate.core)
+ (kind normal)
+ (archives (byte core/instantiate.cma) (native core/instantiate.cmxa))
+ (plugins (byte core/instantiate.cma) (native core/instantiate.cmxs))
+ (native_archives core/instantiate.a)
+ (requires frama-c.kernel)
+ (main_module_name Instantiate)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name instantiate__)
+     (visibility public)
+     (kind alias)
+     (source (path Instantiate__) (impl (path core/instantiate__.ml-gen))))
+    (name Instantiate)
+    (modules
+     (module
+      (obj_name instantiate__Basic_alloc)
+      (visibility public)
+      (source
+       (path Basic_alloc)
+       (intf (path core/stdlib/basic_alloc.mli))
+       (impl (path core/stdlib/basic_alloc.ml))))
+     (module
+      (obj_name instantiate__Basic_blocks)
+      (visibility public)
+      (source
+       (path Basic_blocks)
+       (intf (path core/basic_blocks.mli))
+       (impl (path core/basic_blocks.ml))))
+     (module
+      (obj_name instantiate__Calloc)
+      (visibility public)
+      (source
+       (path Calloc)
+       (intf (path core/stdlib/calloc.mli))
+       (impl (path core/stdlib/calloc.ml))))
+     (module
+      (obj_name instantiate__Free)
+      (visibility public)
+      (source
+       (path Free)
+       (intf (path core/stdlib/free.mli))
+       (impl (path core/stdlib/free.ml))))
+     (module
+      (obj_name instantiate__Global_context)
+      (visibility public)
+      (source
+       (path Global_context)
+       (intf (path core/global_context.mli))
+       (impl (path core/global_context.ml))))
+     (module
+      (obj_name instantiate)
+      (visibility public)
+      (source (path Instantiate) (impl (path core/Instantiate.ml))))
+     (module
+      (obj_name instantiate__Instantiator_builder)
+      (visibility public)
+      (source
+       (path Instantiator_builder)
+       (intf (path core/instantiator_builder.mli))
+       (impl (path core/instantiator_builder.ml))))
+     (module
+      (obj_name instantiate__Malloc)
+      (visibility public)
+      (source
+       (path Malloc)
+       (intf (path core/stdlib/malloc.mli))
+       (impl (path core/stdlib/malloc.ml))))
+     (module
+      (obj_name instantiate__Mem_utils)
+      (visibility public)
+      (source
+       (path Mem_utils)
+       (intf (path core/string/mem_utils.mli))
+       (impl (path core/string/mem_utils.ml))))
+     (module
+      (obj_name instantiate__Memcmp)
+      (visibility public)
+      (source
+       (path Memcmp)
+       (intf (path core/string/memcmp.mli))
+       (impl (path core/string/memcmp.ml))))
+     (module
+      (obj_name instantiate__Memcpy)
+      (visibility public)
+      (source
+       (path Memcpy)
+       (intf (path core/string/memcpy.mli))
+       (impl (path core/string/memcpy.ml))))
+     (module
+      (obj_name instantiate__Memmove)
+      (visibility public)
+      (source
+       (path Memmove)
+       (intf (path core/string/memmove.mli))
+       (impl (path core/string/memmove.ml))))
+     (module
+      (obj_name instantiate__Memset)
+      (visibility public)
+      (source
+       (path Memset)
+       (intf (path core/string/memset.mli))
+       (impl (path core/string/memset.ml))))
+     (module
+      (obj_name instantiate__Options)
+      (visibility public)
+      (source
+       (path Options)
+       (intf (path core/options.mli))
+       (impl (path core/options.ml))))
+     (module
+      (obj_name instantiate__Register)
+      (visibility public)
+      (source
+       (path Register)
+       (intf (path core/register.mli))
+       (impl (path core/register.ml))))
+     (module
+      (obj_name instantiate__Transform)
+      (visibility public)
+      (source
+       (path Transform)
+       (intf (path core/transform.mli))
+       (impl (path core/transform.ml))))))
+   (wrapped true))))

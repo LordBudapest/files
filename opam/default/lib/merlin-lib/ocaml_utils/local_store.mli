@@ -14,8 +14,7 @@
 (**************************************************************************)
 
 (** This module provides some facilities for creating references (and hash
-    tables) which can easily be snapshotted and restored to an arbitrary
-    version.
+    tables) which can easily be snapshoted and restored to an arbitrary version.
 
     It is used throughout the frontend (read: typechecker), to register all
     (well, hopefully) the global state. Thus making it easy for tools like
@@ -24,8 +23,8 @@
 (** {1 Creators} *)
 
 val s_ref : 'a -> 'a ref
-(** Similar to {!val:Stdlib.ref}, except the allocated reference is registered
-    into the store. *)
+(** Similar to {!val:ref}, except the allocated reference is registered into
+    the store. *)
 
 val s_table : ('a -> 'b) -> 'a -> 'b ref
 (** Used to register hash tables. Those also need to be placed into refs to be

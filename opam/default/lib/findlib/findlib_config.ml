@@ -94,7 +94,7 @@ let ocaml_has_meta_files =
     String.sub Sys.ocaml_version 0 (String.index Sys.ocaml_version '.') in
   int_of_string ocaml_major >= 5;;
 
-let ocaml_stdlib = "/home/bhaskar/.opam/default/lib/ocaml";;
+let ocaml_stdlib = "/usr/lib/ocaml";;
 
 let ocaml_ldconf = ocaml_stdlib / "ld.conf";;
 

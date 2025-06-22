@@ -1,0 +1,9 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires = "frama-c.kernel"
+  archive(byte) = "instantiate.cma"
+  archive(native) = "instantiate.cmxa"
+  plugin(byte) = "instantiate.cma"
+  plugin(native) = "instantiate.cmxs"
+)

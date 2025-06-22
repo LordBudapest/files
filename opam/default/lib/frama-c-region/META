@@ -1,0 +1,9 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires = "frama-c-server.core frama-c.kernel unionFind"
+  archive(byte) = "Region.cma"
+  archive(native) = "Region.cmxa"
+  plugin(byte) = "Region.cma"
+  plugin(native) = "Region.cmxs"
+)

@@ -1,0 +1,131 @@
+(lang dune 3.19)
+(name frama-c-loop-analysis)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-loop-analysis)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-loop-analysis)
+ (doc /home/bhaskar/.opam/default/doc/frama-c-loop-analysis))
+(files
+ (lib
+  (META
+   core/.private/loopAnalysis__Loop_analysis.cmi
+   core/.private/loopAnalysis__Loop_analysis.cmt
+   core/.private/loopAnalysis__Loop_analysis.cmti
+   core/.private/loopAnalysis__Region_analysis.cmi
+   core/.private/loopAnalysis__Region_analysis.cmt
+   core/.private/loopAnalysis__Region_analysis.cmti
+   core/.private/loopAnalysis__Region_analysis_sig.cmi
+   core/.private/loopAnalysis__Region_analysis_sig.cmt
+   core/.private/loopAnalysis__Region_analysis_stmt.cmi
+   core/.private/loopAnalysis__Region_analysis_stmt.cmt
+   core/.private/loopAnalysis__Region_analysis_stmt.cmti
+   core/.private/loopAnalysis__Register.cmi
+   core/.private/loopAnalysis__Register.cmt
+   core/.private/loopAnalysis__Register.cmti
+   core/LoopAnalysis.a
+   core/LoopAnalysis.cma
+   core/LoopAnalysis.cmxa
+   core/LoopAnalysis.ml
+   core/LoopAnalysis.mli
+   core/loopAnalysis.cmi
+   core/loopAnalysis.cmt
+   core/loopAnalysis.cmti
+   core/loopAnalysis.cmx
+   core/loopAnalysis__.cmi
+   core/loopAnalysis__.cmt
+   core/loopAnalysis__.cmx
+   core/loopAnalysis__.ml
+   core/loopAnalysis__Loop_analysis.cmx
+   core/loopAnalysis__Options.cmi
+   core/loopAnalysis__Options.cmt
+   core/loopAnalysis__Options.cmti
+   core/loopAnalysis__Options.cmx
+   core/loopAnalysis__Region_analysis.cmx
+   core/loopAnalysis__Region_analysis_sig.cmx
+   core/loopAnalysis__Region_analysis_stmt.cmx
+   core/loopAnalysis__Register.cmx
+   core/loop_analysis.ml
+   core/loop_analysis.mli
+   core/options.ml
+   core/options.mli
+   core/region_analysis.ml
+   core/region_analysis.mli
+   core/region_analysis_sig.ml
+   core/region_analysis_stmt.ml
+   core/region_analysis_stmt.mli
+   core/register.ml
+   core/register.mli
+   dune-package
+   opam))
+ (lib_root (frama-c/plugins/loop-analysis/META))
+ (libexec (core/LoopAnalysis.cmxs))
+ (doc (README.org)))
+(library
+ (name frama-c-loop-analysis.core)
+ (kind normal)
+ (archives (byte core/LoopAnalysis.cma) (native core/LoopAnalysis.cmxa))
+ (plugins (byte core/LoopAnalysis.cma) (native core/LoopAnalysis.cmxs))
+ (native_archives core/LoopAnalysis.a)
+ (requires frama-c.kernel frama-c-eva.core)
+ (main_module_name LoopAnalysis)
+ (modes byte native)
+ (obj_dir (private_dir .private))
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name loopAnalysis__)
+     (visibility public)
+     (kind alias)
+     (source (path LoopAnalysis__) (impl (path core/loopAnalysis__.ml-gen))))
+    (name LoopAnalysis)
+    (modules
+     (module
+      (obj_name loopAnalysis)
+      (visibility public)
+      (source
+       (path LoopAnalysis)
+       (intf (path core/LoopAnalysis.mli))
+       (impl (path core/LoopAnalysis.ml))))
+     (module
+      (obj_name loopAnalysis__Loop_analysis)
+      (visibility private)
+      (source
+       (path Loop_analysis)
+       (intf (path core/loop_analysis.mli))
+       (impl (path core/loop_analysis.ml))))
+     (module
+      (obj_name loopAnalysis__Options)
+      (visibility public)
+      (source
+       (path Options)
+       (intf (path core/options.mli))
+       (impl (path core/options.ml))))
+     (module
+      (obj_name loopAnalysis__Region_analysis)
+      (visibility private)
+      (source
+       (path Region_analysis)
+       (intf (path core/region_analysis.mli))
+       (impl (path core/region_analysis.ml))))
+     (module
+      (obj_name loopAnalysis__Region_analysis_sig)
+      (visibility private)
+      (source
+       (path Region_analysis_sig)
+       (impl (path core/region_analysis_sig.ml))))
+     (module
+      (obj_name loopAnalysis__Region_analysis_stmt)
+      (visibility private)
+      (source
+       (path Region_analysis_stmt)
+       (intf (path core/region_analysis_stmt.mli))
+       (impl (path core/region_analysis_stmt.ml))))
+     (module
+      (obj_name loopAnalysis__Register)
+      (visibility private)
+      (source
+       (path Register)
+       (intf (path core/register.mli))
+       (impl (path core/register.ml))))))
+   (wrapped true))))

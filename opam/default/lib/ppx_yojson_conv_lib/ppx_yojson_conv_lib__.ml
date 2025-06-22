@@ -8,6 +8,3 @@ module Yojson_conv_error = Ppx_yojson_conv_lib__Yojson_conv_error
 
 (** @canonical Ppx_yojson_conv_lib.Yojsonable_intf *)
 module Yojsonable_intf = Ppx_yojson_conv_lib__Yojsonable_intf
-
-module Ppx_yojson_conv_lib__ = struct end
-[@@deprecated "this module is shadowed"]

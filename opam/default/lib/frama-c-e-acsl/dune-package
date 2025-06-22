@@ -1,0 +1,748 @@
+(lang dune 3.19)
+(name frama-c-e-acsl)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-e-acsl)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-e-acsl)
+ (bin /home/bhaskar/.opam/default/bin)
+ (share /home/bhaskar/.opam/default/share/frama-c-e-acsl)
+ (share_root /home/bhaskar/.opam/default/share)
+ (doc /home/bhaskar/.opam/default/doc/frama-c-e-acsl)
+ (man /home/bhaskar/.opam/default/man))
+(sites (contrib share))
+(files
+ (lib
+  (META
+   core/E_ACSL.a
+   core/E_ACSL.cma
+   core/E_ACSL.cmxa
+   core/analyses/analyses.ml
+   core/analyses/analyses.mli
+   core/analyses/bound_variables.ml
+   core/analyses/bound_variables.mli
+   core/analyses/e_acsl_visitor.ml
+   core/analyses/e_acsl_visitor.mli
+   core/analyses/exit_points.ml
+   core/analyses/exit_points.mli
+   core/analyses/interval.ml
+   core/analyses/interval.mli
+   core/analyses/labels.ml
+   core/analyses/labels.mli
+   core/analyses/literal_strings.ml
+   core/analyses/literal_strings.mli
+   core/analyses/logic_normalizer.ml
+   core/analyses/logic_normalizer.mli
+   core/analyses/lscope.ml
+   core/analyses/lscope.mli
+   core/analyses/memory_tracking.ml
+   core/analyses/memory_tracking.mli
+   core/analyses/rte.ml
+   core/analyses/rte.mli
+   core/analyses/typing.ml
+   core/analyses/typing.mli
+   core/analyses/widening.ml
+   core/analyses/widening.mli
+   core/code_generator/assert.ml
+   core/code_generator/assert.mli
+   core/code_generator/assigns.ml
+   core/code_generator/assigns.mli
+   core/code_generator/contract.ml
+   core/code_generator/contract.mli
+   core/code_generator/contract_types.ml
+   core/code_generator/env.ml
+   core/code_generator/env.mli
+   core/code_generator/global_observer.ml
+   core/code_generator/global_observer.mli
+   core/code_generator/gmp.ml
+   core/code_generator/gmp.mli
+   core/code_generator/injector.ml
+   core/code_generator/injector.mli
+   core/code_generator/libc.ml
+   core/code_generator/libc.mli
+   core/code_generator/literal_observer.ml
+   core/code_generator/literal_observer.mli
+   core/code_generator/logic_array.ml
+   core/code_generator/logic_array.mli
+   core/code_generator/logic_functions.ml
+   core/code_generator/logic_functions.mli
+   core/code_generator/loops.ml
+   core/code_generator/loops.mli
+   core/code_generator/memory_observer.ml
+   core/code_generator/memory_observer.mli
+   core/code_generator/memory_translate.ml
+   core/code_generator/memory_translate.mli
+   core/code_generator/quantif.ml
+   core/code_generator/quantif.mli
+   core/code_generator/smart_exp.ml
+   core/code_generator/smart_exp.mli
+   core/code_generator/smart_stmt.ml
+   core/code_generator/smart_stmt.mli
+   core/code_generator/temporal.ml
+   core/code_generator/temporal.mli
+   core/code_generator/translate_annots.ml
+   core/code_generator/translate_annots.mli
+   core/code_generator/translate_ats.ml
+   core/code_generator/translate_ats.mli
+   core/code_generator/translate_predicates.ml
+   core/code_generator/translate_predicates.mli
+   core/code_generator/translate_rtes.ml
+   core/code_generator/translate_rtes.mli
+   core/code_generator/translate_terms.ml
+   core/code_generator/translate_terms.mli
+   core/code_generator/translate_utils.ml
+   core/code_generator/translate_utils.mli
+   core/code_generator/translation_error.ml
+   core/code_generator/translation_error.mli
+   core/code_generator/typed_number.ml
+   core/code_generator/typed_number.mli
+   core/e_ACSL.cmi
+   core/e_ACSL.cmt
+   core/e_ACSL.cmx
+   core/e_ACSL.ml
+   core/e_ACSL__Analyses.cmi
+   core/e_ACSL__Analyses.cmt
+   core/e_ACSL__Analyses.cmti
+   core/e_ACSL__Analyses.cmx
+   core/e_ACSL__Analyses_datatype.cmi
+   core/e_ACSL__Analyses_datatype.cmt
+   core/e_ACSL__Analyses_datatype.cmti
+   core/e_ACSL__Analyses_datatype.cmx
+   core/e_ACSL__Analyses_types.cmi
+   core/e_ACSL__Analyses_types.cmt
+   core/e_ACSL__Analyses_types.cmx
+   core/e_ACSL__Assert.cmi
+   core/e_ACSL__Assert.cmt
+   core/e_ACSL__Assert.cmti
+   core/e_ACSL__Assert.cmx
+   core/e_ACSL__Assigns.cmi
+   core/e_ACSL__Assigns.cmt
+   core/e_ACSL__Assigns.cmti
+   core/e_ACSL__Assigns.cmx
+   core/e_ACSL__Bound_variables.cmi
+   core/e_ACSL__Bound_variables.cmt
+   core/e_ACSL__Bound_variables.cmti
+   core/e_ACSL__Bound_variables.cmx
+   core/e_ACSL__Builtins.cmi
+   core/e_ACSL__Builtins.cmt
+   core/e_ACSL__Builtins.cmti
+   core/e_ACSL__Builtins.cmx
+   core/e_ACSL__Contract.cmi
+   core/e_ACSL__Contract.cmt
+   core/e_ACSL__Contract.cmti
+   core/e_ACSL__Contract.cmx
+   core/e_ACSL__Contract_types.cmi
+   core/e_ACSL__Contract_types.cmt
+   core/e_ACSL__Contract_types.cmx
+   core/e_ACSL__E_acsl_visitor.cmi
+   core/e_ACSL__E_acsl_visitor.cmt
+   core/e_ACSL__E_acsl_visitor.cmti
+   core/e_ACSL__E_acsl_visitor.cmx
+   core/e_ACSL__Env.cmi
+   core/e_ACSL__Env.cmt
+   core/e_ACSL__Env.cmti
+   core/e_ACSL__Env.cmx
+   core/e_ACSL__Error.cmi
+   core/e_ACSL__Error.cmt
+   core/e_ACSL__Error.cmti
+   core/e_ACSL__Error.cmx
+   core/e_ACSL__Exit_points.cmi
+   core/e_ACSL__Exit_points.cmt
+   core/e_ACSL__Exit_points.cmti
+   core/e_ACSL__Exit_points.cmx
+   core/e_ACSL__Functions.cmi
+   core/e_ACSL__Functions.cmt
+   core/e_ACSL__Functions.cmti
+   core/e_ACSL__Functions.cmx
+   core/e_ACSL__Global_observer.cmi
+   core/e_ACSL__Global_observer.cmt
+   core/e_ACSL__Global_observer.cmti
+   core/e_ACSL__Global_observer.cmx
+   core/e_ACSL__Gmp.cmi
+   core/e_ACSL__Gmp.cmt
+   core/e_ACSL__Gmp.cmti
+   core/e_ACSL__Gmp.cmx
+   core/e_ACSL__Gmp_types.cmi
+   core/e_ACSL__Gmp_types.cmt
+   core/e_ACSL__Gmp_types.cmti
+   core/e_ACSL__Gmp_types.cmx
+   core/e_ACSL__Injector.cmi
+   core/e_ACSL__Injector.cmt
+   core/e_ACSL__Injector.cmti
+   core/e_ACSL__Injector.cmx
+   core/e_ACSL__Interval.cmi
+   core/e_ACSL__Interval.cmt
+   core/e_ACSL__Interval.cmti
+   core/e_ACSL__Interval.cmx
+   core/e_ACSL__Interval_utils.cmi
+   core/e_ACSL__Interval_utils.cmt
+   core/e_ACSL__Interval_utils.cmti
+   core/e_ACSL__Interval_utils.cmx
+   core/e_ACSL__Labels.cmi
+   core/e_ACSL__Labels.cmt
+   core/e_ACSL__Labels.cmti
+   core/e_ACSL__Labels.cmx
+   core/e_ACSL__Libc.cmi
+   core/e_ACSL__Libc.cmt
+   core/e_ACSL__Libc.cmti
+   core/e_ACSL__Libc.cmx
+   core/e_ACSL__Literal_observer.cmi
+   core/e_ACSL__Literal_observer.cmt
+   core/e_ACSL__Literal_observer.cmti
+   core/e_ACSL__Literal_observer.cmx
+   core/e_ACSL__Literal_strings.cmi
+   core/e_ACSL__Literal_strings.cmt
+   core/e_ACSL__Literal_strings.cmti
+   core/e_ACSL__Literal_strings.cmx
+   core/e_ACSL__Logic_aggr.cmi
+   core/e_ACSL__Logic_aggr.cmt
+   core/e_ACSL__Logic_aggr.cmti
+   core/e_ACSL__Logic_aggr.cmx
+   core/e_ACSL__Logic_array.cmi
+   core/e_ACSL__Logic_array.cmt
+   core/e_ACSL__Logic_array.cmti
+   core/e_ACSL__Logic_array.cmx
+   core/e_ACSL__Logic_functions.cmi
+   core/e_ACSL__Logic_functions.cmt
+   core/e_ACSL__Logic_functions.cmti
+   core/e_ACSL__Logic_functions.cmx
+   core/e_ACSL__Logic_normalizer.cmi
+   core/e_ACSL__Logic_normalizer.cmt
+   core/e_ACSL__Logic_normalizer.cmti
+   core/e_ACSL__Logic_normalizer.cmx
+   core/e_ACSL__Loops.cmi
+   core/e_ACSL__Loops.cmt
+   core/e_ACSL__Loops.cmti
+   core/e_ACSL__Loops.cmx
+   core/e_ACSL__Lscope.cmi
+   core/e_ACSL__Lscope.cmt
+   core/e_ACSL__Lscope.cmti
+   core/e_ACSL__Lscope.cmx
+   core/e_ACSL__Main.cmi
+   core/e_ACSL__Main.cmt
+   core/e_ACSL__Main.cmti
+   core/e_ACSL__Main.cmx
+   core/e_ACSL__Memory_observer.cmi
+   core/e_ACSL__Memory_observer.cmt
+   core/e_ACSL__Memory_observer.cmti
+   core/e_ACSL__Memory_observer.cmx
+   core/e_ACSL__Memory_tracking.cmi
+   core/e_ACSL__Memory_tracking.cmt
+   core/e_ACSL__Memory_tracking.cmti
+   core/e_ACSL__Memory_tracking.cmx
+   core/e_ACSL__Memory_translate.cmi
+   core/e_ACSL__Memory_translate.cmt
+   core/e_ACSL__Memory_translate.cmti
+   core/e_ACSL__Memory_translate.cmx
+   core/e_ACSL__Misc.cmi
+   core/e_ACSL__Misc.cmt
+   core/e_ACSL__Misc.cmti
+   core/e_ACSL__Misc.cmx
+   core/e_ACSL__Options.cmi
+   core/e_ACSL__Options.cmt
+   core/e_ACSL__Options.cmti
+   core/e_ACSL__Options.cmx
+   core/e_ACSL__Prepare_ast.cmi
+   core/e_ACSL__Prepare_ast.cmt
+   core/e_ACSL__Prepare_ast.cmti
+   core/e_ACSL__Prepare_ast.cmx
+   core/e_ACSL__Quantif.cmi
+   core/e_ACSL__Quantif.cmt
+   core/e_ACSL__Quantif.cmti
+   core/e_ACSL__Quantif.cmx
+   core/e_ACSL__Rte.cmi
+   core/e_ACSL__Rte.cmt
+   core/e_ACSL__Rte.cmti
+   core/e_ACSL__Rte.cmx
+   core/e_ACSL__Rtl.cmi
+   core/e_ACSL__Rtl.cmt
+   core/e_ACSL__Rtl.cmti
+   core/e_ACSL__Rtl.cmx
+   core/e_ACSL__Smart_exp.cmi
+   core/e_ACSL__Smart_exp.cmt
+   core/e_ACSL__Smart_exp.cmti
+   core/e_ACSL__Smart_exp.cmx
+   core/e_ACSL__Smart_stmt.cmi
+   core/e_ACSL__Smart_stmt.cmt
+   core/e_ACSL__Smart_stmt.cmti
+   core/e_ACSL__Smart_stmt.cmx
+   core/e_ACSL__Temporal.cmi
+   core/e_ACSL__Temporal.cmt
+   core/e_ACSL__Temporal.cmti
+   core/e_ACSL__Temporal.cmx
+   core/e_ACSL__Translate_annots.cmi
+   core/e_ACSL__Translate_annots.cmt
+   core/e_ACSL__Translate_annots.cmti
+   core/e_ACSL__Translate_annots.cmx
+   core/e_ACSL__Translate_ats.cmi
+   core/e_ACSL__Translate_ats.cmt
+   core/e_ACSL__Translate_ats.cmti
+   core/e_ACSL__Translate_ats.cmx
+   core/e_ACSL__Translate_predicates.cmi
+   core/e_ACSL__Translate_predicates.cmt
+   core/e_ACSL__Translate_predicates.cmti
+   core/e_ACSL__Translate_predicates.cmx
+   core/e_ACSL__Translate_rtes.cmi
+   core/e_ACSL__Translate_rtes.cmt
+   core/e_ACSL__Translate_rtes.cmti
+   core/e_ACSL__Translate_rtes.cmx
+   core/e_ACSL__Translate_terms.cmi
+   core/e_ACSL__Translate_terms.cmt
+   core/e_ACSL__Translate_terms.cmti
+   core/e_ACSL__Translate_terms.cmx
+   core/e_ACSL__Translate_utils.cmi
+   core/e_ACSL__Translate_utils.cmt
+   core/e_ACSL__Translate_utils.cmti
+   core/e_ACSL__Translate_utils.cmx
+   core/e_ACSL__Translation_error.cmi
+   core/e_ACSL__Translation_error.cmt
+   core/e_ACSL__Translation_error.cmti
+   core/e_ACSL__Translation_error.cmx
+   core/e_ACSL__Typed_number.cmi
+   core/e_ACSL__Typed_number.cmt
+   core/e_ACSL__Typed_number.cmti
+   core/e_ACSL__Typed_number.cmx
+   core/e_ACSL__Typing.cmi
+   core/e_ACSL__Typing.cmt
+   core/e_ACSL__Typing.cmti
+   core/e_ACSL__Typing.cmx
+   core/e_ACSL__Varname.cmi
+   core/e_ACSL__Varname.cmt
+   core/e_ACSL__Varname.cmti
+   core/e_ACSL__Varname.cmx
+   core/e_ACSL__Widening.cmi
+   core/e_ACSL__Widening.cmt
+   core/e_ACSL__Widening.cmti
+   core/e_ACSL__Widening.cmx
+   core/libraries/analyses_datatype.ml
+   core/libraries/analyses_datatype.mli
+   core/libraries/analyses_types.ml
+   core/libraries/builtins.ml
+   core/libraries/builtins.mli
+   core/libraries/error.ml
+   core/libraries/error.mli
+   core/libraries/functions.ml
+   core/libraries/functions.mli
+   core/libraries/gmp_types.ml
+   core/libraries/gmp_types.mli
+   core/libraries/interval_utils.ml
+   core/libraries/interval_utils.mli
+   core/libraries/logic_aggr.ml
+   core/libraries/logic_aggr.mli
+   core/libraries/misc.ml
+   core/libraries/misc.mli
+   core/libraries/varname.ml
+   core/libraries/varname.mli
+   core/main.ml
+   core/main.mli
+   core/options.ml
+   core/options.mli
+   core/project_initializer/prepare_ast.ml
+   core/project_initializer/prepare_ast.mli
+   core/project_initializer/rtl.ml
+   core/project_initializer/rtl.mli
+   dune-package
+   libeacsl-dlmalloc.a
+   opam))
+ (lib_root (frama-c/plugins/e-acsl/META))
+ (libexec (core/E_ACSL.cmxs))
+ (bin (e-acsl-gcc.sh))
+ (share_root
+  (frama-c-e-acsl/contrib/libdlmalloc/dlmalloc.c (dir frama-c/share/e-acsl)))
+ (doc (README))
+ (man (man1/e-acsl-gcc.sh.1)))
+(library
+ (name frama-c-e-acsl.core)
+ (kind normal)
+ (archives (byte core/E_ACSL.cma) (native core/E_ACSL.cmxa))
+ (plugins (byte core/E_ACSL.cma) (native core/E_ACSL.cmxs))
+ (native_archives core/E_ACSL.a)
+ (requires frama-c.kernel frama-c-rtegen.core)
+ (main_module_name E_ACSL)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name e_ACSL)
+     (visibility public)
+     (kind alias)
+     (source (path E_ACSL) (impl (path core/e_ACSL.ml-gen))))
+    (name E_ACSL)
+    (modules
+     (module
+      (obj_name e_ACSL__Analyses)
+      (visibility public)
+      (source
+       (path Analyses)
+       (intf (path core/analyses/analyses.mli))
+       (impl (path core/analyses/analyses.ml))))
+     (module
+      (obj_name e_ACSL__Analyses_datatype)
+      (visibility public)
+      (source
+       (path Analyses_datatype)
+       (intf (path core/libraries/analyses_datatype.mli))
+       (impl (path core/libraries/analyses_datatype.ml))))
+     (module
+      (obj_name e_ACSL__Analyses_types)
+      (visibility public)
+      (source
+       (path Analyses_types)
+       (impl (path core/libraries/analyses_types.ml))))
+     (module
+      (obj_name e_ACSL__Assert)
+      (visibility public)
+      (source
+       (path Assert)
+       (intf (path core/code_generator/assert.mli))
+       (impl (path core/code_generator/assert.ml))))
+     (module
+      (obj_name e_ACSL__Assigns)
+      (visibility public)
+      (source
+       (path Assigns)
+       (intf (path core/code_generator/assigns.mli))
+       (impl (path core/code_generator/assigns.ml))))
+     (module
+      (obj_name e_ACSL__Bound_variables)
+      (visibility public)
+      (source
+       (path Bound_variables)
+       (intf (path core/analyses/bound_variables.mli))
+       (impl (path core/analyses/bound_variables.ml))))
+     (module
+      (obj_name e_ACSL__Builtins)
+      (visibility public)
+      (source
+       (path Builtins)
+       (intf (path core/libraries/builtins.mli))
+       (impl (path core/libraries/builtins.ml))))
+     (module
+      (obj_name e_ACSL__Contract)
+      (visibility public)
+      (source
+       (path Contract)
+       (intf (path core/code_generator/contract.mli))
+       (impl (path core/code_generator/contract.ml))))
+     (module
+      (obj_name e_ACSL__Contract_types)
+      (visibility public)
+      (source
+       (path Contract_types)
+       (impl (path core/code_generator/contract_types.ml))))
+     (module
+      (obj_name e_ACSL__E_acsl_visitor)
+      (visibility public)
+      (source
+       (path E_acsl_visitor)
+       (intf (path core/analyses/e_acsl_visitor.mli))
+       (impl (path core/analyses/e_acsl_visitor.ml))))
+     (module
+      (obj_name e_ACSL__Env)
+      (visibility public)
+      (source
+       (path Env)
+       (intf (path core/code_generator/env.mli))
+       (impl (path core/code_generator/env.ml))))
+     (module
+      (obj_name e_ACSL__Error)
+      (visibility public)
+      (source
+       (path Error)
+       (intf (path core/libraries/error.mli))
+       (impl (path core/libraries/error.ml))))
+     (module
+      (obj_name e_ACSL__Exit_points)
+      (visibility public)
+      (source
+       (path Exit_points)
+       (intf (path core/analyses/exit_points.mli))
+       (impl (path core/analyses/exit_points.ml))))
+     (module
+      (obj_name e_ACSL__Functions)
+      (visibility public)
+      (source
+       (path Functions)
+       (intf (path core/libraries/functions.mli))
+       (impl (path core/libraries/functions.ml))))
+     (module
+      (obj_name e_ACSL__Global_observer)
+      (visibility public)
+      (source
+       (path Global_observer)
+       (intf (path core/code_generator/global_observer.mli))
+       (impl (path core/code_generator/global_observer.ml))))
+     (module
+      (obj_name e_ACSL__Gmp)
+      (visibility public)
+      (source
+       (path Gmp)
+       (intf (path core/code_generator/gmp.mli))
+       (impl (path core/code_generator/gmp.ml))))
+     (module
+      (obj_name e_ACSL__Gmp_types)
+      (visibility public)
+      (source
+       (path Gmp_types)
+       (intf (path core/libraries/gmp_types.mli))
+       (impl (path core/libraries/gmp_types.ml))))
+     (module
+      (obj_name e_ACSL__Injector)
+      (visibility public)
+      (source
+       (path Injector)
+       (intf (path core/code_generator/injector.mli))
+       (impl (path core/code_generator/injector.ml))))
+     (module
+      (obj_name e_ACSL__Interval)
+      (visibility public)
+      (source
+       (path Interval)
+       (intf (path core/analyses/interval.mli))
+       (impl (path core/analyses/interval.ml))))
+     (module
+      (obj_name e_ACSL__Interval_utils)
+      (visibility public)
+      (source
+       (path Interval_utils)
+       (intf (path core/libraries/interval_utils.mli))
+       (impl (path core/libraries/interval_utils.ml))))
+     (module
+      (obj_name e_ACSL__Labels)
+      (visibility public)
+      (source
+       (path Labels)
+       (intf (path core/analyses/labels.mli))
+       (impl (path core/analyses/labels.ml))))
+     (module
+      (obj_name e_ACSL__Libc)
+      (visibility public)
+      (source
+       (path Libc)
+       (intf (path core/code_generator/libc.mli))
+       (impl (path core/code_generator/libc.ml))))
+     (module
+      (obj_name e_ACSL__Literal_observer)
+      (visibility public)
+      (source
+       (path Literal_observer)
+       (intf (path core/code_generator/literal_observer.mli))
+       (impl (path core/code_generator/literal_observer.ml))))
+     (module
+      (obj_name e_ACSL__Literal_strings)
+      (visibility public)
+      (source
+       (path Literal_strings)
+       (intf (path core/analyses/literal_strings.mli))
+       (impl (path core/analyses/literal_strings.ml))))
+     (module
+      (obj_name e_ACSL__Logic_aggr)
+      (visibility public)
+      (source
+       (path Logic_aggr)
+       (intf (path core/libraries/logic_aggr.mli))
+       (impl (path core/libraries/logic_aggr.ml))))
+     (module
+      (obj_name e_ACSL__Logic_array)
+      (visibility public)
+      (source
+       (path Logic_array)
+       (intf (path core/code_generator/logic_array.mli))
+       (impl (path core/code_generator/logic_array.ml))))
+     (module
+      (obj_name e_ACSL__Logic_functions)
+      (visibility public)
+      (source
+       (path Logic_functions)
+       (intf (path core/code_generator/logic_functions.mli))
+       (impl (path core/code_generator/logic_functions.ml))))
+     (module
+      (obj_name e_ACSL__Logic_normalizer)
+      (visibility public)
+      (source
+       (path Logic_normalizer)
+       (intf (path core/analyses/logic_normalizer.mli))
+       (impl (path core/analyses/logic_normalizer.ml))))
+     (module
+      (obj_name e_ACSL__Loops)
+      (visibility public)
+      (source
+       (path Loops)
+       (intf (path core/code_generator/loops.mli))
+       (impl (path core/code_generator/loops.ml))))
+     (module
+      (obj_name e_ACSL__Lscope)
+      (visibility public)
+      (source
+       (path Lscope)
+       (intf (path core/analyses/lscope.mli))
+       (impl (path core/analyses/lscope.ml))))
+     (module
+      (obj_name e_ACSL__Main)
+      (visibility public)
+      (source
+       (path Main)
+       (intf (path core/main.mli))
+       (impl (path core/main.ml))))
+     (module
+      (obj_name e_ACSL__Memory_observer)
+      (visibility public)
+      (source
+       (path Memory_observer)
+       (intf (path core/code_generator/memory_observer.mli))
+       (impl (path core/code_generator/memory_observer.ml))))
+     (module
+      (obj_name e_ACSL__Memory_tracking)
+      (visibility public)
+      (source
+       (path Memory_tracking)
+       (intf (path core/analyses/memory_tracking.mli))
+       (impl (path core/analyses/memory_tracking.ml))))
+     (module
+      (obj_name e_ACSL__Memory_translate)
+      (visibility public)
+      (source
+       (path Memory_translate)
+       (intf (path core/code_generator/memory_translate.mli))
+       (impl (path core/code_generator/memory_translate.ml))))
+     (module
+      (obj_name e_ACSL__Misc)
+      (visibility public)
+      (source
+       (path Misc)
+       (intf (path core/libraries/misc.mli))
+       (impl (path core/libraries/misc.ml))))
+     (module
+      (obj_name e_ACSL__Options)
+      (visibility public)
+      (source
+       (path Options)
+       (intf (path core/options.mli))
+       (impl (path core/options.ml))))
+     (module
+      (obj_name e_ACSL__Prepare_ast)
+      (visibility public)
+      (source
+       (path Prepare_ast)
+       (intf (path core/project_initializer/prepare_ast.mli))
+       (impl (path core/project_initializer/prepare_ast.ml))))
+     (module
+      (obj_name e_ACSL__Quantif)
+      (visibility public)
+      (source
+       (path Quantif)
+       (intf (path core/code_generator/quantif.mli))
+       (impl (path core/code_generator/quantif.ml))))
+     (module
+      (obj_name e_ACSL__Rte)
+      (visibility public)
+      (source
+       (path Rte)
+       (intf (path core/analyses/rte.mli))
+       (impl (path core/analyses/rte.ml))))
+     (module
+      (obj_name e_ACSL__Rtl)
+      (visibility public)
+      (source
+       (path Rtl)
+       (intf (path core/project_initializer/rtl.mli))
+       (impl (path core/project_initializer/rtl.ml))))
+     (module
+      (obj_name e_ACSL__Smart_exp)
+      (visibility public)
+      (source
+       (path Smart_exp)
+       (intf (path core/code_generator/smart_exp.mli))
+       (impl (path core/code_generator/smart_exp.ml))))
+     (module
+      (obj_name e_ACSL__Smart_stmt)
+      (visibility public)
+      (source
+       (path Smart_stmt)
+       (intf (path core/code_generator/smart_stmt.mli))
+       (impl (path core/code_generator/smart_stmt.ml))))
+     (module
+      (obj_name e_ACSL__Temporal)
+      (visibility public)
+      (source
+       (path Temporal)
+       (intf (path core/code_generator/temporal.mli))
+       (impl (path core/code_generator/temporal.ml))))
+     (module
+      (obj_name e_ACSL__Translate_annots)
+      (visibility public)
+      (source
+       (path Translate_annots)
+       (intf (path core/code_generator/translate_annots.mli))
+       (impl (path core/code_generator/translate_annots.ml))))
+     (module
+      (obj_name e_ACSL__Translate_ats)
+      (visibility public)
+      (source
+       (path Translate_ats)
+       (intf (path core/code_generator/translate_ats.mli))
+       (impl (path core/code_generator/translate_ats.ml))))
+     (module
+      (obj_name e_ACSL__Translate_predicates)
+      (visibility public)
+      (source
+       (path Translate_predicates)
+       (intf (path core/code_generator/translate_predicates.mli))
+       (impl (path core/code_generator/translate_predicates.ml))))
+     (module
+      (obj_name e_ACSL__Translate_rtes)
+      (visibility public)
+      (source
+       (path Translate_rtes)
+       (intf (path core/code_generator/translate_rtes.mli))
+       (impl (path core/code_generator/translate_rtes.ml))))
+     (module
+      (obj_name e_ACSL__Translate_terms)
+      (visibility public)
+      (source
+       (path Translate_terms)
+       (intf (path core/code_generator/translate_terms.mli))
+       (impl (path core/code_generator/translate_terms.ml))))
+     (module
+      (obj_name e_ACSL__Translate_utils)
+      (visibility public)
+      (source
+       (path Translate_utils)
+       (intf (path core/code_generator/translate_utils.mli))
+       (impl (path core/code_generator/translate_utils.ml))))
+     (module
+      (obj_name e_ACSL__Translation_error)
+      (visibility public)
+      (source
+       (path Translation_error)
+       (intf (path core/code_generator/translation_error.mli))
+       (impl (path core/code_generator/translation_error.ml))))
+     (module
+      (obj_name e_ACSL__Typed_number)
+      (visibility public)
+      (source
+       (path Typed_number)
+       (intf (path core/code_generator/typed_number.mli))
+       (impl (path core/code_generator/typed_number.ml))))
+     (module
+      (obj_name e_ACSL__Typing)
+      (visibility public)
+      (source
+       (path Typing)
+       (intf (path core/analyses/typing.mli))
+       (impl (path core/analyses/typing.ml))))
+     (module
+      (obj_name e_ACSL__Varname)
+      (visibility public)
+      (source
+       (path Varname)
+       (intf (path core/libraries/varname.mli))
+       (impl (path core/libraries/varname.ml))))
+     (module
+      (obj_name e_ACSL__Widening)
+      (visibility public)
+      (source
+       (path Widening)
+       (intf (path core/analyses/widening.mli))
+       (impl (path core/analyses/widening.ml))))))
+   (wrapped true))))

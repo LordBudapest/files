@@ -1,0 +1,7 @@
+version = "3.1.5"
+description = ""
+requires = "cairo2 threads"
+archive(byte) = "lablgtk3.cma"
+archive(native) = "lablgtk3.cmxa"
+plugin(byte) = "lablgtk3.cma"
+plugin(native) = "lablgtk3.cmxs"

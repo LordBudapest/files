@@ -1,6 +1,6 @@
 (lang dune 3.19)
 (name merlin-lib)
-(version 5.4.1-503)
+(version 4.18-414)
 (sections
  (lib .)
  (libexec .)
@@ -9,7 +9,6 @@
 (files
  (lib
   (META
-   analysis/ast_iterators.ml
    analysis/browse_misc.ml
    analysis/browse_tree.ml
    analysis/browse_tree.mli
@@ -21,11 +20,8 @@
    analysis/context.mli
    analysis/destruct.ml
    analysis/destruct.mli
-   analysis/env_lookup.ml
-   analysis/env_lookup.mli
    analysis/expansion.ml
    analysis/expansion.mli
-   analysis/index_occurrences.ml
    analysis/inlay_hints.ml
    analysis/inlay_hints.mli
    analysis/jump.ml
@@ -39,9 +35,6 @@
    analysis/merlin_analysis.cmx
    analysis/merlin_analysis.cmxa
    analysis/merlin_analysis.ml
-   analysis/merlin_analysis__Ast_iterators.cmi
-   analysis/merlin_analysis__Ast_iterators.cmt
-   analysis/merlin_analysis__Ast_iterators.cmx
    analysis/merlin_analysis__Browse_misc.cmi
    analysis/merlin_analysis__Browse_misc.cmt
    analysis/merlin_analysis__Browse_misc.cmx
@@ -65,17 +58,10 @@
    analysis/merlin_analysis__Destruct.cmt
    analysis/merlin_analysis__Destruct.cmti
    analysis/merlin_analysis__Destruct.cmx
-   analysis/merlin_analysis__Env_lookup.cmi
-   analysis/merlin_analysis__Env_lookup.cmt
-   analysis/merlin_analysis__Env_lookup.cmti
-   analysis/merlin_analysis__Env_lookup.cmx
    analysis/merlin_analysis__Expansion.cmi
    analysis/merlin_analysis__Expansion.cmt
    analysis/merlin_analysis__Expansion.cmti
    analysis/merlin_analysis__Expansion.cmx
-   analysis/merlin_analysis__Index_occurrences.cmi
-   analysis/merlin_analysis__Index_occurrences.cmt
-   analysis/merlin_analysis__Index_occurrences.cmx
    analysis/merlin_analysis__Inlay_hints.cmi
    analysis/merlin_analysis__Inlay_hints.cmt
    analysis/merlin_analysis__Inlay_hints.cmti
@@ -92,21 +78,17 @@
    analysis/merlin_analysis__Misc_utils.cmt
    analysis/merlin_analysis__Misc_utils.cmti
    analysis/merlin_analysis__Misc_utils.cmx
+   analysis/merlin_analysis__Namespaced_path.cmi
+   analysis/merlin_analysis__Namespaced_path.cmt
+   analysis/merlin_analysis__Namespaced_path.cmti
+   analysis/merlin_analysis__Namespaced_path.cmx
    analysis/merlin_analysis__Ocamldoc.cmi
    analysis/merlin_analysis__Ocamldoc.cmt
    analysis/merlin_analysis__Ocamldoc.cmx
-   analysis/merlin_analysis__Occurrences.cmi
-   analysis/merlin_analysis__Occurrences.cmt
-   analysis/merlin_analysis__Occurrences.cmti
-   analysis/merlin_analysis__Occurrences.cmx
    analysis/merlin_analysis__Outline.cmi
    analysis/merlin_analysis__Outline.cmt
    analysis/merlin_analysis__Outline.cmti
    analysis/merlin_analysis__Outline.cmx
-   analysis/merlin_analysis__Parsetree_utils.cmi
-   analysis/merlin_analysis__Parsetree_utils.cmt
-   analysis/merlin_analysis__Parsetree_utils.cmti
-   analysis/merlin_analysis__Parsetree_utils.cmx
    analysis/merlin_analysis__Polarity_search.cmi
    analysis/merlin_analysis__Polarity_search.cmt
    analysis/merlin_analysis__Polarity_search.cmx
@@ -152,13 +134,11 @@
    analysis/merlin_analysis__Typedtree_utils.cmx
    analysis/misc_utils.ml
    analysis/misc_utils.mli
+   analysis/namespaced_path.ml
+   analysis/namespaced_path.mli
    analysis/ocamldoc.ml
-   analysis/occurrences.ml
-   analysis/occurrences.mli
    analysis/outline.ml
    analysis/outline.mli
-   analysis/parsetree_utils.ml
-   analysis/parsetree_utils.mli
    analysis/polarity_search.ml
    analysis/ppx_expand.ml
    analysis/ppx_expand.mli
@@ -237,27 +217,6 @@
    extend/merlin_extend__Extend_protocol.cmi
    extend/merlin_extend__Extend_protocol.cmt
    extend/merlin_extend__Extend_protocol.cmx
-   index_format/index_cache.ml
-   index_format/index_format.ml
-   index_format/index_format.mli
-   index_format/merlin_index_format.a
-   index_format/merlin_index_format.cma
-   index_format/merlin_index_format.cmi
-   index_format/merlin_index_format.cmt
-   index_format/merlin_index_format.cmx
-   index_format/merlin_index_format.cmxa
-   index_format/merlin_index_format.ml
-   index_format/merlin_index_format__Index_cache.cmi
-   index_format/merlin_index_format__Index_cache.cmt
-   index_format/merlin_index_format__Index_cache.cmx
-   index_format/merlin_index_format__Index_format.cmi
-   index_format/merlin_index_format__Index_format.cmt
-   index_format/merlin_index_format__Index_format.cmti
-   index_format/merlin_index_format__Index_format.cmx
-   index_format/merlin_index_format__Union_find.cmi
-   index_format/merlin_index_format__Union_find.cmt
-   index_format/merlin_index_format__Union_find.cmx
-   index_format/union_find.ml
    kernel/extension.ml
    kernel/extension.mli
    kernel/mbrowse.ml
@@ -369,13 +328,6 @@
    kernel/pparse.ml
    kernel/pparse.mli
    kernel/standard_library.ml
-   ocaml_compression/ocaml_compression.a
-   ocaml_compression/ocaml_compression.cma
-   ocaml_compression/ocaml_compression.cmi
-   ocaml_compression/ocaml_compression.cmt
-   ocaml_compression/ocaml_compression.cmx
-   ocaml_compression/ocaml_compression.cmxa
-   ocaml_compression/ocaml_compression.ml
    ocaml_merlin_specific/browse_raw.ml
    ocaml_merlin_specific/browse_raw.mli
    ocaml_merlin_specific/merlin_specific.a
@@ -405,7 +357,6 @@
    ocaml_parsing/ast_iterator.mli
    ocaml_parsing/ast_mapper.ml
    ocaml_parsing/ast_mapper.mli
-   ocaml_parsing/asttypes.ml
    ocaml_parsing/asttypes.mli
    ocaml_parsing/attr_helper.ml
    ocaml_parsing/attr_helper.mli
@@ -417,7 +368,6 @@
    ocaml_parsing/extend_helper.mli
    ocaml_parsing/fake.ml
    ocaml_parsing/fake.mli
-   ocaml_parsing/lexer.ml
    ocaml_parsing/location.ml
    ocaml_parsing/location.mli
    ocaml_parsing/location_aux.ml
@@ -445,9 +395,7 @@
    ocaml_parsing/ocaml_parsing__Ast_mapper.cmti
    ocaml_parsing/ocaml_parsing__Ast_mapper.cmx
    ocaml_parsing/ocaml_parsing__Asttypes.cmi
-   ocaml_parsing/ocaml_parsing__Asttypes.cmt
    ocaml_parsing/ocaml_parsing__Asttypes.cmti
-   ocaml_parsing/ocaml_parsing__Asttypes.cmx
    ocaml_parsing/ocaml_parsing__Attr_helper.cmi
    ocaml_parsing/ocaml_parsing__Attr_helper.cmt
    ocaml_parsing/ocaml_parsing__Attr_helper.cmti
@@ -468,9 +416,6 @@
    ocaml_parsing/ocaml_parsing__Fake.cmt
    ocaml_parsing/ocaml_parsing__Fake.cmti
    ocaml_parsing/ocaml_parsing__Fake.cmx
-   ocaml_parsing/ocaml_parsing__Lexer.cmi
-   ocaml_parsing/ocaml_parsing__Lexer.cmt
-   ocaml_parsing/ocaml_parsing__Lexer.cmx
    ocaml_parsing/ocaml_parsing__Location.cmi
    ocaml_parsing/ocaml_parsing__Location.cmt
    ocaml_parsing/ocaml_parsing__Location.cmti
@@ -500,10 +445,6 @@
    ocaml_parsing/ocaml_parsing__Syntaxerr.cmt
    ocaml_parsing/ocaml_parsing__Syntaxerr.cmti
    ocaml_parsing/ocaml_parsing__Syntaxerr.cmx
-   ocaml_parsing/ocaml_parsing__Unit_info.cmi
-   ocaml_parsing/ocaml_parsing__Unit_info.cmt
-   ocaml_parsing/ocaml_parsing__Unit_info.cmti
-   ocaml_parsing/ocaml_parsing__Unit_info.cmx
    ocaml_parsing/parsetree.mli
    ocaml_parsing/pprintast.ml
    ocaml_parsing/pprintast.mli
@@ -511,8 +452,6 @@
    ocaml_parsing/printast.mli
    ocaml_parsing/syntaxerr.ml
    ocaml_parsing/syntaxerr.mli
-   ocaml_parsing/unit_info.ml
-   ocaml_parsing/unit_info.mli
    ocaml_preprocess/lexer_ident.ml
    ocaml_preprocess/lexer_ident.mli
    ocaml_preprocess/lexer_raw.ml
@@ -579,8 +518,6 @@
    ocaml_typing/envaux.mli
    ocaml_typing/errortrace.ml
    ocaml_typing/errortrace.mli
-   ocaml_typing/errortrace_report.ml
-   ocaml_typing/errortrace_report.mli
    ocaml_typing/ident.ml
    ocaml_typing/ident.mli
    ocaml_typing/includeclass.ml
@@ -591,7 +528,6 @@
    ocaml_typing/includemod.mli
    ocaml_typing/includemod_errorprinter.ml
    ocaml_typing/includemod_errorprinter.mli
-   ocaml_typing/lambda.ml
    ocaml_typing/magic_numbers.ml
    ocaml_typing/msupport.ml
    ocaml_typing/msupport.mli
@@ -646,10 +582,6 @@
    ocaml_typing/ocaml_typing__Errortrace.cmt
    ocaml_typing/ocaml_typing__Errortrace.cmti
    ocaml_typing/ocaml_typing__Errortrace.cmx
-   ocaml_typing/ocaml_typing__Errortrace_report.cmi
-   ocaml_typing/ocaml_typing__Errortrace_report.cmt
-   ocaml_typing/ocaml_typing__Errortrace_report.cmti
-   ocaml_typing/ocaml_typing__Errortrace_report.cmx
    ocaml_typing/ocaml_typing__Ident.cmi
    ocaml_typing/ocaml_typing__Ident.cmt
    ocaml_typing/ocaml_typing__Ident.cmti
@@ -670,9 +602,6 @@
    ocaml_typing/ocaml_typing__Includemod_errorprinter.cmt
    ocaml_typing/ocaml_typing__Includemod_errorprinter.cmti
    ocaml_typing/ocaml_typing__Includemod_errorprinter.cmx
-   ocaml_typing/ocaml_typing__Lambda.cmi
-   ocaml_typing/ocaml_typing__Lambda.cmt
-   ocaml_typing/ocaml_typing__Lambda.cmx
    ocaml_typing/ocaml_typing__Magic_numbers.cmi
    ocaml_typing/ocaml_typing__Magic_numbers.cmt
    ocaml_typing/ocaml_typing__Magic_numbers.cmx
@@ -692,10 +621,6 @@
    ocaml_typing/ocaml_typing__Oprint.cmt
    ocaml_typing/ocaml_typing__Oprint.cmti
    ocaml_typing/ocaml_typing__Oprint.cmx
-   ocaml_typing/ocaml_typing__Out_type.cmi
-   ocaml_typing/ocaml_typing__Out_type.cmt
-   ocaml_typing/ocaml_typing__Out_type.cmti
-   ocaml_typing/ocaml_typing__Out_type.cmx
    ocaml_typing/ocaml_typing__Outcometree.cmi
    ocaml_typing/ocaml_typing__Outcometree.cmti
    ocaml_typing/ocaml_typing__Parmatch.cmi
@@ -734,10 +659,10 @@
    ocaml_typing/ocaml_typing__Printtyped.cmt
    ocaml_typing/ocaml_typing__Printtyped.cmti
    ocaml_typing/ocaml_typing__Printtyped.cmx
-   ocaml_typing/ocaml_typing__Rawprinttyp.cmi
-   ocaml_typing/ocaml_typing__Rawprinttyp.cmt
-   ocaml_typing/ocaml_typing__Rawprinttyp.cmti
-   ocaml_typing/ocaml_typing__Rawprinttyp.cmx
+   ocaml_typing/ocaml_typing__Rec_check.cmi
+   ocaml_typing/ocaml_typing__Rec_check.cmt
+   ocaml_typing/ocaml_typing__Rec_check.cmti
+   ocaml_typing/ocaml_typing__Rec_check.cmx
    ocaml_typing/ocaml_typing__Saved_parts.cmi
    ocaml_typing/ocaml_typing__Saved_parts.cmt
    ocaml_typing/ocaml_typing__Saved_parts.cmti
@@ -746,10 +671,6 @@
    ocaml_typing/ocaml_typing__Shape.cmt
    ocaml_typing/ocaml_typing__Shape.cmti
    ocaml_typing/ocaml_typing__Shape.cmx
-   ocaml_typing/ocaml_typing__Shape_reduce.cmi
-   ocaml_typing/ocaml_typing__Shape_reduce.cmt
-   ocaml_typing/ocaml_typing__Shape_reduce.cmti
-   ocaml_typing/ocaml_typing__Shape_reduce.cmx
    ocaml_typing/ocaml_typing__Short_paths.cmi
    ocaml_typing/ocaml_typing__Short_paths.cmt
    ocaml_typing/ocaml_typing__Short_paths.cmti
@@ -838,16 +759,8 @@
    ocaml_typing/ocaml_typing__Untypeast.cmt
    ocaml_typing/ocaml_typing__Untypeast.cmti
    ocaml_typing/ocaml_typing__Untypeast.cmx
-   ocaml_typing/ocaml_typing__Value_rec_check.cmi
-   ocaml_typing/ocaml_typing__Value_rec_check.cmt
-   ocaml_typing/ocaml_typing__Value_rec_check.cmti
-   ocaml_typing/ocaml_typing__Value_rec_check.cmx
-   ocaml_typing/ocaml_typing__Value_rec_types.cmi
-   ocaml_typing/ocaml_typing__Value_rec_types.cmti
    ocaml_typing/oprint.ml
    ocaml_typing/oprint.mli
-   ocaml_typing/out_type.ml
-   ocaml_typing/out_type.mli
    ocaml_typing/outcometree.mli
    ocaml_typing/parmatch.ml
    ocaml_typing/parmatch.mli
@@ -867,14 +780,12 @@
    ocaml_typing/printtyp.mli
    ocaml_typing/printtyped.ml
    ocaml_typing/printtyped.mli
-   ocaml_typing/rawprinttyp.ml
-   ocaml_typing/rawprinttyp.mli
+   ocaml_typing/rec_check.ml
+   ocaml_typing/rec_check.mli
    ocaml_typing/saved_parts.ml
    ocaml_typing/saved_parts.mli
    ocaml_typing/shape.ml
    ocaml_typing/shape.mli
-   ocaml_typing/shape_reduce.ml
-   ocaml_typing/shape_reduce.mli
    ocaml_typing/short_paths.ml
    ocaml_typing/short_paths.mli
    ocaml_typing/short_paths_graph.ml
@@ -919,15 +830,10 @@
    ocaml_typing/typetexp.mli
    ocaml_typing/untypeast.ml
    ocaml_typing/untypeast.mli
-   ocaml_typing/value_rec_check.ml
-   ocaml_typing/value_rec_check.mli
-   ocaml_typing/value_rec_types.mli
    ocaml_utils/build_path_prefix_map.ml
    ocaml_utils/build_path_prefix_map.mli
    ocaml_utils/clflags.ml
    ocaml_utils/clflags.mli
-   ocaml_utils/compression.ml
-   ocaml_utils/compression.mli
    ocaml_utils/config.ml
    ocaml_utils/config.mli
    ocaml_utils/consistbl.ml
@@ -941,8 +847,6 @@
    ocaml_utils/identifiable.mli
    ocaml_utils/lazy_backtrack.ml
    ocaml_utils/lazy_backtrack.mli
-   ocaml_utils/linkdeps.ml
-   ocaml_utils/linkdeps.mli
    ocaml_utils/load_path.ml
    ocaml_utils/load_path.mli
    ocaml_utils/local_store.ml
@@ -962,10 +866,6 @@
    ocaml_utils/ocaml_utils__Clflags.cmt
    ocaml_utils/ocaml_utils__Clflags.cmti
    ocaml_utils/ocaml_utils__Clflags.cmx
-   ocaml_utils/ocaml_utils__Compression.cmi
-   ocaml_utils/ocaml_utils__Compression.cmt
-   ocaml_utils/ocaml_utils__Compression.cmti
-   ocaml_utils/ocaml_utils__Compression.cmx
    ocaml_utils/ocaml_utils__Config.cmi
    ocaml_utils/ocaml_utils__Config.cmt
    ocaml_utils/ocaml_utils__Config.cmti
@@ -993,10 +893,6 @@
    ocaml_utils/ocaml_utils__Lazy_backtrack.cmt
    ocaml_utils/ocaml_utils__Lazy_backtrack.cmti
    ocaml_utils/ocaml_utils__Lazy_backtrack.cmx
-   ocaml_utils/ocaml_utils__Linkdeps.cmi
-   ocaml_utils/ocaml_utils__Linkdeps.cmt
-   ocaml_utils/ocaml_utils__Linkdeps.cmti
-   ocaml_utils/ocaml_utils__Linkdeps.cmx
    ocaml_utils/ocaml_utils__Load_path.cmi
    ocaml_utils/ocaml_utils__Load_path.cmt
    ocaml_utils/ocaml_utils__Load_path.cmti
@@ -1099,8 +995,6 @@
    utils/file_cache.mli
    utils/file_id.ml
    utils/file_id.mli
-   utils/format_doc.ml
-   utils/format_doc.mli
    utils/lib_config.ml
    utils/lib_config.mli
    utils/libmerlin_utils_stubs.a
@@ -1123,10 +1017,6 @@
    utils/merlin_utils__File_id.cmt
    utils/merlin_utils__File_id.cmti
    utils/merlin_utils__File_id.cmx
-   utils/merlin_utils__Format_doc.cmi
-   utils/merlin_utils__Format_doc.cmt
-   utils/merlin_utils__Format_doc.cmti
-   utils/merlin_utils__Format_doc.cmx
    utils/merlin_utils__Lib_config.cmi
    utils/merlin_utils__Lib_config.cmt
    utils/merlin_utils__Lib_config.cmti
@@ -1173,9 +1063,7 @@
    config/merlin_config.cmxs
    dot_protocol/merlin_dot_protocol.cmxs
    extend/merlin_extend.cmxs
-   index_format/merlin_index_format.cmxs
    kernel/merlin_kernel.cmxs
-   ocaml_compression/ocaml_compression.cmxs
    ocaml_merlin_specific/merlin_specific.cmxs
    ocaml_parsing/ocaml_parsing.cmxs
    ocaml_preprocess/ocaml_preprocess.cmxs
@@ -1204,15 +1092,13 @@
   merlin-lib.extend
   merlin-lib.kernel
   merlin-lib.utils
-  merlin-lib.index_format
   merlin-lib.sherlodoc
   merlin-lib.ocaml_parsing
   merlin-lib.ocaml_preprocess
   merlin-lib.query_protocol
   merlin-lib.ocaml_typing
   merlin-lib.ocaml_utils
-  str
-  unix)
+  str)
  (main_module_name Merlin_analysis)
  (modes byte native)
  (modules
@@ -1227,10 +1113,6 @@
       (impl (path analysis/merlin_analysis.ml-gen))))
     (name Merlin_analysis)
     (modules
-     (module
-      (obj_name merlin_analysis__Ast_iterators)
-      (visibility public)
-      (source (path Ast_iterators) (impl (path analysis/ast_iterators.ml))))
      (module
       (obj_name merlin_analysis__Browse_misc)
       (visibility public)
@@ -1271,25 +1153,12 @@
        (intf (path analysis/destruct.mli))
        (impl (path analysis/destruct.ml))))
      (module
-      (obj_name merlin_analysis__Env_lookup)
-      (visibility public)
-      (source
-       (path Env_lookup)
-       (intf (path analysis/env_lookup.mli))
-       (impl (path analysis/env_lookup.ml))))
-     (module
       (obj_name merlin_analysis__Expansion)
       (visibility public)
       (source
        (path Expansion)
        (intf (path analysis/expansion.mli))
        (impl (path analysis/expansion.ml))))
-     (module
-      (obj_name merlin_analysis__Index_occurrences)
-      (visibility public)
-      (source
-       (path Index_occurrences)
-       (impl (path analysis/index_occurrences.ml))))
      (module
       (obj_name merlin_analysis__Inlay_hints)
       (visibility public)
@@ -1319,16 +1188,16 @@
        (intf (path analysis/misc_utils.mli))
        (impl (path analysis/misc_utils.ml))))
      (module
+      (obj_name merlin_analysis__Namespaced_path)
+      (visibility public)
+      (source
+       (path Namespaced_path)
+       (intf (path analysis/namespaced_path.mli))
+       (impl (path analysis/namespaced_path.ml))))
+     (module
       (obj_name merlin_analysis__Ocamldoc)
       (visibility public)
       (source (path Ocamldoc) (impl (path analysis/ocamldoc.ml))))
-     (module
-      (obj_name merlin_analysis__Occurrences)
-      (visibility public)
-      (source
-       (path Occurrences)
-       (intf (path analysis/occurrences.mli))
-       (impl (path analysis/occurrences.ml))))
      (module
       (obj_name merlin_analysis__Outline)
       (visibility public)
@@ -1336,13 +1205,6 @@
        (path Outline)
        (intf (path analysis/outline.mli))
        (impl (path analysis/outline.ml))))
-     (module
-      (obj_name merlin_analysis__Parsetree_utils)
-      (visibility public)
-      (source
-       (path Parsetree_utils)
-       (intf (path analysis/parsetree_utils.mli))
-       (impl (path analysis/parsetree_utils.ml))))
      (module
       (obj_name merlin_analysis__Polarity_search)
       (visibility public)
@@ -1539,51 +1401,6 @@
       (source (path Extend_protocol) (impl (path extend/extend_protocol.ml))))))
    (wrapped true))))
 (library
- (name merlin-lib.index_format)
- (kind normal)
- (archives
-  (byte index_format/merlin_index_format.cma)
-  (native index_format/merlin_index_format.cmxa))
- (plugins
-  (byte index_format/merlin_index_format.cma)
-  (native index_format/merlin_index_format.cmxs))
- (native_archives index_format/merlin_index_format.a)
- (requires
-  merlin-lib.ocaml_parsing
-  merlin-lib.ocaml_typing
-  merlin-lib.ocaml_utils
-  merlin-lib.utils)
- (main_module_name Merlin_index_format)
- (modes byte native)
- (modules
-  (wrapped
-   (group
-    (alias
-     (obj_name merlin_index_format)
-     (visibility public)
-     (kind alias)
-     (source
-      (path Merlin_index_format)
-      (impl (path index_format/merlin_index_format.ml-gen))))
-    (name Merlin_index_format)
-    (modules
-     (module
-      (obj_name merlin_index_format__Index_cache)
-      (visibility public)
-      (source (path Index_cache) (impl (path index_format/index_cache.ml))))
-     (module
-      (obj_name merlin_index_format__Index_format)
-      (visibility public)
-      (source
-       (path Index_format)
-       (intf (path index_format/index_format.mli))
-       (impl (path index_format/index_format.ml))))
-     (module
-      (obj_name merlin_index_format__Union_find)
-      (visibility public)
-      (source (path Union_find) (impl (path index_format/union_find.ml))))))
-   (wrapped true))))
-(library
  (name merlin-lib.kernel)
  (kind normal)
  (archives (byte kernel/merlin_kernel.cma) (native kernel/merlin_kernel.cmxa))
@@ -1600,9 +1417,8 @@
   merlin-lib.ocaml_merlin_specific
   merlin-lib.utils
   merlin-lib.dot_protocol
-  merlin-lib.index_format
-  unix
-  str)
+  str
+  unix)
  (main_module_name Merlin_kernel)
  (modes byte native)
  (modules
@@ -1739,26 +1555,6 @@
        (impl (path kernel/standard_library.ml))))))
    (wrapped true))))
 (library
- (name merlin-lib.ocaml_compression)
- (kind normal)
- (archives
-  (byte ocaml_compression/ocaml_compression.cma)
-  (native ocaml_compression/ocaml_compression.cmxa))
- (plugins
-  (byte ocaml_compression/ocaml_compression.cma)
-  (native ocaml_compression/ocaml_compression.cmxs))
- (native_archives ocaml_compression/ocaml_compression.a)
- (requires compiler-libs.common)
- (main_module_name Ocaml_compression)
- (modes byte native)
- (modules
-  (singleton
-   (obj_name ocaml_compression)
-   (visibility public)
-   (source
-    (path Ocaml_compression)
-    (impl (path ocaml_compression/ocaml_compression.ml))))))
-(library
  (name merlin-lib.ocaml_merlin_specific)
  (kind normal)
  (archives
@@ -1858,10 +1654,7 @@
      (module
       (obj_name ocaml_parsing__Asttypes)
       (visibility public)
-      (source
-       (path Asttypes)
-       (intf (path ocaml_parsing/asttypes.mli))
-       (impl (path ocaml_parsing/asttypes.ml))))
+      (source (path Asttypes) (intf (path ocaml_parsing/asttypes.mli))))
      (module
       (obj_name ocaml_parsing__Attr_helper)
       (visibility public)
@@ -1897,10 +1690,6 @@
        (path Fake)
        (intf (path ocaml_parsing/fake.mli))
        (impl (path ocaml_parsing/fake.ml))))
-     (module
-      (obj_name ocaml_parsing__Lexer)
-      (visibility public)
-      (source (path Lexer) (impl (path ocaml_parsing/lexer.ml))))
      (module
       (obj_name ocaml_parsing__Location)
       (visibility public)
@@ -1952,14 +1741,7 @@
       (source
        (path Syntaxerr)
        (intf (path ocaml_parsing/syntaxerr.mli))
-       (impl (path ocaml_parsing/syntaxerr.ml))))
-     (module
-      (obj_name ocaml_parsing__Unit_info)
-      (visibility public)
-      (source
-       (path Unit_info)
-       (intf (path ocaml_parsing/unit_info.mli))
-       (impl (path ocaml_parsing/unit_info.ml))))))
+       (impl (path ocaml_parsing/syntaxerr.ml))))))
    (wrapped true))))
 (library
  (name merlin-lib.ocaml_preprocess)
@@ -2045,11 +1827,7 @@
   (byte ocaml_typing/ocaml_typing.cma)
   (native ocaml_typing/ocaml_typing.cmxs))
  (native_archives ocaml_typing/ocaml_typing.a)
- (requires
-  merlin-lib.utils
-  merlin-lib.ocaml_compression
-  merlin-lib.ocaml_parsing
-  merlin-lib.ocaml_utils)
+ (requires merlin-lib.utils merlin-lib.ocaml_parsing merlin-lib.ocaml_utils)
  (main_module_name Ocaml_typing)
  (modes byte native)
  (modules
@@ -2133,13 +1911,6 @@
        (intf (path ocaml_typing/errortrace.mli))
        (impl (path ocaml_typing/errortrace.ml))))
      (module
-      (obj_name ocaml_typing__Errortrace_report)
-      (visibility public)
-      (source
-       (path Errortrace_report)
-       (intf (path ocaml_typing/errortrace_report.mli))
-       (impl (path ocaml_typing/errortrace_report.ml))))
-     (module
       (obj_name ocaml_typing__Ident)
       (visibility public)
       (source
@@ -2175,10 +1946,6 @@
        (intf (path ocaml_typing/includemod_errorprinter.mli))
        (impl (path ocaml_typing/includemod_errorprinter.ml))))
      (module
-      (obj_name ocaml_typing__Lambda)
-      (visibility public)
-      (source (path Lambda) (impl (path ocaml_typing/lambda.ml))))
-     (module
       (obj_name ocaml_typing__Magic_numbers)
       (visibility public)
       (source
@@ -2212,13 +1979,6 @@
        (path Oprint)
        (intf (path ocaml_typing/oprint.mli))
        (impl (path ocaml_typing/oprint.ml))))
-     (module
-      (obj_name ocaml_typing__Out_type)
-      (visibility public)
-      (source
-       (path Out_type)
-       (intf (path ocaml_typing/out_type.mli))
-       (impl (path ocaml_typing/out_type.ml))))
      (module
       (obj_name ocaml_typing__Outcometree)
       (visibility public)
@@ -2287,12 +2047,12 @@
        (intf (path ocaml_typing/printtyped.mli))
        (impl (path ocaml_typing/printtyped.ml))))
      (module
-      (obj_name ocaml_typing__Rawprinttyp)
+      (obj_name ocaml_typing__Rec_check)
       (visibility public)
       (source
-       (path Rawprinttyp)
-       (intf (path ocaml_typing/rawprinttyp.mli))
-       (impl (path ocaml_typing/rawprinttyp.ml))))
+       (path Rec_check)
+       (intf (path ocaml_typing/rec_check.mli))
+       (impl (path ocaml_typing/rec_check.ml))))
      (module
       (obj_name ocaml_typing__Saved_parts)
       (visibility public)
@@ -2307,13 +2067,6 @@
        (path Shape)
        (intf (path ocaml_typing/shape.mli))
        (impl (path ocaml_typing/shape.ml))))
-     (module
-      (obj_name ocaml_typing__Shape_reduce)
-      (visibility public)
-      (source
-       (path Shape_reduce)
-       (intf (path ocaml_typing/shape_reduce.mli))
-       (impl (path ocaml_typing/shape_reduce.ml))))
      (module
       (obj_name ocaml_typing__Short_paths)
       (visibility public)
@@ -2467,20 +2220,7 @@
       (source
        (path Untypeast)
        (intf (path ocaml_typing/untypeast.mli))
-       (impl (path ocaml_typing/untypeast.ml))))
-     (module
-      (obj_name ocaml_typing__Value_rec_check)
-      (visibility public)
-      (source
-       (path Value_rec_check)
-       (intf (path ocaml_typing/value_rec_check.mli))
-       (impl (path ocaml_typing/value_rec_check.ml))))
-     (module
-      (obj_name ocaml_typing__Value_rec_types)
-      (visibility public)
-      (source
-       (path Value_rec_types)
-       (intf (path ocaml_typing/value_rec_types.mli))))))
+       (impl (path ocaml_typing/untypeast.ml))))))
    (wrapped true))))
 (library
  (name merlin-lib.ocaml_utils)
@@ -2519,13 +2259,6 @@
        (path Clflags)
        (intf (path ocaml_utils/clflags.mli))
        (impl (path ocaml_utils/clflags.ml))))
-     (module
-      (obj_name ocaml_utils__Compression)
-      (visibility public)
-      (source
-       (path Compression)
-       (intf (path ocaml_utils/compression.mli))
-       (impl (path ocaml_utils/compression.ml))))
      (module
       (obj_name ocaml_utils__Config)
       (visibility public)
@@ -2574,13 +2307,6 @@
        (path Lazy_backtrack)
        (intf (path ocaml_utils/lazy_backtrack.mli))
        (impl (path ocaml_utils/lazy_backtrack.ml))))
-     (module
-      (obj_name ocaml_utils__Linkdeps)
-      (visibility public)
-      (source
-       (path Linkdeps)
-       (intf (path ocaml_utils/linkdeps.mli))
-       (impl (path ocaml_utils/linkdeps.ml))))
      (module
       (obj_name ocaml_utils__Load_path)
       (visibility public)
@@ -2639,6 +2365,7 @@
  (requires
   merlin-lib.utils
   merlin-lib.kernel
+  merlin-lib.extend
   merlin-lib.ocaml_utils
   merlin-lib.ocaml_parsing
   merlin-lib.ocaml_typing
@@ -2792,13 +2519,6 @@
        (path File_id)
        (intf (path utils/file_id.mli))
        (impl (path utils/file_id.ml))))
-     (module
-      (obj_name merlin_utils__Format_doc)
-      (visibility public)
-      (source
-       (path Format_doc)
-       (intf (path utils/format_doc.mli))
-       (impl (path utils/format_doc.ml))))
      (module
       (obj_name merlin_utils__Lib_config)
       (visibility public)

@@ -1,0 +1,48 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_deriving_yojson" {"D"}
+  "doc/ppx_deriving_yojson/CHANGELOG.md" {"F:S4292T1750607171.22"}
+  "doc/ppx_deriving_yojson/LICENSE.txt" {"F:S1088T1750607171.22"}
+  "doc/ppx_deriving_yojson/README.md" {"F:S8110T1750607171.22"}
+  "lib/ppx_deriving_yojson" {"D"}
+  "lib/ppx_deriving_yojson/META" {"F:S1226T1750607171.21"}
+  "lib/ppx_deriving_yojson/dune-package" {"F:S2340T1750607171.21"}
+  "lib/ppx_deriving_yojson/opam" {"F:S819T1750607171.21"}
+  "lib/ppx_deriving_yojson/ppx_deriving_yojson.a" {"F:S298908T1750607171.21"}
+  "lib/ppx_deriving_yojson/ppx_deriving_yojson.cma"
+    {"F:S330857T1750607171.21"}
+  "lib/ppx_deriving_yojson/ppx_deriving_yojson.cmi" {"F:S3679T1750607171.21"}
+  "lib/ppx_deriving_yojson/ppx_deriving_yojson.cmt"
+    {"F:S773545T1750607171.21"}
+  "lib/ppx_deriving_yojson/ppx_deriving_yojson.cmti"
+    {"F:S10925T1750607171.21"}
+  "lib/ppx_deriving_yojson/ppx_deriving_yojson.cmx"
+    {"F:S13224T1750607171.21"}
+  "lib/ppx_deriving_yojson/ppx_deriving_yojson.cmxa"
+    {"F:S4544T1750607171.21"}
+  "lib/ppx_deriving_yojson/ppx_deriving_yojson.cmxs"
+    {"F:S280808T1750607171.22"}
+  "lib/ppx_deriving_yojson/ppx_deriving_yojson.ml" {"F:S43094T1750607171.21"}
+  "lib/ppx_deriving_yojson/ppx_deriving_yojson.mli" {"F:S101T1750607171.21"}
+  "lib/ppx_deriving_yojson/runtime" {"D"}
+  "lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.a"
+    {"F:S11824T1750607171.21"}
+  "lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cma"
+    {"F:S43495T1750607171.21"}
+  "lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cmi"
+    {"F:S68108T1750607171.22"}
+  "lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cmt"
+    {"F:S69964T1750607171.22"}
+  "lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cmti"
+    {"F:S147463T1750607171.22"}
+  "lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cmx"
+    {"F:S47993T1750607171.22"}
+  "lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cmxa"
+    {"F:S867T1750607171.22"}
+  "lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cmxs"
+    {"F:S25968T1750607171.22"}
+  "lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.ml"
+    {"F:S727T1750607171.22"}
+  "lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.mli"
+    {"F:S965T1750607171.22"}
+]

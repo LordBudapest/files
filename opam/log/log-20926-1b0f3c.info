@@ -1,0 +1,5 @@
+[33m#[0m [33mpath[0m        /mnt/c/Users/Bhaskar Pandey
+[33m#[0m [33mcommand[0m     /usr/bin/curl --write-out %{http_code}\n --retry 3 --retry-delay 2 --user-agent opam/2.3.0 -L -o /home/bhaskar/.opam/download-cache/sha256/6a/6a00db1b12b6f55e1b2419f206fdfbaa669e14b51c78f8ac3cffa0a58897be83.tmp.part -- https://opam.ocaml.org/cache/sha256/6a/6a00db1b12b6f55e1b2419f206fdfbaa669e14b51c78f8ac3cffa0a58897be83
+[33m#[0m [33menv-file[0m    ~/.opam/log/log-20926-1b0f3c.env
+[33m#[0m [33mstdout-file[0m ~/.opam/log/dl-20926-c7aec7
+[33m#[0m [33mstderr-file[0m ~/.opam/log/log-20926-1b0f3c.err

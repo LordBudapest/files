@@ -1,0 +1,7 @@
+version = "0.4"
+description = ""
+requires = "seq stdlib-shims"
+archive(byte) = "spelll.cma"
+archive(native) = "spelll.cmxa"
+plugin(byte) = "spelll.cma"
+plugin(native) = "spelll.cmxs"

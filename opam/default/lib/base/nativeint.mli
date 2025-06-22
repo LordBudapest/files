@@ -4,7 +4,7 @@ open! Import
 
 type t = nativeint [@@deriving_inline globalize]
 
-val globalize : t -> t
+val globalize : (t[@ocaml.local]) -> t
 
 [@@@end]
 
@@ -26,12 +26,7 @@ val of_int64 : int64 -> t option
     optional conversions return [Some x], truncating conversions return [x]. *)
 
 val to_int_trunc : t -> int
-
-external to_int32_trunc
-  :  (nativeint[@local_opt])
-  -> (int32[@local_opt])
-  = "%nativeint_to_int32"
-
+val to_int32_trunc : t -> int32
 val of_int64_trunc : int64 -> t
 
 (** {2 Byte swap functions}

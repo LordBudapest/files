@@ -1,0 +1,9 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires = "frama-c-eva.core frama-c.kernel"
+  archive(byte) = "Constant_Propagation.cma"
+  archive(native) = "Constant_Propagation.cmxa"
+  plugin(byte) = "Constant_Propagation.cma"
+  plugin(native) = "Constant_Propagation.cmxs"
+)

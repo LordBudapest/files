@@ -1,0 +1,8 @@
+File "tests/typing/errors/arith_linear/test.smt2", line 4, character 13-20:
+4 | (assert (= 0 (* a b)))
+                 ^^^^^^^
+Error Forbidden expression in linear arithmetic
+Hint: multiplication in strict linear arithmetic expects an integer or
+  rational literal and a symbol (variable or constant) but was given:
+  - a symbol (or quantified variable)
+  - a symbol (or quantified variable)

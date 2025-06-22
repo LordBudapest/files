@@ -1,0 +1,7 @@
+version = "d8162fd"
+description = ""
+requires = ""
+archive(byte) = "pp_loc.cma"
+archive(native) = "pp_loc.cmxa"
+plugin(byte) = "pp_loc.cma"
+plugin(native) = "pp_loc.cmxs"

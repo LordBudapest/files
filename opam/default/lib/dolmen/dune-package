@@ -1,0 +1,1466 @@
+(lang dune 3.19)
+(name dolmen)
+(version 0.10)
+(sections (lib .) (libexec .) (doc ../../doc/dolmen))
+(files
+ (lib
+  (META
+   ae/ast.ml
+   ae/dolmen_ae.a
+   ae/dolmen_ae.cma
+   ae/dolmen_ae.cmi
+   ae/dolmen_ae.cmt
+   ae/dolmen_ae.cmti
+   ae/dolmen_ae.cmx
+   ae/dolmen_ae.cmxa
+   ae/dolmen_ae.ml
+   ae/dolmen_ae.mli
+   ae/dolmen_ae__.cmi
+   ae/dolmen_ae__.cmt
+   ae/dolmen_ae__.cmx
+   ae/dolmen_ae__.ml
+   ae/dolmen_ae__Ast.cmi
+   ae/dolmen_ae__Ast.cmt
+   ae/dolmen_ae__Ast.cmx
+   ae/dolmen_ae__Lexer.cmi
+   ae/dolmen_ae__Lexer.cmt
+   ae/dolmen_ae__Lexer.cmx
+   ae/dolmen_ae__Parser.cmi
+   ae/dolmen_ae__Parser.cmt
+   ae/dolmen_ae__Parser.cmti
+   ae/dolmen_ae__Parser.cmx
+   ae/dolmen_ae__Syntax_messages.cmi
+   ae/dolmen_ae__Syntax_messages.cmt
+   ae/dolmen_ae__Syntax_messages.cmx
+   ae/dolmen_ae__Tokens.cmi
+   ae/dolmen_ae__Tokens.cmt
+   ae/dolmen_ae__Tokens.cmti
+   ae/dolmen_ae__Tokens.cmx
+   ae/lexer.ml
+   ae/parser.ml
+   ae/parser.mli
+   ae/syntax_messages.ml
+   ae/tokens.ml
+   ae/tokens.mli
+   class/dolmen_class.a
+   class/dolmen_class.cma
+   class/dolmen_class.cmi
+   class/dolmen_class.cmt
+   class/dolmen_class.cmx
+   class/dolmen_class.cmxa
+   class/dolmen_class.ml
+   class/dolmen_class__Logic.cmi
+   class/dolmen_class__Logic.cmt
+   class/dolmen_class__Logic.cmti
+   class/dolmen_class__Logic.cmx
+   class/dolmen_class__Response.cmi
+   class/dolmen_class__Response.cmt
+   class/dolmen_class__Response.cmti
+   class/dolmen_class__Response.cmx
+   class/logic.ml
+   class/logic.mli
+   class/response.ml
+   class/response.mli
+   dimacs/ast.ml
+   dimacs/dolmen_dimacs.a
+   dimacs/dolmen_dimacs.cma
+   dimacs/dolmen_dimacs.cmi
+   dimacs/dolmen_dimacs.cmt
+   dimacs/dolmen_dimacs.cmti
+   dimacs/dolmen_dimacs.cmx
+   dimacs/dolmen_dimacs.cmxa
+   dimacs/dolmen_dimacs.ml
+   dimacs/dolmen_dimacs.mli
+   dimacs/dolmen_dimacs__.cmi
+   dimacs/dolmen_dimacs__.cmt
+   dimacs/dolmen_dimacs__.cmx
+   dimacs/dolmen_dimacs__.ml
+   dimacs/dolmen_dimacs__Ast.cmi
+   dimacs/dolmen_dimacs__Ast.cmt
+   dimacs/dolmen_dimacs__Ast.cmx
+   dimacs/dolmen_dimacs__Lexer.cmi
+   dimacs/dolmen_dimacs__Lexer.cmt
+   dimacs/dolmen_dimacs__Lexer.cmx
+   dimacs/dolmen_dimacs__Parser.cmi
+   dimacs/dolmen_dimacs__Parser.cmt
+   dimacs/dolmen_dimacs__Parser.cmti
+   dimacs/dolmen_dimacs__Parser.cmx
+   dimacs/dolmen_dimacs__Syntax_messages.cmi
+   dimacs/dolmen_dimacs__Syntax_messages.cmt
+   dimacs/dolmen_dimacs__Syntax_messages.cmx
+   dimacs/dolmen_dimacs__Tokens.cmi
+   dimacs/dolmen_dimacs__Tokens.cmt
+   dimacs/dolmen_dimacs__Tokens.cmti
+   dimacs/dolmen_dimacs__Tokens.cmx
+   dimacs/lexer.ml
+   dimacs/parser.ml
+   dimacs/parser.mli
+   dimacs/syntax_messages.ml
+   dimacs/tokens.ml
+   dimacs/tokens.mli
+   dolmen.a
+   dolmen.cma
+   dolmen.cmi
+   dolmen.cmt
+   dolmen.cmx
+   dolmen.cmxa
+   dolmen.ml
+   dune-package
+   icnf/ast.ml
+   icnf/dolmen_icnf.a
+   icnf/dolmen_icnf.cma
+   icnf/dolmen_icnf.cmi
+   icnf/dolmen_icnf.cmt
+   icnf/dolmen_icnf.cmti
+   icnf/dolmen_icnf.cmx
+   icnf/dolmen_icnf.cmxa
+   icnf/dolmen_icnf.ml
+   icnf/dolmen_icnf.mli
+   icnf/dolmen_icnf__.cmi
+   icnf/dolmen_icnf__.cmt
+   icnf/dolmen_icnf__.cmx
+   icnf/dolmen_icnf__.ml
+   icnf/dolmen_icnf__Ast.cmi
+   icnf/dolmen_icnf__Ast.cmt
+   icnf/dolmen_icnf__Ast.cmx
+   icnf/dolmen_icnf__Lexer.cmi
+   icnf/dolmen_icnf__Lexer.cmt
+   icnf/dolmen_icnf__Lexer.cmx
+   icnf/dolmen_icnf__Parser.cmi
+   icnf/dolmen_icnf__Parser.cmt
+   icnf/dolmen_icnf__Parser.cmti
+   icnf/dolmen_icnf__Parser.cmx
+   icnf/dolmen_icnf__Syntax_messages.cmi
+   icnf/dolmen_icnf__Syntax_messages.cmt
+   icnf/dolmen_icnf__Syntax_messages.cmx
+   icnf/dolmen_icnf__Tokens.cmi
+   icnf/dolmen_icnf__Tokens.cmt
+   icnf/dolmen_icnf__Tokens.cmti
+   icnf/dolmen_icnf__Tokens.cmx
+   icnf/lexer.ml
+   icnf/parser.ml
+   icnf/parser.mli
+   icnf/syntax_messages.ml
+   icnf/tokens.ml
+   icnf/tokens.mli
+   intf/dolmen_intf.a
+   intf/dolmen_intf.cma
+   intf/dolmen_intf.cmi
+   intf/dolmen_intf.cmt
+   intf/dolmen_intf.cmx
+   intf/dolmen_intf.cmxa
+   intf/dolmen_intf.ml
+   intf/dolmen_intf__Ext.cmi
+   intf/dolmen_intf__Ext.cmt
+   intf/dolmen_intf__Ext.cmx
+   intf/dolmen_intf__Id.cmi
+   intf/dolmen_intf__Id.cmt
+   intf/dolmen_intf__Id.cmx
+   intf/dolmen_intf__Language.cmi
+   intf/dolmen_intf__Language.cmt
+   intf/dolmen_intf__Language.cmx
+   intf/dolmen_intf__Lex.cmi
+   intf/dolmen_intf__Lex.cmt
+   intf/dolmen_intf__Lex.cmx
+   intf/dolmen_intf__Location.cmi
+   intf/dolmen_intf__Location.cmt
+   intf/dolmen_intf__Location.cmx
+   intf/dolmen_intf__Map.cmi
+   intf/dolmen_intf__Map.cmt
+   intf/dolmen_intf__Map.cmx
+   intf/dolmen_intf__Msg.cmi
+   intf/dolmen_intf__Msg.cmt
+   intf/dolmen_intf__Msg.cmx
+   intf/dolmen_intf__Parse.cmi
+   intf/dolmen_intf__Parse.cmt
+   intf/dolmen_intf__Parse.cmx
+   intf/dolmen_intf__Pretty.cmi
+   intf/dolmen_intf__Pretty.cmt
+   intf/dolmen_intf__Pretty.cmx
+   intf/dolmen_intf__Stmt.cmi
+   intf/dolmen_intf__Stmt.cmt
+   intf/dolmen_intf__Stmt.cmx
+   intf/dolmen_intf__Tag.cmi
+   intf/dolmen_intf__Tag.cmt
+   intf/dolmen_intf__Tag.cmx
+   intf/dolmen_intf__Term.cmi
+   intf/dolmen_intf__Term.cmt
+   intf/dolmen_intf__Term.cmx
+   intf/dolmen_intf__Tok.cmi
+   intf/dolmen_intf__Tok.cmt
+   intf/dolmen_intf__Tok.cmx
+   intf/dolmen_intf__Ty.cmi
+   intf/dolmen_intf__Ty.cmt
+   intf/dolmen_intf__Ty.cmx
+   intf/ext.ml
+   intf/id.ml
+   intf/language.ml
+   intf/lex.ml
+   intf/location.ml
+   intf/map.ml
+   intf/msg.ml
+   intf/parse.ml
+   intf/pretty.ml
+   intf/stmt.ml
+   intf/tag.ml
+   intf/term.ml
+   intf/tok.ml
+   intf/ty.ml
+   line/dolmen_line.a
+   line/dolmen_line.cma
+   line/dolmen_line.cmi
+   line/dolmen_line.cmt
+   line/dolmen_line.cmti
+   line/dolmen_line.cmx
+   line/dolmen_line.cmxa
+   line/dolmen_line.ml
+   line/dolmen_line.mli
+   line/dolmen_line__.cmi
+   line/dolmen_line__.cmt
+   line/dolmen_line__.cmx
+   line/dolmen_line__.ml
+   line/dolmen_line__LexLine.cmi
+   line/dolmen_line__LexLine.cmt
+   line/dolmen_line__LexLine.cmx
+   line/lexLine.ml
+   opam
+   smtlib2/dolmen_smtlib2.a
+   smtlib2/dolmen_smtlib2.cma
+   smtlib2/dolmen_smtlib2.cmi
+   smtlib2/dolmen_smtlib2.cmt
+   smtlib2/dolmen_smtlib2.cmx
+   smtlib2/dolmen_smtlib2.cmxa
+   smtlib2/dolmen_smtlib2.ml
+   smtlib2/poly/ast.ml
+   smtlib2/poly/dolmen_smtlib2_poly.a
+   smtlib2/poly/dolmen_smtlib2_poly.cma
+   smtlib2/poly/dolmen_smtlib2_poly.cmi
+   smtlib2/poly/dolmen_smtlib2_poly.cmt
+   smtlib2/poly/dolmen_smtlib2_poly.cmti
+   smtlib2/poly/dolmen_smtlib2_poly.cmx
+   smtlib2/poly/dolmen_smtlib2_poly.cmxa
+   smtlib2/poly/dolmen_smtlib2_poly.ml
+   smtlib2/poly/dolmen_smtlib2_poly.mli
+   smtlib2/poly/dolmen_smtlib2_poly__.cmi
+   smtlib2/poly/dolmen_smtlib2_poly__.cmt
+   smtlib2/poly/dolmen_smtlib2_poly__.cmx
+   smtlib2/poly/dolmen_smtlib2_poly__.ml
+   smtlib2/poly/dolmen_smtlib2_poly__Ast.cmi
+   smtlib2/poly/dolmen_smtlib2_poly__Ast.cmt
+   smtlib2/poly/dolmen_smtlib2_poly__Ast.cmx
+   smtlib2/poly/dolmen_smtlib2_poly__Lexer.cmi
+   smtlib2/poly/dolmen_smtlib2_poly__Lexer.cmt
+   smtlib2/poly/dolmen_smtlib2_poly__Lexer.cmx
+   smtlib2/poly/dolmen_smtlib2_poly__Parser.cmi
+   smtlib2/poly/dolmen_smtlib2_poly__Parser.cmt
+   smtlib2/poly/dolmen_smtlib2_poly__Parser.cmti
+   smtlib2/poly/dolmen_smtlib2_poly__Parser.cmx
+   smtlib2/poly/dolmen_smtlib2_poly__Print.cmi
+   smtlib2/poly/dolmen_smtlib2_poly__Print.cmt
+   smtlib2/poly/dolmen_smtlib2_poly__Print.cmx
+   smtlib2/poly/dolmen_smtlib2_poly__Syntax_messages.cmi
+   smtlib2/poly/dolmen_smtlib2_poly__Syntax_messages.cmt
+   smtlib2/poly/dolmen_smtlib2_poly__Syntax_messages.cmx
+   smtlib2/poly/dolmen_smtlib2_poly__Tokens.cmi
+   smtlib2/poly/dolmen_smtlib2_poly__Tokens.cmt
+   smtlib2/poly/dolmen_smtlib2_poly__Tokens.cmti
+   smtlib2/poly/dolmen_smtlib2_poly__Tokens.cmx
+   smtlib2/poly/lexer.ml
+   smtlib2/poly/parser.ml
+   smtlib2/poly/parser.mli
+   smtlib2/poly/print.ml
+   smtlib2/poly/syntax_messages.ml
+   smtlib2/poly/tokens.ml
+   smtlib2/poly/tokens.mli
+   smtlib2/v6/dolmen_smtlib2_v6.a
+   smtlib2/v6/dolmen_smtlib2_v6.cma
+   smtlib2/v6/dolmen_smtlib2_v6.cmi
+   smtlib2/v6/dolmen_smtlib2_v6.cmt
+   smtlib2/v6/dolmen_smtlib2_v6.cmx
+   smtlib2/v6/dolmen_smtlib2_v6.cmxa
+   smtlib2/v6/dolmen_smtlib2_v6.ml
+   smtlib2/v6_response/ast.ml
+   smtlib2/v6_response/dolmen_smtlib2_v6_response.a
+   smtlib2/v6_response/dolmen_smtlib2_v6_response.cma
+   smtlib2/v6_response/dolmen_smtlib2_v6_response.cmi
+   smtlib2/v6_response/dolmen_smtlib2_v6_response.cmt
+   smtlib2/v6_response/dolmen_smtlib2_v6_response.cmti
+   smtlib2/v6_response/dolmen_smtlib2_v6_response.cmx
+   smtlib2/v6_response/dolmen_smtlib2_v6_response.cmxa
+   smtlib2/v6_response/dolmen_smtlib2_v6_response.ml
+   smtlib2/v6_response/dolmen_smtlib2_v6_response.mli
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__.cmi
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__.cmt
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__.cmx
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__.ml
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__Ast.cmi
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__Ast.cmt
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__Ast.cmx
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__Lexer.cmi
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__Lexer.cmt
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__Lexer.cmx
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__Parser.cmi
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__Parser.cmt
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__Parser.cmti
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__Parser.cmx
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__Syntax_messages.cmi
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__Syntax_messages.cmt
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__Syntax_messages.cmx
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__Tokens.cmi
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__Tokens.cmt
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__Tokens.cmti
+   smtlib2/v6_response/dolmen_smtlib2_v6_response__Tokens.cmx
+   smtlib2/v6_response/lexer.ml
+   smtlib2/v6_response/parser.ml
+   smtlib2/v6_response/parser.mli
+   smtlib2/v6_response/syntax_messages.ml
+   smtlib2/v6_response/tokens.ml
+   smtlib2/v6_response/tokens.mli
+   smtlib2/v6_script/ast.ml
+   smtlib2/v6_script/dolmen_smtlib2_v6_script.a
+   smtlib2/v6_script/dolmen_smtlib2_v6_script.cma
+   smtlib2/v6_script/dolmen_smtlib2_v6_script.cmi
+   smtlib2/v6_script/dolmen_smtlib2_v6_script.cmt
+   smtlib2/v6_script/dolmen_smtlib2_v6_script.cmti
+   smtlib2/v6_script/dolmen_smtlib2_v6_script.cmx
+   smtlib2/v6_script/dolmen_smtlib2_v6_script.cmxa
+   smtlib2/v6_script/dolmen_smtlib2_v6_script.ml
+   smtlib2/v6_script/dolmen_smtlib2_v6_script.mli
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__.cmi
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__.cmt
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__.cmx
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__.ml
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Ast.cmi
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Ast.cmt
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Ast.cmx
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Lexer.cmi
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Lexer.cmt
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Lexer.cmx
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Parser.cmi
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Parser.cmt
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Parser.cmti
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Parser.cmx
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Print.cmi
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Print.cmt
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Print.cmti
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Print.cmx
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Syntax_messages.cmi
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Syntax_messages.cmt
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Syntax_messages.cmx
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Tokens.cmi
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Tokens.cmt
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Tokens.cmti
+   smtlib2/v6_script/dolmen_smtlib2_v6_script__Tokens.cmx
+   smtlib2/v6_script/lexer.ml
+   smtlib2/v6_script/parser.ml
+   smtlib2/v6_script/parser.mli
+   smtlib2/v6_script/print.ml
+   smtlib2/v6_script/print.mli
+   smtlib2/v6_script/syntax_messages.ml
+   smtlib2/v6_script/tokens.ml
+   smtlib2/v6_script/tokens.mli
+   std/answer.ml
+   std/answer.mli
+   std/builtin.ml
+   std/builtin.mli
+   std/dolmen_std.a
+   std/dolmen_std.cma
+   std/dolmen_std.cmi
+   std/dolmen_std.cmt
+   std/dolmen_std.cmx
+   std/dolmen_std.cmxa
+   std/dolmen_std.ml
+   std/dolmen_std__Answer.cmi
+   std/dolmen_std__Answer.cmt
+   std/dolmen_std__Answer.cmti
+   std/dolmen_std__Answer.cmx
+   std/dolmen_std__Builtin.cmi
+   std/dolmen_std__Builtin.cmt
+   std/dolmen_std__Builtin.cmti
+   std/dolmen_std__Builtin.cmx
+   std/dolmen_std__Escape.cmi
+   std/dolmen_std__Escape.cmt
+   std/dolmen_std__Escape.cmti
+   std/dolmen_std__Escape.cmx
+   std/dolmen_std__Expr.cmi
+   std/dolmen_std__Expr.cmt
+   std/dolmen_std__Expr.cmti
+   std/dolmen_std__Expr.cmx
+   std/dolmen_std__Extensions.cmi
+   std/dolmen_std__Extensions.cmt
+   std/dolmen_std__Extensions.cmti
+   std/dolmen_std__Extensions.cmx
+   std/dolmen_std__Id.cmi
+   std/dolmen_std__Id.cmt
+   std/dolmen_std__Id.cmti
+   std/dolmen_std__Id.cmx
+   std/dolmen_std__Loc.cmi
+   std/dolmen_std__Loc.cmt
+   std/dolmen_std__Loc.cmti
+   std/dolmen_std__Loc.cmx
+   std/dolmen_std__Maps.cmi
+   std/dolmen_std__Maps.cmt
+   std/dolmen_std__Maps.cmti
+   std/dolmen_std__Maps.cmx
+   std/dolmen_std__Maps_string.cmi
+   std/dolmen_std__Maps_string.cmt
+   std/dolmen_std__Maps_string.cmti
+   std/dolmen_std__Maps_string.cmx
+   std/dolmen_std__Misc.cmi
+   std/dolmen_std__Misc.cmt
+   std/dolmen_std__Misc.cmti
+   std/dolmen_std__Misc.cmx
+   std/dolmen_std__Msg.cmi
+   std/dolmen_std__Msg.cmt
+   std/dolmen_std__Msg.cmx
+   std/dolmen_std__Name.cmi
+   std/dolmen_std__Name.cmt
+   std/dolmen_std__Name.cmti
+   std/dolmen_std__Name.cmx
+   std/dolmen_std__Namespace.cmi
+   std/dolmen_std__Namespace.cmt
+   std/dolmen_std__Namespace.cmti
+   std/dolmen_std__Namespace.cmx
+   std/dolmen_std__Normalize.cmi
+   std/dolmen_std__Normalize.cmt
+   std/dolmen_std__Normalize.cmti
+   std/dolmen_std__Normalize.cmx
+   std/dolmen_std__Path.cmi
+   std/dolmen_std__Path.cmt
+   std/dolmen_std__Path.cmti
+   std/dolmen_std__Path.cmx
+   std/dolmen_std__Pretty.cmi
+   std/dolmen_std__Pretty.cmt
+   std/dolmen_std__Pretty.cmx
+   std/dolmen_std__Statement.cmi
+   std/dolmen_std__Statement.cmt
+   std/dolmen_std__Statement.cmti
+   std/dolmen_std__Statement.cmx
+   std/dolmen_std__Stats.cmi
+   std/dolmen_std__Stats.cmt
+   std/dolmen_std__Stats.cmti
+   std/dolmen_std__Stats.cmx
+   std/dolmen_std__Tag.cmi
+   std/dolmen_std__Tag.cmt
+   std/dolmen_std__Tag.cmti
+   std/dolmen_std__Tag.cmx
+   std/dolmen_std__Term.cmi
+   std/dolmen_std__Term.cmt
+   std/dolmen_std__Term.cmti
+   std/dolmen_std__Term.cmx
+   std/dolmen_std__Timer.cmi
+   std/dolmen_std__Timer.cmt
+   std/dolmen_std__Timer.cmti
+   std/dolmen_std__Timer.cmx
+   std/dolmen_std__Tok.cmi
+   std/dolmen_std__Tok.cmt
+   std/dolmen_std__Tok.cmx
+   std/dolmen_std__Transformer.cmi
+   std/dolmen_std__Transformer.cmt
+   std/dolmen_std__Transformer.cmx
+   std/dolmen_std__Vec.cmi
+   std/dolmen_std__Vec.cmt
+   std/dolmen_std__Vec.cmti
+   std/dolmen_std__Vec.cmx
+   std/escape.ml
+   std/escape.mli
+   std/expr.ml
+   std/expr.mli
+   std/extensions.ml
+   std/extensions.mli
+   std/id.ml
+   std/id.mli
+   std/loc.ml
+   std/loc.mli
+   std/maps.ml
+   std/maps.mli
+   std/maps_string.ml
+   std/maps_string.mli
+   std/misc.ml
+   std/misc.mli
+   std/msg.ml
+   std/name.ml
+   std/name.mli
+   std/namespace.ml
+   std/namespace.mli
+   std/normalize.ml
+   std/normalize.mli
+   std/path.ml
+   std/path.mli
+   std/pretty.ml
+   std/statement.ml
+   std/statement.mli
+   std/stats.ml
+   std/stats.mli
+   std/tag.ml
+   std/tag.mli
+   std/term.ml
+   std/term.mli
+   std/timer.ml
+   std/timer.mli
+   std/tok.ml
+   std/transformer.ml
+   std/vec.ml
+   std/vec.mli
+   tptp/dolmen_tptp.a
+   tptp/dolmen_tptp.cma
+   tptp/dolmen_tptp.cmi
+   tptp/dolmen_tptp.cmt
+   tptp/dolmen_tptp.cmx
+   tptp/dolmen_tptp.cmxa
+   tptp/dolmen_tptp.ml
+   tptp/v6_3_0/ast.ml
+   tptp/v6_3_0/dolmen_tptp_v6_3_0.a
+   tptp/v6_3_0/dolmen_tptp_v6_3_0.cma
+   tptp/v6_3_0/dolmen_tptp_v6_3_0.cmi
+   tptp/v6_3_0/dolmen_tptp_v6_3_0.cmt
+   tptp/v6_3_0/dolmen_tptp_v6_3_0.cmti
+   tptp/v6_3_0/dolmen_tptp_v6_3_0.cmx
+   tptp/v6_3_0/dolmen_tptp_v6_3_0.cmxa
+   tptp/v6_3_0/dolmen_tptp_v6_3_0.ml
+   tptp/v6_3_0/dolmen_tptp_v6_3_0.mli
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__.cmi
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__.cmt
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__.cmx
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__.ml
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__Ast.cmi
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__Ast.cmt
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__Ast.cmx
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__Lexer.cmi
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__Lexer.cmt
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__Lexer.cmx
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__Parser.cmi
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__Parser.cmt
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__Parser.cmti
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__Parser.cmx
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__Syntax_messages.cmi
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__Syntax_messages.cmt
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__Syntax_messages.cmx
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__Tokens.cmi
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__Tokens.cmt
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__Tokens.cmti
+   tptp/v6_3_0/dolmen_tptp_v6_3_0__Tokens.cmx
+   tptp/v6_3_0/lexer.ml
+   tptp/v6_3_0/parser.ml
+   tptp/v6_3_0/parser.mli
+   tptp/v6_3_0/syntax_messages.ml
+   tptp/v6_3_0/tokens.ml
+   tptp/v6_3_0/tokens.mli
+   zf/ast.ml
+   zf/dolmen_zf.a
+   zf/dolmen_zf.cma
+   zf/dolmen_zf.cmi
+   zf/dolmen_zf.cmt
+   zf/dolmen_zf.cmti
+   zf/dolmen_zf.cmx
+   zf/dolmen_zf.cmxa
+   zf/dolmen_zf.ml
+   zf/dolmen_zf.mli
+   zf/dolmen_zf__.cmi
+   zf/dolmen_zf__.cmt
+   zf/dolmen_zf__.cmx
+   zf/dolmen_zf__.ml
+   zf/dolmen_zf__Ast.cmi
+   zf/dolmen_zf__Ast.cmt
+   zf/dolmen_zf__Ast.cmx
+   zf/dolmen_zf__Lexer.cmi
+   zf/dolmen_zf__Lexer.cmt
+   zf/dolmen_zf__Lexer.cmx
+   zf/dolmen_zf__Parser.cmi
+   zf/dolmen_zf__Parser.cmt
+   zf/dolmen_zf__Parser.cmti
+   zf/dolmen_zf__Parser.cmx
+   zf/dolmen_zf__Syntax_messages.cmi
+   zf/dolmen_zf__Syntax_messages.cmt
+   zf/dolmen_zf__Syntax_messages.cmx
+   zf/dolmen_zf__Tokens.cmi
+   zf/dolmen_zf__Tokens.cmt
+   zf/dolmen_zf__Tokens.cmti
+   zf/dolmen_zf__Tokens.cmx
+   zf/lexer.ml
+   zf/parser.ml
+   zf/parser.mli
+   zf/syntax_messages.ml
+   zf/tokens.ml
+   zf/tokens.mli))
+ (libexec
+  (ae/dolmen_ae.cmxs
+   class/dolmen_class.cmxs
+   dimacs/dolmen_dimacs.cmxs
+   dolmen.cmxs
+   icnf/dolmen_icnf.cmxs
+   intf/dolmen_intf.cmxs
+   line/dolmen_line.cmxs
+   smtlib2/dolmen_smtlib2.cmxs
+   smtlib2/poly/dolmen_smtlib2_poly.cmxs
+   smtlib2/v6/dolmen_smtlib2_v6.cmxs
+   smtlib2/v6_response/dolmen_smtlib2_v6_response.cmxs
+   smtlib2/v6_script/dolmen_smtlib2_v6_script.cmxs
+   std/dolmen_std.cmxs
+   tptp/dolmen_tptp.cmxs
+   tptp/v6_3_0/dolmen_tptp_v6_3_0.cmxs
+   zf/dolmen_zf.cmxs))
+ (doc (CHANGES.md LICENSE README.md odoc-pages/index.mld)))
+(library
+ (name dolmen)
+ (kind normal)
+ (archives (byte dolmen.cma) (native dolmen.cmxa))
+ (plugins (byte dolmen.cma) (native dolmen.cmxs))
+ (native_archives dolmen.a)
+ (requires
+  dolmen.intf
+  dolmen.std
+  dolmen.line
+  dolmen.ae
+  dolmen.dimacs
+  dolmen.icnf
+  dolmen.tptp
+  dolmen.smtlib2
+  dolmen.zf
+  dolmen.class)
+ (main_module_name Dolmen)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name dolmen)
+   (visibility public)
+   (source (path Dolmen) (impl (path dolmen.ml))))))
+(library
+ (name dolmen.ae)
+ (kind normal)
+ (archives (byte ae/dolmen_ae.cma) (native ae/dolmen_ae.cmxa))
+ (plugins (byte ae/dolmen_ae.cma) (native ae/dolmen_ae.cmxs))
+ (native_archives ae/dolmen_ae.a)
+ (requires dolmen.std dolmen.intf menhirLib)
+ (main_module_name Dolmen_ae)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dolmen_ae__)
+     (visibility public)
+     (kind alias)
+     (source (path Dolmen_ae__) (impl (path ae/dolmen_ae__.ml-gen))))
+    (name Dolmen_ae)
+    (modules
+     (module
+      (obj_name dolmen_ae__Ast)
+      (visibility public)
+      (source (path Ast) (impl (path ae/ast.ml))))
+     (module
+      (obj_name dolmen_ae)
+      (visibility public)
+      (source
+       (path Dolmen_ae)
+       (intf (path ae/dolmen_ae.mli))
+       (impl (path ae/dolmen_ae.ml))))
+     (module
+      (obj_name dolmen_ae__Lexer)
+      (visibility public)
+      (source (path Lexer) (impl (path ae/lexer.ml))))
+     (module
+      (obj_name dolmen_ae__Parser)
+      (visibility public)
+      (source
+       (path Parser)
+       (intf (path ae/parser.mli))
+       (impl (path ae/parser.ml))))
+     (module
+      (obj_name dolmen_ae__Syntax_messages)
+      (visibility public)
+      (source (path Syntax_messages) (impl (path ae/syntax_messages.ml))))
+     (module
+      (obj_name dolmen_ae__Tokens)
+      (visibility public)
+      (source
+       (path Tokens)
+       (intf (path ae/tokens.mli))
+       (impl (path ae/tokens.ml))))))
+   (wrapped true))))
+(library
+ (name dolmen.class)
+ (kind normal)
+ (archives (byte class/dolmen_class.cma) (native class/dolmen_class.cmxa))
+ (plugins (byte class/dolmen_class.cma) (native class/dolmen_class.cmxs))
+ (native_archives class/dolmen_class.a)
+ (requires
+  dolmen.intf
+  dolmen.std
+  dolmen.ae
+  dolmen.dimacs
+  dolmen.icnf
+  dolmen.zf
+  dolmen.smtlib2
+  dolmen.smtlib2.poly
+  dolmen.smtlib2.v6
+  dolmen.smtlib2.v6_script
+  dolmen.smtlib2.v6_response
+  dolmen.tptp
+  dolmen.tptp.v6_3_0
+  menhirLib)
+ (main_module_name Dolmen_class)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dolmen_class)
+     (visibility public)
+     (kind alias)
+     (source (path Dolmen_class) (impl (path class/dolmen_class.ml-gen))))
+    (name Dolmen_class)
+    (modules
+     (module
+      (obj_name dolmen_class__Logic)
+      (visibility public)
+      (source
+       (path Logic)
+       (intf (path class/logic.mli))
+       (impl (path class/logic.ml))))
+     (module
+      (obj_name dolmen_class__Response)
+      (visibility public)
+      (source
+       (path Response)
+       (intf (path class/response.mli))
+       (impl (path class/response.ml))))))
+   (wrapped true))))
+(library
+ (name dolmen.dimacs)
+ (kind normal)
+ (archives (byte dimacs/dolmen_dimacs.cma) (native dimacs/dolmen_dimacs.cmxa))
+ (plugins (byte dimacs/dolmen_dimacs.cma) (native dimacs/dolmen_dimacs.cmxs))
+ (native_archives dimacs/dolmen_dimacs.a)
+ (requires dolmen.std dolmen.intf menhirLib)
+ (main_module_name Dolmen_dimacs)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dolmen_dimacs__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Dolmen_dimacs__)
+      (impl (path dimacs/dolmen_dimacs__.ml-gen))))
+    (name Dolmen_dimacs)
+    (modules
+     (module
+      (obj_name dolmen_dimacs__Ast)
+      (visibility public)
+      (source (path Ast) (impl (path dimacs/ast.ml))))
+     (module
+      (obj_name dolmen_dimacs)
+      (visibility public)
+      (source
+       (path Dolmen_dimacs)
+       (intf (path dimacs/dolmen_dimacs.mli))
+       (impl (path dimacs/dolmen_dimacs.ml))))
+     (module
+      (obj_name dolmen_dimacs__Lexer)
+      (visibility public)
+      (source (path Lexer) (impl (path dimacs/lexer.ml))))
+     (module
+      (obj_name dolmen_dimacs__Parser)
+      (visibility public)
+      (source
+       (path Parser)
+       (intf (path dimacs/parser.mli))
+       (impl (path dimacs/parser.ml))))
+     (module
+      (obj_name dolmen_dimacs__Syntax_messages)
+      (visibility public)
+      (source (path Syntax_messages) (impl (path dimacs/syntax_messages.ml))))
+     (module
+      (obj_name dolmen_dimacs__Tokens)
+      (visibility public)
+      (source
+       (path Tokens)
+       (intf (path dimacs/tokens.mli))
+       (impl (path dimacs/tokens.ml))))))
+   (wrapped true))))
+(library
+ (name dolmen.icnf)
+ (kind normal)
+ (archives (byte icnf/dolmen_icnf.cma) (native icnf/dolmen_icnf.cmxa))
+ (plugins (byte icnf/dolmen_icnf.cma) (native icnf/dolmen_icnf.cmxs))
+ (native_archives icnf/dolmen_icnf.a)
+ (requires dolmen.std dolmen.intf menhirLib)
+ (main_module_name Dolmen_icnf)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dolmen_icnf__)
+     (visibility public)
+     (kind alias)
+     (source (path Dolmen_icnf__) (impl (path icnf/dolmen_icnf__.ml-gen))))
+    (name Dolmen_icnf)
+    (modules
+     (module
+      (obj_name dolmen_icnf__Ast)
+      (visibility public)
+      (source (path Ast) (impl (path icnf/ast.ml))))
+     (module
+      (obj_name dolmen_icnf)
+      (visibility public)
+      (source
+       (path Dolmen_icnf)
+       (intf (path icnf/dolmen_icnf.mli))
+       (impl (path icnf/dolmen_icnf.ml))))
+     (module
+      (obj_name dolmen_icnf__Lexer)
+      (visibility public)
+      (source (path Lexer) (impl (path icnf/lexer.ml))))
+     (module
+      (obj_name dolmen_icnf__Parser)
+      (visibility public)
+      (source
+       (path Parser)
+       (intf (path icnf/parser.mli))
+       (impl (path icnf/parser.ml))))
+     (module
+      (obj_name dolmen_icnf__Syntax_messages)
+      (visibility public)
+      (source (path Syntax_messages) (impl (path icnf/syntax_messages.ml))))
+     (module
+      (obj_name dolmen_icnf__Tokens)
+      (visibility public)
+      (source
+       (path Tokens)
+       (intf (path icnf/tokens.mli))
+       (impl (path icnf/tokens.ml))))))
+   (wrapped true))))
+(library
+ (name dolmen.intf)
+ (kind normal)
+ (archives (byte intf/dolmen_intf.cma) (native intf/dolmen_intf.cmxa))
+ (plugins (byte intf/dolmen_intf.cma) (native intf/dolmen_intf.cmxs))
+ (native_archives intf/dolmen_intf.a)
+ (requires menhirLib)
+ (main_module_name Dolmen_intf)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dolmen_intf)
+     (visibility public)
+     (kind alias)
+     (source (path Dolmen_intf) (impl (path intf/dolmen_intf.ml-gen))))
+    (name Dolmen_intf)
+    (modules
+     (module
+      (obj_name dolmen_intf__Ext)
+      (visibility public)
+      (source (path Ext) (impl (path intf/ext.ml))))
+     (module
+      (obj_name dolmen_intf__Id)
+      (visibility public)
+      (source (path Id) (impl (path intf/id.ml))))
+     (module
+      (obj_name dolmen_intf__Language)
+      (visibility public)
+      (source (path Language) (impl (path intf/language.ml))))
+     (module
+      (obj_name dolmen_intf__Lex)
+      (visibility public)
+      (source (path Lex) (impl (path intf/lex.ml))))
+     (module
+      (obj_name dolmen_intf__Location)
+      (visibility public)
+      (source (path Location) (impl (path intf/location.ml))))
+     (module
+      (obj_name dolmen_intf__Map)
+      (visibility public)
+      (source (path Map) (impl (path intf/map.ml))))
+     (module
+      (obj_name dolmen_intf__Msg)
+      (visibility public)
+      (source (path Msg) (impl (path intf/msg.ml))))
+     (module
+      (obj_name dolmen_intf__Parse)
+      (visibility public)
+      (source (path Parse) (impl (path intf/parse.ml))))
+     (module
+      (obj_name dolmen_intf__Pretty)
+      (visibility public)
+      (source (path Pretty) (impl (path intf/pretty.ml))))
+     (module
+      (obj_name dolmen_intf__Stmt)
+      (visibility public)
+      (source (path Stmt) (impl (path intf/stmt.ml))))
+     (module
+      (obj_name dolmen_intf__Tag)
+      (visibility public)
+      (source (path Tag) (impl (path intf/tag.ml))))
+     (module
+      (obj_name dolmen_intf__Term)
+      (visibility public)
+      (source (path Term) (impl (path intf/term.ml))))
+     (module
+      (obj_name dolmen_intf__Tok)
+      (visibility public)
+      (source (path Tok) (impl (path intf/tok.ml))))
+     (module
+      (obj_name dolmen_intf__Ty)
+      (visibility public)
+      (source (path Ty) (impl (path intf/ty.ml))))))
+   (wrapped true))))
+(library
+ (name dolmen.line)
+ (kind normal)
+ (archives (byte line/dolmen_line.cma) (native line/dolmen_line.cmxa))
+ (plugins (byte line/dolmen_line.cma) (native line/dolmen_line.cmxs))
+ (native_archives line/dolmen_line.a)
+ (main_module_name Dolmen_line)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dolmen_line__)
+     (visibility public)
+     (kind alias)
+     (source (path Dolmen_line__) (impl (path line/dolmen_line__.ml-gen))))
+    (name Dolmen_line)
+    (modules
+     (module
+      (obj_name dolmen_line)
+      (visibility public)
+      (source
+       (path Dolmen_line)
+       (intf (path line/dolmen_line.mli))
+       (impl (path line/dolmen_line.ml))))
+     (module
+      (obj_name dolmen_line__LexLine)
+      (visibility public)
+      (source (path LexLine) (impl (path line/lexLine.ml))))))
+   (wrapped true))))
+(library
+ (name dolmen.smtlib2)
+ (kind normal)
+ (archives
+  (byte smtlib2/dolmen_smtlib2.cma)
+  (native smtlib2/dolmen_smtlib2.cmxa))
+ (plugins
+  (byte smtlib2/dolmen_smtlib2.cma)
+  (native smtlib2/dolmen_smtlib2.cmxs))
+ (native_archives smtlib2/dolmen_smtlib2.a)
+ (requires dolmen.smtlib2.v6 dolmen.smtlib2.poly)
+ (main_module_name Dolmen_smtlib2)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name dolmen_smtlib2)
+   (visibility public)
+   (source (path Dolmen_smtlib2) (impl (path smtlib2/dolmen_smtlib2.ml))))))
+(library
+ (name dolmen.smtlib2.poly)
+ (kind normal)
+ (archives
+  (byte smtlib2/poly/dolmen_smtlib2_poly.cma)
+  (native smtlib2/poly/dolmen_smtlib2_poly.cmxa))
+ (plugins
+  (byte smtlib2/poly/dolmen_smtlib2_poly.cma)
+  (native smtlib2/poly/dolmen_smtlib2_poly.cmxs))
+ (native_archives smtlib2/poly/dolmen_smtlib2_poly.a)
+ (requires dolmen.std dolmen.intf menhirLib)
+ (main_module_name Dolmen_smtlib2_poly)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dolmen_smtlib2_poly__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Dolmen_smtlib2_poly__)
+      (impl (path smtlib2/poly/dolmen_smtlib2_poly__.ml-gen))))
+    (name Dolmen_smtlib2_poly)
+    (modules
+     (module
+      (obj_name dolmen_smtlib2_poly__Ast)
+      (visibility public)
+      (source (path Ast) (impl (path smtlib2/poly/ast.ml))))
+     (module
+      (obj_name dolmen_smtlib2_poly)
+      (visibility public)
+      (source
+       (path Dolmen_smtlib2_poly)
+       (intf (path smtlib2/poly/dolmen_smtlib2_poly.mli))
+       (impl (path smtlib2/poly/dolmen_smtlib2_poly.ml))))
+     (module
+      (obj_name dolmen_smtlib2_poly__Lexer)
+      (visibility public)
+      (source (path Lexer) (impl (path smtlib2/poly/lexer.ml))))
+     (module
+      (obj_name dolmen_smtlib2_poly__Parser)
+      (visibility public)
+      (source
+       (path Parser)
+       (intf (path smtlib2/poly/parser.mli))
+       (impl (path smtlib2/poly/parser.ml))))
+     (module
+      (obj_name dolmen_smtlib2_poly__Print)
+      (visibility public)
+      (source (path Print) (impl (path smtlib2/poly/print.ml))))
+     (module
+      (obj_name dolmen_smtlib2_poly__Syntax_messages)
+      (visibility public)
+      (source
+       (path Syntax_messages)
+       (impl (path smtlib2/poly/syntax_messages.ml))))
+     (module
+      (obj_name dolmen_smtlib2_poly__Tokens)
+      (visibility public)
+      (source
+       (path Tokens)
+       (intf (path smtlib2/poly/tokens.mli))
+       (impl (path smtlib2/poly/tokens.ml))))))
+   (wrapped true))))
+(library
+ (name dolmen.smtlib2.v6)
+ (kind normal)
+ (archives
+  (byte smtlib2/v6/dolmen_smtlib2_v6.cma)
+  (native smtlib2/v6/dolmen_smtlib2_v6.cmxa))
+ (plugins
+  (byte smtlib2/v6/dolmen_smtlib2_v6.cma)
+  (native smtlib2/v6/dolmen_smtlib2_v6.cmxs))
+ (native_archives smtlib2/v6/dolmen_smtlib2_v6.a)
+ (requires dolmen.smtlib2.v6_script dolmen.smtlib2.v6_response)
+ (main_module_name Dolmen_smtlib2_v6)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name dolmen_smtlib2_v6)
+   (visibility public)
+   (source
+    (path Dolmen_smtlib2_v6)
+    (impl (path smtlib2/v6/dolmen_smtlib2_v6.ml))))))
+(library
+ (name dolmen.smtlib2.v6_response)
+ (kind normal)
+ (archives
+  (byte smtlib2/v6_response/dolmen_smtlib2_v6_response.cma)
+  (native smtlib2/v6_response/dolmen_smtlib2_v6_response.cmxa))
+ (plugins
+  (byte smtlib2/v6_response/dolmen_smtlib2_v6_response.cma)
+  (native smtlib2/v6_response/dolmen_smtlib2_v6_response.cmxs))
+ (native_archives smtlib2/v6_response/dolmen_smtlib2_v6_response.a)
+ (requires dolmen.std dolmen.intf menhirLib)
+ (main_module_name Dolmen_smtlib2_v6_response)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dolmen_smtlib2_v6_response__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Dolmen_smtlib2_v6_response__)
+      (impl (path smtlib2/v6_response/dolmen_smtlib2_v6_response__.ml-gen))))
+    (name Dolmen_smtlib2_v6_response)
+    (modules
+     (module
+      (obj_name dolmen_smtlib2_v6_response__Ast)
+      (visibility public)
+      (source (path Ast) (impl (path smtlib2/v6_response/ast.ml))))
+     (module
+      (obj_name dolmen_smtlib2_v6_response)
+      (visibility public)
+      (source
+       (path Dolmen_smtlib2_v6_response)
+       (intf (path smtlib2/v6_response/dolmen_smtlib2_v6_response.mli))
+       (impl (path smtlib2/v6_response/dolmen_smtlib2_v6_response.ml))))
+     (module
+      (obj_name dolmen_smtlib2_v6_response__Lexer)
+      (visibility public)
+      (source (path Lexer) (impl (path smtlib2/v6_response/lexer.ml))))
+     (module
+      (obj_name dolmen_smtlib2_v6_response__Parser)
+      (visibility public)
+      (source
+       (path Parser)
+       (intf (path smtlib2/v6_response/parser.mli))
+       (impl (path smtlib2/v6_response/parser.ml))))
+     (module
+      (obj_name dolmen_smtlib2_v6_response__Syntax_messages)
+      (visibility public)
+      (source
+       (path Syntax_messages)
+       (impl (path smtlib2/v6_response/syntax_messages.ml))))
+     (module
+      (obj_name dolmen_smtlib2_v6_response__Tokens)
+      (visibility public)
+      (source
+       (path Tokens)
+       (intf (path smtlib2/v6_response/tokens.mli))
+       (impl (path smtlib2/v6_response/tokens.ml))))))
+   (wrapped true))))
+(library
+ (name dolmen.smtlib2.v6_script)
+ (kind normal)
+ (archives
+  (byte smtlib2/v6_script/dolmen_smtlib2_v6_script.cma)
+  (native smtlib2/v6_script/dolmen_smtlib2_v6_script.cmxa))
+ (plugins
+  (byte smtlib2/v6_script/dolmen_smtlib2_v6_script.cma)
+  (native smtlib2/v6_script/dolmen_smtlib2_v6_script.cmxs))
+ (native_archives smtlib2/v6_script/dolmen_smtlib2_v6_script.a)
+ (requires dolmen.std dolmen.intf menhirLib)
+ (main_module_name Dolmen_smtlib2_v6_script)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dolmen_smtlib2_v6_script__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Dolmen_smtlib2_v6_script__)
+      (impl (path smtlib2/v6_script/dolmen_smtlib2_v6_script__.ml-gen))))
+    (name Dolmen_smtlib2_v6_script)
+    (modules
+     (module
+      (obj_name dolmen_smtlib2_v6_script__Ast)
+      (visibility public)
+      (source (path Ast) (impl (path smtlib2/v6_script/ast.ml))))
+     (module
+      (obj_name dolmen_smtlib2_v6_script)
+      (visibility public)
+      (source
+       (path Dolmen_smtlib2_v6_script)
+       (intf (path smtlib2/v6_script/dolmen_smtlib2_v6_script.mli))
+       (impl (path smtlib2/v6_script/dolmen_smtlib2_v6_script.ml))))
+     (module
+      (obj_name dolmen_smtlib2_v6_script__Lexer)
+      (visibility public)
+      (source (path Lexer) (impl (path smtlib2/v6_script/lexer.ml))))
+     (module
+      (obj_name dolmen_smtlib2_v6_script__Parser)
+      (visibility public)
+      (source
+       (path Parser)
+       (intf (path smtlib2/v6_script/parser.mli))
+       (impl (path smtlib2/v6_script/parser.ml))))
+     (module
+      (obj_name dolmen_smtlib2_v6_script__Print)
+      (visibility public)
+      (source
+       (path Print)
+       (intf (path smtlib2/v6_script/print.mli))
+       (impl (path smtlib2/v6_script/print.ml))))
+     (module
+      (obj_name dolmen_smtlib2_v6_script__Syntax_messages)
+      (visibility public)
+      (source
+       (path Syntax_messages)
+       (impl (path smtlib2/v6_script/syntax_messages.ml))))
+     (module
+      (obj_name dolmen_smtlib2_v6_script__Tokens)
+      (visibility public)
+      (source
+       (path Tokens)
+       (intf (path smtlib2/v6_script/tokens.mli))
+       (impl (path smtlib2/v6_script/tokens.ml))))))
+   (wrapped true))))
+(library
+ (name dolmen.std)
+ (kind normal)
+ (archives (byte std/dolmen_std.cma) (native std/dolmen_std.cmxa))
+ (plugins (byte std/dolmen_std.cma) (native std/dolmen_std.cmxs))
+ (native_archives std/dolmen_std.a)
+ (requires dolmen.intf dolmen.line hmap unix fmt)
+ (main_module_name Dolmen_std)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dolmen_std)
+     (visibility public)
+     (kind alias)
+     (source (path Dolmen_std) (impl (path std/dolmen_std.ml-gen))))
+    (name Dolmen_std)
+    (modules
+     (module
+      (obj_name dolmen_std__Answer)
+      (visibility public)
+      (source
+       (path Answer)
+       (intf (path std/answer.mli))
+       (impl (path std/answer.ml))))
+     (module
+      (obj_name dolmen_std__Builtin)
+      (visibility public)
+      (source
+       (path Builtin)
+       (intf (path std/builtin.mli))
+       (impl (path std/builtin.ml))))
+     (module
+      (obj_name dolmen_std__Escape)
+      (visibility public)
+      (source
+       (path Escape)
+       (intf (path std/escape.mli))
+       (impl (path std/escape.ml))))
+     (module
+      (obj_name dolmen_std__Expr)
+      (visibility public)
+      (source
+       (path Expr)
+       (intf (path std/expr.mli))
+       (impl (path std/expr.ml))))
+     (module
+      (obj_name dolmen_std__Extensions)
+      (visibility public)
+      (source
+       (path Extensions)
+       (intf (path std/extensions.mli))
+       (impl (path std/extensions.ml))))
+     (module
+      (obj_name dolmen_std__Id)
+      (visibility public)
+      (source (path Id) (intf (path std/id.mli)) (impl (path std/id.ml))))
+     (module
+      (obj_name dolmen_std__Loc)
+      (visibility public)
+      (source (path Loc) (intf (path std/loc.mli)) (impl (path std/loc.ml))))
+     (module
+      (obj_name dolmen_std__Maps)
+      (visibility public)
+      (source
+       (path Maps)
+       (intf (path std/maps.mli))
+       (impl (path std/maps.ml))))
+     (module
+      (obj_name dolmen_std__Maps_string)
+      (visibility public)
+      (source
+       (path Maps_string)
+       (intf (path std/maps_string.mli))
+       (impl (path std/maps_string.ml))))
+     (module
+      (obj_name dolmen_std__Misc)
+      (visibility public)
+      (source
+       (path Misc)
+       (intf (path std/misc.mli))
+       (impl (path std/misc.ml))))
+     (module
+      (obj_name dolmen_std__Msg)
+      (visibility public)
+      (source (path Msg) (impl (path std/msg.ml))))
+     (module
+      (obj_name dolmen_std__Name)
+      (visibility public)
+      (source
+       (path Name)
+       (intf (path std/name.mli))
+       (impl (path std/name.ml))))
+     (module
+      (obj_name dolmen_std__Namespace)
+      (visibility public)
+      (source
+       (path Namespace)
+       (intf (path std/namespace.mli))
+       (impl (path std/namespace.ml))))
+     (module
+      (obj_name dolmen_std__Normalize)
+      (visibility public)
+      (source
+       (path Normalize)
+       (intf (path std/normalize.mli))
+       (impl (path std/normalize.ml))))
+     (module
+      (obj_name dolmen_std__Path)
+      (visibility public)
+      (source
+       (path Path)
+       (intf (path std/path.mli))
+       (impl (path std/path.ml))))
+     (module
+      (obj_name dolmen_std__Pretty)
+      (visibility public)
+      (source (path Pretty) (impl (path std/pretty.ml))))
+     (module
+      (obj_name dolmen_std__Statement)
+      (visibility public)
+      (source
+       (path Statement)
+       (intf (path std/statement.mli))
+       (impl (path std/statement.ml))))
+     (module
+      (obj_name dolmen_std__Stats)
+      (visibility public)
+      (source
+       (path Stats)
+       (intf (path std/stats.mli))
+       (impl (path std/stats.ml))))
+     (module
+      (obj_name dolmen_std__Tag)
+      (visibility public)
+      (source (path Tag) (intf (path std/tag.mli)) (impl (path std/tag.ml))))
+     (module
+      (obj_name dolmen_std__Term)
+      (visibility public)
+      (source
+       (path Term)
+       (intf (path std/term.mli))
+       (impl (path std/term.ml))))
+     (module
+      (obj_name dolmen_std__Timer)
+      (visibility public)
+      (source
+       (path Timer)
+       (intf (path std/timer.mli))
+       (impl (path std/timer.ml))))
+     (module
+      (obj_name dolmen_std__Tok)
+      (visibility public)
+      (source (path Tok) (impl (path std/tok.ml))))
+     (module
+      (obj_name dolmen_std__Transformer)
+      (visibility public)
+      (source (path Transformer) (impl (path std/transformer.ml))))
+     (module
+      (obj_name dolmen_std__Vec)
+      (visibility public)
+      (source (path Vec) (intf (path std/vec.mli)) (impl (path std/vec.ml))))))
+   (wrapped true))))
+(library
+ (name dolmen.tptp)
+ (kind normal)
+ (archives (byte tptp/dolmen_tptp.cma) (native tptp/dolmen_tptp.cmxa))
+ (plugins (byte tptp/dolmen_tptp.cma) (native tptp/dolmen_tptp.cmxs))
+ (native_archives tptp/dolmen_tptp.a)
+ (requires dolmen.tptp.v6_3_0)
+ (main_module_name Dolmen_tptp)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name dolmen_tptp)
+   (visibility public)
+   (source (path Dolmen_tptp) (impl (path tptp/dolmen_tptp.ml))))))
+(library
+ (name dolmen.tptp.v6_3_0)
+ (kind normal)
+ (archives
+  (byte tptp/v6_3_0/dolmen_tptp_v6_3_0.cma)
+  (native tptp/v6_3_0/dolmen_tptp_v6_3_0.cmxa))
+ (plugins
+  (byte tptp/v6_3_0/dolmen_tptp_v6_3_0.cma)
+  (native tptp/v6_3_0/dolmen_tptp_v6_3_0.cmxs))
+ (native_archives tptp/v6_3_0/dolmen_tptp_v6_3_0.a)
+ (requires dolmen.std dolmen.intf menhirLib)
+ (main_module_name Dolmen_tptp_v6_3_0)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dolmen_tptp_v6_3_0__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Dolmen_tptp_v6_3_0__)
+      (impl (path tptp/v6_3_0/dolmen_tptp_v6_3_0__.ml-gen))))
+    (name Dolmen_tptp_v6_3_0)
+    (modules
+     (module
+      (obj_name dolmen_tptp_v6_3_0__Ast)
+      (visibility public)
+      (source (path Ast) (impl (path tptp/v6_3_0/ast.ml))))
+     (module
+      (obj_name dolmen_tptp_v6_3_0)
+      (visibility public)
+      (source
+       (path Dolmen_tptp_v6_3_0)
+       (intf (path tptp/v6_3_0/dolmen_tptp_v6_3_0.mli))
+       (impl (path tptp/v6_3_0/dolmen_tptp_v6_3_0.ml))))
+     (module
+      (obj_name dolmen_tptp_v6_3_0__Lexer)
+      (visibility public)
+      (source (path Lexer) (impl (path tptp/v6_3_0/lexer.ml))))
+     (module
+      (obj_name dolmen_tptp_v6_3_0__Parser)
+      (visibility public)
+      (source
+       (path Parser)
+       (intf (path tptp/v6_3_0/parser.mli))
+       (impl (path tptp/v6_3_0/parser.ml))))
+     (module
+      (obj_name dolmen_tptp_v6_3_0__Syntax_messages)
+      (visibility public)
+      (source
+       (path Syntax_messages)
+       (impl (path tptp/v6_3_0/syntax_messages.ml))))
+     (module
+      (obj_name dolmen_tptp_v6_3_0__Tokens)
+      (visibility public)
+      (source
+       (path Tokens)
+       (intf (path tptp/v6_3_0/tokens.mli))
+       (impl (path tptp/v6_3_0/tokens.ml))))))
+   (wrapped true))))
+(library
+ (name dolmen.zf)
+ (kind normal)
+ (archives (byte zf/dolmen_zf.cma) (native zf/dolmen_zf.cmxa))
+ (plugins (byte zf/dolmen_zf.cma) (native zf/dolmen_zf.cmxs))
+ (native_archives zf/dolmen_zf.a)
+ (requires dolmen.std dolmen.intf menhirLib)
+ (main_module_name Dolmen_zf)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dolmen_zf__)
+     (visibility public)
+     (kind alias)
+     (source (path Dolmen_zf__) (impl (path zf/dolmen_zf__.ml-gen))))
+    (name Dolmen_zf)
+    (modules
+     (module
+      (obj_name dolmen_zf__Ast)
+      (visibility public)
+      (source (path Ast) (impl (path zf/ast.ml))))
+     (module
+      (obj_name dolmen_zf)
+      (visibility public)
+      (source
+       (path Dolmen_zf)
+       (intf (path zf/dolmen_zf.mli))
+       (impl (path zf/dolmen_zf.ml))))
+     (module
+      (obj_name dolmen_zf__Lexer)
+      (visibility public)
+      (source (path Lexer) (impl (path zf/lexer.ml))))
+     (module
+      (obj_name dolmen_zf__Parser)
+      (visibility public)
+      (source
+       (path Parser)
+       (intf (path zf/parser.mli))
+       (impl (path zf/parser.ml))))
+     (module
+      (obj_name dolmen_zf__Syntax_messages)
+      (visibility public)
+      (source (path Syntax_messages) (impl (path zf/syntax_messages.ml))))
+     (module
+      (obj_name dolmen_zf__Tokens)
+      (visibility public)
+      (source
+       (path Tokens)
+       (intf (path zf/tokens.mli))
+       (impl (path zf/tokens.ml))))))
+   (wrapped true))))

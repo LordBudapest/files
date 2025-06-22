@@ -1,0 +1,42 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_deriving_yaml" {"D"}
+  "doc/ppx_deriving_yaml/CHANGES.md" {"F:S1455T1750607166.33"}
+  "doc/ppx_deriving_yaml/LICENSE.md" {"F:S754T1750607166.33"}
+  "doc/ppx_deriving_yaml/README.md" {"F:S846T1750607166.33"}
+  "doc/ppx_deriving_yaml/odoc-pages" {"D"}
+  "doc/ppx_deriving_yaml/odoc-pages/index.mld" {"F:S5143T1750607166.33"}
+  "lib/ppx_deriving_yaml" {"D"}
+  "lib/ppx_deriving_yaml/META" {"F:S1018T1750607166.32"}
+  "lib/ppx_deriving_yaml/common" {"D"}
+  "lib/ppx_deriving_yaml/common/ppx_deriving_yaml_common.a"
+    {"F:S222522T1750607166.32"}
+  "lib/ppx_deriving_yaml/common/ppx_deriving_yaml_common.cma"
+    {"F:S222090T1750607166.33"}
+  "lib/ppx_deriving_yaml/common/ppx_deriving_yaml_common.cmi"
+    {"F:S7564T1750607166.33"}
+  "lib/ppx_deriving_yaml/common/ppx_deriving_yaml_common.cmt"
+    {"F:S534251T1750607166.33"}
+  "lib/ppx_deriving_yaml/common/ppx_deriving_yaml_common.cmti"
+    {"F:S26309T1750607166.33"}
+  "lib/ppx_deriving_yaml/common/ppx_deriving_yaml_common.cmx"
+    {"F:S10165T1750607166.33"}
+  "lib/ppx_deriving_yaml/common/ppx_deriving_yaml_common.cmxa"
+    {"F:S4190T1750607166.33"}
+  "lib/ppx_deriving_yaml/common/ppx_deriving_yaml_common.cmxs"
+    {"F:S215712T1750607166.33"}
+  "lib/ppx_deriving_yaml/common/ppx_deriving_yaml_common.ml"
+    {"F:S36503T1750607166.33"}
+  "lib/ppx_deriving_yaml/common/ppx_deriving_yaml_common.mli"
+    {"F:S1933T1750607166.33"}
+  "lib/ppx_deriving_yaml/dune-package" {"F:S2019T1750607166.33"}
+  "lib/ppx_deriving_yaml/opam" {"F:S887T1750607166.33"}
+  "lib/ppx_deriving_yaml/ppx_deriving_yaml.a" {"F:S12902T1750607166.33"}
+  "lib/ppx_deriving_yaml/ppx_deriving_yaml.cma" {"F:S17423T1750607166.33"}
+  "lib/ppx_deriving_yaml/ppx_deriving_yaml.cmi" {"F:S7856T1750607166.33"}
+  "lib/ppx_deriving_yaml/ppx_deriving_yaml.cmt" {"F:S46162T1750607166.33"}
+  "lib/ppx_deriving_yaml/ppx_deriving_yaml.cmx" {"F:S6854T1750607166.33"}
+  "lib/ppx_deriving_yaml/ppx_deriving_yaml.cmxa" {"F:S3613T1750607166.33"}
+  "lib/ppx_deriving_yaml/ppx_deriving_yaml.cmxs" {"F:S28960T1750607166.33"}
+  "lib/ppx_deriving_yaml/ppx_deriving_yaml.ml" {"F:S1523T1750607166.33"}
+]

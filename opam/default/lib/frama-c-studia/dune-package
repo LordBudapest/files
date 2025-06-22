@@ -1,0 +1,126 @@
+(lang dune 3.19)
+(name frama-c-studia)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-studia)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-studia))
+(files
+ (lib
+  (META
+   core/Studia.ml
+   core/options.ml
+   core/options.mli
+   core/reads.ml
+   core/reads.mli
+   core/studia.a
+   core/studia.cma
+   core/studia.cmi
+   core/studia.cmt
+   core/studia.cmx
+   core/studia.cmxa
+   core/studia__.cmi
+   core/studia__.cmt
+   core/studia__.cmx
+   core/studia__.ml
+   core/studia__Options.cmi
+   core/studia__Options.cmt
+   core/studia__Options.cmti
+   core/studia__Options.cmx
+   core/studia__Reads.cmi
+   core/studia__Reads.cmt
+   core/studia__Reads.cmti
+   core/studia__Reads.cmx
+   core/studia__Studia_request.cmi
+   core/studia__Studia_request.cmt
+   core/studia__Studia_request.cmti
+   core/studia__Studia_request.cmx
+   core/studia__Writes.cmi
+   core/studia__Writes.cmt
+   core/studia__Writes.cmti
+   core/studia__Writes.cmx
+   core/studia_request.ml
+   core/studia_request.mli
+   core/writes.ml
+   core/writes.mli
+   dune-package
+   gui/studia_gui.a
+   gui/studia_gui.cma
+   gui/studia_gui.cmi
+   gui/studia_gui.cmt
+   gui/studia_gui.cmti
+   gui/studia_gui.cmx
+   gui/studia_gui.cmxa
+   gui/studia_gui.ml
+   gui/studia_gui.mli
+   opam))
+ (lib_root (frama-c/plugins/studia/META frama-c/plugins_gui/studia-gui/META))
+ (libexec (core/studia.cmxs gui/studia_gui.cmxs)))
+(library
+ (name frama-c-studia.core)
+ (kind normal)
+ (archives (byte core/studia.cma) (native core/studia.cmxa))
+ (plugins (byte core/studia.cma) (native core/studia.cmxs))
+ (native_archives core/studia.a)
+ (requires frama-c.kernel frama-c-eva.core frama-c-inout.core)
+ (main_module_name Studia)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name studia__)
+     (visibility public)
+     (kind alias)
+     (source (path Studia__) (impl (path core/studia__.ml-gen))))
+    (name Studia)
+    (modules
+     (module
+      (obj_name studia__Options)
+      (visibility public)
+      (source
+       (path Options)
+       (intf (path core/options.mli))
+       (impl (path core/options.ml))))
+     (module
+      (obj_name studia__Reads)
+      (visibility public)
+      (source
+       (path Reads)
+       (intf (path core/reads.mli))
+       (impl (path core/reads.ml))))
+     (module
+      (obj_name studia)
+      (visibility public)
+      (source (path Studia) (impl (path core/Studia.ml))))
+     (module
+      (obj_name studia__Studia_request)
+      (visibility public)
+      (source
+       (path Studia_request)
+       (intf (path core/studia_request.mli))
+       (impl (path core/studia_request.ml))))
+     (module
+      (obj_name studia__Writes)
+      (visibility public)
+      (source
+       (path Writes)
+       (intf (path core/writes.mli))
+       (impl (path core/writes.ml))))))
+   (wrapped true))))
+(library
+ (name frama-c-studia.gui)
+ (kind normal)
+ (archives (byte gui/studia_gui.cma) (native gui/studia_gui.cmxa))
+ (plugins (byte gui/studia_gui.cma) (native gui/studia_gui.cmxs))
+ (native_archives gui/studia_gui.a)
+ (requires frama-c.kernel frama-c.gui frama-c-eva.gui frama-c-studia.core)
+ (main_module_name Studia_gui)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name studia_gui)
+   (visibility public)
+   (source
+    (path Studia_gui)
+    (intf (path gui/studia_gui.mli))
+    (impl (path gui/studia_gui.ml))))))

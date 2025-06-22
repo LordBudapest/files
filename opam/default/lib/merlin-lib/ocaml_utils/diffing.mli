@@ -1,3 +1,4 @@
+
 (**************************************************************************)
 (*                                                                        *)
 (*                                 OCaml                                  *)
@@ -79,8 +80,8 @@ type change_kind =
   | Insertion
   | Modification
   | Preservation
-val prefix: (int * change_kind) Format_doc.printer
-val style: change_kind -> Misc.Style.style list
+val prefix: Format.formatter -> (int * change_kind) -> unit
+val style: change_kind -> Misc.Color.style list
 
 
 type ('left,'right,'eq,'diff) change =

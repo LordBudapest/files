@@ -1,0 +1,241 @@
+(lang dune 3.19)
+(name frama-c-variadic)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-variadic)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-variadic))
+(files
+ (lib
+  (META
+   core/Variadic.ml
+   core/builder.ml
+   core/classify.ml
+   core/classify.mli
+   core/environment.ml
+   core/environment.mli
+   core/extends.ml
+   core/extends.mli
+   core/format_parser.ml
+   core/format_parser.mli
+   core/format_pprint.ml
+   core/format_pprint.mli
+   core/format_string.ml
+   core/format_string.mli
+   core/format_typer.ml
+   core/format_typer.mli
+   core/format_types.ml
+   core/generic.ml
+   core/generic.mli
+   core/options.ml
+   core/options.mli
+   core/register.ml
+   core/register.mli
+   core/replacements.ml
+   core/replacements.mli
+   core/standard.ml
+   core/standard.mli
+   core/translate.ml
+   core/translate.mli
+   core/va_types.ml
+   core/variadic.a
+   core/variadic.cma
+   core/variadic.cmi
+   core/variadic.cmt
+   core/variadic.cmx
+   core/variadic.cmxa
+   core/variadic__.cmi
+   core/variadic__.cmt
+   core/variadic__.cmx
+   core/variadic__.ml
+   core/variadic__Builder.cmi
+   core/variadic__Builder.cmt
+   core/variadic__Builder.cmx
+   core/variadic__Classify.cmi
+   core/variadic__Classify.cmt
+   core/variadic__Classify.cmti
+   core/variadic__Classify.cmx
+   core/variadic__Environment.cmi
+   core/variadic__Environment.cmt
+   core/variadic__Environment.cmti
+   core/variadic__Environment.cmx
+   core/variadic__Extends.cmi
+   core/variadic__Extends.cmt
+   core/variadic__Extends.cmti
+   core/variadic__Extends.cmx
+   core/variadic__Format_parser.cmi
+   core/variadic__Format_parser.cmt
+   core/variadic__Format_parser.cmti
+   core/variadic__Format_parser.cmx
+   core/variadic__Format_pprint.cmi
+   core/variadic__Format_pprint.cmt
+   core/variadic__Format_pprint.cmti
+   core/variadic__Format_pprint.cmx
+   core/variadic__Format_string.cmi
+   core/variadic__Format_string.cmt
+   core/variadic__Format_string.cmti
+   core/variadic__Format_string.cmx
+   core/variadic__Format_typer.cmi
+   core/variadic__Format_typer.cmt
+   core/variadic__Format_typer.cmti
+   core/variadic__Format_typer.cmx
+   core/variadic__Format_types.cmi
+   core/variadic__Format_types.cmt
+   core/variadic__Format_types.cmx
+   core/variadic__Generic.cmi
+   core/variadic__Generic.cmt
+   core/variadic__Generic.cmti
+   core/variadic__Generic.cmx
+   core/variadic__Options.cmi
+   core/variadic__Options.cmt
+   core/variadic__Options.cmti
+   core/variadic__Options.cmx
+   core/variadic__Register.cmi
+   core/variadic__Register.cmt
+   core/variadic__Register.cmti
+   core/variadic__Register.cmx
+   core/variadic__Replacements.cmi
+   core/variadic__Replacements.cmt
+   core/variadic__Replacements.cmti
+   core/variadic__Replacements.cmx
+   core/variadic__Standard.cmi
+   core/variadic__Standard.cmt
+   core/variadic__Standard.cmti
+   core/variadic__Standard.cmx
+   core/variadic__Translate.cmi
+   core/variadic__Translate.cmt
+   core/variadic__Translate.cmti
+   core/variadic__Translate.cmx
+   core/variadic__Va_types.cmi
+   core/variadic__Va_types.cmt
+   core/variadic__Va_types.cmx
+   dune-package
+   opam))
+ (lib_root (frama-c/plugins/variadic/META))
+ (libexec (core/variadic.cmxs)))
+(library
+ (name frama-c-variadic.core)
+ (kind normal)
+ (archives (byte core/variadic.cma) (native core/variadic.cmxa))
+ (plugins (byte core/variadic.cma) (native core/variadic.cmxs))
+ (native_archives core/variadic.a)
+ (requires frama-c.kernel)
+ (main_module_name Variadic)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name variadic__)
+     (visibility public)
+     (kind alias)
+     (source (path Variadic__) (impl (path core/variadic__.ml-gen))))
+    (name Variadic)
+    (modules
+     (module
+      (obj_name variadic__Builder)
+      (visibility public)
+      (source (path Builder) (impl (path core/builder.ml))))
+     (module
+      (obj_name variadic__Classify)
+      (visibility public)
+      (source
+       (path Classify)
+       (intf (path core/classify.mli))
+       (impl (path core/classify.ml))))
+     (module
+      (obj_name variadic__Environment)
+      (visibility public)
+      (source
+       (path Environment)
+       (intf (path core/environment.mli))
+       (impl (path core/environment.ml))))
+     (module
+      (obj_name variadic__Extends)
+      (visibility public)
+      (source
+       (path Extends)
+       (intf (path core/extends.mli))
+       (impl (path core/extends.ml))))
+     (module
+      (obj_name variadic__Format_parser)
+      (visibility public)
+      (source
+       (path Format_parser)
+       (intf (path core/format_parser.mli))
+       (impl (path core/format_parser.ml))))
+     (module
+      (obj_name variadic__Format_pprint)
+      (visibility public)
+      (source
+       (path Format_pprint)
+       (intf (path core/format_pprint.mli))
+       (impl (path core/format_pprint.ml))))
+     (module
+      (obj_name variadic__Format_string)
+      (visibility public)
+      (source
+       (path Format_string)
+       (intf (path core/format_string.mli))
+       (impl (path core/format_string.ml))))
+     (module
+      (obj_name variadic__Format_typer)
+      (visibility public)
+      (source
+       (path Format_typer)
+       (intf (path core/format_typer.mli))
+       (impl (path core/format_typer.ml))))
+     (module
+      (obj_name variadic__Format_types)
+      (visibility public)
+      (source (path Format_types) (impl (path core/format_types.ml))))
+     (module
+      (obj_name variadic__Generic)
+      (visibility public)
+      (source
+       (path Generic)
+       (intf (path core/generic.mli))
+       (impl (path core/generic.ml))))
+     (module
+      (obj_name variadic__Options)
+      (visibility public)
+      (source
+       (path Options)
+       (intf (path core/options.mli))
+       (impl (path core/options.ml))))
+     (module
+      (obj_name variadic__Register)
+      (visibility public)
+      (source
+       (path Register)
+       (intf (path core/register.mli))
+       (impl (path core/register.ml))))
+     (module
+      (obj_name variadic__Replacements)
+      (visibility public)
+      (source
+       (path Replacements)
+       (intf (path core/replacements.mli))
+       (impl (path core/replacements.ml))))
+     (module
+      (obj_name variadic__Standard)
+      (visibility public)
+      (source
+       (path Standard)
+       (intf (path core/standard.mli))
+       (impl (path core/standard.ml))))
+     (module
+      (obj_name variadic__Translate)
+      (visibility public)
+      (source
+       (path Translate)
+       (intf (path core/translate.mli))
+       (impl (path core/translate.ml))))
+     (module
+      (obj_name variadic__Va_types)
+      (visibility public)
+      (source (path Va_types) (impl (path core/va_types.ml))))
+     (module
+      (obj_name variadic)
+      (visibility public)
+      (source (path Variadic) (impl (path core/Variadic.ml))))))
+   (wrapped true))))

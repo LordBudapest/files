@@ -1,0 +1,206 @@
+(lang dune 3.19)
+(name frama-c-region)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-region)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-region)
+ (doc /home/bhaskar/.opam/default/doc/frama-c-region))
+(files
+ (lib
+  (META
+   core/Region.a
+   core/Region.cma
+   core/Region.cmxa
+   core/Region.ml
+   core/Region.mli
+   core/access.ml
+   core/access.mli
+   core/analysis.ml
+   core/analysis.mli
+   core/annot.ml
+   core/annot.mli
+   core/code.ml
+   core/code.mli
+   core/fields.ml
+   core/fields.mli
+   core/logic.ml
+   core/logic.mli
+   core/memory.ml
+   core/memory.mli
+   core/options.ml
+   core/options.mli
+   core/ranges.ml
+   core/ranges.mli
+   core/region.cmi
+   core/region.cmt
+   core/region.cmti
+   core/region.cmx
+   core/region__.cmi
+   core/region__.cmt
+   core/region__.cmx
+   core/region__.ml
+   core/region__Access.cmi
+   core/region__Access.cmt
+   core/region__Access.cmti
+   core/region__Access.cmx
+   core/region__Analysis.cmi
+   core/region__Analysis.cmt
+   core/region__Analysis.cmti
+   core/region__Analysis.cmx
+   core/region__Annot.cmi
+   core/region__Annot.cmt
+   core/region__Annot.cmti
+   core/region__Annot.cmx
+   core/region__Code.cmi
+   core/region__Code.cmt
+   core/region__Code.cmti
+   core/region__Code.cmx
+   core/region__Fields.cmi
+   core/region__Fields.cmt
+   core/region__Fields.cmti
+   core/region__Fields.cmx
+   core/region__Logic.cmi
+   core/region__Logic.cmt
+   core/region__Logic.cmti
+   core/region__Logic.cmx
+   core/region__Memory.cmi
+   core/region__Memory.cmt
+   core/region__Memory.cmti
+   core/region__Memory.cmx
+   core/region__Options.cmi
+   core/region__Options.cmt
+   core/region__Options.cmti
+   core/region__Options.cmx
+   core/region__Ranges.cmi
+   core/region__Ranges.cmt
+   core/region__Ranges.cmti
+   core/region__Ranges.cmx
+   core/region__Register.cmi
+   core/region__Register.cmt
+   core/region__Register.cmx
+   core/region__Services.cmi
+   core/region__Services.cmt
+   core/region__Services.cmti
+   core/region__Services.cmx
+   core/region__Store.cmi
+   core/region__Store.cmt
+   core/region__Store.cmti
+   core/region__Store.cmx
+   core/register.ml
+   core/services.ml
+   core/services.mli
+   core/store.ml
+   core/store.mli
+   dune-package
+   opam))
+ (lib_root (frama-c/plugins/region/META))
+ (libexec (core/Region.cmxs))
+ (doc (README.md)))
+(library
+ (name frama-c-region.core)
+ (kind normal)
+ (archives (byte core/Region.cma) (native core/Region.cmxa))
+ (plugins (byte core/Region.cma) (native core/Region.cmxs))
+ (native_archives core/Region.a)
+ (requires frama-c.kernel frama-c-server.core unionFind)
+ (main_module_name Region)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name region__)
+     (visibility public)
+     (kind alias)
+     (source (path Region__) (impl (path core/region__.ml-gen))))
+    (name Region)
+    (modules
+     (module
+      (obj_name region__Access)
+      (visibility public)
+      (source
+       (path Access)
+       (intf (path core/access.mli))
+       (impl (path core/access.ml))))
+     (module
+      (obj_name region__Analysis)
+      (visibility public)
+      (source
+       (path Analysis)
+       (intf (path core/analysis.mli))
+       (impl (path core/analysis.ml))))
+     (module
+      (obj_name region__Annot)
+      (visibility public)
+      (source
+       (path Annot)
+       (intf (path core/annot.mli))
+       (impl (path core/annot.ml))))
+     (module
+      (obj_name region__Code)
+      (visibility public)
+      (source
+       (path Code)
+       (intf (path core/code.mli))
+       (impl (path core/code.ml))))
+     (module
+      (obj_name region__Fields)
+      (visibility public)
+      (source
+       (path Fields)
+       (intf (path core/fields.mli))
+       (impl (path core/fields.ml))))
+     (module
+      (obj_name region__Logic)
+      (visibility public)
+      (source
+       (path Logic)
+       (intf (path core/logic.mli))
+       (impl (path core/logic.ml))))
+     (module
+      (obj_name region__Memory)
+      (visibility public)
+      (source
+       (path Memory)
+       (intf (path core/memory.mli))
+       (impl (path core/memory.ml))))
+     (module
+      (obj_name region__Options)
+      (visibility public)
+      (source
+       (path Options)
+       (intf (path core/options.mli))
+       (impl (path core/options.ml))))
+     (module
+      (obj_name region__Ranges)
+      (visibility public)
+      (source
+       (path Ranges)
+       (intf (path core/ranges.mli))
+       (impl (path core/ranges.ml))))
+     (module
+      (obj_name region)
+      (visibility public)
+      (source
+       (path Region)
+       (intf (path core/Region.mli))
+       (impl (path core/Region.ml))))
+     (module
+      (obj_name region__Register)
+      (visibility public)
+      (source (path Register) (impl (path core/register.ml))))
+     (module
+      (obj_name region__Services)
+      (visibility public)
+      (source
+       (path Services)
+       (intf (path core/services.mli))
+       (impl (path core/services.ml))))
+     (module
+      (obj_name region__Store)
+      (visibility public)
+      (source
+       (path Store)
+       (intf (path core/store.mli))
+       (impl (path core/store.ml))))))
+   (wrapped true))))

@@ -59,23 +59,21 @@ let structure_iterator hint_let_binding hint_pattern_binding
       | Texp_letop { body; _ } ->
         let () = log ~title:"expression" "on let-op" in
         case_iterator hint_let_binding iterator body
-      | Texp_match (expr, cases, _, _) ->
+      | Texp_match (expr, cases, _) ->
         let () = log ~title:"expression" "on match" in
         let () = iterator.expr iterator expr in
         List.iter ~f:(case_iterator hint_pattern_binding iterator) cases
       | Texp_function
-          ( _,
-            Tfunction_cases
-              { cases =
-                  [ { c_rhs =
-                        { exp_desc = Texp_let (_, [ { vb_pat; _ } ], body); _ };
-                      _
-                    }
-                  ];
-                _
-              } ) ->
-        let () = log ~title:"expression" "on function" in
-        let () = iterator.pat iterator vb_pat in
+          { arg_label = Optional _;
+            cases =
+              [ { c_rhs =
+                    { exp_desc = Texp_let (_, [ { vb_pat; _ } ], body); _ };
+                  _
+                }
+              ];
+            _
+          } ->
+        iterator.pat iterator vb_pat;
         iterator.expr iterator body
       | _ when is_ghost_location avoid_ghost_location expr.exp_loc ->
         (* Stop iterating when we see a ghost location to avoid
@@ -132,7 +130,7 @@ type hint = Lexing.position * string
 
 let create_hint env typ loc =
   let label =
-    Printtyp.wrap_printing_env ~error:true env (fun () ->
+    Printtyp.wrap_printing_env env (fun () ->
         Format.asprintf "%a" Printtyp.type_scheme typ)
   in
   let position = loc.Location.loc_end in

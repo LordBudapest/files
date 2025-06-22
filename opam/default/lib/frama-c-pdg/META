@@ -1,0 +1,38 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires =
+  "frama-c-callgraph.core
+   
+   
+   
+   frama-c-eva.core
+   
+   
+   
+   frama-c-from.core
+   
+   
+   
+   frama-c-pdg.types.core
+   
+   
+   
+   frama-c.kernel"
+  archive(byte) = "pdg.cma"
+  archive(native) = "pdg.cmxa"
+  plugin(byte) = "pdg.cma"
+  plugin(native) = "pdg.cmxs"
+)
+package "types" (
+  directory = "types"
+  package "core" (
+    directory = "core"
+    description = ""
+    requires = "frama-c.kernel"
+    archive(byte) = "Pdg_types.cma"
+    archive(native) = "Pdg_types.cmxa"
+    plugin(byte) = "Pdg_types.cma"
+    plugin(native) = "Pdg_types.cmxs"
+  )
+)

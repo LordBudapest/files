@@ -27,9 +27,6 @@ module Extend_helper = Ocaml_parsing__Extend_helper
 (** @canonical Ocaml_parsing.Fake *)
 module Fake = Ocaml_parsing__Fake
 
-(** @canonical Ocaml_parsing.Lexer *)
-module Lexer = Ocaml_parsing__Lexer
-
 (** @canonical Ocaml_parsing.Location *)
 module Location = Ocaml_parsing__Location
 
@@ -53,6 +50,3 @@ module Printast = Ocaml_parsing__Printast
 
 (** @canonical Ocaml_parsing.Syntaxerr *)
 module Syntaxerr = Ocaml_parsing__Syntaxerr
-
-(** @canonical Ocaml_parsing.Unit_info *)
-module Unit_info = Ocaml_parsing__Unit_info

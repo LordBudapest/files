@@ -6,7 +6,7 @@ type t =
   | Neg
   | Zero
   | Pos
-[@@deriving_inline sexp, sexp_grammar, compare ~localize, hash, enumerate]
+[@@deriving_inline sexp, sexp_grammar, compare, hash, enumerate]
 
 let t_of_sexp =
   (let error_source__003_ = "sign0.ml.t" in
@@ -25,15 +25,15 @@ let t_of_sexp =
    | Sexplib0.Sexp.List [] as sexp__002_ ->
      Sexplib0.Sexp_conv_error.empty_list_invalid_sum error_source__003_ sexp__002_
    | sexp__002_ -> Sexplib0.Sexp_conv_error.unexpected_stag error_source__003_ sexp__002_
-    : Sexplib0.Sexp.t -> t)
+                   : Sexplib0.Sexp.t -> t)
 ;;
 
 let sexp_of_t =
   (function
-   | Neg -> Sexplib0.Sexp.Atom "Neg"
-   | Zero -> Sexplib0.Sexp.Atom "Zero"
-   | Pos -> Sexplib0.Sexp.Atom "Pos"
-    : t -> Sexplib0.Sexp.t)
+    | Neg -> Sexplib0.Sexp.Atom "Neg"
+    | Zero -> Sexplib0.Sexp.Atom "Zero"
+    | Pos -> Sexplib0.Sexp.Atom "Pos"
+             : t -> Sexplib0.Sexp.t)
 ;;
 
 let (t_sexp_grammar : t Sexplib0.Sexp_grammar.t) =
@@ -49,18 +49,15 @@ let (t_sexp_grammar : t Sexplib0.Sexp_grammar.t) =
   }
 ;;
 
-let compare__local = (Stdlib.compare : t -> t -> int)
-let compare = (fun a b -> compare__local a b : t -> t -> int)
+let compare = (Stdlib.compare : t -> t -> int)
 
 let (hash_fold_t : Ppx_hash_lib.Std.Hash.state -> t -> Ppx_hash_lib.Std.Hash.state) =
   (fun hsv arg ->
-     Ppx_hash_lib.Std.Hash.fold_int
-       hsv
-       (match arg with
-        | Neg -> 0
-        | Zero -> 1
-        | Pos -> 2)
-    : Ppx_hash_lib.Std.Hash.state -> t -> Ppx_hash_lib.Std.Hash.state)
+     match arg with
+     | Neg -> Ppx_hash_lib.Std.Hash.fold_int hsv 0
+     | Zero -> Ppx_hash_lib.Std.Hash.fold_int hsv 1
+     | Pos -> Ppx_hash_lib.Std.Hash.fold_int hsv 2
+              : Ppx_hash_lib.Std.Hash.state -> t -> Ppx_hash_lib.Std.Hash.state)
 ;;
 
 let (hash : t -> Ppx_hash_lib.Std.Hash.hash_value) =
@@ -87,7 +84,6 @@ module Replace_polymorphic_compare = struct
   let descending (x : t) y = Poly.descending x y
   let compare (x : t) y = Poly.compare x y
   let equal (x : t) y = Poly.equal x y
-  let equal__local (x : t) y = Poly.equal x y
   let max (x : t) y = if x >= y then x else y
   let min (x : t) y = if x <= y then x else y
 end

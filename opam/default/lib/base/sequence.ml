@@ -16,38 +16,38 @@ module Step = struct
   [@@deriving_inline sexp_of]
 
   let sexp_of_t :
-        'a 's.
-        ('a -> Sexplib0.Sexp.t)
-        -> ('s -> Sexplib0.Sexp.t)
-        -> ('a, 's) t
-        -> Sexplib0.Sexp.t
+    'a 's.
+    ('a -> Sexplib0.Sexp.t)
+    -> ('s -> Sexplib0.Sexp.t)
+    -> ('a, 's) t
+    -> Sexplib0.Sexp.t
     =
     fun (type a__011_ s__012_)
-      :  ((a__011_ -> Sexplib0.Sexp.t) -> (s__012_ -> Sexplib0.Sexp.t)
-      -> (a__011_, s__012_) t -> Sexplib0.Sexp.t) ->
-    fun _of_a__001_ _of_s__002_ -> function
-    | Done -> Sexplib0.Sexp.Atom "Done"
-    | Skip { state = state__004_ } ->
-      let bnds__003_ = ([] : _ Stdlib.List.t) in
-      let bnds__003_ =
-        let arg__005_ = _of_s__002_ state__004_ in
-        (Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "state"; arg__005_ ] :: bnds__003_
-          : _ Stdlib.List.t)
-      in
-      Sexplib0.Sexp.List (Sexplib0.Sexp.Atom "Skip" :: bnds__003_)
-    | Yield { value = value__007_; state = state__009_ } ->
-      let bnds__006_ = ([] : _ Stdlib.List.t) in
-      let bnds__006_ =
-        let arg__010_ = _of_s__002_ state__009_ in
-        (Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "state"; arg__010_ ] :: bnds__006_
-          : _ Stdlib.List.t)
-      in
-      let bnds__006_ =
-        let arg__008_ = _of_a__001_ value__007_ in
-        (Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "value"; arg__008_ ] :: bnds__006_
-          : _ Stdlib.List.t)
-      in
-      Sexplib0.Sexp.List (Sexplib0.Sexp.Atom "Yield" :: bnds__006_)
+        :  ((a__011_ -> Sexplib0.Sexp.t) -> (s__012_ -> Sexplib0.Sexp.t)
+            -> (a__011_, s__012_) t -> Sexplib0.Sexp.t) ->
+      fun _of_a__001_ _of_s__002_ -> function
+        | Done -> Sexplib0.Sexp.Atom "Done"
+        | Skip { state = state__004_ } ->
+          let bnds__003_ = ([] : _ Stdlib.List.t) in
+          let bnds__003_ =
+            let arg__005_ = _of_s__002_ state__004_ in
+            (Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "state"; arg__005_ ] :: bnds__003_
+             : _ Stdlib.List.t)
+          in
+          Sexplib0.Sexp.List (Sexplib0.Sexp.Atom "Skip" :: bnds__003_)
+        | Yield { value = value__007_; state = state__009_ } ->
+          let bnds__006_ = ([] : _ Stdlib.List.t) in
+          let bnds__006_ =
+            let arg__010_ = _of_s__002_ state__009_ in
+            (Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "state"; arg__010_ ] :: bnds__006_
+             : _ Stdlib.List.t)
+          in
+          let bnds__006_ =
+            let arg__008_ = _of_a__001_ value__007_ in
+            (Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "value"; arg__008_ ] :: bnds__006_
+             : _ Stdlib.List.t)
+          in
+          Sexplib0.Sexp.List (Sexplib0.Sexp.Atom "Yield" :: bnds__006_)
   ;;
 
   [@@@end]
@@ -55,26 +55,16 @@ end
 
 open Step
 
-module T = struct
-  (* 'a is an item in the sequence, 's is the state that will produce the remainder of the
-     sequence *)
-  type +_ t =
-    | Sequence :
-        { state : 's
-        ; next : 's -> ('a, 's) Step.t
-        }
-        -> 'a t
-end
-
-include T
-
-let globalize _ (Sequence { state; next }) = Sequence { state; next }
+(* 'a is an item in the sequence, 's is the state that will produce the remainder of the
+   sequence *)
+type +_ t =
+  | Sequence :
+      { state : 's
+      ; next : 's -> ('a, 's) Step.t
+      }
+      -> 'a t
 
 module Expert = struct
-  module View = T
-
-  let view t = t
-
   let next_step (Sequence { state = s; next = f }) =
     match f s with
     | Done -> Done
@@ -111,14 +101,14 @@ let unfold_with s ~init ~f =
       { state = init, s
       ; next =
           (fun (seed, s) ->
-            match next s with
-            | Done -> Done
-            | Skip { state = s } -> Skip { state = seed, s }
-            | Yield { value = a; state = s } ->
-              (match f seed a with
-               | Done -> Done
-               | Skip { state = seed } -> Skip { state = seed, s }
-               | Yield { value = a; state = seed } -> Yield { value = a; state = seed, s }))
+             match next s with
+             | Done -> Done
+             | Skip { state = s } -> Skip { state = seed, s }
+             | Yield { value = a; state = s } ->
+               (match f seed a with
+                | Done -> Done
+                | Skip { state = seed } -> Skip { state = seed, s }
+                | Yield { value = a; state = seed } -> Yield { value = a; state = seed, s }))
       }
 ;;
 
@@ -129,24 +119,24 @@ let unfold_with_and_finish s ~init ~running_step ~inner_finished ~finishing_step
       { state = `Inner_running (init, s)
       ; next =
           (fun state ->
-            match state with
-            | `Inner_running (state, inner_state) ->
-              (match next inner_state with
-               | Done -> Skip { state = `Inner_finished (inner_finished state) }
-               | Skip { state = inner_state } ->
-                 Skip { state = `Inner_running (state, inner_state) }
-               | Yield { value = x; state = inner_state } ->
-                 (match running_step state x with
-                  | Done -> Done
-                  | Skip { state } -> Skip { state = `Inner_running (state, inner_state) }
-                  | Yield { value = y; state } ->
-                    Yield { value = y; state = `Inner_running (state, inner_state) }))
-            | `Inner_finished state ->
-              (match finishing_step state with
-               | Done -> Done
-               | Skip { state } -> Skip { state = `Inner_finished state }
-               | Yield { value = y; state } ->
-                 Yield { value = y; state = `Inner_finished state }))
+             match state with
+             | `Inner_running (state, inner_state) ->
+               (match next inner_state with
+                | Done -> Skip { state = `Inner_finished (inner_finished state) }
+                | Skip { state = inner_state } ->
+                  Skip { state = `Inner_running (state, inner_state) }
+                | Yield { value = x; state = inner_state } ->
+                  (match running_step state x with
+                   | Done -> Done
+                   | Skip { state } -> Skip { state = `Inner_running (state, inner_state) }
+                   | Yield { value = y; state } ->
+                     Yield { value = y; state = `Inner_running (state, inner_state) }))
+             | `Inner_finished state ->
+               (match finishing_step state with
+                | Done -> Done
+                | Skip { state } -> Skip { state = `Inner_finished state }
+                | Yield { value = y; state } ->
+                  Yield { value = y; state = `Inner_finished state }))
       }
 ;;
 
@@ -169,14 +159,19 @@ let fold t ~init ~f =
 
 let to_list_rev t = fold t ~init:[] ~f:(fun l x -> x :: l)
 
+
 let to_list (Sequence { state = s; next }) =
-  let[@tail_mod_cons] rec to_list s next =
-    match next s with
-    | Done -> []
-    | Skip { state = s } -> (to_list [@tailcall]) s next
-    | Yield { value = a; state = s } -> a :: (to_list [@tailcall]) s next
+  let safe_to_list t = List.rev (to_list_rev t) in
+  let rec to_list s next i =
+    if i = 0
+    then safe_to_list (Sequence { state = s; next })
+    else (
+      match next s with
+      | Done -> []
+      | Skip { state = s } -> to_list s next i
+      | Yield { value = a; state = s } -> a :: to_list s next (i - 1))
   in
-  to_list s next
+  to_list s next 500
 ;;
 
 let sexp_of_t sexp_of_a t = sexp_of_list sexp_of_a (to_list t)
@@ -228,10 +223,10 @@ let map t ~f =
       { state = seed
       ; next =
           (fun seed ->
-            match next seed with
-            | Done -> Done
-            | Skip { state = s } -> Skip { state = s }
-            | Yield { value = a; state = s } -> Yield { value = f a; state = s })
+             match next seed with
+             | Done -> Done
+             | Skip { state = s } -> Skip { state = s }
+             | Yield { value = a; state = s } -> Yield { value = f a; state = s })
       }
 ;;
 
@@ -242,10 +237,10 @@ let mapi t ~f =
       { state = 0, s
       ; next =
           (fun (i, s) ->
-            match next s with
-            | Done -> Done
-            | Skip { state = s } -> Skip { state = i, s }
-            | Yield { value = a; state = s } -> Yield { value = f i a; state = i + 1, s })
+             match next s with
+             | Done -> Done
+             | Skip { state = s } -> Skip { state = i, s }
+             | Yield { value = a; state = s } -> Yield { value = f i a; state = i + 1, s })
       }
 ;;
 
@@ -268,11 +263,11 @@ let filter t ~f =
       { state = seed
       ; next =
           (fun seed ->
-            match next seed with
-            | Done -> Done
-            | Skip { state = s } -> Skip { state = s }
-            | Yield { value = a; state = s } when f a -> Yield { value = a; state = s }
-            | Yield { value = _; state = s } -> Skip { state = s })
+             match next seed with
+             | Done -> Done
+             | Skip { state = s } -> Skip { state = s }
+             | Yield { value = a; state = s } when f a -> Yield { value = a; state = s }
+             | Yield { value = _; state = s } -> Skip { state = s })
       }
 ;;
 
@@ -334,6 +329,7 @@ let find_map t ~f =
   match t with
   | Sequence { state = seed; next } -> loop seed next f
 ;;
+
 
 let find_mapi t ~f =
   let rec loop s next f i =
@@ -459,12 +455,12 @@ let return x =
 ;;
 
 include Monad.Make (struct
-  type nonrec 'a t = 'a t
+    type nonrec 'a t = 'a t
 
-  let map = `Custom map
-  let bind = bind
-  let return = return
-end)
+    let map = `Custom map
+    let bind = bind
+    let return = return
+  end)
 
 let nth s n =
   if n < 0
@@ -495,30 +491,10 @@ module Merge_with_duplicates_element = struct
     | Left of 'a
     | Right of 'b
     | Both of 'a * 'b
-  [@@deriving_inline compare ~localize, equal ~localize, hash, sexp, sexp_grammar]
-
-  let compare__local :
-        'a 'b. ('a -> 'a -> int) -> ('b -> 'b -> int) -> ('a, 'b) t -> ('a, 'b) t -> int
-    =
-    fun _cmp__a _cmp__b a__023_ b__024_ ->
-    if Stdlib.( == ) a__023_ b__024_
-    then 0
-    else (
-      match a__023_, b__024_ with
-      | Left _a__025_, Left _b__026_ -> _cmp__a _a__025_ _b__026_
-      | Left _, _ -> -1
-      | _, Left _ -> 1
-      | Right _a__027_, Right _b__028_ -> _cmp__b _a__027_ _b__028_
-      | Right _, _ -> -1
-      | _, Right _ -> 1
-      | Both (_a__029_, _a__031_), Both (_b__030_, _b__032_) ->
-        (match _cmp__a _a__029_ _b__030_ with
-         | 0 -> _cmp__b _a__031_ _b__032_
-         | n -> n))
-  ;;
+  [@@deriving_inline compare, hash, sexp, sexp_grammar]
 
   let compare :
-        'a 'b. ('a -> 'a -> int) -> ('b -> 'b -> int) -> ('a, 'b) t -> ('a, 'b) t -> int
+    'a 'b. ('a -> 'a -> int) -> ('b -> 'b -> int) -> ('a, 'b) t -> ('a, 'b) t -> int
     =
     fun _cmp__a _cmp__b a__013_ b__014_ ->
     if Stdlib.( == ) a__013_ b__014_
@@ -537,44 +513,6 @@ module Merge_with_duplicates_element = struct
          | n -> n))
   ;;
 
-  let equal__local :
-        'a 'b.
-        ('a -> 'a -> bool) -> ('b -> 'b -> bool) -> ('a, 'b) t -> ('a, 'b) t -> bool
-    =
-    fun _cmp__a _cmp__b a__043_ b__044_ ->
-    if Stdlib.( == ) a__043_ b__044_
-    then true
-    else (
-      match a__043_, b__044_ with
-      | Left _a__045_, Left _b__046_ -> _cmp__a _a__045_ _b__046_
-      | Left _, _ -> false
-      | _, Left _ -> false
-      | Right _a__047_, Right _b__048_ -> _cmp__b _a__047_ _b__048_
-      | Right _, _ -> false
-      | _, Right _ -> false
-      | Both (_a__049_, _a__051_), Both (_b__050_, _b__052_) ->
-        Stdlib.( && ) (_cmp__a _a__049_ _b__050_) (_cmp__b _a__051_ _b__052_))
-  ;;
-
-  let equal :
-        'a 'b.
-        ('a -> 'a -> bool) -> ('b -> 'b -> bool) -> ('a, 'b) t -> ('a, 'b) t -> bool
-    =
-    fun _cmp__a _cmp__b a__033_ b__034_ ->
-    if Stdlib.( == ) a__033_ b__034_
-    then true
-    else (
-      match a__033_, b__034_ with
-      | Left _a__035_, Left _b__036_ -> _cmp__a _a__035_ _b__036_
-      | Left _, _ -> false
-      | _, Left _ -> false
-      | Right _a__037_, Right _b__038_ -> _cmp__b _a__037_ _b__038_
-      | Right _, _ -> false
-      | _, Right _ -> false
-      | Both (_a__039_, _a__041_), Both (_b__040_, _b__042_) ->
-        Stdlib.( && ) (_cmp__a _a__039_ _b__040_) (_cmp__b _a__041_ _b__042_))
-  ;;
-
   let hash_fold_t
     : type a b.
       (Ppx_hash_lib.Std.Hash.state -> a -> Ppx_hash_lib.Std.Hash.state)
@@ -584,153 +522,153 @@ module Merge_with_duplicates_element = struct
       -> Ppx_hash_lib.Std.Hash.state
     =
     fun _hash_fold_a _hash_fold_b hsv arg ->
-    match arg with
-    | Left _a0 ->
-      let hsv = Ppx_hash_lib.Std.Hash.fold_int hsv 0 in
-      let hsv = hsv in
-      _hash_fold_a hsv _a0
-    | Right _a0 ->
-      let hsv = Ppx_hash_lib.Std.Hash.fold_int hsv 1 in
-      let hsv = hsv in
-      _hash_fold_b hsv _a0
-    | Both (_a0, _a1) ->
-      let hsv = Ppx_hash_lib.Std.Hash.fold_int hsv 2 in
-      let hsv =
+      match arg with
+      | Left _a0 ->
+        let hsv = Ppx_hash_lib.Std.Hash.fold_int hsv 0 in
         let hsv = hsv in
         _hash_fold_a hsv _a0
-      in
-      _hash_fold_b hsv _a1
+      | Right _a0 ->
+        let hsv = Ppx_hash_lib.Std.Hash.fold_int hsv 1 in
+        let hsv = hsv in
+        _hash_fold_b hsv _a0
+      | Both (_a0, _a1) ->
+        let hsv = Ppx_hash_lib.Std.Hash.fold_int hsv 2 in
+        let hsv =
+          let hsv = hsv in
+          _hash_fold_a hsv _a0
+        in
+        _hash_fold_b hsv _a1
   ;;
 
   let t_of_sexp :
-        'a 'b.
-        (Sexplib0.Sexp.t -> 'a)
-        -> (Sexplib0.Sexp.t -> 'b)
-        -> Sexplib0.Sexp.t
-        -> ('a, 'b) t
+    'a 'b.
+    (Sexplib0.Sexp.t -> 'a)
+    -> (Sexplib0.Sexp.t -> 'b)
+    -> Sexplib0.Sexp.t
+    -> ('a, 'b) t
     =
-    fun (type a__076_ b__077_)
-      :  ((Sexplib0.Sexp.t -> a__076_) -> (Sexplib0.Sexp.t -> b__077_) -> Sexplib0.Sexp.t
-      -> (a__076_, b__077_) t) ->
-    let error_source__057_ = "sequence.ml.Merge_with_duplicates_element.t" in
-    fun _of_a__053_ _of_b__054_ -> function
-      | Sexplib0.Sexp.List
-          (Sexplib0.Sexp.Atom (("left" | "Left") as _tag__060_) :: sexp_args__061_) as
-        _sexp__059_ ->
-        (match sexp_args__061_ with
-         | arg0__062_ :: [] ->
-           let res0__063_ = _of_a__053_ arg0__062_ in
-           Left res0__063_
-         | _ ->
-           Sexplib0.Sexp_conv_error.stag_incorrect_n_args
-             error_source__057_
-             _tag__060_
-             _sexp__059_)
-      | Sexplib0.Sexp.List
-          (Sexplib0.Sexp.Atom (("right" | "Right") as _tag__065_) :: sexp_args__066_) as
-        _sexp__064_ ->
-        (match sexp_args__066_ with
-         | arg0__067_ :: [] ->
-           let res0__068_ = _of_b__054_ arg0__067_ in
-           Right res0__068_
-         | _ ->
-           Sexplib0.Sexp_conv_error.stag_incorrect_n_args
-             error_source__057_
-             _tag__065_
-             _sexp__064_)
-      | Sexplib0.Sexp.List
-          (Sexplib0.Sexp.Atom (("both" | "Both") as _tag__070_) :: sexp_args__071_) as
-        _sexp__069_ ->
-        (match sexp_args__071_ with
-         | [ arg0__072_; arg1__073_ ] ->
-           let res0__074_ = _of_a__053_ arg0__072_
-           and res1__075_ = _of_b__054_ arg1__073_ in
-           Both (res0__074_, res1__075_)
-         | _ ->
-           Sexplib0.Sexp_conv_error.stag_incorrect_n_args
-             error_source__057_
-             _tag__070_
-             _sexp__069_)
-      | Sexplib0.Sexp.Atom ("left" | "Left") as sexp__058_ ->
-        Sexplib0.Sexp_conv_error.stag_takes_args error_source__057_ sexp__058_
-      | Sexplib0.Sexp.Atom ("right" | "Right") as sexp__058_ ->
-        Sexplib0.Sexp_conv_error.stag_takes_args error_source__057_ sexp__058_
-      | Sexplib0.Sexp.Atom ("both" | "Both") as sexp__058_ ->
-        Sexplib0.Sexp_conv_error.stag_takes_args error_source__057_ sexp__058_
-      | Sexplib0.Sexp.List (Sexplib0.Sexp.List _ :: _) as sexp__056_ ->
-        Sexplib0.Sexp_conv_error.nested_list_invalid_sum error_source__057_ sexp__056_
-      | Sexplib0.Sexp.List [] as sexp__056_ ->
-        Sexplib0.Sexp_conv_error.empty_list_invalid_sum error_source__057_ sexp__056_
-      | sexp__056_ ->
-        Sexplib0.Sexp_conv_error.unexpected_stag error_source__057_ sexp__056_
+    fun (type a__046_ b__047_)
+        :  ((Sexplib0.Sexp.t -> a__046_) -> (Sexplib0.Sexp.t -> b__047_) -> Sexplib0.Sexp.t
+            -> (a__046_, b__047_) t) ->
+      let error_source__027_ = "sequence.ml.Merge_with_duplicates_element.t" in
+      fun _of_a__023_ _of_b__024_ -> function
+        | Sexplib0.Sexp.List
+            (Sexplib0.Sexp.Atom (("left" | "Left") as _tag__030_) :: sexp_args__031_) as
+          _sexp__029_ ->
+          (match sexp_args__031_ with
+           | [ arg0__032_ ] ->
+             let res0__033_ = _of_a__023_ arg0__032_ in
+             Left res0__033_
+           | _ ->
+             Sexplib0.Sexp_conv_error.stag_incorrect_n_args
+               error_source__027_
+               _tag__030_
+               _sexp__029_)
+        | Sexplib0.Sexp.List
+            (Sexplib0.Sexp.Atom (("right" | "Right") as _tag__035_) :: sexp_args__036_) as
+          _sexp__034_ ->
+          (match sexp_args__036_ with
+           | [ arg0__037_ ] ->
+             let res0__038_ = _of_b__024_ arg0__037_ in
+             Right res0__038_
+           | _ ->
+             Sexplib0.Sexp_conv_error.stag_incorrect_n_args
+               error_source__027_
+               _tag__035_
+               _sexp__034_)
+        | Sexplib0.Sexp.List
+            (Sexplib0.Sexp.Atom (("both" | "Both") as _tag__040_) :: sexp_args__041_) as
+          _sexp__039_ ->
+          (match sexp_args__041_ with
+           | [ arg0__042_; arg1__043_ ] ->
+             let res0__044_ = _of_a__023_ arg0__042_
+             and res1__045_ = _of_b__024_ arg1__043_ in
+             Both (res0__044_, res1__045_)
+           | _ ->
+             Sexplib0.Sexp_conv_error.stag_incorrect_n_args
+               error_source__027_
+               _tag__040_
+               _sexp__039_)
+        | Sexplib0.Sexp.Atom ("left" | "Left") as sexp__028_ ->
+          Sexplib0.Sexp_conv_error.stag_takes_args error_source__027_ sexp__028_
+        | Sexplib0.Sexp.Atom ("right" | "Right") as sexp__028_ ->
+          Sexplib0.Sexp_conv_error.stag_takes_args error_source__027_ sexp__028_
+        | Sexplib0.Sexp.Atom ("both" | "Both") as sexp__028_ ->
+          Sexplib0.Sexp_conv_error.stag_takes_args error_source__027_ sexp__028_
+        | Sexplib0.Sexp.List (Sexplib0.Sexp.List _ :: _) as sexp__026_ ->
+          Sexplib0.Sexp_conv_error.nested_list_invalid_sum error_source__027_ sexp__026_
+        | Sexplib0.Sexp.List [] as sexp__026_ ->
+          Sexplib0.Sexp_conv_error.empty_list_invalid_sum error_source__027_ sexp__026_
+        | sexp__026_ ->
+          Sexplib0.Sexp_conv_error.unexpected_stag error_source__027_ sexp__026_
   ;;
 
   let sexp_of_t :
-        'a 'b.
-        ('a -> Sexplib0.Sexp.t)
-        -> ('b -> Sexplib0.Sexp.t)
-        -> ('a, 'b) t
-        -> Sexplib0.Sexp.t
+    'a 'b.
+    ('a -> Sexplib0.Sexp.t)
+    -> ('b -> Sexplib0.Sexp.t)
+    -> ('a, 'b) t
+    -> Sexplib0.Sexp.t
     =
-    fun (type a__088_ b__089_)
-      :  ((a__088_ -> Sexplib0.Sexp.t) -> (b__089_ -> Sexplib0.Sexp.t)
-      -> (a__088_, b__089_) t -> Sexplib0.Sexp.t) ->
-    fun _of_a__078_ _of_b__079_ -> function
-    | Left arg0__080_ ->
-      let res0__081_ = _of_a__078_ arg0__080_ in
-      Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "Left"; res0__081_ ]
-    | Right arg0__082_ ->
-      let res0__083_ = _of_b__079_ arg0__082_ in
-      Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "Right"; res0__083_ ]
-    | Both (arg0__084_, arg1__085_) ->
-      let res0__086_ = _of_a__078_ arg0__084_
-      and res1__087_ = _of_b__079_ arg1__085_ in
-      Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "Both"; res0__086_; res1__087_ ]
+    fun (type a__058_ b__059_)
+        :  ((a__058_ -> Sexplib0.Sexp.t) -> (b__059_ -> Sexplib0.Sexp.t)
+            -> (a__058_, b__059_) t -> Sexplib0.Sexp.t) ->
+      fun _of_a__048_ _of_b__049_ -> function
+        | Left arg0__050_ ->
+          let res0__051_ = _of_a__048_ arg0__050_ in
+          Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "Left"; res0__051_ ]
+        | Right arg0__052_ ->
+          let res0__053_ = _of_b__049_ arg0__052_ in
+          Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "Right"; res0__053_ ]
+        | Both (arg0__054_, arg1__055_) ->
+          let res0__056_ = _of_a__048_ arg0__054_
+          and res1__057_ = _of_b__049_ arg1__055_ in
+          Sexplib0.Sexp.List [ Sexplib0.Sexp.Atom "Both"; res0__056_; res1__057_ ]
   ;;
 
   let t_sexp_grammar :
-        'a 'b.
-        'a Sexplib0.Sexp_grammar.t
-        -> 'b Sexplib0.Sexp_grammar.t
-        -> ('a, 'b) t Sexplib0.Sexp_grammar.t
+    'a 'b.
+    'a Sexplib0.Sexp_grammar.t
+    -> 'b Sexplib0.Sexp_grammar.t
+    -> ('a, 'b) t Sexplib0.Sexp_grammar.t
     =
     fun _'a_sexp_grammar _'b_sexp_grammar ->
-    { untyped =
-        Variant
-          { case_sensitivity = Case_sensitive_except_first_character
-          ; clauses =
-              [ No_tag
-                  { name = "Left"
-                  ; clause_kind =
-                      List_clause { args = Cons (_'a_sexp_grammar.untyped, Empty) }
-                  }
-              ; No_tag
-                  { name = "Right"
-                  ; clause_kind =
-                      List_clause { args = Cons (_'b_sexp_grammar.untyped, Empty) }
-                  }
-              ; No_tag
-                  { name = "Both"
-                  ; clause_kind =
-                      List_clause
-                        { args =
-                            Cons
-                              ( _'a_sexp_grammar.untyped
-                              , Cons (_'b_sexp_grammar.untyped, Empty) )
-                        }
-                  }
-              ]
-          }
-    }
+      { untyped =
+          Variant
+            { case_sensitivity = Case_sensitive_except_first_character
+            ; clauses =
+                [ No_tag
+                    { name = "Left"
+                    ; clause_kind =
+                        List_clause { args = Cons (_'a_sexp_grammar.untyped, Empty) }
+                    }
+                ; No_tag
+                    { name = "Right"
+                    ; clause_kind =
+                        List_clause { args = Cons (_'b_sexp_grammar.untyped, Empty) }
+                    }
+                ; No_tag
+                    { name = "Both"
+                    ; clause_kind =
+                        List_clause
+                          { args =
+                              Cons
+                                ( _'a_sexp_grammar.untyped
+                                , Cons (_'b_sexp_grammar.untyped, Empty) )
+                          }
+                    }
+                ]
+            }
+      }
   ;;
 
   [@@@end]
 end
 
 let merge_with_duplicates
-  (Sequence { state = s1; next = next1 })
-  (Sequence { state = s2; next = next2 })
-  ~compare
+      (Sequence { state = s1; next = next1 })
+      (Sequence { state = s2; next = next2 })
+      ~compare
   =
   let unshadowed_compare = compare in
   let open Merge_with_duplicates_element in
@@ -760,10 +698,18 @@ let merge_deduped_and_sorted s1 s2 ~compare =
     | Left x | Right x | Both (x, _) -> x)
 ;;
 
+let (merge [@deprecated
+       "[since 2021-07] For identical behavior, use \
+        [Sequence.merge_deduped_and_sorted], but consider using \
+        [Sequence.merge_sorted] instead."])
+  =
+  merge_deduped_and_sorted
+;;
+
 let merge_sorted
-  (Sequence { state = s1; next = next1 })
-  (Sequence { state = s2; next = next2 })
-  ~compare
+      (Sequence { state = s1; next = next1 })
+      (Sequence { state = s2; next = next2 })
+      ~compare
   =
   let next = function
     | Skip { state = s1 }, s2 -> Skip { state = next1 s1, s2 }
@@ -845,11 +791,11 @@ let filter_opt s =
       { state = s
       ; next =
           (fun s ->
-            match next s with
-            | Done -> Done
-            | Skip { state = s } -> Skip { state = s }
-            | Yield { value = None; state = s } -> Skip { state = s }
-            | Yield { value = Some a; state = s } -> Yield { value = a; state = s })
+             match next s with
+             | Done -> Done
+             | Skip { state = s } -> Skip { state = s }
+             | Yield { value = None; state = s } -> Skip { state = s }
+             | Yield { value = Some a; state = s } -> Yield { value = a; state = s })
       }
 ;;
 
@@ -885,8 +831,7 @@ let findi t ~f =
     match next s with
     | Done -> None
     | Yield { value = a; state = _ } when f i a -> Some (i, a)
-    | Yield { value = _; state = s } -> loop s next (i + 1) f
-    | Skip { state = s } -> loop s next i f
+    | Yield { value = _; state = s } | Skip { state = s } -> loop s next (i + 1) f
   in
   match t with
   | Sequence { state = seed; next } -> loop seed next 0 f
@@ -905,18 +850,18 @@ let append s1 s2 =
       { state = `First_list s1
       ; next =
           (function
-           | `First_list s1 ->
-             (match next1 s1 with
-              | Done -> Skip { state = `Second_list s2 }
-              | Skip { state = s1 } -> Skip { state = `First_list s1 }
-              | Yield { value = a; state = s1 } ->
-                Yield { value = a; state = `First_list s1 })
-           | `Second_list s2 ->
-             (match next2 s2 with
-              | Done -> Done
-              | Skip { state = s2 } -> Skip { state = `Second_list s2 }
-              | Yield { value = a; state = s2 } ->
-                Yield { value = a; state = `Second_list s2 }))
+            | `First_list s1 ->
+              (match next1 s1 with
+               | Done -> Skip { state = `Second_list s2 }
+               | Skip { state = s1 } -> Skip { state = `First_list s1 }
+               | Yield { value = a; state = s1 } ->
+                 Yield { value = a; state = `First_list s1 })
+            | `Second_list s2 ->
+              (match next2 s2 with
+               | Done -> Done
+               | Skip { state = s2 } -> Skip { state = `Second_list s2 }
+               | Yield { value = a; state = s2 } ->
+                 Yield { value = a; state = `Second_list s2 }))
       }
 ;;
 
@@ -936,8 +881,8 @@ let zip (Sequence { state = s1; next = next1 }) (Sequence { state = s2; next = n
 ;;
 
 let zip_full
-  (Sequence { state = s1; next = next1 })
-  (Sequence { state = s2; next = next2 })
+      (Sequence { state = s1; next = next1 })
+      (Sequence { state = s2; next = next2 })
   =
   let next = function
     | Yield { value = a; state = s1 }, Yield { value = b; state = s2 } ->
@@ -1065,15 +1010,15 @@ let sub s ~pos ~len =
       { state = 0, s
       ; next =
           (fun (i, s) ->
-            if i - pos >= len
-            then Done
-            else (
-              match next s with
-              | Done -> Done
-              | Skip { state = s } -> Skip { state = i, s }
-              | Yield { value = a; state = s } when i >= pos ->
-                Yield { value = a; state = i + 1, s }
-              | Yield { value = _; state = s } -> Skip { state = i + 1, s }))
+             if i - pos >= len
+             then Done
+             else (
+               match next s with
+               | Done -> Done
+               | Skip { state = s } -> Skip { state = i, s }
+               | Yield { value = a; state = s } when i >= pos ->
+                 Yield { value = a; state = i + 1, s }
+               | Yield { value = _; state = s } -> Skip { state = i + 1, s }))
       }
 ;;
 
@@ -1085,13 +1030,13 @@ let take s len =
       { state = 0, s
       ; next =
           (fun (i, s) ->
-            if i >= len
-            then Done
-            else (
-              match next s with
-              | Done -> Done
-              | Skip { state = s } -> Skip { state = i, s }
-              | Yield { value = a; state = s } -> Yield { value = a; state = i + 1, s }))
+             if i >= len
+             then Done
+             else (
+               match next s with
+               | Done -> Done
+               | Skip { state = s } -> Skip { state = i, s }
+               | Yield { value = a; state = s } -> Yield { value = a; state = i + 1, s }))
       }
 ;;
 
@@ -1103,12 +1048,12 @@ let drop s len =
       { state = 0, s
       ; next =
           (fun (i, s) ->
-            match next s with
-            | Done -> Done
-            | Skip { state = s } -> Skip { state = i, s }
-            | Yield { value = a; state = s } when i >= len ->
-              Yield { value = a; state = i + 1, s }
-            | Yield { value = _; state = s } -> Skip { state = i + 1, s })
+             match next s with
+             | Done -> Done
+             | Skip { state = s } -> Skip { state = i, s }
+             | Yield { value = a; state = s } when i >= len ->
+               Yield { value = a; state = i + 1, s }
+             | Yield { value = _; state = s } -> Skip { state = i + 1, s })
       }
 ;;
 
@@ -1119,11 +1064,11 @@ let take_while s ~f =
       { state = s
       ; next =
           (fun s ->
-            match next s with
-            | Done -> Done
-            | Skip { state = s } -> Skip { state = s }
-            | Yield { value = a; state = s } when f a -> Yield { value = a; state = s }
-            | Yield { value = _; state = _ } -> Done)
+             match next s with
+             | Done -> Done
+             | Skip { state = s } -> Skip { state = s }
+             | Yield { value = a; state = s } when f a -> Yield { value = a; state = s }
+             | Yield { value = _; state = _ } -> Done)
       }
 ;;
 
@@ -1134,13 +1079,13 @@ let drop_while s ~f =
       { state = `Dropping s
       ; next =
           (function
-           | `Dropping s ->
-             (match next s with
-              | Done -> Done
-              | Skip { state = s } -> Skip { state = `Dropping s }
-              | Yield { value = a; state = s } when f a -> Skip { state = `Dropping s }
-              | Yield { value = a; state = s } -> Yield { value = a; state = `Identity s })
-           | `Identity s -> lift_identity next s)
+            | `Dropping s ->
+              (match next s with
+               | Done -> Done
+               | Skip { state = s } -> Skip { state = `Dropping s }
+               | Yield { value = a; state = s } when f a -> Skip { state = `Dropping s }
+               | Yield { value = a; state = s } -> Yield { value = a; state = `Identity s })
+            | `Identity s -> lift_identity next s)
       }
 ;;
 
@@ -1151,8 +1096,8 @@ let shift_right s x =
       { state = `Consing (seed, x)
       ; next =
           (function
-           | `Consing (seed, x) -> Yield { value = x; state = `Identity seed }
-           | `Identity s -> lift_identity next s)
+            | `Consing (seed, x) -> Yield { value = x; state = `Identity seed }
+            | `Identity s -> lift_identity next s)
       }
 ;;
 
@@ -1170,18 +1115,18 @@ let intersperse s ~sep =
       { state = `Init s
       ; next =
           (function
-           | `Init s ->
-             (match next s with
-              | Done -> Done
-              | Skip { state = s } -> Skip { state = `Init s }
-              | Yield { value = a; state = s } -> Yield { value = a; state = `Running s })
-           | `Running s ->
-             (match next s with
-              | Done -> Done
-              | Skip { state = s } -> Skip { state = `Running s }
-              | Yield { value = a; state = s } ->
-                Yield { value = sep; state = `Putting (a, s) })
-           | `Putting (a, s) -> Yield { value = a; state = `Running s })
+            | `Init s ->
+              (match next s with
+               | Done -> Done
+               | Skip { state = s } -> Skip { state = `Init s }
+               | Yield { value = a; state = s } -> Yield { value = a; state = `Running s })
+            | `Running s ->
+              (match next s with
+               | Done -> Done
+               | Skip { state = s } -> Skip { state = `Running s }
+               | Yield { value = a; state = s } ->
+                 Yield { value = sep; state = `Putting (a, s) })
+            | `Putting (a, s) -> Yield { value = a; state = `Running s })
       }
 ;;
 
@@ -1295,38 +1240,21 @@ let drop_while_option (Sequence { state = s; next }) ~f =
   loop s [@nontail]
 ;;
 
-let rec skip_loop s next =
-  match next s with
-  | Skip { state } -> skip_loop state next
-  | (Done | Yield _) as next -> next
-;;
-
-let compare compare_a (Sequence l) (Sequence r) =
-  let rec loop compare_a s_l next_l s_r next_r =
-    match skip_loop s_l next_l, skip_loop s_r next_r with
-    | Done, Done -> 0
-    | Done, Yield _ -> -1
-    | Yield _, Done -> 1
-    | Yield l, Yield r ->
-      let c = compare_a l.value r.value in
-      if c <> 0 then c else loop compare_a l.state next_l r.state next_r
-    | Skip _, _ | _, Skip _ -> failwith "Bug: This branch should be unreachable"
-  in
-  loop compare_a l.state l.next r.state r.next
-;;
-
-let compare__local compare_a__local t1 t2 =
-  compare (fun x y -> compare_a__local x y) (globalize () t1) (globalize () t2)
+let compare compare_a t1 t2 =
+  With_return.with_return (fun r ->
+    iter (zip_full t1 t2) ~f:(function
+      | `Left _ -> r.return 1
+      | `Right _ -> r.return (-1)
+      | `Both (v1, v2) ->
+        let c = compare_a v1 v2 in
+        if c <> 0 then r.return c);
+    0)
 ;;
 
 let equal equal_a t1 t2 =
   for_all (zip_full t1 t2) ~f:(function
     | `Both (a1, a2) -> equal_a a1 a2
     | `Left _ | `Right _ -> false)
-;;
-
-let equal__local equal_a__local t1 t2 =
-  equal (fun x y -> equal_a__local x y) (globalize () t1) (globalize () t2)
 ;;
 
 let round_robin list =

@@ -1,0 +1,10 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires =
+  "frama-c-callgraph.core frama-c-eva.core frama-c-from.core frama-c.kernel"
+  archive(byte) = "inout.cma"
+  archive(native) = "inout.cmxa"
+  plugin(byte) = "inout.cma"
+  plugin(native) = "inout.cmxs"
+)

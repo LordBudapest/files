@@ -192,8 +192,7 @@ let dump (type a) : a t -> json =
         ( "scope",
           match scope with
           | `Buffer -> `String "local"
-          | `Project -> `String "project"
-          | `Renaming -> `String "renaming" )
+          | `Project -> `String "project" )
       ]
   | Refactor_open (action, pos) ->
     mk "refactor-open"
@@ -488,8 +487,8 @@ let json_of_response (type a) (query : a t) (response : a) : json =
   | Findlib_list, strs -> `List (List.map ~f:Json.string strs)
   | Extension_list _, strs -> `List (List.map ~f:Json.string strs)
   | Path_list _, strs -> `List (List.map ~f:Json.string strs)
-  | Occurrences (_, scope), (locations, _project) ->
-    let with_file = scope = `Project || scope = `Renaming in
+  | Occurrences (_, scope), (locations, _) ->
+    let with_file = scope = `Project in
     `List (List.map locations ~f:(fun loc -> with_location ~with_file loc []))
   | Signature_help _, s -> json_of_signature_help s
   | Version, version -> `String version

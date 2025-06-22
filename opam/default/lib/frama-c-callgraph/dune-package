@@ -1,0 +1,149 @@
+(lang dune 3.19)
+(name frama-c-callgraph)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-callgraph)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-callgraph))
+(files
+ (lib
+  (META
+   core/callgraph.a
+   core/callgraph.cma
+   core/callgraph.cmi
+   core/callgraph.cmt
+   core/callgraph.cmti
+   core/callgraph.cmx
+   core/callgraph.cmxa
+   core/callgraph.ml
+   core/callgraph.mli
+   core/callgraph__.cmi
+   core/callgraph__.cmt
+   core/callgraph__.cmx
+   core/callgraph__.ml
+   core/callgraph__Callgraph_api.cmi
+   core/callgraph__Callgraph_api.cmt
+   core/callgraph__Callgraph_api.cmx
+   core/callgraph__Cg.cmi
+   core/callgraph__Cg.cmt
+   core/callgraph__Cg.cmti
+   core/callgraph__Cg.cmx
+   core/callgraph__Options.cmi
+   core/callgraph__Options.cmt
+   core/callgraph__Options.cmti
+   core/callgraph__Options.cmx
+   core/callgraph__Register.cmi
+   core/callgraph__Register.cmt
+   core/callgraph__Register.cmti
+   core/callgraph__Register.cmx
+   core/callgraph__Requests.cmi
+   core/callgraph__Requests.cmt
+   core/callgraph__Requests.cmti
+   core/callgraph__Requests.cmx
+   core/callgraph__Services.cmi
+   core/callgraph__Services.cmt
+   core/callgraph__Services.cmti
+   core/callgraph__Services.cmx
+   core/callgraph__Subgraph.cmi
+   core/callgraph__Subgraph.cmt
+   core/callgraph__Subgraph.cmti
+   core/callgraph__Subgraph.cmx
+   core/callgraph__Uses.cmi
+   core/callgraph__Uses.cmt
+   core/callgraph__Uses.cmti
+   core/callgraph__Uses.cmx
+   core/callgraph_api.ml
+   core/cg.ml
+   core/cg.mli
+   core/options.ml
+   core/options.mli
+   core/register.ml
+   core/register.mli
+   core/requests.ml
+   core/requests.mli
+   core/services.ml
+   core/services.mli
+   core/subgraph.ml
+   core/subgraph.mli
+   core/uses.ml
+   core/uses.mli
+   dune-package
+   opam))
+ (lib_root (frama-c/plugins/callgraph/META))
+ (libexec (core/callgraph.cmxs)))
+(library
+ (name frama-c-callgraph.core)
+ (kind normal)
+ (archives (byte core/callgraph.cma) (native core/callgraph.cmxa))
+ (plugins (byte core/callgraph.cma) (native core/callgraph.cmxs))
+ (native_archives core/callgraph.a)
+ (requires frama-c.kernel frama-c-eva.core)
+ (main_module_name Callgraph)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name callgraph__)
+     (visibility public)
+     (kind alias)
+     (source (path Callgraph__) (impl (path core/callgraph__.ml-gen))))
+    (name Callgraph)
+    (modules
+     (module
+      (obj_name callgraph)
+      (visibility public)
+      (source
+       (path Callgraph)
+       (intf (path core/callgraph.mli))
+       (impl (path core/callgraph.ml))))
+     (module
+      (obj_name callgraph__Callgraph_api)
+      (visibility public)
+      (source (path Callgraph_api) (impl (path core/callgraph_api.ml))))
+     (module
+      (obj_name callgraph__Cg)
+      (visibility public)
+      (source (path Cg) (intf (path core/cg.mli)) (impl (path core/cg.ml))))
+     (module
+      (obj_name callgraph__Options)
+      (visibility public)
+      (source
+       (path Options)
+       (intf (path core/options.mli))
+       (impl (path core/options.ml))))
+     (module
+      (obj_name callgraph__Register)
+      (visibility public)
+      (source
+       (path Register)
+       (intf (path core/register.mli))
+       (impl (path core/register.ml))))
+     (module
+      (obj_name callgraph__Requests)
+      (visibility public)
+      (source
+       (path Requests)
+       (intf (path core/requests.mli))
+       (impl (path core/requests.ml))))
+     (module
+      (obj_name callgraph__Services)
+      (visibility public)
+      (source
+       (path Services)
+       (intf (path core/services.mli))
+       (impl (path core/services.ml))))
+     (module
+      (obj_name callgraph__Subgraph)
+      (visibility public)
+      (source
+       (path Subgraph)
+       (intf (path core/subgraph.mli))
+       (impl (path core/subgraph.ml))))
+     (module
+      (obj_name callgraph__Uses)
+      (visibility public)
+      (source
+       (path Uses)
+       (intf (path core/uses.mli))
+       (impl (path core/uses.ml))))))
+   (wrapped true))))

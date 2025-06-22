@@ -1,0 +1,9 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires = "frama-c.kernel"
+  archive(byte) = "report.cma"
+  archive(native) = "report.cmxa"
+  plugin(byte) = "report.cma"
+  plugin(native) = "report.cmxs"
+)

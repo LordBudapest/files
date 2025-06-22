@@ -223,16 +223,6 @@ module List = struct
       let acc, xs' = fold_n_map ~f ~init:acc xs in
       (acc, x' :: xs')
 
-  let rec iteri2 i ~f l1 l2 =
-    match (l1, l2) with
-    | [], [] -> ()
-    | a1 :: l1, a2 :: l2 ->
-      f i a1 a2;
-      iteri2 (i + 1) ~f l1 l2
-    | _, _ -> raise (Invalid_argument "iteri2")
-
-  let iteri2 ~f l1 l2 = iteri2 0 ~f l1 l2
-
   module Lazy = struct
     type 'a t = Nil | Cons of 'a * 'a t lazy_t
 
@@ -350,7 +340,7 @@ module Option = struct
 end
 
 module Result = struct
-  include Result
+  type ('a, 'e) t = ('a, 'e) result = Ok of 'a | Error of 'e
 
   let map ~f r = Result.map f r
   let bind ~f r = Result.bind r f
@@ -465,11 +455,15 @@ module String = struct
 
   let print () s = Printf.sprintf "%S" s
 
-  let capitalize = capitalize_ascii
-  let uncapitalize = uncapitalize_ascii
+  (* FIXME: Remove once we drop support for 4.02 and replace the calls by their
+     [_ascii] version. *)
+  [@@@ocaml.warning "-3"]
 
-  let lowercase = lowercase_ascii
-  let uppercase = uppercase_ascii
+  let capitalize = capitalize
+  let uncapitalize = uncapitalize
+
+  let lowercase = lowercase
+  let uppercase = uppercase
 
   let split_on_char_ c s =
     match String.index s c with
@@ -659,8 +653,8 @@ module Char = struct
   [@@@ocaml.warning "-3"]
 
   include Char
-  let is_lowercase c = lowercase_ascii c = c
-  let is_uppercase c = uppercase_ascii c = c
+  let is_lowercase c = lowercase c = c
+  let is_uppercase c = uppercase c = c
   let is_strictly_lowercase c = not (is_uppercase c)
   let is_strictly_uppercase c = not (is_lowercase c)
 end

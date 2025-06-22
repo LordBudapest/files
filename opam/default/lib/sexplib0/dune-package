@@ -1,6 +1,6 @@
 (lang dune 3.19)
 (name sexplib0)
-(version v0.17.0)
+(version v0.16.0)
 (sections (lib .) (libexec .) (doc ../../doc/sexplib0))
 (files
  (lib
@@ -14,8 +14,6 @@
    sexp_conv_error.ml
    sexp_conv_grammar.ml
    sexp_conv_grammar.mli
-   sexp_conv_labeled_tuple.ml
-   sexp_conv_labeled_tuple.mli
    sexp_conv_record.ml
    sexp_conv_record.mli
    sexp_grammar.ml
@@ -46,10 +44,6 @@
    sexplib0__Sexp_conv_grammar.cmt
    sexplib0__Sexp_conv_grammar.cmti
    sexplib0__Sexp_conv_grammar.cmx
-   sexplib0__Sexp_conv_labeled_tuple.cmi
-   sexplib0__Sexp_conv_labeled_tuple.cmt
-   sexplib0__Sexp_conv_labeled_tuple.cmti
-   sexplib0__Sexp_conv_labeled_tuple.cmx
    sexplib0__Sexp_conv_record.cmi
    sexplib0__Sexp_conv_record.cmt
    sexplib0__Sexp_conv_record.cmti
@@ -102,13 +96,6 @@
        (path Sexp_conv_grammar)
        (intf (path sexp_conv_grammar.mli))
        (impl (path sexp_conv_grammar.ml))))
-     (module
-      (obj_name sexplib0__Sexp_conv_labeled_tuple)
-      (visibility public)
-      (source
-       (path Sexp_conv_labeled_tuple)
-       (intf (path sexp_conv_labeled_tuple.mli))
-       (impl (path sexp_conv_labeled_tuple.ml))))
      (module
       (obj_name sexplib0__Sexp_conv_record)
       (visibility public)

@@ -40,7 +40,7 @@ module Which_target_by_key = struct
      ; `First_greater_than_or_equal_to
      ; `First_strictly_greater_than
      ]
-      : t list)
+     : t list)
   ;;
 
   [@@@end]
@@ -62,7 +62,7 @@ type ('t, 'elt, 'key) binary_search =
   ?pos:int
   -> ?len:int
   -> 't
-  -> compare:('elt -> 'key -> int)
+  -> compare:(('elt -> 'key -> int)[@local])
   -> Which_target_by_key.t
   -> 'key
   -> int option
@@ -71,7 +71,7 @@ type ('t, 'elt) binary_search_segmented =
   ?pos:int
   -> ?len:int
   -> 't
-  -> segment_of:('elt -> [ `Left | `Right ])
+  -> segment_of:(('elt -> [ `Left | `Right ])[@local])
   -> Which_target_by_segment.t
   -> int option
 

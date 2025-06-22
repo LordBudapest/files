@@ -1,0 +1,288 @@
+(lang dune 3.19)
+(name qed)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/qed)
+ (libexec /home/bhaskar/.opam/default/lib/qed))
+(files
+ (lib
+  (META
+   bvars.ml
+   bvars.mli
+   cache.ml
+   cache.mli
+   collection.ml
+   collection.mli
+   dune-package
+   engine.ml
+   export.ml
+   export.mli
+   export_why3.ml
+   export_why3.mli
+   export_whycore.ml
+   export_whycore.mli
+   hcons.ml
+   hcons.mli
+   idxmap.ml
+   idxmap.mli
+   idxset.ml
+   idxset.mli
+   intmap.ml
+   intmap.mli
+   intset.ml
+   intset.mli
+   kind.ml
+   kind.mli
+   listmap.ml
+   listmap.mli
+   listset.ml
+   listset.mli
+   logic.ml
+   mergemap.ml
+   mergemap.mli
+   mergeset.ml
+   mergeset.mli
+   opam
+   partition.ml
+   partition.mli
+   plib.ml
+   plib.mli
+   pool.ml
+   pool.mli
+   pretty.ml
+   pretty.mli
+   qed.a
+   qed.cma
+   qed.cmi
+   qed.cmt
+   qed.cmx
+   qed.cmxa
+   qed.ml
+   qed__Bvars.cmi
+   qed__Bvars.cmt
+   qed__Bvars.cmti
+   qed__Bvars.cmx
+   qed__Cache.cmi
+   qed__Cache.cmt
+   qed__Cache.cmti
+   qed__Cache.cmx
+   qed__Collection.cmi
+   qed__Collection.cmt
+   qed__Collection.cmti
+   qed__Collection.cmx
+   qed__Engine.cmi
+   qed__Engine.cmt
+   qed__Engine.cmx
+   qed__Export.cmi
+   qed__Export.cmt
+   qed__Export.cmti
+   qed__Export.cmx
+   qed__Export_why3.cmi
+   qed__Export_why3.cmt
+   qed__Export_why3.cmti
+   qed__Export_why3.cmx
+   qed__Export_whycore.cmi
+   qed__Export_whycore.cmt
+   qed__Export_whycore.cmti
+   qed__Export_whycore.cmx
+   qed__Hcons.cmi
+   qed__Hcons.cmt
+   qed__Hcons.cmti
+   qed__Hcons.cmx
+   qed__Idxmap.cmi
+   qed__Idxmap.cmt
+   qed__Idxmap.cmti
+   qed__Idxmap.cmx
+   qed__Idxset.cmi
+   qed__Idxset.cmt
+   qed__Idxset.cmti
+   qed__Idxset.cmx
+   qed__Intmap.cmi
+   qed__Intmap.cmt
+   qed__Intmap.cmti
+   qed__Intmap.cmx
+   qed__Intset.cmi
+   qed__Intset.cmt
+   qed__Intset.cmti
+   qed__Intset.cmx
+   qed__Kind.cmi
+   qed__Kind.cmt
+   qed__Kind.cmti
+   qed__Kind.cmx
+   qed__Listmap.cmi
+   qed__Listmap.cmt
+   qed__Listmap.cmti
+   qed__Listmap.cmx
+   qed__Listset.cmi
+   qed__Listset.cmt
+   qed__Listset.cmti
+   qed__Listset.cmx
+   qed__Logic.cmi
+   qed__Logic.cmt
+   qed__Logic.cmx
+   qed__Mergemap.cmi
+   qed__Mergemap.cmt
+   qed__Mergemap.cmti
+   qed__Mergemap.cmx
+   qed__Mergeset.cmi
+   qed__Mergeset.cmt
+   qed__Mergeset.cmti
+   qed__Mergeset.cmx
+   qed__Partition.cmi
+   qed__Partition.cmt
+   qed__Partition.cmti
+   qed__Partition.cmx
+   qed__Plib.cmi
+   qed__Plib.cmt
+   qed__Plib.cmti
+   qed__Plib.cmx
+   qed__Pool.cmi
+   qed__Pool.cmt
+   qed__Pool.cmti
+   qed__Pool.cmx
+   qed__Pretty.cmi
+   qed__Pretty.cmt
+   qed__Pretty.cmti
+   qed__Pretty.cmx
+   qed__Term.cmi
+   qed__Term.cmt
+   qed__Term.cmti
+   qed__Term.cmx
+   term.ml
+   term.mli))
+ (libexec (qed.cmxs)))
+(library
+ (name qed)
+ (kind normal)
+ (archives (byte qed.cma) (native qed.cmxa))
+ (plugins (byte qed.cma) (native qed.cmxs))
+ (native_archives qed.a)
+ (requires str zarith)
+ (main_module_name Qed)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name qed)
+     (visibility public)
+     (kind alias)
+     (source (path Qed) (impl (path qed.ml-gen))))
+    (name Qed)
+    (modules
+     (module
+      (obj_name qed__Bvars)
+      (visibility public)
+      (source (path Bvars) (intf (path bvars.mli)) (impl (path bvars.ml))))
+     (module
+      (obj_name qed__Cache)
+      (visibility public)
+      (source (path Cache) (intf (path cache.mli)) (impl (path cache.ml))))
+     (module
+      (obj_name qed__Collection)
+      (visibility public)
+      (source
+       (path Collection)
+       (intf (path collection.mli))
+       (impl (path collection.ml))))
+     (module
+      (obj_name qed__Engine)
+      (visibility public)
+      (source (path Engine) (impl (path engine.ml))))
+     (module
+      (obj_name qed__Export)
+      (visibility public)
+      (source (path Export) (intf (path export.mli)) (impl (path export.ml))))
+     (module
+      (obj_name qed__Export_why3)
+      (visibility public)
+      (source
+       (path Export_why3)
+       (intf (path export_why3.mli))
+       (impl (path export_why3.ml))))
+     (module
+      (obj_name qed__Export_whycore)
+      (visibility public)
+      (source
+       (path Export_whycore)
+       (intf (path export_whycore.mli))
+       (impl (path export_whycore.ml))))
+     (module
+      (obj_name qed__Hcons)
+      (visibility public)
+      (source (path Hcons) (intf (path hcons.mli)) (impl (path hcons.ml))))
+     (module
+      (obj_name qed__Idxmap)
+      (visibility public)
+      (source (path Idxmap) (intf (path idxmap.mli)) (impl (path idxmap.ml))))
+     (module
+      (obj_name qed__Idxset)
+      (visibility public)
+      (source (path Idxset) (intf (path idxset.mli)) (impl (path idxset.ml))))
+     (module
+      (obj_name qed__Intmap)
+      (visibility public)
+      (source (path Intmap) (intf (path intmap.mli)) (impl (path intmap.ml))))
+     (module
+      (obj_name qed__Intset)
+      (visibility public)
+      (source (path Intset) (intf (path intset.mli)) (impl (path intset.ml))))
+     (module
+      (obj_name qed__Kind)
+      (visibility public)
+      (source (path Kind) (intf (path kind.mli)) (impl (path kind.ml))))
+     (module
+      (obj_name qed__Listmap)
+      (visibility public)
+      (source
+       (path Listmap)
+       (intf (path listmap.mli))
+       (impl (path listmap.ml))))
+     (module
+      (obj_name qed__Listset)
+      (visibility public)
+      (source
+       (path Listset)
+       (intf (path listset.mli))
+       (impl (path listset.ml))))
+     (module
+      (obj_name qed__Logic)
+      (visibility public)
+      (source (path Logic) (impl (path logic.ml))))
+     (module
+      (obj_name qed__Mergemap)
+      (visibility public)
+      (source
+       (path Mergemap)
+       (intf (path mergemap.mli))
+       (impl (path mergemap.ml))))
+     (module
+      (obj_name qed__Mergeset)
+      (visibility public)
+      (source
+       (path Mergeset)
+       (intf (path mergeset.mli))
+       (impl (path mergeset.ml))))
+     (module
+      (obj_name qed__Partition)
+      (visibility public)
+      (source
+       (path Partition)
+       (intf (path partition.mli))
+       (impl (path partition.ml))))
+     (module
+      (obj_name qed__Plib)
+      (visibility public)
+      (source (path Plib) (intf (path plib.mli)) (impl (path plib.ml))))
+     (module
+      (obj_name qed__Pool)
+      (visibility public)
+      (source (path Pool) (intf (path pool.mli)) (impl (path pool.ml))))
+     (module
+      (obj_name qed__Pretty)
+      (visibility public)
+      (source (path Pretty) (intf (path pretty.mli)) (impl (path pretty.ml))))
+     (module
+      (obj_name qed__Term)
+      (visibility public)
+      (source (path Term) (intf (path term.mli)) (impl (path term.ml))))))
+   (wrapped true))))

@@ -1,0 +1,115 @@
+(lang dune 3.19)
+(name frama-c-occurrence)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-occurrence)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-occurrence))
+(files
+ (lib
+  (META
+   core/Occurrence.ml
+   core/occurrence.a
+   core/occurrence.cma
+   core/occurrence.cmi
+   core/occurrence.cmt
+   core/occurrence.cmx
+   core/occurrence.cmxa
+   core/occurrence__.cmi
+   core/occurrence__.cmt
+   core/occurrence__.cmx
+   core/occurrence__.ml
+   core/occurrence__Options.cmi
+   core/occurrence__Options.cmt
+   core/occurrence__Options.cmti
+   core/occurrence__Options.cmx
+   core/occurrence__Register.cmi
+   core/occurrence__Register.cmt
+   core/occurrence__Register.cmti
+   core/occurrence__Register.cmx
+   core/options.ml
+   core/options.mli
+   core/register.ml
+   core/register.mli
+   dune-package
+   gui/occurrence_gui.a
+   gui/occurrence_gui.cma
+   gui/occurrence_gui.cmi
+   gui/occurrence_gui.cmt
+   gui/occurrence_gui.cmx
+   gui/occurrence_gui.cmxa
+   gui/occurrence_gui.ml
+   gui/occurrence_gui__Register_gui.cmi
+   gui/occurrence_gui__Register_gui.cmt
+   gui/occurrence_gui__Register_gui.cmti
+   gui/occurrence_gui__Register_gui.cmx
+   gui/register_gui.ml
+   gui/register_gui.mli
+   opam))
+ (lib_root
+  (frama-c/plugins/occurrence/META frama-c/plugins_gui/occurrence/META))
+ (libexec (core/occurrence.cmxs gui/occurrence_gui.cmxs)))
+(library
+ (name frama-c-occurrence.core)
+ (kind normal)
+ (archives (byte core/occurrence.cma) (native core/occurrence.cmxa))
+ (plugins (byte core/occurrence.cma) (native core/occurrence.cmxs))
+ (native_archives core/occurrence.a)
+ (requires frama-c.kernel frama-c-eva.core)
+ (main_module_name Occurrence)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name occurrence__)
+     (visibility public)
+     (kind alias)
+     (source (path Occurrence__) (impl (path core/occurrence__.ml-gen))))
+    (name Occurrence)
+    (modules
+     (module
+      (obj_name occurrence)
+      (visibility public)
+      (source (path Occurrence) (impl (path core/Occurrence.ml))))
+     (module
+      (obj_name occurrence__Options)
+      (visibility public)
+      (source
+       (path Options)
+       (intf (path core/options.mli))
+       (impl (path core/options.ml))))
+     (module
+      (obj_name occurrence__Register)
+      (visibility public)
+      (source
+       (path Register)
+       (intf (path core/register.mli))
+       (impl (path core/register.ml))))))
+   (wrapped true))))
+(library
+ (name frama-c-occurrence.gui)
+ (kind normal)
+ (archives (byte gui/occurrence_gui.cma) (native gui/occurrence_gui.cmxa))
+ (plugins (byte gui/occurrence_gui.cma) (native gui/occurrence_gui.cmxs))
+ (native_archives gui/occurrence_gui.a)
+ (requires frama-c.kernel frama-c.gui frama-c-occurrence.core)
+ (main_module_name Occurrence_gui)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name occurrence_gui)
+     (visibility public)
+     (kind alias)
+     (source (path Occurrence_gui) (impl (path gui/occurrence_gui.ml-gen))))
+    (name Occurrence_gui)
+    (modules
+     (module
+      (obj_name occurrence_gui__Register_gui)
+      (visibility public)
+      (source
+       (path Register_gui)
+       (intf (path gui/register_gui.mli))
+       (impl (path gui/register_gui.ml))))))
+   (wrapped true))))

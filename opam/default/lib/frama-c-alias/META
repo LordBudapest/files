@@ -1,0 +1,9 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires = "frama-c.kernel ocamlgraph unionFind"
+  archive(byte) = "Alias.cma"
+  archive(native) = "Alias.cmxa"
+  plugin(byte) = "Alias.cma"
+  plugin(native) = "Alias.cmxs"
+)

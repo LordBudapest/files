@@ -1,94 +1,98 @@
 opam-version: "2.0"
 added: [
-  "bin/ocamlformat" {"F:S31009552T1749654914.66"}
-  "bin/ocamlformat-rpc" {"F:S31100464T1749654914.73"}
+  "bin/ocamlformat" {"F:S26453984T1750606898.58"}
+  "bin/ocamlformat-rpc" {"F:S26535648T1750606898.62"}
   "doc/ocamlformat" {"D"}
-  "doc/ocamlformat/CHANGES.md" {"F:S87825T1749654914.77"}
-  "doc/ocamlformat/LICENSE" {"F:S1114T1749654914.77"}
-  "doc/ocamlformat/README.md" {"F:S4328T1749654914.77"}
-  "doc/ocamlformat/odoc-pages/api.mld" {"F:S523T1749654914.77"}
-  "doc/ocamlformat/odoc-pages/configuration.mld" {"F:S2470T1749654914.77"}
-  "doc/ocamlformat/odoc-pages/doc_comments.mld" {"F:S1204T1749654914.77"}
-  "doc/ocamlformat/odoc-pages/editor_setup.mld" {"F:S4604T1749654914.77"}
-  "doc/ocamlformat/odoc-pages/faq.mld" {"F:S4660T1749654914.77"}
-  "doc/ocamlformat/odoc-pages/getting_started.mld" {"F:S5673T1749654914.77"}
-  "doc/ocamlformat/odoc-pages/howtos.mld" {"F:S2039T1749654914.77"}
-  "doc/ocamlformat/odoc-pages/index.mld" {"F:S703T1749654914.77"}
+  "doc/ocamlformat/CHANGES.md" {"F:S87825T1750606898.63"}
+  "doc/ocamlformat/LICENSE" {"F:S1114T1750606898.63"}
+  "doc/ocamlformat/README.md" {"F:S4328T1750606898.63"}
+  "doc/ocamlformat/odoc-pages" {"D"}
+  "doc/ocamlformat/odoc-pages/api.mld" {"F:S523T1750606898.63"}
+  "doc/ocamlformat/odoc-pages/configuration.mld" {"F:S2470T1750606898.63"}
+  "doc/ocamlformat/odoc-pages/doc_comments.mld" {"F:S1204T1750606898.63"}
+  "doc/ocamlformat/odoc-pages/editor_setup.mld" {"F:S4604T1750606898.63"}
+  "doc/ocamlformat/odoc-pages/faq.mld" {"F:S4660T1750606898.63"}
+  "doc/ocamlformat/odoc-pages/getting_started.mld" {"F:S5673T1750606898.63"}
+  "doc/ocamlformat/odoc-pages/howtos.mld" {"F:S2039T1750606898.63"}
+  "doc/ocamlformat/odoc-pages/index.mld" {"F:S703T1750606898.63"}
   "doc/ocamlformat/odoc-pages/manpage_ocamlformat.mld"
-    {"F:S30623T1749654914.77"}
+    {"F:S30623T1750606898.63"}
   "doc/ocamlformat/odoc-pages/manpage_ocamlformat_rpc.mld"
-    {"F:S3180T1749654914.77"}
-  "doc/ocamlformat/odoc-pages/rpc.mld" {"F:S3062T1749654914.77"}
+    {"F:S3180T1750606898.63"}
+  "doc/ocamlformat/odoc-pages/rpc.mld" {"F:S3062T1750606898.63"}
   "lib/ocamlformat" {"D"}
-  "lib/ocamlformat/META" {"F:S923T1749654914.73"}
-  "lib/ocamlformat/bin_conf/Bin_conf.ml" {"F:S28561T1749654914.74"}
-  "lib/ocamlformat/bin_conf/Bin_conf.mli" {"F:S1671T1749654914.74"}
-  "lib/ocamlformat/bin_conf/File_system.ml" {"F:S4682T1749654914.74"}
-  "lib/ocamlformat/bin_conf/File_system.mli" {"F:S1343T1749654914.74"}
-  "lib/ocamlformat/bin_conf/bin_conf.a" {"F:S164158T1749654914.74"}
-  "lib/ocamlformat/bin_conf/bin_conf.cma" {"F:S159038T1749654914.74"}
-  "lib/ocamlformat/bin_conf/bin_conf.cmi" {"F:S7887T1749654914.74"}
-  "lib/ocamlformat/bin_conf/bin_conf.cmt" {"F:S320396T1749654914.74"}
-  "lib/ocamlformat/bin_conf/bin_conf.cmti" {"F:S24850T1749654914.74"}
-  "lib/ocamlformat/bin_conf/bin_conf.cmx" {"F:S9948T1749654914.74"}
-  "lib/ocamlformat/bin_conf/bin_conf.cmxa" {"F:S13440T1749654914.74"}
-  "lib/ocamlformat/bin_conf/bin_conf.cmxs" {"F:S172424T1749654914.77"}
-  "lib/ocamlformat/bin_conf/bin_conf__.cmi" {"F:S244T1749654914.74"}
-  "lib/ocamlformat/bin_conf/bin_conf__.cmt" {"F:S2897T1749654914.74"}
-  "lib/ocamlformat/bin_conf/bin_conf__.cmx" {"F:S127T1749654914.74"}
-  "lib/ocamlformat/bin_conf/bin_conf__.ml" {"F:S107T1749654914.74"}
+  "lib/ocamlformat/META" {"F:S923T1750606898.62"}
+  "lib/ocamlformat/bin_conf" {"D"}
+  "lib/ocamlformat/bin_conf/Bin_conf.ml" {"F:S28561T1750606898.62"}
+  "lib/ocamlformat/bin_conf/Bin_conf.mli" {"F:S1671T1750606898.62"}
+  "lib/ocamlformat/bin_conf/File_system.ml" {"F:S4682T1750606898.62"}
+  "lib/ocamlformat/bin_conf/File_system.mli" {"F:S1343T1750606898.62"}
+  "lib/ocamlformat/bin_conf/bin_conf.a" {"F:S157816T1750606898.62"}
+  "lib/ocamlformat/bin_conf/bin_conf.cma" {"F:S160154T1750606898.62"}
+  "lib/ocamlformat/bin_conf/bin_conf.cmi" {"F:S7540T1750606898.62"}
+  "lib/ocamlformat/bin_conf/bin_conf.cmt" {"F:S292327T1750606898.62"}
+  "lib/ocamlformat/bin_conf/bin_conf.cmti" {"F:S23052T1750606898.62"}
+  "lib/ocamlformat/bin_conf/bin_conf.cmx" {"F:S9635T1750606898.62"}
+  "lib/ocamlformat/bin_conf/bin_conf.cmxa" {"F:S12806T1750606898.62"}
+  "lib/ocamlformat/bin_conf/bin_conf.cmxs" {"F:S162232T1750606898.63"}
+  "lib/ocamlformat/bin_conf/bin_conf__.cmi" {"F:S243T1750606898.62"}
+  "lib/ocamlformat/bin_conf/bin_conf__.cmt" {"F:S2619T1750606898.62"}
+  "lib/ocamlformat/bin_conf/bin_conf__.cmx" {"F:S126T1750606898.62"}
+  "lib/ocamlformat/bin_conf/bin_conf__.ml" {"F:S107T1750606898.62"}
   "lib/ocamlformat/bin_conf/bin_conf__File_system.cmi"
-    {"F:S6331T1749654914.74"}
+    {"F:S6020T1750606898.62"}
   "lib/ocamlformat/bin_conf/bin_conf__File_system.cmt"
-    {"F:S44071T1749654914.74"}
+    {"F:S41019T1750606898.62"}
   "lib/ocamlformat/bin_conf/bin_conf__File_system.cmti"
-    {"F:S20425T1749654914.74"}
+    {"F:S19064T1750606898.62"}
   "lib/ocamlformat/bin_conf/bin_conf__File_system.cmx"
-    {"F:S6070T1749654914.74"}
-  "lib/ocamlformat/dune-package" {"F:S5149T1749654914.74"}
-  "lib/ocamlformat/opam" {"F:S1981T1749654914.74"}
-  "lib/ocamlformat/rpc/ocamlformat_rpc.a" {"F:S37208T1749654914.74"}
-  "lib/ocamlformat/rpc/ocamlformat_rpc.cma" {"F:S38313T1749654914.77"}
-  "lib/ocamlformat/rpc/ocamlformat_rpc.cmi" {"F:S12636T1749654914.77"}
-  "lib/ocamlformat/rpc/ocamlformat_rpc.cmt" {"F:S95384T1749654914.77"}
-  "lib/ocamlformat/rpc/ocamlformat_rpc.cmx" {"F:S8866T1749654914.77"}
-  "lib/ocamlformat/rpc/ocamlformat_rpc.cmxa" {"F:S7279T1749654914.77"}
-  "lib/ocamlformat/rpc/ocamlformat_rpc.cmxs" {"F:S51016T1749654914.77"}
-  "lib/ocamlformat/rpc/ocamlformat_rpc.ml" {"F:S6251T1749654914.77"}
-  "lib/ocamlformat/rpc_lib_protocol/IO.ml" {"F:S1916T1749654914.77"}
+    {"F:S5785T1750606898.62"}
+  "lib/ocamlformat/dune-package" {"F:S5149T1750606898.62"}
+  "lib/ocamlformat/opam" {"F:S1981T1750606898.62"}
+  "lib/ocamlformat/rpc" {"D"}
+  "lib/ocamlformat/rpc/ocamlformat_rpc.a" {"F:S35188T1750606898.62"}
+  "lib/ocamlformat/rpc/ocamlformat_rpc.cma" {"F:S37691T1750606898.62"}
+  "lib/ocamlformat/rpc/ocamlformat_rpc.cmi" {"F:S12261T1750606898.62"}
+  "lib/ocamlformat/rpc/ocamlformat_rpc.cmt" {"F:S89189T1750606898.63"}
+  "lib/ocamlformat/rpc/ocamlformat_rpc.cmx" {"F:S8558T1750606898.63"}
+  "lib/ocamlformat/rpc/ocamlformat_rpc.cmxa" {"F:S6946T1750606898.63"}
+  "lib/ocamlformat/rpc/ocamlformat_rpc.cmxs" {"F:S50312T1750606898.63"}
+  "lib/ocamlformat/rpc/ocamlformat_rpc.ml" {"F:S6251T1750606898.63"}
+  "lib/ocamlformat/rpc_lib_protocol" {"D"}
+  "lib/ocamlformat/rpc_lib_protocol/IO.ml" {"F:S1916T1750606898.63"}
   "lib/ocamlformat/rpc_lib_protocol/ocamlformat_rpc_lib_protocol.a"
-    {"F:S38220T1749654914.77"}
+    {"F:S36040T1750606898.63"}
   "lib/ocamlformat/rpc_lib_protocol/ocamlformat_rpc_lib_protocol.cma"
-    {"F:S36528T1749654914.77"}
+    {"F:S36109T1750606898.63"}
   "lib/ocamlformat/rpc_lib_protocol/ocamlformat_rpc_lib_protocol.cmi"
-    {"F:S453T1749654914.77"}
+    {"F:S451T1750606898.63"}
   "lib/ocamlformat/rpc_lib_protocol/ocamlformat_rpc_lib_protocol.cmt"
-    {"F:S3735T1749654914.77"}
+    {"F:S3368T1750606898.63"}
   "lib/ocamlformat/rpc_lib_protocol/ocamlformat_rpc_lib_protocol.cmx"
-    {"F:S200T1749654914.77"}
+    {"F:S199T1750606898.63"}
   "lib/ocamlformat/rpc_lib_protocol/ocamlformat_rpc_lib_protocol.cmxa"
-    {"F:S1165T1749654914.77"}
+    {"F:S1162T1750606898.63"}
   "lib/ocamlformat/rpc_lib_protocol/ocamlformat_rpc_lib_protocol.cmxs"
-    {"F:S45728T1749654914.77"}
+    {"F:S44576T1750606898.63"}
   "lib/ocamlformat/rpc_lib_protocol/ocamlformat_rpc_lib_protocol.ml"
-    {"F:S234T1749654914.77"}
+    {"F:S234T1750606898.63"}
   "lib/ocamlformat/rpc_lib_protocol/ocamlformat_rpc_lib_protocol__IO.cmi"
-    {"F:S1231T1749654914.77"}
+    {"F:S1220T1750606898.63"}
   "lib/ocamlformat/rpc_lib_protocol/ocamlformat_rpc_lib_protocol__IO.cmt"
-    {"F:S10235T1749654914.77"}
+    {"F:S9587T1750606898.63"}
   "lib/ocamlformat/rpc_lib_protocol/ocamlformat_rpc_lib_protocol__IO.cmx"
-    {"F:S408T1749654914.77"}
+    {"F:S407T1750606898.63"}
   "lib/ocamlformat/rpc_lib_protocol/ocamlformat_rpc_lib_protocol__Protocol.cmi"
-    {"F:S2960T1749654914.77"}
+    {"F:S2935T1750606898.63"}
   "lib/ocamlformat/rpc_lib_protocol/ocamlformat_rpc_lib_protocol__Protocol.cmt"
-    {"F:S53953T1749654914.77"}
+    {"F:S50649T1750606898.63"}
   "lib/ocamlformat/rpc_lib_protocol/ocamlformat_rpc_lib_protocol__Protocol.cmti"
-    {"F:S15490T1749654914.77"}
+    {"F:S14718T1750606898.63"}
   "lib/ocamlformat/rpc_lib_protocol/ocamlformat_rpc_lib_protocol__Protocol.cmx"
-    {"F:S1388T1749654914.77"}
-  "lib/ocamlformat/rpc_lib_protocol/protocol.ml" {"F:S4847T1749654914.77"}
-  "lib/ocamlformat/rpc_lib_protocol/protocol.mli" {"F:S1905T1749654914.77"}
-  "man/man1/ocamlformat-rpc.1" {"F:S3583T1749654914.77"}
-  "man/man1/ocamlformat.1" {"F:S35264T1749654914.77"}
-  "share/emacs/site-lisp/ocamlformat.el" {"F:S12599T1749654914.77"}
+    {"F:S1399T1750606898.63"}
+  "lib/ocamlformat/rpc_lib_protocol/protocol.ml" {"F:S4847T1750606898.63"}
+  "lib/ocamlformat/rpc_lib_protocol/protocol.mli" {"F:S1905T1750606898.63"}
+  "man/man1/ocamlformat-rpc.1" {"F:S3583T1750606898.63"}
+  "man/man1/ocamlformat.1" {"F:S35264T1750606898.63"}
+  "share/emacs/site-lisp/ocamlformat.el" {"F:S12599T1750606898.63"}
 ]

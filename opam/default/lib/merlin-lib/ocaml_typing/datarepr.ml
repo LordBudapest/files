@@ -23,25 +23,24 @@ open Btype
 (* Simplified version of Ctype.free_vars *)
 let free_vars ?(param=false) ty =
   let ret = ref TypeSet.empty in
-  with_type_mark begin fun mark ->
-    let rec loop ty =
-      if try_mark_node mark ty then
-        match get_desc ty with
-        | Tvar _ ->
-            ret := TypeSet.add ty !ret
-        | Tvariant row ->
-            iter_row loop row;
-            if not (static_row row) then begin
-              match get_desc (row_more row) with
-              | Tvar _ when param -> ret := TypeSet.add ty !ret
-              | _ -> loop (row_more row)
-            end
-                (* XXX: What about Tobject ? *)
-        | _ ->
-            iter_type_expr loop ty
-    in
-    loop ty
-  end;
+  let rec loop ty =
+    if try_mark_node ty then
+      match get_desc ty with
+      | Tvar _ ->
+          ret := TypeSet.add ty !ret
+      | Tvariant row ->
+          iter_row loop row;
+          if not (static_row row) then begin
+            match get_desc (row_more row) with
+            | Tvar _ when param -> ret := TypeSet.add ty !ret
+            | _ -> loop (row_more row)
+          end
+      (* XXX: What about Tobject ? *)
+      | _ ->
+          iter_type_expr loop ty
+  in
+  loop ty;
+  unmark_type ty;
   !ret
 
 let newgenconstr path tyl = newgenty (Tconstr (path, tyl, ref Mnil))
@@ -126,7 +125,7 @@ let constructor_descrs ~current_unit ty_path decl cstrs rep =
             | Variant_regular -> Record_inlined idx_nonconst
           in
           constructor_args ~current_unit decl.type_private cd_args cd_res
-            Path.(Pextra_ty (ty_path, Pcstr_ty cstr_name)) representation
+            (Path.Pdot (ty_path, cstr_name)) representation
         in
         let cstr =
           { cstr_name;
@@ -155,7 +154,7 @@ let extension_descr ~current_unit path_ext ext =
   in
   let existentials, cstr_args, cstr_inlined =
     constructor_args ~current_unit ext.ext_private ext.ext_args ext.ext_ret_type
-      Path.(Pextra_ty (path_ext, Pext_ty)) (Record_extension path_ext)
+      path_ext (Record_extension path_ext)
   in
     { cstr_name = Path.last path_ext;
       cstr_res = ty_res;
@@ -229,11 +228,11 @@ let constructors_of_type ~current_unit ty_path decl =
   match decl.type_kind with
   | Type_variant (cstrs,rep) ->
      constructor_descrs ~current_unit ty_path decl cstrs rep
-  | Type_record _ | Type_abstract _ | Type_open -> []
+  | Type_record _ | Type_abstract | Type_open -> []
 
 let labels_of_type ty_path decl =
   match decl.type_kind with
   | Type_record(labels, rep) ->
       label_descrs (newgenconstr ty_path decl.type_params)
         labels rep decl.type_private
-  | Type_variant _ | Type_abstract _ | Type_open -> []
+  | Type_variant _ | Type_abstract | Type_open -> []

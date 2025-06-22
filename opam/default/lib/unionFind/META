@@ -1,0 +1,6 @@
+description = "Implementations of the union-find data structure"
+requires = ""
+archive(byte) = "unionFind.cma"
+archive(native) = "unionFind.cmxa"
+plugin(byte) = "unionFind.cma"
+plugin(native) = "unionFind.cmxs"

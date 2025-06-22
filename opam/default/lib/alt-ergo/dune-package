@@ -1,0 +1,228 @@
+(lang dune 3.19)
+(name alt-ergo)
+(version v2.6.2)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/alt-ergo)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/alt-ergo)
+ (bin /home/bhaskar/.opam/default/bin)
+ (share /home/bhaskar/.opam/default/share/alt-ergo)
+ (share_root /home/bhaskar/.opam/default/share)
+ (doc /home/bhaskar/.opam/default/doc/alt-ergo)
+ (man /home/bhaskar/.opam/default/man))
+(sites (plugins lib) (preludes share))
+(files
+ (lib
+  (META
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common.cmi
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common.cmt
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common__AltErgoSites.cmi
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common__AltErgoSites.cmt
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common__Config.cmi
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common__Config.cmt
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common__Input_frontend.cmi
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common__Input_frontend.cmt
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common__Input_frontend.cmti
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common__MyDynlink.cmi
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common__MyDynlink.cmt
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common__MyDynlink.cmti
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common__Parse_command.cmi
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common__Parse_command.cmt
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common__Parse_command.cmti
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common__Signals_profiling.cmi
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common__Signals_profiling.cmt
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common__Signals_profiling.cmti
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common__Solving_loop.cmi
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common__Solving_loop.cmt
+   __private__/alt_ergo_common/.public_cmi/alt_ergo_common__Solving_loop.cmti
+   __private__/alt_ergo_common/AltErgoSites.ml
+   __private__/alt_ergo_common/alt_ergo_common.a
+   __private__/alt_ergo_common/alt_ergo_common.cma
+   __private__/alt_ergo_common/alt_ergo_common.cmx
+   __private__/alt_ergo_common/alt_ergo_common.cmxa
+   __private__/alt_ergo_common/alt_ergo_common.ml
+   __private__/alt_ergo_common/alt_ergo_common__AltErgoSites.cmx
+   __private__/alt_ergo_common/alt_ergo_common__Config.cmx
+   __private__/alt_ergo_common/alt_ergo_common__Input_frontend.cmx
+   __private__/alt_ergo_common/alt_ergo_common__MyDynlink.cmx
+   __private__/alt_ergo_common/alt_ergo_common__Parse_command.cmx
+   __private__/alt_ergo_common/alt_ergo_common__Signals_profiling.cmx
+   __private__/alt_ergo_common/alt_ergo_common__Solving_loop.cmx
+   __private__/alt_ergo_common/config.ml
+   __private__/alt_ergo_common/input_frontend.ml
+   __private__/alt_ergo_common/input_frontend.mli
+   __private__/alt_ergo_common/myDynlink.ml
+   __private__/alt_ergo_common/myDynlink.mli
+   __private__/alt_ergo_common/parse_command.ml
+   __private__/alt_ergo_common/parse_command.mli
+   __private__/alt_ergo_common/signals_profiling.ml
+   __private__/alt_ergo_common/signals_profiling.mli
+   __private__/alt_ergo_common/solving_loop.ml
+   __private__/alt_ergo_common/solving_loop.mli
+   dune-package
+   opam
+   plugins/fm-simplex/FmSimplexPlugin.a
+   plugins/fm-simplex/FmSimplexPlugin.cma
+   plugins/fm-simplex/FmSimplexPlugin.cmxa
+   plugins/fm-simplex/fmSimplexIneqs.ml
+   plugins/fm-simplex/fmSimplexIneqs.mli
+   plugins/fm-simplex/fmSimplexPlugin.cmi
+   plugins/fm-simplex/fmSimplexPlugin.cmt
+   plugins/fm-simplex/fmSimplexPlugin.cmx
+   plugins/fm-simplex/fmSimplexPlugin.ml
+   plugins/fm-simplex/fmSimplexPlugin__FmSimplexIneqs.cmi
+   plugins/fm-simplex/fmSimplexPlugin__FmSimplexIneqs.cmt
+   plugins/fm-simplex/fmSimplexPlugin__FmSimplexIneqs.cmti
+   plugins/fm-simplex/fmSimplexPlugin__FmSimplexIneqs.cmx
+   plugins/fm-simplex/fmSimplexPlugin__Simplex.cmi
+   plugins/fm-simplex/fmSimplexPlugin__Simplex.cmt
+   plugins/fm-simplex/fmSimplexPlugin__Simplex.cmx
+   plugins/fm-simplex/fmSimplexPlugin__Simplex_cache.cmi
+   plugins/fm-simplex/fmSimplexPlugin__Simplex_cache.cmt
+   plugins/fm-simplex/fmSimplexPlugin__Simplex_cache.cmx
+   plugins/fm-simplex/simplex.ml
+   plugins/fm-simplex/simplex_cache.ml))
+ (lib_root (alt-ergo/plugins/fm-simplex/META))
+ (libexec
+  (__private__/alt_ergo_common/alt_ergo_common.cmxs
+   plugins/fm-simplex/FmSimplexPlugin.cmxs))
+ (bin (alt-ergo))
+ (share_root
+  (alt-ergo/preludes/fpa-theory-2017-01-04-16h00.ae
+   alt-ergo/preludes/fpa-theory-2019-06-14-11h00.ae
+   alt-ergo/preludes/fpa-theory-2019-10-08-19h00.ae))
+ (doc
+  (CHANGES.md
+   LICENSE.md
+   README.md
+   odoc-pages/index.mld
+   odoc-pages/index_common.mld
+   odoc-pages/index_fmsimplex.mld))
+ (man (man1/alt-ergo.1)))
+(library
+ (name alt-ergo.__private__.alt_ergo_common)
+ (kind normal)
+ (archives
+  (byte __private__/alt_ergo_common/alt_ergo_common.cma)
+  (native __private__/alt_ergo_common/alt_ergo_common.cmxa))
+ (plugins
+  (byte __private__/alt_ergo_common/alt_ergo_common.cma)
+  (native __private__/alt_ergo_common/alt_ergo_common.cmxs))
+ (native_archives __private__/alt_ergo_common/alt_ergo_common.a)
+ (requires
+  alt-ergo-lib
+  alt-ergo-parsers
+  stdlib-shims
+  cmdliner
+  dune-private-libs.dune-section
+  dune-site
+  dune-site.plugins
+  ppx_deriving.runtime)
+ (main_module_name Alt_ergo_common)
+ (modes byte native)
+ (obj_dir
+  (public_cmi_ocaml_dir .public_cmi)
+  (public_cmi_melange_dir melange/.public_cmi_melange))
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name alt_ergo_common)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Alt_ergo_common)
+      (impl (path __private__/alt_ergo_common/alt_ergo_common.ml-gen))))
+    (name Alt_ergo_common)
+    (modules
+     (module
+      (obj_name alt_ergo_common__AltErgoSites)
+      (visibility public)
+      (source
+       (path AltErgoSites)
+       (impl (path __private__/alt_ergo_common/AltErgoSites.ml))))
+     (module
+      (obj_name alt_ergo_common__Config)
+      (visibility public)
+      (source
+       (path Config)
+       (impl (path __private__/alt_ergo_common/config.ml))))
+     (module
+      (obj_name alt_ergo_common__Input_frontend)
+      (visibility public)
+      (source
+       (path Input_frontend)
+       (intf (path __private__/alt_ergo_common/input_frontend.mli))
+       (impl (path __private__/alt_ergo_common/input_frontend.ml))))
+     (module
+      (obj_name alt_ergo_common__MyDynlink)
+      (visibility public)
+      (source
+       (path MyDynlink)
+       (intf (path __private__/alt_ergo_common/myDynlink.mli))
+       (impl (path __private__/alt_ergo_common/myDynlink.ml))))
+     (module
+      (obj_name alt_ergo_common__Parse_command)
+      (visibility public)
+      (source
+       (path Parse_command)
+       (intf (path __private__/alt_ergo_common/parse_command.mli))
+       (impl (path __private__/alt_ergo_common/parse_command.ml))))
+     (module
+      (obj_name alt_ergo_common__Signals_profiling)
+      (visibility public)
+      (source
+       (path Signals_profiling)
+       (intf (path __private__/alt_ergo_common/signals_profiling.mli))
+       (impl (path __private__/alt_ergo_common/signals_profiling.ml))))
+     (module
+      (obj_name alt_ergo_common__Solving_loop)
+      (visibility public)
+      (source
+       (path Solving_loop)
+       (intf (path __private__/alt_ergo_common/solving_loop.mli))
+       (impl (path __private__/alt_ergo_common/solving_loop.ml))))))
+   (wrapped true))))
+(library
+ (name alt-ergo.plugins.fm-simplex)
+ (kind normal)
+ (archives
+  (byte plugins/fm-simplex/FmSimplexPlugin.cma)
+  (native plugins/fm-simplex/FmSimplexPlugin.cmxa))
+ (plugins
+  (byte plugins/fm-simplex/FmSimplexPlugin.cma)
+  (native plugins/fm-simplex/FmSimplexPlugin.cmxs))
+ (native_archives plugins/fm-simplex/FmSimplexPlugin.a)
+ (requires alt-ergo-lib)
+ (main_module_name FmSimplexPlugin)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name fmSimplexPlugin)
+     (visibility public)
+     (kind alias)
+     (source
+      (path FmSimplexPlugin)
+      (impl (path plugins/fm-simplex/fmSimplexPlugin.ml-gen))))
+    (name FmSimplexPlugin)
+    (modules
+     (module
+      (obj_name fmSimplexPlugin__FmSimplexIneqs)
+      (visibility public)
+      (source
+       (path FmSimplexIneqs)
+       (intf (path plugins/fm-simplex/fmSimplexIneqs.mli))
+       (impl (path plugins/fm-simplex/fmSimplexIneqs.ml))))
+     (module
+      (obj_name fmSimplexPlugin__Simplex)
+      (visibility public)
+      (source (path Simplex) (impl (path plugins/fm-simplex/simplex.ml))))
+     (module
+      (obj_name fmSimplexPlugin__Simplex_cache)
+      (visibility public)
+      (source
+       (path Simplex_cache)
+       (impl (path plugins/fm-simplex/simplex_cache.ml))))))
+   (wrapped true))))

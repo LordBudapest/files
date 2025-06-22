@@ -16,7 +16,7 @@ module T = struct
     fun x -> func x
   ;;
 
-  let (globalize : t -> t) = (globalize_char : t -> t)
+  let (globalize : (t[@ocaml.local]) -> t) = (globalize_char : (t[@ocaml.local]) -> t)
   let t_of_sexp = (char_of_sexp : Sexplib0.Sexp.t -> t)
   let sexp_of_t = (sexp_of_char : t -> Sexplib0.Sexp.t)
   let (t_sexp_grammar : t Sexplib0.Sexp_grammar.t) = char_sexp_grammar
@@ -35,10 +35,10 @@ end
 include T
 
 include Identifiable.Make (struct
-  include T
+    include T
 
-  let module_name = "Base.Char"
-end)
+    let module_name = "Base.Char"
+  end)
 
 let pp fmt c = Stdlib.Format.fprintf fmt "%C" c
 
@@ -145,15 +145,12 @@ module Caseless = struct
     [@@@end]
 
     let compare c1 c2 = compare (lowercase c1) (lowercase c2)
-    let compare__local c1 c2 = compare c1 c2
     let hash_fold_t state t = hash_fold_char state (lowercase t)
     let hash t = Hash.run hash_fold_t t
   end
 
   include T
   include Comparable.Make (T)
-
-  let equal__local t1 t2 = equal_int (compare__local t1 t2) 0
 end
 
 (* Include type-specific [Replace_polymorphic_compare] at the end, after

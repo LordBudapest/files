@@ -34,8 +34,8 @@ let cmt_of_string s =
     let l = Lexing.from_string s in
     let p = Parse.implementation l in
     
-# 41 "test/xref2/lib/common.cppo.ml"
-    Typemod.type_implementation Unit_info.(make ~source_file:"" Impl "") env p
+# 37 "test/xref2/lib/common.cppo.ml"
+    Typemod.type_implementation "" "" "" env p
 
 # 44 "test/xref2/lib/common.cppo.ml"
 let parent = Odoc_model.Paths.Identifier.Mk.page (None, PageName.make_std "None")
@@ -606,10 +606,9 @@ let mkresolver () =
   Odoc_odoc.Resolver.create
  ~roots:None     ~important_digests:false
     ~directories:(List.map Odoc_odoc.Fs.Directory.of_string
-  
-# 613 "test/xref2/lib/common.cppo.ml"
-  (let paths = Load_path.get_paths () in
-   List.filter (fun s -> s <> "") (paths.visible @ paths.hidden))
+    
+# 616 "test/xref2/lib/common.cppo.ml"
+    (Load_path.get_paths () |> List.filter (fun s -> s <> ""))
     
 # 620 "test/xref2/lib/common.cppo.ml"
     ) ~open_modules:[]

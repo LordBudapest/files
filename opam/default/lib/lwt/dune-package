@@ -400,7 +400,7 @@
  (foreign_archives (archives (for all) (files unix/liblwt_unix_stubs.a)))
  (foreign_dll_files ../stublibs/dlllwt_unix_stubs.so)
  (native_archives unix/lwt_unix.a)
- (requires lwt ocplib-endian.bigstring threads unix)
+ (requires bigarray lwt ocplib-endian.bigstring threads unix)
  (modes byte native)
  (modules
   (unwrapped

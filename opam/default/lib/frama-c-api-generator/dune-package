@@ -1,0 +1,34 @@
+(lang dune 3.19)
+(name frama-c-api-generator)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-api-generator)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-api-generator))
+(files
+ (lib
+  (META
+   core/api_generator.a
+   core/api_generator.cma
+   core/api_generator.cmi
+   core/api_generator.cmt
+   core/api_generator.cmx
+   core/api_generator.cmxa
+   core/api_generator.ml
+   dune-package
+   opam))
+ (lib_root (frama-c/plugins/api_generator/META))
+ (libexec (core/api_generator.cmxs)))
+(library
+ (name frama-c-api-generator.core)
+ (kind normal)
+ (archives (byte core/api_generator.cma) (native core/api_generator.cmxa))
+ (plugins (byte core/api_generator.cma) (native core/api_generator.cmxs))
+ (native_archives core/api_generator.a)
+ (requires frama-c.kernel frama-c-server.core)
+ (main_module_name Api_generator)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name api_generator)
+   (visibility public)
+   (source (path Api_generator) (impl (path core/api_generator.ml))))))

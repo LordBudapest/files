@@ -1,0 +1,124 @@
+(lang dune 3.19)
+(name frama-c-sparecode)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-sparecode)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-sparecode))
+(files
+ (lib
+  (META
+   core/.private/sparecode__Globs.cmi
+   core/.private/sparecode__Globs.cmt
+   core/.private/sparecode__Globs.cmti
+   core/.private/sparecode__Register.cmi
+   core/.private/sparecode__Register.cmt
+   core/.private/sparecode__Register.cmti
+   core/.private/sparecode__Spare_marks.cmi
+   core/.private/sparecode__Spare_marks.cmt
+   core/.private/sparecode__Spare_marks.cmti
+   core/.private/sparecode__Sparecode_params.cmi
+   core/.private/sparecode__Sparecode_params.cmt
+   core/.private/sparecode__Sparecode_params.cmti
+   core/.private/sparecode__Transform.cmi
+   core/.private/sparecode__Transform.cmt
+   core/.private/sparecode__Transform.cmti
+   core/Sparecode.a
+   core/Sparecode.cma
+   core/Sparecode.cmxa
+   core/Sparecode.ml
+   core/Sparecode.mli
+   core/globs.ml
+   core/globs.mli
+   core/register.ml
+   core/register.mli
+   core/spare_marks.ml
+   core/spare_marks.mli
+   core/sparecode.cmi
+   core/sparecode.cmt
+   core/sparecode.cmti
+   core/sparecode.cmx
+   core/sparecode__.cmi
+   core/sparecode__.cmt
+   core/sparecode__.cmx
+   core/sparecode__.ml
+   core/sparecode__Globs.cmx
+   core/sparecode__Register.cmx
+   core/sparecode__Spare_marks.cmx
+   core/sparecode__Sparecode_params.cmx
+   core/sparecode__Transform.cmx
+   core/sparecode_params.ml
+   core/sparecode_params.mli
+   core/transform.ml
+   core/transform.mli
+   dune-package
+   opam))
+ (lib_root (frama-c/plugins/sparecode/META))
+ (libexec (core/Sparecode.cmxs)))
+(library
+ (name frama-c-sparecode.core)
+ (kind normal)
+ (archives (byte core/Sparecode.cma) (native core/Sparecode.cmxa))
+ (plugins (byte core/Sparecode.cma) (native core/Sparecode.cmxs))
+ (native_archives core/Sparecode.a)
+ (requires
+  frama-c.kernel
+  frama-c-users.core
+  frama-c-eva.core
+  frama-c-pdg.core
+  frama-c-inout.core)
+ (main_module_name Sparecode)
+ (modes byte native)
+ (obj_dir (private_dir .private))
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name sparecode__)
+     (visibility public)
+     (kind alias)
+     (source (path Sparecode__) (impl (path core/sparecode__.ml-gen))))
+    (name Sparecode)
+    (modules
+     (module
+      (obj_name sparecode__Globs)
+      (visibility private)
+      (source
+       (path Globs)
+       (intf (path core/globs.mli))
+       (impl (path core/globs.ml))))
+     (module
+      (obj_name sparecode__Register)
+      (visibility private)
+      (source
+       (path Register)
+       (intf (path core/register.mli))
+       (impl (path core/register.ml))))
+     (module
+      (obj_name sparecode__Spare_marks)
+      (visibility private)
+      (source
+       (path Spare_marks)
+       (intf (path core/spare_marks.mli))
+       (impl (path core/spare_marks.ml))))
+     (module
+      (obj_name sparecode)
+      (visibility public)
+      (source
+       (path Sparecode)
+       (intf (path core/Sparecode.mli))
+       (impl (path core/Sparecode.ml))))
+     (module
+      (obj_name sparecode__Sparecode_params)
+      (visibility private)
+      (source
+       (path Sparecode_params)
+       (intf (path core/sparecode_params.mli))
+       (impl (path core/sparecode_params.ml))))
+     (module
+      (obj_name sparecode__Transform)
+      (visibility private)
+      (source
+       (path Transform)
+       (intf (path core/transform.mli))
+       (impl (path core/transform.ml))))))
+   (wrapped true))))

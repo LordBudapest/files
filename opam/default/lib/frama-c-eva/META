@@ -1,0 +1,18 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires = "frama-c-server.core frama-c.kernel ppx_deriving.runtime"
+  archive(byte) = "eva.cma"
+  archive(native) = "eva.cmxa"
+  plugin(byte) = "eva.cma"
+  plugin(native) = "eva.cmxs"
+)
+package "gui" (
+  directory = "gui"
+  description = ""
+  requires = "frama-c-eva.core frama-c.gui frama-c.kernel"
+  archive(byte) = "eva_gui.cma"
+  archive(native) = "eva_gui.cmxa"
+  plugin(byte) = "eva_gui.cma"
+  plugin(native) = "eva_gui.cmxs"
+)

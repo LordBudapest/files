@@ -1,0 +1,47 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires =
+  "frama-c-eva.core
+   
+   
+   
+   frama-c-rtegen.core
+   
+   
+   
+   frama-c-server.core
+   
+   
+   
+   frama-c.kernel
+   
+   
+   
+   ocamlgraph
+   
+   
+   
+   qed
+   
+   
+   
+   why3
+   
+   
+   
+   zarith"
+  archive(byte) = "wp.cma"
+  archive(native) = "wp.cmxa"
+  plugin(byte) = "wp.cma"
+  plugin(native) = "wp.cmxs"
+)
+package "gui" (
+  directory = "gui"
+  description = ""
+  requires = "frama-c-wp.core frama-c.gui frama-c.kernel"
+  archive(byte) = "wp_gui.cma"
+  archive(native) = "wp_gui.cmxa"
+  plugin(byte) = "wp_gui.cma"
+  plugin(native) = "wp_gui.cmxs"
+)

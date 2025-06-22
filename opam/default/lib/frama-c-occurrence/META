@@ -1,0 +1,18 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires = "frama-c-eva.core frama-c.kernel"
+  archive(byte) = "occurrence.cma"
+  archive(native) = "occurrence.cmxa"
+  plugin(byte) = "occurrence.cma"
+  plugin(native) = "occurrence.cmxs"
+)
+package "gui" (
+  directory = "gui"
+  description = ""
+  requires = "frama-c-occurrence.core frama-c.gui frama-c.kernel"
+  archive(byte) = "occurrence_gui.cma"
+  archive(native) = "occurrence_gui.cmxa"
+  plugin(byte) = "occurrence_gui.cma"
+  plugin(native) = "occurrence_gui.cmxs"
+)

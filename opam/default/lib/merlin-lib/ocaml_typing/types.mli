@@ -221,36 +221,18 @@ val get_level: type_expr -> int
 val get_scope: type_expr -> int
 val get_id: type_expr -> int
 
-(** Access to marks. They are stored in the scope field. *)
-type type_mark
-val with_type_mark: (type_mark -> 'a) -> 'a
-        (* run a computation using exclusively an available type mark *)
-
-val not_marked_node: type_mark -> type_expr -> bool
-        (* Return true if a type node is not yet marked *)
-
-val try_mark_node: type_mark -> type_expr -> bool
-        (* Mark a type node if it is not yet marked.
-           Marks will be automatically removed when leaving the
-           scope of [with_type_mark].
-
-           Return false if it was already marked *)
-
 (** Transient [type_expr].
     Should only be used immediately after [Transient_expr.repr] *)
 type transient_expr = private
       { mutable desc: type_desc;
         mutable level: int;
-        mutable scope: scope_field;
+        mutable scope: int;
         id: int }
-and scope_field (* abstract *)
 
 module Transient_expr : sig
   (** Operations on [transient_expr] *)
 
   val create: type_desc -> level: int -> scope: int -> id: int -> transient_expr
-  val get_scope: transient_expr -> int
-  val get_marks: transient_expr -> int
   val set_desc: transient_expr -> type_desc -> unit
   val set_level: transient_expr -> int -> unit
   val set_scope: transient_expr -> int -> unit
@@ -262,16 +244,17 @@ module Transient_expr : sig
   val set_stub_desc: type_expr -> type_desc -> unit
       (** Instantiate a not yet instantiated stub.
           Fail if already instantiated. *)
-
-  val try_mark_node: type_mark -> transient_expr -> bool
 end
 
 val create_expr: type_desc -> level: int -> scope: int -> id: int -> type_expr
 
 (** Functions and definitions moved from Btype *)
 
-val proto_newty3: level:int -> scope:int -> type_desc -> transient_expr
+val newty3: level:int -> scope:int -> type_desc -> type_expr
         (** Create a type with a fresh id *)
+
+val newty2: level:int -> type_desc -> type_expr
+        (** Create a type with a fresh id and no scope *)
 
 module TransientTypeOps : sig
   (** Comparisons for functors *)
@@ -281,8 +264,6 @@ module TransientTypeOps : sig
   val equal : t -> t -> bool
   val hash : t -> int
 end
-
-module TransientTypeHash : Hashtbl.S with type key = transient_expr
 
 (** Comparisons for [type_expr]; cannot be used for functors *)
 
@@ -365,14 +346,11 @@ val rf_either_of: type_expr option -> row_field
 val eq_row_field_ext: row_field -> row_field -> bool
 val changed_row_field_exts: row_field list -> (unit -> unit) -> bool
 
-type row_field_cell
 val match_row_field:
     present:(type_expr option -> 'a) ->
     absent:(unit -> 'a) ->
-    either:(bool -> type_expr list -> bool ->
-            row_field_cell * row_field option ->'a) ->
+    either:(bool -> type_expr list -> bool -> row_field option ->'a) ->
     row_field -> 'a
-
 
 (* *)
 
@@ -435,20 +413,16 @@ module Variance : sig
   val null : t               (* no occurrence *)
   val full : t               (* strictly invariant (all flags) *)
   val covariant : t          (* strictly covariant (May_pos, Pos and Inj) *)
-  val contravariant : t      (* strictly contravariant *)
   val unknown : t            (* allow everything, guarantee nothing *)
   val union  : t -> t -> t
   val inter  : t -> t -> t
   val subset : t -> t -> bool
   val eq : t -> t -> bool
-  val set : f -> t -> t
-  val set_if : bool -> f -> t -> t
+  val set : f -> bool -> t -> t
   val mem : f -> t -> bool
   val conjugate : t -> t                (* exchange positive and negative *)
-  val compose : t -> t -> t
-  val strengthen : t -> t                (* remove May_weak when possible *)
-  val get_upper : t -> bool * bool                    (* may_pos, may_neg *)
-  val get_lower : t -> bool * bool * bool                (* pos, neg, inj *)
+  val get_upper : t -> bool * bool                  (* may_pos, may_neg   *)
+  val get_lower : t -> bool * bool * bool * bool    (* pos, neg, inv, inj *)
   val unknown_signature : injective:bool -> arity:int -> t list
   (** The most pessimistic variance for a completely unknown type. *)
 end
@@ -509,15 +483,10 @@ type type_declaration =
 and type_decl_kind = (label_declaration, constructor_declaration) type_kind
 
 and ('lbl, 'cstr) type_kind =
-    Type_abstract of type_origin
+    Type_abstract
   | Type_record of 'lbl list  * record_representation
   | Type_variant of 'cstr list * variant_representation
   | Type_open
-
-and type_origin =
-    Definition
-  | Rec_check_regularity       (* See Typedecl.transl_type_decl *)
-  | Existential of string
 
 and record_representation =
     Record_regular                      (* All fields are boxed / tagged *)
@@ -525,7 +494,6 @@ and record_representation =
   | Record_unboxed of bool    (* Unboxed single-field record, inlined or not *)
   | Record_inlined of int               (* Inlined record *)
   | Record_extension of Path.t          (* Inlined record under extension *)
-                             (* The argument is the path of the extension *)
 
 and variant_representation =
     Variant_regular          (* Constant or boxed constructors *)
@@ -594,7 +562,6 @@ type class_type_declaration =
   { clty_params: type_expr list;
     clty_type: class_type;
     clty_path: Path.t;
-    clty_hash_type: type_declaration; (* object type with an open row *)
     clty_variance: Variance.t list;
     clty_loc: Location.t;
     clty_attributes: Parsetree.attributes;

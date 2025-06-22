@@ -1,0 +1,81 @@
+opam-version: "2.0"
+added: [
+  "doc/ocplib-simplex" {"D"}
+  "doc/ocplib-simplex/CHANGES.md" {"F:S1748T1750607092.53"}
+  "doc/ocplib-simplex/LICENSE" {"F:S27129T1750607092.53"}
+  "doc/ocplib-simplex/README.md" {"F:S1744T1750607092.53"}
+  "lib/ocplib-simplex" {"D"}
+  "lib/ocplib-simplex/META" {"F:S201T1750607092.51"}
+  "lib/ocplib-simplex/OcplibSimplex.a" {"F:S338976T1750607092.51"}
+  "lib/ocplib-simplex/OcplibSimplex.cma" {"F:S732452T1750607092.51"}
+  "lib/ocplib-simplex/OcplibSimplex.cmxa" {"F:S6016T1750607092.51"}
+  "lib/ocplib-simplex/OcplibSimplex.cmxs" {"F:S301624T1750607092.53"}
+  "lib/ocplib-simplex/assertBounds.ml" {"F:S9615T1750607092.51"}
+  "lib/ocplib-simplex/assertBounds.mli" {"F:S1626T1750607092.51"}
+  "lib/ocplib-simplex/basic.ml" {"F:S979T1750607092.51"}
+  "lib/ocplib-simplex/basic.mli" {"F:S1027T1750607092.51"}
+  "lib/ocplib-simplex/core.ml" {"F:S18562T1750607092.51"}
+  "lib/ocplib-simplex/core.mli" {"F:S1177T1750607092.51"}
+  "lib/ocplib-simplex/coreSig.mli" {"F:S6117T1750607092.51"}
+  "lib/ocplib-simplex/dune-package" {"F:S3866T1750607092.51"}
+  "lib/ocplib-simplex/extSigs.mli" {"F:S3838T1750607092.51"}
+  "lib/ocplib-simplex/ocplibSimplex.cmi" {"F:S1090T1750607092.51"}
+  "lib/ocplib-simplex/ocplibSimplex.cmt" {"F:S6659T1750607092.51"}
+  "lib/ocplib-simplex/ocplibSimplex.cmx" {"F:S362T1750607092.51"}
+  "lib/ocplib-simplex/ocplibSimplex.ml" {"F:S828T1750607092.51"}
+  "lib/ocplib-simplex/ocplibSimplex__AssertBounds.cmi"
+    {"F:S25975T1750607092.51"}
+  "lib/ocplib-simplex/ocplibSimplex__AssertBounds.cmt"
+    {"F:S189285T1750607092.51"}
+  "lib/ocplib-simplex/ocplibSimplex__AssertBounds.cmti"
+    {"F:S60026T1750607092.51"}
+  "lib/ocplib-simplex/ocplibSimplex__AssertBounds.cmx"
+    {"F:S981T1750607092.51"}
+  "lib/ocplib-simplex/ocplibSimplex__Basic.cmi" {"F:S25978T1750607092.51"}
+  "lib/ocplib-simplex/ocplibSimplex__Basic.cmt" {"F:S256919T1750607092.51"}
+  "lib/ocplib-simplex/ocplibSimplex__Basic.cmti" {"F:S61399T1750607092.51"}
+  "lib/ocplib-simplex/ocplibSimplex__Basic.cmx" {"F:S3341T1750607092.52"}
+  "lib/ocplib-simplex/ocplibSimplex__Core.cmi" {"F:S56982T1750607092.52"}
+  "lib/ocplib-simplex/ocplibSimplex__Core.cmt" {"F:S610790T1750607092.52"}
+  "lib/ocplib-simplex/ocplibSimplex__Core.cmti" {"F:S127723T1750607092.52"}
+  "lib/ocplib-simplex/ocplibSimplex__Core.cmx" {"F:S3267T1750607092.52"}
+  "lib/ocplib-simplex/ocplibSimplex__CoreSig.cmi" {"F:S21453T1750607092.52"}
+  "lib/ocplib-simplex/ocplibSimplex__CoreSig.cmti" {"F:S69070T1750607092.52"}
+  "lib/ocplib-simplex/ocplibSimplex__ExtSigs.cmi" {"F:S10164T1750607092.52"}
+  "lib/ocplib-simplex/ocplibSimplex__ExtSigs.cmti" {"F:S47035T1750607092.52"}
+  "lib/ocplib-simplex/ocplibSimplex__Polys.cmi" {"F:S8730T1750607092.52"}
+  "lib/ocplib-simplex/ocplibSimplex__Polys.cmt" {"F:S72566T1750607092.53"}
+  "lib/ocplib-simplex/ocplibSimplex__Polys.cmti" {"F:S30794T1750607092.53"}
+  "lib/ocplib-simplex/ocplibSimplex__Polys.cmx" {"F:S2080T1750607092.53"}
+  "lib/ocplib-simplex/ocplibSimplex__Rat2.cmi" {"F:S11110T1750607092.53"}
+  "lib/ocplib-simplex/ocplibSimplex__Rat2.cmt" {"F:S57360T1750607092.53"}
+  "lib/ocplib-simplex/ocplibSimplex__Rat2.cmti" {"F:S38937T1750607092.53"}
+  "lib/ocplib-simplex/ocplibSimplex__Rat2.cmx" {"F:S2680T1750607092.53"}
+  "lib/ocplib-simplex/ocplibSimplex__Result.cmi" {"F:S25183T1750607092.53"}
+  "lib/ocplib-simplex/ocplibSimplex__Result.cmt" {"F:S113581T1750607092.53"}
+  "lib/ocplib-simplex/ocplibSimplex__Result.cmti" {"F:S57088T1750607092.53"}
+  "lib/ocplib-simplex/ocplibSimplex__Result.cmx" {"F:S824T1750607092.53"}
+  "lib/ocplib-simplex/ocplibSimplex__SolveBounds.cmi"
+    {"F:S25528T1750607092.53"}
+  "lib/ocplib-simplex/ocplibSimplex__SolveBounds.cmt"
+    {"F:S270958T1750607092.53"}
+  "lib/ocplib-simplex/ocplibSimplex__SolveBounds.cmti"
+    {"F:S58055T1750607092.53"}
+  "lib/ocplib-simplex/ocplibSimplex__SolveBounds.cmx"
+    {"F:S1108T1750607092.53"}
+  "lib/ocplib-simplex/ocplibSimplex__Version.cmi" {"F:S332T1750607092.53"}
+  "lib/ocplib-simplex/ocplibSimplex__Version.cmt" {"F:S2998T1750607092.53"}
+  "lib/ocplib-simplex/ocplibSimplex__Version.cmti" {"F:S3183T1750607092.53"}
+  "lib/ocplib-simplex/ocplibSimplex__Version.cmx" {"F:S257T1750607092.53"}
+  "lib/ocplib-simplex/opam" {"F:S1413T1750607092.53"}
+  "lib/ocplib-simplex/polys.ml" {"F:S3370T1750607092.53"}
+  "lib/ocplib-simplex/polys.mli" {"F:S1389T1750607092.53"}
+  "lib/ocplib-simplex/rat2.ml" {"F:S2818T1750607092.53"}
+  "lib/ocplib-simplex/rat2.mli" {"F:S2697T1750607092.53"}
+  "lib/ocplib-simplex/result.ml" {"F:S5960T1750607092.53"}
+  "lib/ocplib-simplex/result.mli" {"F:S1042T1750607092.53"}
+  "lib/ocplib-simplex/solveBounds.ml" {"F:S17908T1750607092.53"}
+  "lib/ocplib-simplex/solveBounds.mli" {"F:S1015T1750607092.53"}
+  "lib/ocplib-simplex/version.ml" {"F:S424T1750607092.53"}
+  "lib/ocplib-simplex/version.mli" {"F:S427T1750607092.53"}
+]

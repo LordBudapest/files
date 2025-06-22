@@ -1,0 +1,175 @@
+(lang dune 3.19)
+(name frama-c-dive)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-dive)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-dive)
+ (doc /home/bhaskar/.opam/default/doc/frama-c-dive))
+(files
+ (lib
+  (META
+   core/Dive.ml
+   core/build.ml
+   core/build.mli
+   core/callstack.ml
+   core/callstack.mli
+   core/context.ml
+   core/context.mli
+   core/dive.a
+   core/dive.cma
+   core/dive.cmi
+   core/dive.cmt
+   core/dive.cmx
+   core/dive.cmxa
+   core/dive__.cmi
+   core/dive__.cmt
+   core/dive__.cmx
+   core/dive__.ml
+   core/dive__Build.cmi
+   core/dive__Build.cmt
+   core/dive__Build.cmti
+   core/dive__Build.cmx
+   core/dive__Callstack.cmi
+   core/dive__Callstack.cmt
+   core/dive__Callstack.cmti
+   core/dive__Callstack.cmx
+   core/dive__Context.cmi
+   core/dive__Context.cmt
+   core/dive__Context.cmti
+   core/dive__Context.cmx
+   core/dive__Dive_graph.cmi
+   core/dive__Dive_graph.cmt
+   core/dive__Dive_graph.cmti
+   core/dive__Dive_graph.cmx
+   core/dive__Dive_types.cmi
+   core/dive__Dive_types.cmt
+   core/dive__Dive_types.cmx
+   core/dive__Main.cmi
+   core/dive__Main.cmt
+   core/dive__Main.cmti
+   core/dive__Main.cmx
+   core/dive__Node_kind.cmi
+   core/dive__Node_kind.cmt
+   core/dive__Node_kind.cmti
+   core/dive__Node_kind.cmx
+   core/dive__Node_range.cmi
+   core/dive__Node_range.cmt
+   core/dive__Node_range.cmti
+   core/dive__Node_range.cmx
+   core/dive__Self.cmi
+   core/dive__Self.cmt
+   core/dive__Self.cmti
+   core/dive__Self.cmx
+   core/dive__Server_interface.cmi
+   core/dive__Server_interface.cmt
+   core/dive__Server_interface.cmti
+   core/dive__Server_interface.cmx
+   core/dive_graph.ml
+   core/dive_graph.mli
+   core/dive_types.ml
+   core/main.ml
+   core/main.mli
+   core/node_kind.ml
+   core/node_kind.mli
+   core/node_range.ml
+   core/node_range.mli
+   core/self.ml
+   core/self.mli
+   core/server_interface.ml
+   core/server_interface.mli
+   dune-package
+   opam))
+ (lib_root (frama-c/plugins/dive/META))
+ (libexec (core/dive.cmxs))
+ (doc (README.md)))
+(library
+ (name frama-c-dive.core)
+ (kind normal)
+ (archives (byte core/dive.cma) (native core/dive.cmxa))
+ (plugins (byte core/dive.cma) (native core/dive.cmxs))
+ (native_archives core/dive.a)
+ (requires frama-c.kernel frama-c-studia.core frama-c-server.core)
+ (main_module_name Dive)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dive__)
+     (visibility public)
+     (kind alias)
+     (source (path Dive__) (impl (path core/dive__.ml-gen))))
+    (name Dive)
+    (modules
+     (module
+      (obj_name dive__Build)
+      (visibility public)
+      (source
+       (path Build)
+       (intf (path core/build.mli))
+       (impl (path core/build.ml))))
+     (module
+      (obj_name dive__Callstack)
+      (visibility public)
+      (source
+       (path Callstack)
+       (intf (path core/callstack.mli))
+       (impl (path core/callstack.ml))))
+     (module
+      (obj_name dive__Context)
+      (visibility public)
+      (source
+       (path Context)
+       (intf (path core/context.mli))
+       (impl (path core/context.ml))))
+     (module
+      (obj_name dive)
+      (visibility public)
+      (source (path Dive) (impl (path core/Dive.ml))))
+     (module
+      (obj_name dive__Dive_graph)
+      (visibility public)
+      (source
+       (path Dive_graph)
+       (intf (path core/dive_graph.mli))
+       (impl (path core/dive_graph.ml))))
+     (module
+      (obj_name dive__Dive_types)
+      (visibility public)
+      (source (path Dive_types) (impl (path core/dive_types.ml))))
+     (module
+      (obj_name dive__Main)
+      (visibility public)
+      (source
+       (path Main)
+       (intf (path core/main.mli))
+       (impl (path core/main.ml))))
+     (module
+      (obj_name dive__Node_kind)
+      (visibility public)
+      (source
+       (path Node_kind)
+       (intf (path core/node_kind.mli))
+       (impl (path core/node_kind.ml))))
+     (module
+      (obj_name dive__Node_range)
+      (visibility public)
+      (source
+       (path Node_range)
+       (intf (path core/node_range.mli))
+       (impl (path core/node_range.ml))))
+     (module
+      (obj_name dive__Self)
+      (visibility public)
+      (source
+       (path Self)
+       (intf (path core/self.mli))
+       (impl (path core/self.ml))))
+     (module
+      (obj_name dive__Server_interface)
+      (visibility public)
+      (source
+       (path Server_interface)
+       (intf (path core/server_interface.mli))
+       (impl (path core/server_interface.ml))))))
+   (wrapped true))))

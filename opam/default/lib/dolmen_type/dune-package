@@ -1,0 +1,192 @@
+(lang dune 3.19)
+(name dolmen_type)
+(version 0.10)
+(sections (lib .) (libexec .) (doc ../../doc/dolmen_type))
+(files
+ (lib
+  (META
+   arith.ml
+   arith.mli
+   arrays.ml
+   arrays.mli
+   base.ml
+   base.mli
+   bitv.ml
+   bitv.mli
+   core.ml
+   core.mli
+   def.ml
+   def.mli
+   dolmen_type.a
+   dolmen_type.cma
+   dolmen_type.cmi
+   dolmen_type.cmt
+   dolmen_type.cmx
+   dolmen_type.cmxa
+   dolmen_type.ml
+   dolmen_type__Arith.cmi
+   dolmen_type__Arith.cmt
+   dolmen_type__Arith.cmti
+   dolmen_type__Arith.cmx
+   dolmen_type__Arrays.cmi
+   dolmen_type__Arrays.cmt
+   dolmen_type__Arrays.cmti
+   dolmen_type__Arrays.cmx
+   dolmen_type__Base.cmi
+   dolmen_type__Base.cmt
+   dolmen_type__Base.cmti
+   dolmen_type__Base.cmx
+   dolmen_type__Bitv.cmi
+   dolmen_type__Bitv.cmt
+   dolmen_type__Bitv.cmti
+   dolmen_type__Bitv.cmx
+   dolmen_type__Core.cmi
+   dolmen_type__Core.cmt
+   dolmen_type__Core.cmti
+   dolmen_type__Core.cmx
+   dolmen_type__Def.cmi
+   dolmen_type__Def.cmt
+   dolmen_type__Def.cmti
+   dolmen_type__Def.cmx
+   dolmen_type__Float.cmi
+   dolmen_type__Float.cmt
+   dolmen_type__Float.cmti
+   dolmen_type__Float.cmx
+   dolmen_type__Intf.cmi
+   dolmen_type__Intf.cmt
+   dolmen_type__Intf.cmx
+   dolmen_type__Logic.cmi
+   dolmen_type__Logic.cmt
+   dolmen_type__Logic.cmti
+   dolmen_type__Logic.cmx
+   dolmen_type__Misc.cmi
+   dolmen_type__Misc.cmt
+   dolmen_type__Misc.cmti
+   dolmen_type__Misc.cmx
+   dolmen_type__Strings.cmi
+   dolmen_type__Strings.cmt
+   dolmen_type__Strings.cmti
+   dolmen_type__Strings.cmx
+   dolmen_type__Tff.cmi
+   dolmen_type__Tff.cmt
+   dolmen_type__Tff.cmti
+   dolmen_type__Tff.cmx
+   dolmen_type__Tff_intf.cmi
+   dolmen_type__Tff_intf.cmt
+   dolmen_type__Tff_intf.cmx
+   dolmen_type__Thf.cmi
+   dolmen_type__Thf.cmt
+   dolmen_type__Thf.cmti
+   dolmen_type__Thf.cmx
+   dolmen_type__Thf_intf.cmi
+   dolmen_type__Thf_intf.cmt
+   dolmen_type__Thf_intf.cmx
+   dune-package
+   float.ml
+   float.mli
+   intf.ml
+   logic.ml
+   logic.mli
+   misc.ml
+   misc.mli
+   opam
+   strings.ml
+   strings.mli
+   tff.ml
+   tff.mli
+   tff_intf.ml
+   thf.ml
+   thf.mli
+   thf_intf.ml))
+ (libexec (dolmen_type.cmxs))
+ (doc (CHANGES.md LICENSE README.md)))
+(library
+ (name dolmen_type)
+ (kind normal)
+ (archives (byte dolmen_type.cma) (native dolmen_type.cmxa))
+ (plugins (byte dolmen_type.cma) (native dolmen_type.cmxs))
+ (native_archives dolmen_type.a)
+ (requires
+  spelll
+  uutf
+  dolmen
+  dolmen.std
+  dolmen.intf
+  dolmen.smtlib2
+  dolmen.tptp)
+ (main_module_name Dolmen_type)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dolmen_type)
+     (visibility public)
+     (kind alias)
+     (source (path Dolmen_type) (impl (path dolmen_type.ml-gen))))
+    (name Dolmen_type)
+    (modules
+     (module
+      (obj_name dolmen_type__Arith)
+      (visibility public)
+      (source (path Arith) (intf (path arith.mli)) (impl (path arith.ml))))
+     (module
+      (obj_name dolmen_type__Arrays)
+      (visibility public)
+      (source (path Arrays) (intf (path arrays.mli)) (impl (path arrays.ml))))
+     (module
+      (obj_name dolmen_type__Base)
+      (visibility public)
+      (source (path Base) (intf (path base.mli)) (impl (path base.ml))))
+     (module
+      (obj_name dolmen_type__Bitv)
+      (visibility public)
+      (source (path Bitv) (intf (path bitv.mli)) (impl (path bitv.ml))))
+     (module
+      (obj_name dolmen_type__Core)
+      (visibility public)
+      (source (path Core) (intf (path core.mli)) (impl (path core.ml))))
+     (module
+      (obj_name dolmen_type__Def)
+      (visibility public)
+      (source (path Def) (intf (path def.mli)) (impl (path def.ml))))
+     (module
+      (obj_name dolmen_type__Float)
+      (visibility public)
+      (source (path Float) (intf (path float.mli)) (impl (path float.ml))))
+     (module
+      (obj_name dolmen_type__Intf)
+      (visibility public)
+      (source (path Intf) (impl (path intf.ml))))
+     (module
+      (obj_name dolmen_type__Logic)
+      (visibility public)
+      (source (path Logic) (intf (path logic.mli)) (impl (path logic.ml))))
+     (module
+      (obj_name dolmen_type__Misc)
+      (visibility public)
+      (source (path Misc) (intf (path misc.mli)) (impl (path misc.ml))))
+     (module
+      (obj_name dolmen_type__Strings)
+      (visibility public)
+      (source
+       (path Strings)
+       (intf (path strings.mli))
+       (impl (path strings.ml))))
+     (module
+      (obj_name dolmen_type__Tff)
+      (visibility public)
+      (source (path Tff) (intf (path tff.mli)) (impl (path tff.ml))))
+     (module
+      (obj_name dolmen_type__Tff_intf)
+      (visibility public)
+      (source (path Tff_intf) (impl (path tff_intf.ml))))
+     (module
+      (obj_name dolmen_type__Thf)
+      (visibility public)
+      (source (path Thf) (intf (path thf.mli)) (impl (path thf.ml))))
+     (module
+      (obj_name dolmen_type__Thf_intf)
+      (visibility public)
+      (source (path Thf_intf) (impl (path thf_intf.ml))))))
+   (wrapped true))))

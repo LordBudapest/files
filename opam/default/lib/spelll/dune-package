@@ -1,0 +1,34 @@
+(lang dune 3.19)
+(name spelll)
+(version 0.4)
+(sections (lib .) (libexec .) (doc ../../doc/spelll))
+(files
+ (lib
+  (META
+   Spelll.ml
+   Spelll.mli
+   dune-package
+   opam
+   spelll.a
+   spelll.cma
+   spelll.cmi
+   spelll.cmt
+   spelll.cmti
+   spelll.cmx
+   spelll.cmxa))
+ (libexec (spelll.cmxs))
+ (doc (LICENSE README.md)))
+(library
+ (name spelll)
+ (kind normal)
+ (archives (byte spelll.cma) (native spelll.cmxa))
+ (plugins (byte spelll.cma) (native spelll.cmxs))
+ (native_archives spelll.a)
+ (requires seq stdlib-shims)
+ (main_module_name Spelll)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name spelll)
+   (visibility public)
+   (source (path Spelll) (intf (path Spelll.mli)) (impl (path Spelll.ml))))))

@@ -33,9 +33,6 @@ module Envaux = Ocaml_typing__Envaux
 (** @canonical Ocaml_typing.Errortrace *)
 module Errortrace = Ocaml_typing__Errortrace
 
-(** @canonical Ocaml_typing.Errortrace_report *)
-module Errortrace_report = Ocaml_typing__Errortrace_report
-
 (** @canonical Ocaml_typing.Ident *)
 module Ident = Ocaml_typing__Ident
 
@@ -51,9 +48,6 @@ module Includemod = Ocaml_typing__Includemod
 (** @canonical Ocaml_typing.Includemod_errorprinter *)
 module Includemod_errorprinter = Ocaml_typing__Includemod_errorprinter
 
-(** @canonical Ocaml_typing.Lambda *)
-module Lambda = Ocaml_typing__Lambda
-
 (** @canonical Ocaml_typing.Magic_numbers *)
 module Magic_numbers = Ocaml_typing__Magic_numbers
 
@@ -68,9 +62,6 @@ module Natural = Ocaml_typing__Natural
 
 (** @canonical Ocaml_typing.Oprint *)
 module Oprint = Ocaml_typing__Oprint
-
-(** @canonical Ocaml_typing.Out_type *)
-module Out_type = Ocaml_typing__Out_type
 
 (** @canonical Ocaml_typing.Outcometree *)
 module Outcometree = Ocaml_typing__Outcometree
@@ -102,17 +93,14 @@ module Printtyp = Ocaml_typing__Printtyp
 (** @canonical Ocaml_typing.Printtyped *)
 module Printtyped = Ocaml_typing__Printtyped
 
-(** @canonical Ocaml_typing.Rawprinttyp *)
-module Rawprinttyp = Ocaml_typing__Rawprinttyp
+(** @canonical Ocaml_typing.Rec_check *)
+module Rec_check = Ocaml_typing__Rec_check
 
 (** @canonical Ocaml_typing.Saved_parts *)
 module Saved_parts = Ocaml_typing__Saved_parts
 
 (** @canonical Ocaml_typing.Shape *)
 module Shape = Ocaml_typing__Shape
-
-(** @canonical Ocaml_typing.Shape_reduce *)
-module Shape_reduce = Ocaml_typing__Shape_reduce
 
 (** @canonical Ocaml_typing.Short_paths *)
 module Short_paths = Ocaml_typing__Short_paths
@@ -179,9 +167,3 @@ module Typetexp = Ocaml_typing__Typetexp
 
 (** @canonical Ocaml_typing.Untypeast *)
 module Untypeast = Ocaml_typing__Untypeast
-
-(** @canonical Ocaml_typing.Value_rec_check *)
-module Value_rec_check = Ocaml_typing__Value_rec_check
-
-(** @canonical Ocaml_typing.Value_rec_types *)
-module Value_rec_types = Ocaml_typing__Value_rec_types

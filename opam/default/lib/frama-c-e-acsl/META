@@ -1,0 +1,9 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires = "frama-c-rtegen.core frama-c.kernel"
+  archive(byte) = "E_ACSL.cma"
+  archive(native) = "E_ACSL.cmxa"
+  plugin(byte) = "E_ACSL.cma"
+  plugin(native) = "E_ACSL.cmxs"
+)

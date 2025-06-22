@@ -1,10 +1,7 @@
-version = "v0.17.2"
+version = "v0.16.4"
 description = ""
 requires =
-"base.base_internalhash_types
- base.shadow_stdlib
- ocaml_intrinsics_kernel
- sexplib0"
+"base.base_internalhash_types base.caml base.shadow_stdlib sexplib0"
 archive(byte) = "base.cma"
 archive(native) = "base.cmxa"
 plugin(byte) = "base.cma"
@@ -12,7 +9,7 @@ plugin(native) = "base.cmxs"
 jsoo_runtime = "runtime.js"
 package "base_internalhash_types" (
   directory = "base_internalhash_types"
-  version = "v0.17.2"
+  version = "v0.16.4"
   description = ""
   requires = ""
   archive(byte) = "base_internalhash_types.cma"
@@ -21,9 +18,19 @@ package "base_internalhash_types" (
   plugin(native) = "base_internalhash_types.cmxs"
   jsoo_runtime = "runtime.js"
 )
+package "caml" (
+  directory = "caml"
+  version = "v0.16.4"
+  description = ""
+  requires = ""
+  archive(byte) = "caml.cma"
+  archive(native) = "caml.cmxa"
+  plugin(byte) = "caml.cma"
+  plugin(native) = "caml.cmxs"
+)
 package "md5" (
   directory = "md5"
-  version = "v0.17.2"
+  version = "v0.16.4"
   description = ""
   requires = ""
   archive(byte) = "md5_lib.cma"
@@ -33,7 +40,7 @@ package "md5" (
 )
 package "shadow_stdlib" (
   directory = "shadow_stdlib"
-  version = "v0.17.2"
+  version = "v0.16.4"
   description = ""
   requires = ""
   archive(byte) = "shadow_stdlib.cma"

@@ -1,0 +1,171 @@
+(lang dune 3.19)
+(name frama-c-from)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-from)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-from))
+(files
+ (lib
+  (META
+   core/From.ml
+   core/From.mli
+   core/callwise.ml
+   core/callwise.mli
+   core/from.a
+   core/from.cma
+   core/from.cmi
+   core/from.cmt
+   core/from.cmti
+   core/from.cmx
+   core/from.cmxa
+   core/from__.cmi
+   core/from__.cmt
+   core/from__.cmx
+   core/from__.ml
+   core/from__Callwise.cmi
+   core/from__Callwise.cmt
+   core/from__Callwise.cmti
+   core/from__Callwise.cmx
+   core/from__From_compute.cmi
+   core/from__From_compute.cmt
+   core/from__From_compute.cmti
+   core/from__From_compute.cmx
+   core/from__From_memory.cmi
+   core/from__From_memory.cmt
+   core/from__From_memory.cmti
+   core/from__From_memory.cmx
+   core/from__From_parameters.cmi
+   core/from__From_parameters.cmt
+   core/from__From_parameters.cmti
+   core/from__From_parameters.cmx
+   core/from__From_register.cmi
+   core/from__From_register.cmt
+   core/from__From_register.cmti
+   core/from__From_register.cmx
+   core/from__Functionwise.cmi
+   core/from__Functionwise.cmt
+   core/from__Functionwise.cmti
+   core/from__Functionwise.cmx
+   core/from_compute.ml
+   core/from_compute.mli
+   core/from_memory.ml
+   core/from_memory.mli
+   core/from_parameters.ml
+   core/from_parameters.mli
+   core/from_register.ml
+   core/from_register.mli
+   core/functionwise.ml
+   core/functionwise.mli
+   dune-package
+   gui/from_gui.a
+   gui/from_gui.cma
+   gui/from_gui.cmi
+   gui/from_gui.cmt
+   gui/from_gui.cmx
+   gui/from_gui.cmxa
+   gui/from_gui.ml
+   gui/from_gui__From_register_gui.cmi
+   gui/from_gui__From_register_gui.cmt
+   gui/from_gui__From_register_gui.cmti
+   gui/from_gui__From_register_gui.cmx
+   gui/from_register_gui.ml
+   gui/from_register_gui.mli
+   opam))
+ (lib_root (frama-c/plugins/from/META frama-c/plugins_gui/from-gui/META))
+ (libexec (core/from.cmxs gui/from_gui.cmxs)))
+(library
+ (name frama-c-from.core)
+ (kind normal)
+ (archives (byte core/from.cma) (native core/from.cmxa))
+ (plugins (byte core/from.cma) (native core/from.cmxs))
+ (native_archives core/from.a)
+ (requires frama-c.kernel frama-c-callgraph.core frama-c-eva.core)
+ (main_module_name From)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name from__)
+     (visibility public)
+     (kind alias)
+     (source (path From__) (impl (path core/from__.ml-gen))))
+    (name From)
+    (modules
+     (module
+      (obj_name from__Callwise)
+      (visibility public)
+      (source
+       (path Callwise)
+       (intf (path core/callwise.mli))
+       (impl (path core/callwise.ml))))
+     (module
+      (obj_name from)
+      (visibility public)
+      (source
+       (path From)
+       (intf (path core/From.mli))
+       (impl (path core/From.ml))))
+     (module
+      (obj_name from__From_compute)
+      (visibility public)
+      (source
+       (path From_compute)
+       (intf (path core/from_compute.mli))
+       (impl (path core/from_compute.ml))))
+     (module
+      (obj_name from__From_memory)
+      (visibility public)
+      (source
+       (path From_memory)
+       (intf (path core/from_memory.mli))
+       (impl (path core/from_memory.ml))))
+     (module
+      (obj_name from__From_parameters)
+      (visibility public)
+      (source
+       (path From_parameters)
+       (intf (path core/from_parameters.mli))
+       (impl (path core/from_parameters.ml))))
+     (module
+      (obj_name from__From_register)
+      (visibility public)
+      (source
+       (path From_register)
+       (intf (path core/from_register.mli))
+       (impl (path core/from_register.ml))))
+     (module
+      (obj_name from__Functionwise)
+      (visibility public)
+      (source
+       (path Functionwise)
+       (intf (path core/functionwise.mli))
+       (impl (path core/functionwise.ml))))))
+   (wrapped true))))
+(library
+ (name frama-c-from.gui)
+ (kind normal)
+ (archives (byte gui/from_gui.cma) (native gui/from_gui.cmxa))
+ (plugins (byte gui/from_gui.cma) (native gui/from_gui.cmxs))
+ (native_archives gui/from_gui.a)
+ (requires frama-c.kernel frama-c.gui frama-c-from.core)
+ (main_module_name From_gui)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name from_gui)
+     (visibility public)
+     (kind alias)
+     (source (path From_gui) (impl (path gui/from_gui.ml-gen))))
+    (name From_gui)
+    (modules
+     (module
+      (obj_name from_gui__From_register_gui)
+      (visibility public)
+      (source
+       (path From_register_gui)
+       (intf (path gui/from_register_gui.mli))
+       (impl (path gui/from_register_gui.ml))))))
+   (wrapped true))))

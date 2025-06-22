@@ -1,0 +1,863 @@
+(lang dune 3.19)
+(name lablgtk3)
+(version 3.1.5)
+(sections
+ (lib .)
+ (libexec .)
+ (bin ../../bin)
+ (doc ../../doc/lablgtk3)
+ (stublibs ../stublibs))
+(files
+ (lib
+  (META
+   cairo_pango.cmi
+   cairo_pango.cmt
+   cairo_pango.cmti
+   cairo_pango.cmx
+   cairo_pango.ml
+   cairo_pango.mli
+   dune-package
+   gAction.cmi
+   gAction.cmt
+   gAction.cmti
+   gAction.cmx
+   gAction.ml
+   gAction.mli
+   gAssistant.cmi
+   gAssistant.cmt
+   gAssistant.cmti
+   gAssistant.cmx
+   gAssistant.ml
+   gAssistant.mli
+   gBin.cmi
+   gBin.cmt
+   gBin.cmti
+   gBin.cmx
+   gBin.ml
+   gBin.mli
+   gBuilder.cmi
+   gBuilder.cmt
+   gBuilder.cmti
+   gBuilder.cmx
+   gBuilder.ml
+   gBuilder.mli
+   gButton.cmi
+   gButton.cmt
+   gButton.cmti
+   gButton.cmx
+   gButton.ml
+   gButton.mli
+   gContainer.cmi
+   gContainer.cmt
+   gContainer.cmti
+   gContainer.cmx
+   gContainer.ml
+   gContainer.mli
+   gData.cmi
+   gData.cmt
+   gData.cmti
+   gData.cmx
+   gData.ml
+   gData.mli
+   gDraw.cmi
+   gDraw.cmt
+   gDraw.cmti
+   gDraw.cmx
+   gDraw.ml
+   gDraw.mli
+   gEdit.cmi
+   gEdit.cmt
+   gEdit.cmti
+   gEdit.cmx
+   gEdit.ml
+   gEdit.mli
+   gFile.cmi
+   gFile.cmt
+   gFile.cmti
+   gFile.cmx
+   gFile.ml
+   gFile.mli
+   gMain.cmi
+   gMain.cmt
+   gMain.cmti
+   gMain.cmx
+   gMain.ml
+   gMain.mli
+   gMenu.cmi
+   gMenu.cmt
+   gMenu.cmti
+   gMenu.cmx
+   gMenu.ml
+   gMenu.mli
+   gMisc.cmi
+   gMisc.cmt
+   gMisc.cmti
+   gMisc.cmx
+   gMisc.ml
+   gMisc.mli
+   gObj.cmi
+   gObj.cmt
+   gObj.cmti
+   gObj.cmx
+   gObj.ml
+   gObj.mli
+   gPack.cmi
+   gPack.cmt
+   gPack.cmti
+   gPack.cmx
+   gPack.ml
+   gPack.mli
+   gPango.cmi
+   gPango.cmt
+   gPango.cmti
+   gPango.cmx
+   gPango.ml
+   gPango.mli
+   gRange.cmi
+   gRange.cmt
+   gRange.cmti
+   gRange.cmx
+   gRange.ml
+   gRange.mli
+   gText.cmi
+   gText.cmt
+   gText.cmti
+   gText.cmx
+   gText.ml
+   gText.mli
+   gToolbox.cmi
+   gToolbox.cmt
+   gToolbox.cmti
+   gToolbox.cmx
+   gToolbox.ml
+   gToolbox.mli
+   gTree.cmi
+   gTree.cmt
+   gTree.cmti
+   gTree.cmx
+   gTree.ml
+   gTree.mli
+   gUtil.cmi
+   gUtil.cmt
+   gUtil.cmti
+   gUtil.cmx
+   gUtil.ml
+   gUtil.mli
+   gWindow.cmi
+   gWindow.cmt
+   gWindow.cmti
+   gWindow.cmx
+   gWindow.ml
+   gWindow.mli
+   gaux.cmi
+   gaux.cmt
+   gaux.cmx
+   gaux.ml
+   gdk.cmi
+   gdk.cmt
+   gdk.cmti
+   gdk.cmx
+   gdk.ml
+   gdk.mli
+   gdkEnums.cmi
+   gdkEnums.cmt
+   gdkEnums.cmx
+   gdkEnums.ml
+   gdkEvent.cmi
+   gdkEvent.cmt
+   gdkEvent.cmx
+   gdkEvent.ml
+   gdkKeysyms.cmi
+   gdkKeysyms.cmt
+   gdkKeysyms.cmx
+   gdkKeysyms.ml
+   gdkPixbuf.cmi
+   gdkPixbuf.cmt
+   gdkPixbuf.cmti
+   gdkPixbuf.cmx
+   gdkPixbuf.ml
+   gdkPixbuf.mli
+   gdk_tags.h
+   glib.cmi
+   glib.cmt
+   glib.cmti
+   glib.cmx
+   glib.ml
+   glib.mli
+   gobject.cmi
+   gobject.cmt
+   gobject.cmti
+   gobject.cmx
+   gobject.ml
+   gobject.mli
+   gpointer.cmi
+   gpointer.cmt
+   gpointer.cmti
+   gpointer.cmx
+   gpointer.ml
+   gpointer.mli
+   gtk.cmi
+   gtk.cmt
+   gtk.cmx
+   gtk.ml
+   gtkActionProps.cmi
+   gtkActionProps.cmt
+   gtkActionProps.cmx
+   gtkActionProps.ml
+   gtkAssistant.cmi
+   gtkAssistant.cmt
+   gtkAssistant.cmx
+   gtkAssistant.ml
+   gtkAssistantProps.cmi
+   gtkAssistantProps.cmt
+   gtkAssistantProps.cmx
+   gtkAssistantProps.ml
+   gtkBase.cmi
+   gtkBase.cmt
+   gtkBase.cmx
+   gtkBase.ml
+   gtkBaseProps.cmi
+   gtkBaseProps.cmt
+   gtkBaseProps.cmx
+   gtkBaseProps.ml
+   gtkBin.cmi
+   gtkBin.cmt
+   gtkBin.cmx
+   gtkBin.ml
+   gtkBinProps.cmi
+   gtkBinProps.cmt
+   gtkBinProps.cmx
+   gtkBinProps.ml
+   gtkBuilder.cmi
+   gtkBuilder.cmt
+   gtkBuilder.cmx
+   gtkBuilder.ml
+   gtkBuilderProps.cmi
+   gtkBuilderProps.cmt
+   gtkBuilderProps.cmx
+   gtkBuilderProps.ml
+   gtkButton.cmi
+   gtkButton.cmt
+   gtkButton.cmx
+   gtkButton.ml
+   gtkButtonProps.cmi
+   gtkButtonProps.cmt
+   gtkButtonProps.cmx
+   gtkButtonProps.ml
+   gtkContainers.cmi
+   gtkContainers.cmt
+   gtkContainers.cmx
+   gtkContainers.ml
+   gtkContainersProps.cmi
+   gtkContainersProps.cmt
+   gtkContainersProps.cmx
+   gtkContainersProps.ml
+   gtkData.cmi
+   gtkData.cmt
+   gtkData.cmx
+   gtkData.ml
+   gtkEdit.cmi
+   gtkEdit.cmt
+   gtkEdit.cmx
+   gtkEdit.ml
+   gtkEditProps.cmi
+   gtkEditProps.cmt
+   gtkEditProps.cmx
+   gtkEditProps.ml
+   gtkEnums.cmi
+   gtkEnums.cmt
+   gtkEnums.cmx
+   gtkEnums.ml
+   gtkFile.cmi
+   gtkFile.cmt
+   gtkFile.cmx
+   gtkFile.ml
+   gtkFileProps.cmi
+   gtkFileProps.cmt
+   gtkFileProps.cmx
+   gtkFileProps.ml
+   gtkMain.cmi
+   gtkMain.cmt
+   gtkMain.cmx
+   gtkMain.ml
+   gtkMenu.cmi
+   gtkMenu.cmt
+   gtkMenu.cmx
+   gtkMenu.ml
+   gtkMenuProps.cmi
+   gtkMenuProps.cmt
+   gtkMenuProps.cmx
+   gtkMenuProps.ml
+   gtkMisc.cmi
+   gtkMisc.cmt
+   gtkMisc.cmx
+   gtkMisc.ml
+   gtkMiscProps.cmi
+   gtkMiscProps.cmt
+   gtkMiscProps.cmx
+   gtkMiscProps.ml
+   gtkObject.cmi
+   gtkObject.cmt
+   gtkObject.cmx
+   gtkObject.ml
+   gtkPack.cmi
+   gtkPack.cmt
+   gtkPack.cmx
+   gtkPack.ml
+   gtkPackProps.cmi
+   gtkPackProps.cmt
+   gtkPackProps.cmx
+   gtkPackProps.ml
+   gtkRange.cmi
+   gtkRange.cmt
+   gtkRange.cmx
+   gtkRange.ml
+   gtkRangeProps.cmi
+   gtkRangeProps.cmt
+   gtkRangeProps.cmx
+   gtkRangeProps.ml
+   gtkSignal.cmi
+   gtkSignal.cmt
+   gtkSignal.cmti
+   gtkSignal.cmx
+   gtkSignal.ml
+   gtkSignal.mli
+   gtkStock.cmi
+   gtkStock.cmt
+   gtkStock.cmx
+   gtkStock.ml
+   gtkText.cmi
+   gtkText.cmt
+   gtkText.cmx
+   gtkText.ml
+   gtkTextProps.cmi
+   gtkTextProps.cmt
+   gtkTextProps.cmx
+   gtkTextProps.ml
+   gtkThread.cmi
+   gtkThread.cmt
+   gtkThread.cmti
+   gtkThread.cmx
+   gtkThread.ml
+   gtkThread.mli
+   gtkTree.cmi
+   gtkTree.cmt
+   gtkTree.cmx
+   gtkTree.ml
+   gtkTreeProps.cmi
+   gtkTreeProps.cmt
+   gtkTreeProps.cmx
+   gtkTreeProps.ml
+   gtkWindow.cmi
+   gtkWindow.cmt
+   gtkWindow.cmx
+   gtkWindow.ml
+   gtk_tags.h
+   gutf8.cmi
+   gutf8.cmt
+   gutf8.cmti
+   gutf8.cmx
+   gutf8.ml
+   gutf8.mli
+   lablgtk3.a
+   lablgtk3.cma
+   lablgtk3.cmxa
+   liblablgtk3_stubs.a
+   ml_gdk.h
+   ml_gdkpixbuf.h
+   ml_glib.h
+   ml_gobject.h
+   ml_gtk.h
+   ml_gtktext.h
+   ml_pango.h
+   ogtkActionProps.cmi
+   ogtkActionProps.cmt
+   ogtkActionProps.cmx
+   ogtkActionProps.ml
+   ogtkAssistantProps.cmi
+   ogtkAssistantProps.cmt
+   ogtkAssistantProps.cmx
+   ogtkAssistantProps.ml
+   ogtkBaseProps.cmi
+   ogtkBaseProps.cmt
+   ogtkBaseProps.cmx
+   ogtkBaseProps.ml
+   ogtkBinProps.cmi
+   ogtkBinProps.cmt
+   ogtkBinProps.cmx
+   ogtkBinProps.ml
+   ogtkBuilderProps.cmi
+   ogtkBuilderProps.cmt
+   ogtkBuilderProps.cmx
+   ogtkBuilderProps.ml
+   ogtkButtonProps.cmi
+   ogtkButtonProps.cmt
+   ogtkButtonProps.cmx
+   ogtkButtonProps.ml
+   ogtkContainersProps.cmi
+   ogtkContainersProps.cmt
+   ogtkContainersProps.cmx
+   ogtkContainersProps.ml
+   ogtkEditProps.cmi
+   ogtkEditProps.cmt
+   ogtkEditProps.cmx
+   ogtkEditProps.ml
+   ogtkFileProps.cmi
+   ogtkFileProps.cmt
+   ogtkFileProps.cmx
+   ogtkFileProps.ml
+   ogtkMenuProps.cmi
+   ogtkMenuProps.cmt
+   ogtkMenuProps.cmx
+   ogtkMenuProps.ml
+   ogtkMiscProps.cmi
+   ogtkMiscProps.cmt
+   ogtkMiscProps.cmx
+   ogtkMiscProps.ml
+   ogtkPackProps.cmi
+   ogtkPackProps.cmt
+   ogtkPackProps.cmx
+   ogtkPackProps.ml
+   ogtkRangeProps.cmi
+   ogtkRangeProps.cmt
+   ogtkRangeProps.cmx
+   ogtkRangeProps.ml
+   ogtkTextProps.cmi
+   ogtkTextProps.cmt
+   ogtkTextProps.cmx
+   ogtkTextProps.ml
+   ogtkTreeProps.cmi
+   ogtkTreeProps.cmt
+   ogtkTreeProps.cmx
+   ogtkTreeProps.ml
+   opam
+   pango.cmi
+   pango.cmt
+   pango.cmx
+   pango.ml
+   pangoEnums.cmi
+   pangoEnums.cmt
+   pangoEnums.cmx
+   pangoEnums.ml
+   pango_tags.h
+   wrappers.h))
+ (libexec (lablgtk3.cmxs))
+ (bin (gdk_pixbuf_mlsource3 lablgladecc3))
+ (doc (CHANGELOG.API CHANGES.md LICENSE README.dune.md README.md))
+ (stublibs (dlllablgtk3_stubs.so)))
+(library
+ (name lablgtk3)
+ (kind normal)
+ (archives (byte lablgtk3.cma) (native lablgtk3.cmxa))
+ (plugins (byte lablgtk3.cma) (native lablgtk3.cmxs))
+ (foreign_objects
+  cairo_pango_stubs.o
+  ml_gdk.o
+  ml_gdkpixbuf.o
+  ml_glib.o
+  ml_gobject.o
+  ml_gpointer.o
+  ml_gtk.o
+  ml_gtkaction.o
+  ml_gtkassistant.o
+  ml_gtkbin.o
+  ml_gtkbuilder.o
+  ml_gtkbutton.o
+  ml_gtkedit.o
+  ml_gtkfile.o
+  ml_gtkmenu.o
+  ml_gtkmisc.o
+  ml_gtkpack.o
+  ml_gtkrange.o
+  ml_gtkstock.o
+  ml_gtktext.o
+  ml_gtktree.o
+  ml_gvaluecaml.o
+  ml_pango.o
+  wrappers.o)
+ (foreign_archives (archives (for all) (files liblablgtk3_stubs.a)))
+ (foreign_dll_files ../stublibs/dlllablgtk3_stubs.so)
+ (native_archives lablgtk3.a)
+ (requires threads cairo2)
+ (modes byte native)
+ (modules
+  (unwrapped
+   (module
+    (obj_name cairo_pango)
+    (visibility public)
+    (source
+     (path Cairo_pango)
+     (intf (path cairo_pango.mli))
+     (impl (path cairo_pango.ml))))
+   (module
+    (obj_name gAction)
+    (visibility public)
+    (source (path GAction) (intf (path gAction.mli)) (impl (path gAction.ml))))
+   (module
+    (obj_name gAssistant)
+    (visibility public)
+    (source
+     (path GAssistant)
+     (intf (path gAssistant.mli))
+     (impl (path gAssistant.ml))))
+   (module
+    (obj_name gBin)
+    (visibility public)
+    (source (path GBin) (intf (path gBin.mli)) (impl (path gBin.ml))))
+   (module
+    (obj_name gBuilder)
+    (visibility public)
+    (source
+     (path GBuilder)
+     (intf (path gBuilder.mli))
+     (impl (path gBuilder.ml))))
+   (module
+    (obj_name gButton)
+    (visibility public)
+    (source (path GButton) (intf (path gButton.mli)) (impl (path gButton.ml))))
+   (module
+    (obj_name gContainer)
+    (visibility public)
+    (source
+     (path GContainer)
+     (intf (path gContainer.mli))
+     (impl (path gContainer.ml))))
+   (module
+    (obj_name gData)
+    (visibility public)
+    (source (path GData) (intf (path gData.mli)) (impl (path gData.ml))))
+   (module
+    (obj_name gDraw)
+    (visibility public)
+    (source (path GDraw) (intf (path gDraw.mli)) (impl (path gDraw.ml))))
+   (module
+    (obj_name gEdit)
+    (visibility public)
+    (source (path GEdit) (intf (path gEdit.mli)) (impl (path gEdit.ml))))
+   (module
+    (obj_name gFile)
+    (visibility public)
+    (source (path GFile) (intf (path gFile.mli)) (impl (path gFile.ml))))
+   (module
+    (obj_name gMain)
+    (visibility public)
+    (source (path GMain) (intf (path gMain.mli)) (impl (path gMain.ml))))
+   (module
+    (obj_name gMenu)
+    (visibility public)
+    (source (path GMenu) (intf (path gMenu.mli)) (impl (path gMenu.ml))))
+   (module
+    (obj_name gMisc)
+    (visibility public)
+    (source (path GMisc) (intf (path gMisc.mli)) (impl (path gMisc.ml))))
+   (module
+    (obj_name gObj)
+    (visibility public)
+    (source (path GObj) (intf (path gObj.mli)) (impl (path gObj.ml))))
+   (module
+    (obj_name gPack)
+    (visibility public)
+    (source (path GPack) (intf (path gPack.mli)) (impl (path gPack.ml))))
+   (module
+    (obj_name gPango)
+    (visibility public)
+    (source (path GPango) (intf (path gPango.mli)) (impl (path gPango.ml))))
+   (module
+    (obj_name gRange)
+    (visibility public)
+    (source (path GRange) (intf (path gRange.mli)) (impl (path gRange.ml))))
+   (module
+    (obj_name gText)
+    (visibility public)
+    (source (path GText) (intf (path gText.mli)) (impl (path gText.ml))))
+   (module
+    (obj_name gToolbox)
+    (visibility public)
+    (source
+     (path GToolbox)
+     (intf (path gToolbox.mli))
+     (impl (path gToolbox.ml))))
+   (module
+    (obj_name gTree)
+    (visibility public)
+    (source (path GTree) (intf (path gTree.mli)) (impl (path gTree.ml))))
+   (module
+    (obj_name gUtil)
+    (visibility public)
+    (source (path GUtil) (intf (path gUtil.mli)) (impl (path gUtil.ml))))
+   (module
+    (obj_name gWindow)
+    (visibility public)
+    (source (path GWindow) (intf (path gWindow.mli)) (impl (path gWindow.ml))))
+   (module
+    (obj_name gaux)
+    (visibility public)
+    (source (path Gaux) (impl (path gaux.ml))))
+   (module
+    (obj_name gdk)
+    (visibility public)
+    (source (path Gdk) (intf (path gdk.mli)) (impl (path gdk.ml))))
+   (module
+    (obj_name gdkEnums)
+    (visibility public)
+    (source (path GdkEnums) (impl (path gdkEnums.ml))))
+   (module
+    (obj_name gdkEvent)
+    (visibility public)
+    (source (path GdkEvent) (impl (path gdkEvent.ml))))
+   (module
+    (obj_name gdkKeysyms)
+    (visibility public)
+    (source (path GdkKeysyms) (impl (path gdkKeysyms.ml))))
+   (module
+    (obj_name gdkPixbuf)
+    (visibility public)
+    (source
+     (path GdkPixbuf)
+     (intf (path gdkPixbuf.mli))
+     (impl (path gdkPixbuf.ml))))
+   (module
+    (obj_name glib)
+    (visibility public)
+    (source (path Glib) (intf (path glib.mli)) (impl (path glib.ml))))
+   (module
+    (obj_name gobject)
+    (visibility public)
+    (source (path Gobject) (intf (path gobject.mli)) (impl (path gobject.ml))))
+   (module
+    (obj_name gpointer)
+    (visibility public)
+    (source
+     (path Gpointer)
+     (intf (path gpointer.mli))
+     (impl (path gpointer.ml))))
+   (module
+    (obj_name gtk)
+    (visibility public)
+    (source (path Gtk) (impl (path gtk.ml))))
+   (module
+    (obj_name gtkActionProps)
+    (visibility public)
+    (source (path GtkActionProps) (impl (path gtkActionProps.ml))))
+   (module
+    (obj_name gtkAssistant)
+    (visibility public)
+    (source (path GtkAssistant) (impl (path gtkAssistant.ml))))
+   (module
+    (obj_name gtkAssistantProps)
+    (visibility public)
+    (source (path GtkAssistantProps) (impl (path gtkAssistantProps.ml))))
+   (module
+    (obj_name gtkBase)
+    (visibility public)
+    (source (path GtkBase) (impl (path gtkBase.ml))))
+   (module
+    (obj_name gtkBaseProps)
+    (visibility public)
+    (source (path GtkBaseProps) (impl (path gtkBaseProps.ml))))
+   (module
+    (obj_name gtkBin)
+    (visibility public)
+    (source (path GtkBin) (impl (path gtkBin.ml))))
+   (module
+    (obj_name gtkBinProps)
+    (visibility public)
+    (source (path GtkBinProps) (impl (path gtkBinProps.ml))))
+   (module
+    (obj_name gtkBuilder)
+    (visibility public)
+    (source (path GtkBuilder) (impl (path gtkBuilder.ml))))
+   (module
+    (obj_name gtkBuilderProps)
+    (visibility public)
+    (source (path GtkBuilderProps) (impl (path gtkBuilderProps.ml))))
+   (module
+    (obj_name gtkButton)
+    (visibility public)
+    (source (path GtkButton) (impl (path gtkButton.ml))))
+   (module
+    (obj_name gtkButtonProps)
+    (visibility public)
+    (source (path GtkButtonProps) (impl (path gtkButtonProps.ml))))
+   (module
+    (obj_name gtkContainers)
+    (visibility public)
+    (source (path GtkContainers) (impl (path gtkContainers.ml))))
+   (module
+    (obj_name gtkContainersProps)
+    (visibility public)
+    (source (path GtkContainersProps) (impl (path gtkContainersProps.ml))))
+   (module
+    (obj_name gtkData)
+    (visibility public)
+    (source (path GtkData) (impl (path gtkData.ml))))
+   (module
+    (obj_name gtkEdit)
+    (visibility public)
+    (source (path GtkEdit) (impl (path gtkEdit.ml))))
+   (module
+    (obj_name gtkEditProps)
+    (visibility public)
+    (source (path GtkEditProps) (impl (path gtkEditProps.ml))))
+   (module
+    (obj_name gtkEnums)
+    (visibility public)
+    (source (path GtkEnums) (impl (path gtkEnums.ml))))
+   (module
+    (obj_name gtkFile)
+    (visibility public)
+    (source (path GtkFile) (impl (path gtkFile.ml))))
+   (module
+    (obj_name gtkFileProps)
+    (visibility public)
+    (source (path GtkFileProps) (impl (path gtkFileProps.ml))))
+   (module
+    (obj_name gtkMain)
+    (visibility public)
+    (source (path GtkMain) (impl (path gtkMain.ml))))
+   (module
+    (obj_name gtkMenu)
+    (visibility public)
+    (source (path GtkMenu) (impl (path gtkMenu.ml))))
+   (module
+    (obj_name gtkMenuProps)
+    (visibility public)
+    (source (path GtkMenuProps) (impl (path gtkMenuProps.ml))))
+   (module
+    (obj_name gtkMisc)
+    (visibility public)
+    (source (path GtkMisc) (impl (path gtkMisc.ml))))
+   (module
+    (obj_name gtkMiscProps)
+    (visibility public)
+    (source (path GtkMiscProps) (impl (path gtkMiscProps.ml))))
+   (module
+    (obj_name gtkObject)
+    (visibility public)
+    (source (path GtkObject) (impl (path gtkObject.ml))))
+   (module
+    (obj_name gtkPack)
+    (visibility public)
+    (source (path GtkPack) (impl (path gtkPack.ml))))
+   (module
+    (obj_name gtkPackProps)
+    (visibility public)
+    (source (path GtkPackProps) (impl (path gtkPackProps.ml))))
+   (module
+    (obj_name gtkRange)
+    (visibility public)
+    (source (path GtkRange) (impl (path gtkRange.ml))))
+   (module
+    (obj_name gtkRangeProps)
+    (visibility public)
+    (source (path GtkRangeProps) (impl (path gtkRangeProps.ml))))
+   (module
+    (obj_name gtkSignal)
+    (visibility public)
+    (source
+     (path GtkSignal)
+     (intf (path gtkSignal.mli))
+     (impl (path gtkSignal.ml))))
+   (module
+    (obj_name gtkStock)
+    (visibility public)
+    (source (path GtkStock) (impl (path gtkStock.ml))))
+   (module
+    (obj_name gtkText)
+    (visibility public)
+    (source (path GtkText) (impl (path gtkText.ml))))
+   (module
+    (obj_name gtkTextProps)
+    (visibility public)
+    (source (path GtkTextProps) (impl (path gtkTextProps.ml))))
+   (module
+    (obj_name gtkThread)
+    (visibility public)
+    (source
+     (path GtkThread)
+     (intf (path gtkThread.mli))
+     (impl (path gtkThread.ml))))
+   (module
+    (obj_name gtkTree)
+    (visibility public)
+    (source (path GtkTree) (impl (path gtkTree.ml))))
+   (module
+    (obj_name gtkTreeProps)
+    (visibility public)
+    (source (path GtkTreeProps) (impl (path gtkTreeProps.ml))))
+   (module
+    (obj_name gtkWindow)
+    (visibility public)
+    (source (path GtkWindow) (impl (path gtkWindow.ml))))
+   (module
+    (obj_name gutf8)
+    (visibility public)
+    (source (path Gutf8) (intf (path gutf8.mli)) (impl (path gutf8.ml))))
+   (module
+    (obj_name ogtkActionProps)
+    (visibility public)
+    (source (path OgtkActionProps) (impl (path ogtkActionProps.ml))))
+   (module
+    (obj_name ogtkAssistantProps)
+    (visibility public)
+    (source (path OgtkAssistantProps) (impl (path ogtkAssistantProps.ml))))
+   (module
+    (obj_name ogtkBaseProps)
+    (visibility public)
+    (source (path OgtkBaseProps) (impl (path ogtkBaseProps.ml))))
+   (module
+    (obj_name ogtkBinProps)
+    (visibility public)
+    (source (path OgtkBinProps) (impl (path ogtkBinProps.ml))))
+   (module
+    (obj_name ogtkBuilderProps)
+    (visibility public)
+    (source (path OgtkBuilderProps) (impl (path ogtkBuilderProps.ml))))
+   (module
+    (obj_name ogtkButtonProps)
+    (visibility public)
+    (source (path OgtkButtonProps) (impl (path ogtkButtonProps.ml))))
+   (module
+    (obj_name ogtkContainersProps)
+    (visibility public)
+    (source (path OgtkContainersProps) (impl (path ogtkContainersProps.ml))))
+   (module
+    (obj_name ogtkEditProps)
+    (visibility public)
+    (source (path OgtkEditProps) (impl (path ogtkEditProps.ml))))
+   (module
+    (obj_name ogtkFileProps)
+    (visibility public)
+    (source (path OgtkFileProps) (impl (path ogtkFileProps.ml))))
+   (module
+    (obj_name ogtkMenuProps)
+    (visibility public)
+    (source (path OgtkMenuProps) (impl (path ogtkMenuProps.ml))))
+   (module
+    (obj_name ogtkMiscProps)
+    (visibility public)
+    (source (path OgtkMiscProps) (impl (path ogtkMiscProps.ml))))
+   (module
+    (obj_name ogtkPackProps)
+    (visibility public)
+    (source (path OgtkPackProps) (impl (path ogtkPackProps.ml))))
+   (module
+    (obj_name ogtkRangeProps)
+    (visibility public)
+    (source (path OgtkRangeProps) (impl (path ogtkRangeProps.ml))))
+   (module
+    (obj_name ogtkTextProps)
+    (visibility public)
+    (source (path OgtkTextProps) (impl (path ogtkTextProps.ml))))
+   (module
+    (obj_name ogtkTreeProps)
+    (visibility public)
+    (source (path OgtkTreeProps) (impl (path ogtkTreeProps.ml))))
+   (module
+    (obj_name pango)
+    (visibility public)
+    (source (path Pango) (impl (path pango.ml))))
+   (module
+    (obj_name pangoEnums)
+    (visibility public)
+    (source (path PangoEnums) (impl (path pangoEnums.ml)))))))

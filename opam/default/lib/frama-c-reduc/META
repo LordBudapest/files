@@ -1,0 +1,9 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires = "frama-c-eva.core frama-c-inout.core frama-c.kernel"
+  archive(byte) = "reduc.cma"
+  archive(native) = "reduc.cmxa"
+  plugin(byte) = "reduc.cma"
+  plugin(native) = "reduc.cmxs"
+)

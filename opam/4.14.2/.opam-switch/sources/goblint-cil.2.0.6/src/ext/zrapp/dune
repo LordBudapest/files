@@ -1,5 +1,0 @@
-(library
-  (public_name goblint-cil.zrapp)
-  (name zrapp)
-  (libraries goblint-cil goblint-cil.liveness stdlib-shims)
-)

@@ -28,32 +28,31 @@ let version = Sys.ocaml_version
 
 let flambda = false
 
-let ext_obj = ".o_The boot compiler cannot process C objects"
-
-let exec_magic_number = "Caml1999X035"
+let exec_magic_number = "Caml1999X031"
     (* exec_magic_number is duplicated in runtime/caml/exec.h *)
-and cmi_magic_number = "Caml1999I035"
-and cmo_magic_number = "Caml1999O035"
-and cma_magic_number = "Caml1999A035"
+and cmi_magic_number = "Caml1999I031"
+and cmo_magic_number = "Caml1999O031"
+and cma_magic_number = "Caml1999A031"
 and cmx_magic_number =
   if flambda then
-    "Caml1999y035"
+    "Caml1999y031"
   else
-    "Caml1999Y035"
+    "Caml1999Y031"
 and cmxa_magic_number =
   if flambda then
-    "Caml1999z035"
+    "Caml1999z031"
   else
-    "Caml1999Z035"
-and ast_impl_magic_number = "Caml1999M035"
-and ast_intf_magic_number = "Caml1999N035"
-and cmxs_magic_number = "Caml1999D035"
-and cmt_magic_number = "Caml1999T035"
-and index_magic_number = "Merl2023I003"
+    "Caml1999Z031"
+and ast_impl_magic_number = "Caml1999M031"
+and ast_intf_magic_number = "Caml1999N031"
+and cmxs_magic_number = "Caml1999D031"
+and cmt_magic_number = "Caml1999T031"
 
 let interface_suffix = ref ".mli"
-let flat_float_array = true
 
 let max_tag = 245
+
+let safe_string = true
+let flat_float_array = false
 
 let merlin = true

@@ -1,0 +1,181 @@
+version = "0.10"
+description = ""
+requires =
+"dolmen.ae
+ dolmen.class
+ dolmen.dimacs
+ dolmen.icnf
+ dolmen.intf
+ dolmen.line
+ dolmen.smtlib2
+ dolmen.std
+ dolmen.tptp
+ dolmen.zf"
+archive(byte) = "dolmen.cma"
+archive(native) = "dolmen.cmxa"
+plugin(byte) = "dolmen.cma"
+plugin(native) = "dolmen.cmxs"
+package "ae" (
+  directory = "ae"
+  version = "0.10"
+  description = ""
+  requires = "dolmen.intf dolmen.std menhirLib"
+  archive(byte) = "dolmen_ae.cma"
+  archive(native) = "dolmen_ae.cmxa"
+  plugin(byte) = "dolmen_ae.cma"
+  plugin(native) = "dolmen_ae.cmxs"
+)
+package "class" (
+  directory = "class"
+  version = "0.10"
+  description = ""
+  requires =
+  "dolmen.ae
+   dolmen.dimacs
+   dolmen.icnf
+   dolmen.intf
+   dolmen.smtlib2
+   dolmen.smtlib2.poly
+   dolmen.smtlib2.v6
+   dolmen.smtlib2.v6_response
+   dolmen.smtlib2.v6_script
+   dolmen.std
+   dolmen.tptp
+   dolmen.tptp.v6_3_0
+   dolmen.zf
+   menhirLib"
+  archive(byte) = "dolmen_class.cma"
+  archive(native) = "dolmen_class.cmxa"
+  plugin(byte) = "dolmen_class.cma"
+  plugin(native) = "dolmen_class.cmxs"
+)
+package "dimacs" (
+  directory = "dimacs"
+  version = "0.10"
+  description = ""
+  requires = "dolmen.intf dolmen.std menhirLib"
+  archive(byte) = "dolmen_dimacs.cma"
+  archive(native) = "dolmen_dimacs.cmxa"
+  plugin(byte) = "dolmen_dimacs.cma"
+  plugin(native) = "dolmen_dimacs.cmxs"
+)
+package "icnf" (
+  directory = "icnf"
+  version = "0.10"
+  description = ""
+  requires = "dolmen.intf dolmen.std menhirLib"
+  archive(byte) = "dolmen_icnf.cma"
+  archive(native) = "dolmen_icnf.cmxa"
+  plugin(byte) = "dolmen_icnf.cma"
+  plugin(native) = "dolmen_icnf.cmxs"
+)
+package "intf" (
+  directory = "intf"
+  version = "0.10"
+  description = ""
+  requires = "menhirLib"
+  archive(byte) = "dolmen_intf.cma"
+  archive(native) = "dolmen_intf.cmxa"
+  plugin(byte) = "dolmen_intf.cma"
+  plugin(native) = "dolmen_intf.cmxs"
+)
+package "line" (
+  directory = "line"
+  version = "0.10"
+  description = ""
+  requires = ""
+  archive(byte) = "dolmen_line.cma"
+  archive(native) = "dolmen_line.cmxa"
+  plugin(byte) = "dolmen_line.cma"
+  plugin(native) = "dolmen_line.cmxs"
+)
+package "smtlib2" (
+  directory = "smtlib2"
+  version = "0.10"
+  description = ""
+  requires = "dolmen.smtlib2.poly dolmen.smtlib2.v6"
+  archive(byte) = "dolmen_smtlib2.cma"
+  archive(native) = "dolmen_smtlib2.cmxa"
+  plugin(byte) = "dolmen_smtlib2.cma"
+  plugin(native) = "dolmen_smtlib2.cmxs"
+  package "poly" (
+    directory = "poly"
+    version = "0.10"
+    description = ""
+    requires = "dolmen.intf dolmen.std menhirLib"
+    archive(byte) = "dolmen_smtlib2_poly.cma"
+    archive(native) = "dolmen_smtlib2_poly.cmxa"
+    plugin(byte) = "dolmen_smtlib2_poly.cma"
+    plugin(native) = "dolmen_smtlib2_poly.cmxs"
+  )
+  package "v6" (
+    directory = "v6"
+    version = "0.10"
+    description = ""
+    requires = "dolmen.smtlib2.v6_response dolmen.smtlib2.v6_script"
+    archive(byte) = "dolmen_smtlib2_v6.cma"
+    archive(native) = "dolmen_smtlib2_v6.cmxa"
+    plugin(byte) = "dolmen_smtlib2_v6.cma"
+    plugin(native) = "dolmen_smtlib2_v6.cmxs"
+  )
+  package "v6_response" (
+    directory = "v6_response"
+    version = "0.10"
+    description = ""
+    requires = "dolmen.intf dolmen.std menhirLib"
+    archive(byte) = "dolmen_smtlib2_v6_response.cma"
+    archive(native) = "dolmen_smtlib2_v6_response.cmxa"
+    plugin(byte) = "dolmen_smtlib2_v6_response.cma"
+    plugin(native) = "dolmen_smtlib2_v6_response.cmxs"
+  )
+  package "v6_script" (
+    directory = "v6_script"
+    version = "0.10"
+    description = ""
+    requires = "dolmen.intf dolmen.std menhirLib"
+    archive(byte) = "dolmen_smtlib2_v6_script.cma"
+    archive(native) = "dolmen_smtlib2_v6_script.cmxa"
+    plugin(byte) = "dolmen_smtlib2_v6_script.cma"
+    plugin(native) = "dolmen_smtlib2_v6_script.cmxs"
+  )
+)
+package "std" (
+  directory = "std"
+  version = "0.10"
+  description = ""
+  requires = "dolmen.intf dolmen.line fmt hmap unix"
+  archive(byte) = "dolmen_std.cma"
+  archive(native) = "dolmen_std.cmxa"
+  plugin(byte) = "dolmen_std.cma"
+  plugin(native) = "dolmen_std.cmxs"
+)
+package "tptp" (
+  directory = "tptp"
+  version = "0.10"
+  description = ""
+  requires = "dolmen.tptp.v6_3_0"
+  archive(byte) = "dolmen_tptp.cma"
+  archive(native) = "dolmen_tptp.cmxa"
+  plugin(byte) = "dolmen_tptp.cma"
+  plugin(native) = "dolmen_tptp.cmxs"
+  package "v6_3_0" (
+    directory = "v6_3_0"
+    version = "0.10"
+    description = ""
+    requires = "dolmen.intf dolmen.std menhirLib"
+    archive(byte) = "dolmen_tptp_v6_3_0.cma"
+    archive(native) = "dolmen_tptp_v6_3_0.cmxa"
+    plugin(byte) = "dolmen_tptp_v6_3_0.cma"
+    plugin(native) = "dolmen_tptp_v6_3_0.cmxs"
+  )
+)
+package "zf" (
+  directory = "zf"
+  version = "0.10"
+  description = ""
+  requires = "dolmen.intf dolmen.std menhirLib"
+  archive(byte) = "dolmen_zf.cma"
+  archive(native) = "dolmen_zf.cmxa"
+  plugin(byte) = "dolmen_zf.cma"
+  plugin(native) = "dolmen_zf.cmxs"
+)

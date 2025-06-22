@@ -19,24 +19,6 @@ open Asttypes
 open Typedtree
 open Types
 
-(** Most checks in this file need not access all information about a case,
-    and just need a few pieces of information. [parmatch_case] is those
-    few pieces of information.
-*)
-type 'pattern parmatch_case =
-  { pattern : 'pattern;
-    has_guard : bool;
-    needs_refute : bool;
-    (** true if the program text claims the case is unreachable, a la
-        [function _ -> .]
-    *)
-  }
-
-type 'category typed_case := 'category general_pattern parmatch_case
-
-val typed_case   : 'category case -> 'category typed_case
-val untyped_case : Parsetree.case -> Parsetree.pattern parmatch_case
-
 val const_compare : constant -> constant -> int
 (** [const_compare c1 c2] compares the actual values represented by [c1] and
     [c2], while simply using [Stdlib.compare] would compare the
@@ -75,11 +57,13 @@ val lubs : pattern list -> pattern list -> pattern list
 
 val get_mins : ('a -> 'a -> bool) -> 'a list -> 'a list
 
-(** This function recombines one pattern and its arguments:
+(** Those two functions recombine one pattern and its arguments:
     For instance:
       (_,_)::p1::p2::rem -> (p1, p2)::rem
+    The second one will replace mutable arguments by '_'
 *)
 val set_args : pattern -> pattern list -> pattern list
+val set_args_erase_mutable : pattern -> pattern list -> pattern list
 
 val pat_of_constr : pattern -> constructor_description -> pattern
 val complete_constrs :
@@ -87,18 +71,28 @@ val complete_constrs :
     constructor_description list ->
     constructor_description list
 
-(** [pats_of_type] builds a list of patterns from a given expected type,
+(** [ppat_of_type] builds an untyped pattern from its expected type,
     for explosion of wildcard patterns in Typecore.type_pat.
 
     There are four interesting cases:
-    - the type is empty ([])
-    - no further explosion is necessary ([Pat_any])
+    - the type is empty ([PT_empty])
+    - no further explosion is necessary ([PT_any])
     - a single pattern is generated, from a record or tuple type
-      or a single-variant type ([tp])
-    - a list of patterns, in the case that all branches
-      are GADT constructors ([tp1; ..; tpn]).
+      or a single-variant type ([PE_single])
+    - an or-pattern is generated, in the case that all branches
+      are GADT constructors ([PE_gadt_cases]).
  *)
-val pats_of_type : Env.t -> type_expr -> pattern list
+type pat_explosion = PE_single | PE_gadt_cases
+type ppat_of_type =
+  | PT_empty
+  | PT_any
+  | PT_pattern of
+      pat_explosion *
+      Parsetree.pattern *
+      (string, constructor_description) Hashtbl.t *
+      (string, label_description) Hashtbl.t
+
+val ppat_of_type: Env.t -> type_expr -> ppat_of_type
 
 val pressure_variants:
   Env.t -> pattern list -> unit
@@ -113,11 +107,16 @@ val pressure_variants_in_computation_pattern:
     [refute] indicates that [check_unused] was called on a refutation clause.
  *)
 val check_partial:
-    (pattern -> pattern option) -> Location.t -> value typed_case list
-    -> partial
-
+    ((string, constructor_description) Hashtbl.t ->
+     (string, label_description) Hashtbl.t ->
+     Parsetree.pattern -> pattern option) ->
+    Location.t -> value case list -> partial
 val check_unused:
-    (bool -> pattern -> pattern option) -> value typed_case list -> unit
+    (bool ->
+     (string, constructor_description) Hashtbl.t ->
+     (string, label_description) Hashtbl.t ->
+     Parsetree.pattern -> pattern option) ->
+    value case list -> unit
 
 (* Irrefutability tests *)
 val irrefutable : pattern -> bool
@@ -128,7 +127,7 @@ val irrefutable : pattern -> bool
     active. *)
 val inactive : partial:partial -> pattern -> bool
 
-(* Ambiguous bindings. *)
+(* Ambiguous bindings *)
 val check_ambiguous_bindings : value case list -> unit
 
 (* The tag used for open polymorphic variant types with an abstract row *)
@@ -139,9 +138,12 @@ val some_private_tag : label
 (*******************)
 
 val complete_partial :
-  pred:(pattern -> pattern option) ->
+  pred:((label, constructor_description) Hashtbl.t ->
+        (label, label_description) Hashtbl.t ->
+        Parsetree.pattern -> pattern option) ->
   pattern list list ->
-  (pattern) list
+  (pattern * ((label, constructor_description) Hashtbl.t *
+  (label, label_description) Hashtbl.t) option) list
 
 val return_unused: pattern list ->
   [ `Unused of pattern | `Unused_subs of pattern * pattern list ] list

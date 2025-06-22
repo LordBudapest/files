@@ -1,0 +1,60 @@
+name: build and run tests
+# https://github.com/avsm/setup-ocaml
+
+on:
+  - push
+  - pull_request
+  - workflow_dispatch
+
+jobs:
+  tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macos-13
+          - ubuntu-latest
+          # - windows-latest
+        ocaml-version:
+          - 4.05.0
+          - 4.06.1
+          - 4.07.1
+          - 4.08.1
+          - 4.09.1
+          - 4.10.1
+          - 4.11.2
+          - 4.12.0
+          - 4.13.1
+          - 4.14.x
+          - 5.0.0
+          - 5.1.0
+          - 5.2.0
+
+        include:
+          - os: macos-latest
+            ocaml-version: 4.14.x
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup OCaml ${{ matrix.ocaml-version }}
+        uses: ocaml/setup-ocaml@v3
+        with:
+          ocaml-compiler: ${{ matrix.ocaml-version }}
+
+      - run: opam pin add goblint-cil.dev . --no-action
+      - run: opam depext goblint-cil --yes
+      - run: opam depext goblint-cil --yes --with-test
+      - run: opam install . --deps-only --with-test
+      - run: opam exec -- dune build
+      - run: opam exec -- dune runtest
+
+      - name: Upload test log
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: ${{ matrix.os }}-${{ matrix.ocaml-version }}
+          path: _build/default/test/cil.log

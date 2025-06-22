@@ -1,0 +1,9 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires = "frama-c.kernel"
+  archive(byte) = "variadic.cma"
+  archive(native) = "variadic.cmxa"
+  plugin(byte) = "variadic.cma"
+  plugin(native) = "variadic.cmxs"
+)

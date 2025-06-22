@@ -115,8 +115,8 @@ and extract_signature_type_items_extract vis ~hidden item rest =
       else
         let constrs = match td.type_kind with
           
-# 119 "src/loader/ident_env.cppo.ml"
-          | Types.Type_abstract _ -> []
+# 117 "src/loader/ident_env.cppo.ml"
+          | Types.Type_abstract -> []
           
 # 121 "src/loader/ident_env.cppo.ml"
           | Type_record (_, _) -> []
@@ -138,14 +138,17 @@ and extract_signature_type_items_extract vis ~hidden item rest =
     | Sig_value(id, _, _), _ ->
       `Value (id, hidden, None) :: extract_signature_type_items vis rest
     
-# 152 "src/loader/ident_env.cppo.ml"
+# 140 "src/loader/ident_env.cppo.ml"
     | Sig_class(id, _, _, _),
-      Sig_class_type(ty_id, _, _, _) :: Sig_type(obj_id, _, _, _) :: _ ->
-      `Class (id, ty_id, obj_id, None, hidden, None)
+      Sig_class_type(ty_id, _, _, _)
+      :: Sig_type(obj_id, _, _, _)
+      :: Sig_type(cl_id, _, _, _) :: _ ->
+      `Class (id, ty_id, obj_id, Some cl_id, hidden, None)
       :: extract_signature_type_items vis rest
 
-    | Sig_class_type(id, _, _, _), Sig_type(obj_id, _, _, _) :: _ ->
-      `ClassType (id, obj_id, None, hidden, None)
+    | Sig_class_type(id, _, _, _),
+      Sig_type(obj_id, _, _, _) :: Sig_type(cl_id, _, _, _) :: _ ->
+      `ClassType (id, obj_id, Some cl_id, hidden, None)
       :: extract_signature_type_items vis rest
 
     
@@ -246,8 +249,8 @@ let rec extract_signature_tree_items : bool -> Typedtree.signature_item list -> 
         (fun cld ->
             let typehash =
             
-# 266 "src/loader/ident_env.cppo.ml"
-            None
+# 264 "src/loader/ident_env.cppo.ml"
+            Some cld.ci_id_typehash
           
 # 268 "src/loader/ident_env.cppo.ml"
           in
@@ -258,8 +261,8 @@ let rec extract_signature_tree_items : bool -> Typedtree.signature_item list -> 
       (fun clty ->
           let typehash =
             
-# 280 "src/loader/ident_env.cppo.ml"
-            None
+# 278 "src/loader/ident_env.cppo.ml"
+            Some clty.ci_id_typehash
             
 # 282 "src/loader/ident_env.cppo.ml"
             in
@@ -286,14 +289,14 @@ let rec read_pattern hide_item pat =
   let open Typedtree in
   match pat.pat_desc with
   
-# 306 "src/loader/ident_env.cppo.ml"
-  | Tpat_var(id, loc, _) ->
+# 304 "src/loader/ident_env.cppo.ml"
+  | Tpat_var(id, loc) ->
     
 # 308 "src/loader/ident_env.cppo.ml"
     [`Value(id, hide_item, Some loc.loc)]
   
-# 312 "src/loader/ident_env.cppo.ml"
-  | Tpat_alias(pat, id, loc, _) ->
+# 310 "src/loader/ident_env.cppo.ml"
+  | Tpat_alias(pat, id, loc) ->
     
 # 314 "src/loader/ident_env.cppo.ml"
     `Value(id, hide_item, Some loc.loc) :: read_pattern hide_item pat
@@ -379,8 +382,8 @@ let rec extract_structure_tree_items : bool -> Typedtree.structure_item list -> 
              `Class (cld.ci_id_class,
                cld.ci_id_class_type, cld.ci_id_object,
                
-# 407 "src/loader/ident_env.cppo.ml"
-               None,
+# 405 "src/loader/ident_env.cppo.ml"
+               Some cld.ci_id_typehash,
               
 # 409 "src/loader/ident_env.cppo.ml"
               hide_item, Some cld.ci_id_name.loc
@@ -391,8 +394,8 @@ let rec extract_structure_tree_items : bool -> Typedtree.structure_item list -> 
              `ClassType (clty.ci_id_class_type,
                clty.ci_id_object,
                
-# 421 "src/loader/ident_env.cppo.ml"
-               None,
+# 419 "src/loader/ident_env.cppo.ml"
+               Some clty.ci_id_typehash,
               
 # 423 "src/loader/ident_env.cppo.ml"
               hide_item, Some clty.ci_id_name.loc
@@ -697,9 +700,6 @@ module Path = struct
     
 # 724 "src/loader/ident_env.cppo.ml"
     | Path.Papply(p, arg) -> `Apply(read_module env p, read_module env arg)
-    
-# 726 "src/loader/ident_env.cppo.ml"
-    | Path.Pextra_ty _ -> assert false
 
   
 # 729 "src/loader/ident_env.cppo.ml"
@@ -711,9 +711,6 @@ module Path = struct
     
 # 736 "src/loader/ident_env.cppo.ml"
     | Path.Papply(_, _)-> assert false
-    
-# 738 "src/loader/ident_env.cppo.ml"
-    | Path.Pextra_ty _ -> assert false
 
   
 # 741 "src/loader/ident_env.cppo.ml"
@@ -725,13 +722,10 @@ module Path = struct
     
 # 748 "src/loader/ident_env.cppo.ml"
     | Path.Papply(_, _)-> assert false
-    
-# 750 "src/loader/ident_env.cppo.ml"
-    | Path.Pextra_ty _ -> assert false
 
-    
-# 756 "src/loader/ident_env.cppo.ml"
-    let rec read_type env = function
+  
+# 754 "src/loader/ident_env.cppo.ml"
+  let read_type env = function
     
 # 758 "src/loader/ident_env.cppo.ml"
     | Path.Pident id -> read_type_ident env id
@@ -741,9 +735,6 @@ module Path = struct
     
 # 764 "src/loader/ident_env.cppo.ml"
     | Path.Papply(_, _)-> assert false
-    
-# 766 "src/loader/ident_env.cppo.ml"
-    | Path.Pextra_ty (p,_) -> read_type env p
 
   
 # 769 "src/loader/ident_env.cppo.ml"
@@ -755,9 +746,6 @@ module Path = struct
     
 # 776 "src/loader/ident_env.cppo.ml"
     | Path.Papply(_, _) -> assert false
-    
-# 778 "src/loader/ident_env.cppo.ml"
-    | Path.Pextra_ty _ -> assert false
 
 # 781 "src/loader/ident_env.cppo.ml"
 end

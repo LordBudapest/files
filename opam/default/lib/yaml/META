@@ -1,0 +1,67 @@
+version = "3.2.0"
+description = ""
+requires = "yaml.ffi"
+archive(byte) = "yaml.cma"
+archive(native) = "yaml.cmxa"
+plugin(byte) = "yaml.cma"
+plugin(native) = "yaml.cmxs"
+package "bindings" (
+  directory = "bindings"
+  version = "3.2.0"
+  description = "Ctypes bindings that describe the libyaml FFI"
+  requires = "ctypes ctypes.stubs yaml.types"
+  archive(byte) = "yaml_bindings.cma"
+  archive(native) = "yaml_bindings.cmxa"
+  plugin(byte) = "yaml_bindings.cma"
+  plugin(native) = "yaml_bindings.cmxs"
+  package "types" (
+    directory = "types"
+    version = "3.2.0"
+    description = ""
+    requires = "ctypes ctypes.stubs"
+    archive(byte) = "yaml_bindings_types.cma"
+    archive(native) = "yaml_bindings_types.cmxa"
+    plugin(byte) = "yaml_bindings_types.cma"
+    plugin(native) = "yaml_bindings_types.cmxs"
+  )
+)
+package "c" (
+  directory = "c"
+  version = "3.2.0"
+  description = ""
+  requires = ""
+  archive(byte) = "yaml_c.cma"
+  archive(native) = "yaml_c.cmxa"
+  plugin(byte) = "yaml_c.cma"
+  plugin(native) = "yaml_c.cmxs"
+)
+package "ffi" (
+  directory = "ffi"
+  version = "3.2.0"
+  description = ""
+  requires = "ctypes ctypes.stubs yaml.bindings yaml.c yaml.types"
+  archive(byte) = "yaml_ffi.cma"
+  archive(native) = "yaml_ffi.cmxa"
+  plugin(byte) = "yaml_ffi.cma"
+  plugin(native) = "yaml_ffi.cmxs"
+)
+package "types" (
+  directory = "types"
+  version = "3.2.0"
+  description = "Ctypes bindings that describe the libyaml FFI constants"
+  requires = "ctypes ctypes.stubs yaml.bindings.types"
+  archive(byte) = "yaml_types.cma"
+  archive(native) = "yaml_types.cmxa"
+  plugin(byte) = "yaml_types.cma"
+  plugin(native) = "yaml_types.cmxs"
+)
+package "unix" (
+  directory = "unix"
+  version = "3.2.0"
+  description = ""
+  requires = "bos yaml"
+  archive(byte) = "yaml_unix.cma"
+  archive(native) = "yaml_unix.cmxa"
+  plugin(byte) = "yaml_unix.cma"
+  plugin(native) = "yaml_unix.cmxs"
+)

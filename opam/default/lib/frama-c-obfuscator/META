@@ -1,0 +1,9 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires = "frama-c.kernel"
+  archive(byte) = "obfuscator.cma"
+  archive(native) = "obfuscator.cmxa"
+  plugin(byte) = "obfuscator.cma"
+  plugin(native) = "obfuscator.cmxs"
+)

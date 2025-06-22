@@ -1,0 +1,141 @@
+(lang dune 3.19)
+(name ocplib-simplex)
+(version v0.5.1)
+(sections (lib .) (libexec .) (doc ../../doc/ocplib-simplex))
+(files
+ (lib
+  (META
+   OcplibSimplex.a
+   OcplibSimplex.cma
+   OcplibSimplex.cmxa
+   assertBounds.ml
+   assertBounds.mli
+   basic.ml
+   basic.mli
+   core.ml
+   core.mli
+   coreSig.mli
+   dune-package
+   extSigs.mli
+   ocplibSimplex.cmi
+   ocplibSimplex.cmt
+   ocplibSimplex.cmx
+   ocplibSimplex.ml
+   ocplibSimplex__AssertBounds.cmi
+   ocplibSimplex__AssertBounds.cmt
+   ocplibSimplex__AssertBounds.cmti
+   ocplibSimplex__AssertBounds.cmx
+   ocplibSimplex__Basic.cmi
+   ocplibSimplex__Basic.cmt
+   ocplibSimplex__Basic.cmti
+   ocplibSimplex__Basic.cmx
+   ocplibSimplex__Core.cmi
+   ocplibSimplex__Core.cmt
+   ocplibSimplex__Core.cmti
+   ocplibSimplex__Core.cmx
+   ocplibSimplex__CoreSig.cmi
+   ocplibSimplex__CoreSig.cmti
+   ocplibSimplex__ExtSigs.cmi
+   ocplibSimplex__ExtSigs.cmti
+   ocplibSimplex__Polys.cmi
+   ocplibSimplex__Polys.cmt
+   ocplibSimplex__Polys.cmti
+   ocplibSimplex__Polys.cmx
+   ocplibSimplex__Rat2.cmi
+   ocplibSimplex__Rat2.cmt
+   ocplibSimplex__Rat2.cmti
+   ocplibSimplex__Rat2.cmx
+   ocplibSimplex__Result.cmi
+   ocplibSimplex__Result.cmt
+   ocplibSimplex__Result.cmti
+   ocplibSimplex__Result.cmx
+   ocplibSimplex__SolveBounds.cmi
+   ocplibSimplex__SolveBounds.cmt
+   ocplibSimplex__SolveBounds.cmti
+   ocplibSimplex__SolveBounds.cmx
+   ocplibSimplex__Version.cmi
+   ocplibSimplex__Version.cmt
+   ocplibSimplex__Version.cmti
+   ocplibSimplex__Version.cmx
+   opam
+   polys.ml
+   polys.mli
+   rat2.ml
+   rat2.mli
+   result.ml
+   result.mli
+   solveBounds.ml
+   solveBounds.mli
+   version.ml
+   version.mli))
+ (libexec (OcplibSimplex.cmxs))
+ (doc (CHANGES.md LICENSE README.md)))
+(library
+ (name ocplib-simplex)
+ (kind normal)
+ (archives (byte OcplibSimplex.cma) (native OcplibSimplex.cmxa))
+ (plugins (byte OcplibSimplex.cma) (native OcplibSimplex.cmxs))
+ (native_archives OcplibSimplex.a)
+ (requires logs)
+ (main_module_name OcplibSimplex)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ocplibSimplex)
+     (visibility public)
+     (kind alias)
+     (source (path OcplibSimplex) (impl (path ocplibSimplex.ml-gen))))
+    (name OcplibSimplex)
+    (modules
+     (module
+      (obj_name ocplibSimplex__AssertBounds)
+      (visibility public)
+      (source
+       (path AssertBounds)
+       (intf (path assertBounds.mli))
+       (impl (path assertBounds.ml))))
+     (module
+      (obj_name ocplibSimplex__Basic)
+      (visibility public)
+      (source (path Basic) (intf (path basic.mli)) (impl (path basic.ml))))
+     (module
+      (obj_name ocplibSimplex__Core)
+      (visibility public)
+      (source (path Core) (intf (path core.mli)) (impl (path core.ml))))
+     (module
+      (obj_name ocplibSimplex__CoreSig)
+      (visibility public)
+      (source (path CoreSig) (intf (path coreSig.mli))))
+     (module
+      (obj_name ocplibSimplex__ExtSigs)
+      (visibility public)
+      (source (path ExtSigs) (intf (path extSigs.mli))))
+     (module
+      (obj_name ocplibSimplex__Polys)
+      (visibility public)
+      (source (path Polys) (intf (path polys.mli)) (impl (path polys.ml))))
+     (module
+      (obj_name ocplibSimplex__Rat2)
+      (visibility public)
+      (source (path Rat2) (intf (path rat2.mli)) (impl (path rat2.ml))))
+     (module
+      (obj_name ocplibSimplex__Result)
+      (visibility public)
+      (source (path Result) (intf (path result.mli)) (impl (path result.ml))))
+     (module
+      (obj_name ocplibSimplex__SolveBounds)
+      (visibility public)
+      (source
+       (path SolveBounds)
+       (intf (path solveBounds.mli))
+       (impl (path solveBounds.ml))))
+     (module
+      (obj_name ocplibSimplex__Version)
+      (visibility public)
+      (source
+       (path Version)
+       (intf (path version.mli))
+       (impl (path version.ml))))))
+   (wrapped true))))

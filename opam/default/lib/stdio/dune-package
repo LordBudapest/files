@@ -1,6 +1,6 @@
 (lang dune 3.19)
 (name stdio)
-(version v0.17.0)
+(version v0.16.0)
 (sections (lib .) (libexec .) (doc ../../doc/stdio))
 (files
  (lib

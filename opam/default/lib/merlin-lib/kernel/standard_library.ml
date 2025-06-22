@@ -1,1 +1,1 @@
-let path = {|/home/bhaskar/.opam/default/lib/ocaml|}
+let path = {|/usr/lib/ocaml|}

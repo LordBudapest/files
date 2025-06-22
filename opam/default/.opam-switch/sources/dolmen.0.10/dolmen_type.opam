@@ -1,0 +1,25 @@
+version: "0.10"
+opam-version: "2.0"
+name: "dolmen_type"
+maintainer: "Guillaume Bury <guillaume.bury@gmail.com>"
+authors: "Guillaume Bury <guillaume.bury@gmail.com>"
+license: "BSD-2-Clause"
+build: [
+  ["dune" "subst"] {dev}
+  ["dune" "build" "-p" name "-j" jobs "@install" "@runtest" {with-test} "@doc" {with-doc}]
+]
+depends: [
+  "ocaml" {>= "4.02.3"}
+  "dolmen" {= version }
+  "dune" { >= "3.0" }
+  "spelll" { >= "0.4" }
+  "uutf"
+  "odoc" { with-doc }
+]
+tags: [ "logic" "type" "typechecking" "first order" "polymorphism" ]
+homepage: "https://github.com/Gbury/dolmen"
+dev-repo: "git+https://github.com/Gbury/dolmen.git"
+bug-reports: "https://github.com/Gbury/dolmen/issues"
+
+doc: "https://gbury.github.io/dolmen"
+synopsis: "The Dolmen library for typechecking languages"

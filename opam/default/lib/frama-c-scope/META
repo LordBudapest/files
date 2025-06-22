@@ -1,0 +1,19 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires =
+  "frama-c-eva.core frama-c-inout.core frama-c-pdg.core frama-c.kernel"
+  archive(byte) = "scope.cma"
+  archive(native) = "scope.cmxa"
+  plugin(byte) = "scope.cma"
+  plugin(native) = "scope.cmxs"
+)
+package "gui" (
+  directory = "gui"
+  description = ""
+  requires = "frama-c-scope.core frama-c.gui frama-c.kernel"
+  archive(byte) = "scope_gui.cma"
+  archive(native) = "scope_gui.cmxa"
+  plugin(byte) = "scope_gui.cma"
+  plugin(native) = "scope_gui.cmxs"
+)

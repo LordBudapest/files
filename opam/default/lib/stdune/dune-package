@@ -1,6 +1,6 @@
 (lang dune 3.19)
 (name stdune)
-(version 3.19.0)
+(version 3.19.1)
 (sections (lib .) (libexec .) (doc ../../doc/stdune) (stublibs ../stublibs))
 (files
  (lib

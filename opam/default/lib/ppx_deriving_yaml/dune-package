@@ -1,0 +1,63 @@
+(lang dune 3.19)
+(name ppx_deriving_yaml)
+(version v0.4.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_deriving_yaml))
+(files
+ (lib
+  (META
+   common/ppx_deriving_yaml_common.a
+   common/ppx_deriving_yaml_common.cma
+   common/ppx_deriving_yaml_common.cmi
+   common/ppx_deriving_yaml_common.cmt
+   common/ppx_deriving_yaml_common.cmti
+   common/ppx_deriving_yaml_common.cmx
+   common/ppx_deriving_yaml_common.cmxa
+   common/ppx_deriving_yaml_common.ml
+   common/ppx_deriving_yaml_common.mli
+   dune-package
+   opam
+   ppx_deriving_yaml.a
+   ppx_deriving_yaml.cma
+   ppx_deriving_yaml.cmi
+   ppx_deriving_yaml.cmt
+   ppx_deriving_yaml.cmx
+   ppx_deriving_yaml.cmxa
+   ppx_deriving_yaml.ml))
+ (libexec (common/ppx_deriving_yaml_common.cmxs ppx_deriving_yaml.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md odoc-pages/index.mld)))
+(library
+ (name ppx_deriving_yaml)
+ (kind ppx_deriver)
+ (archives (byte ppx_deriving_yaml.cma) (native ppx_deriving_yaml.cmxa))
+ (plugins (byte ppx_deriving_yaml.cma) (native ppx_deriving_yaml.cmxs))
+ (native_archives ppx_deriving_yaml.a)
+ (requires ppxlib.ast ppxlib ppx_deriving_yaml.common)
+ (ppx_runtime_deps yaml)
+ (main_module_name Ppx_deriving_yaml)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_deriving_yaml)
+   (visibility public)
+   (source (path Ppx_deriving_yaml) (impl (path ppx_deriving_yaml.ml))))))
+(library
+ (name ppx_deriving_yaml.common)
+ (kind normal)
+ (archives
+  (byte common/ppx_deriving_yaml_common.cma)
+  (native common/ppx_deriving_yaml_common.cmxa))
+ (plugins
+  (byte common/ppx_deriving_yaml_common.cma)
+  (native common/ppx_deriving_yaml_common.cmxs))
+ (native_archives common/ppx_deriving_yaml_common.a)
+ (requires ppxlib.ast ppxlib)
+ (main_module_name Ppx_deriving_yaml_common)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_deriving_yaml_common)
+   (visibility public)
+   (source
+    (path Ppx_deriving_yaml_common)
+    (intf (path common/ppx_deriving_yaml_common.mli))
+    (impl (path common/ppx_deriving_yaml_common.ml))))))

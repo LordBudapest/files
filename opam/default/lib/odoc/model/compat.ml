@@ -126,30 +126,14 @@ type 'a shape_uid_map = 'a Shape.Uid.Map.t
 type uid_to_loc = Warnings.loc Types.Uid.Tbl.t
 let empty_map = Shape.Uid.Map.empty
 
-
-# 243 "src/model/compat.cppo.ml"
+# 239 "src/model/compat.cppo.ml"
 let shape_info_of_cmt_infos : Cmt_format.cmt_infos -> (shape * uid_to_loc) option =
-  let loc_of_declaration =
-    let open Typedtree in
-    function
-    | Value v -> v.val_loc
-    | Value_binding vb -> vb.vb_pat.pat_loc
-    | Type t -> t.typ_loc
-    | Constructor c -> c.cd_loc
-    | Extension_constructor e -> e.ext_loc
-    | Label l -> l.ld_loc
-    | Module m -> m.md_loc
-    | Module_substitution ms -> ms.ms_loc
-    | Module_binding mb -> mb.mb_loc
-    | Module_type mt -> mt.mtd_loc
-    | Class cd -> cd.ci_id_name.loc
-    | Class_type ctd -> ctd.ci_id_name.loc
-  in
-  fun x -> Option.map (fun s -> (s, Shape.Uid.Tbl.map x.cmt_uid_to_decl loc_of_declaration)) x.cmt_impl_shape
+ fun x -> Option.map (fun s -> (s, x.cmt_uid_to_loc)) x.cmt_impl_shape
 
 
-# 277 "src/model/compat.cppo.ml"
-let compunit_name : Cmo_format.compunit -> string = function | Compunit x -> x
 
-let required_compunit_names x = List.map compunit_name x.Cmo_format.cu_required_compunits
+# 283 "src/model/compat.cppo.ml"
+let compunit_name x = x
+
+let required_compunit_names x = List.map Ident.name x.Cmo_format.cu_required_globals
 

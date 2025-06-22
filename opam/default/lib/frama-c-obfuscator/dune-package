@@ -1,0 +1,113 @@
+(lang dune 3.19)
+(name frama-c-obfuscator)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-obfuscator)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-obfuscator))
+(files
+ (lib
+  (META
+   core/Obfuscator.ml
+   core/dictionary.ml
+   core/dictionary.mli
+   core/obfuscate.ml
+   core/obfuscate.mli
+   core/obfuscator.a
+   core/obfuscator.cma
+   core/obfuscator.cmi
+   core/obfuscator.cmt
+   core/obfuscator.cmx
+   core/obfuscator.cmxa
+   core/obfuscator__.cmi
+   core/obfuscator__.cmt
+   core/obfuscator__.cmx
+   core/obfuscator__.ml
+   core/obfuscator__Dictionary.cmi
+   core/obfuscator__Dictionary.cmt
+   core/obfuscator__Dictionary.cmti
+   core/obfuscator__Dictionary.cmx
+   core/obfuscator__Obfuscate.cmi
+   core/obfuscator__Obfuscate.cmt
+   core/obfuscator__Obfuscate.cmti
+   core/obfuscator__Obfuscate.cmx
+   core/obfuscator__Obfuscator_kind.cmi
+   core/obfuscator__Obfuscator_kind.cmt
+   core/obfuscator__Obfuscator_kind.cmti
+   core/obfuscator__Obfuscator_kind.cmx
+   core/obfuscator__Obfuscator_register.cmi
+   core/obfuscator__Obfuscator_register.cmt
+   core/obfuscator__Obfuscator_register.cmti
+   core/obfuscator__Obfuscator_register.cmx
+   core/obfuscator__Options.cmi
+   core/obfuscator__Options.cmt
+   core/obfuscator__Options.cmti
+   core/obfuscator__Options.cmx
+   core/obfuscator_kind.ml
+   core/obfuscator_kind.mli
+   core/obfuscator_register.ml
+   core/obfuscator_register.mli
+   core/options.ml
+   core/options.mli
+   dune-package
+   opam))
+ (lib_root (frama-c/plugins/obfuscator/META))
+ (libexec (core/obfuscator.cmxs)))
+(library
+ (name frama-c-obfuscator.core)
+ (kind normal)
+ (archives (byte core/obfuscator.cma) (native core/obfuscator.cmxa))
+ (plugins (byte core/obfuscator.cma) (native core/obfuscator.cmxs))
+ (native_archives core/obfuscator.a)
+ (requires frama-c.kernel)
+ (main_module_name Obfuscator)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name obfuscator__)
+     (visibility public)
+     (kind alias)
+     (source (path Obfuscator__) (impl (path core/obfuscator__.ml-gen))))
+    (name Obfuscator)
+    (modules
+     (module
+      (obj_name obfuscator__Dictionary)
+      (visibility public)
+      (source
+       (path Dictionary)
+       (intf (path core/dictionary.mli))
+       (impl (path core/dictionary.ml))))
+     (module
+      (obj_name obfuscator__Obfuscate)
+      (visibility public)
+      (source
+       (path Obfuscate)
+       (intf (path core/obfuscate.mli))
+       (impl (path core/obfuscate.ml))))
+     (module
+      (obj_name obfuscator)
+      (visibility public)
+      (source (path Obfuscator) (impl (path core/Obfuscator.ml))))
+     (module
+      (obj_name obfuscator__Obfuscator_kind)
+      (visibility public)
+      (source
+       (path Obfuscator_kind)
+       (intf (path core/obfuscator_kind.mli))
+       (impl (path core/obfuscator_kind.ml))))
+     (module
+      (obj_name obfuscator__Obfuscator_register)
+      (visibility public)
+      (source
+       (path Obfuscator_register)
+       (intf (path core/obfuscator_register.mli))
+       (impl (path core/obfuscator_register.ml))))
+     (module
+      (obj_name obfuscator__Options)
+      (visibility public)
+      (source
+       (path Options)
+       (intf (path core/options.mli))
+       (impl (path core/options.ml))))))
+   (wrapped true))))

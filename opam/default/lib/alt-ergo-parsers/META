@@ -1,0 +1,7 @@
+version = "v2.6.2"
+description = ""
+requires = "alt-ergo-lib dynlink psmt2-frontend stdlib-shims"
+archive(byte) = "AltErgoParsers.cma"
+archive(native) = "AltErgoParsers.cmxa"
+plugin(byte) = "AltErgoParsers.cma"
+plugin(native) = "AltErgoParsers.cmxs"

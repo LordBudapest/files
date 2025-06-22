@@ -1,0 +1,1187 @@
+(lang dune 3.19)
+(name alt-ergo-lib)
+(version v2.6.2)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/alt-ergo-lib)
+ (libexec /home/bhaskar/.opam/default/lib/alt-ergo-lib)
+ (doc /home/bhaskar/.opam/default/doc/alt-ergo-lib))
+(files
+ (lib
+  (AltErgoLib.a
+   AltErgoLib.cma
+   AltErgoLib.cmxa
+   META
+   __private__/alt_ergo_prelude/.public_cmi/alt_ergo_prelude.cmi
+   __private__/alt_ergo_prelude/.public_cmi/alt_ergo_prelude.cmt
+   __private__/alt_ergo_prelude/alt_ergo_prelude.a
+   __private__/alt_ergo_prelude/alt_ergo_prelude.cma
+   __private__/alt_ergo_prelude/alt_ergo_prelude.cmx
+   __private__/alt_ergo_prelude/alt_ergo_prelude.cmxa
+   __private__/alt_ergo_prelude/alt_ergo_prelude.ml
+   altErgoLib.cmi
+   altErgoLib.cmt
+   altErgoLib.cmx
+   altErgoLib.ml
+   altErgoLib__Ac.cmi
+   altErgoLib__Ac.cmt
+   altErgoLib__Ac.cmti
+   altErgoLib__Ac.cmx
+   altErgoLib__Adt.cmi
+   altErgoLib__Adt.cmt
+   altErgoLib__Adt.cmti
+   altErgoLib__Adt.cmx
+   altErgoLib__Adt_rel.cmi
+   altErgoLib__Adt_rel.cmt
+   altErgoLib__Adt_rel.cmti
+   altErgoLib__Adt_rel.cmx
+   altErgoLib__Arith.cmi
+   altErgoLib__Arith.cmt
+   altErgoLib__Arith.cmti
+   altErgoLib__Arith.cmx
+   altErgoLib__Arrays_rel.cmi
+   altErgoLib__Arrays_rel.cmt
+   altErgoLib__Arrays_rel.cmti
+   altErgoLib__Arrays_rel.cmx
+   altErgoLib__Bitlist.cmi
+   altErgoLib__Bitlist.cmt
+   altErgoLib__Bitlist.cmti
+   altErgoLib__Bitlist.cmx
+   altErgoLib__Bitv.cmi
+   altErgoLib__Bitv.cmt
+   altErgoLib__Bitv.cmti
+   altErgoLib__Bitv.cmx
+   altErgoLib__Bitv_rel.cmi
+   altErgoLib__Bitv_rel.cmt
+   altErgoLib__Bitv_rel.cmti
+   altErgoLib__Bitv_rel.cmx
+   altErgoLib__Ccx.cmi
+   altErgoLib__Ccx.cmt
+   altErgoLib__Ccx.cmti
+   altErgoLib__Ccx.cmx
+   altErgoLib__Cnf.cmi
+   altErgoLib__Cnf.cmt
+   altErgoLib__Cnf.cmti
+   altErgoLib__Cnf.cmx
+   altErgoLib__Commands.cmi
+   altErgoLib__Commands.cmt
+   altErgoLib__Commands.cmti
+   altErgoLib__Commands.cmx
+   altErgoLib__Compat.cmi
+   altErgoLib__Compat.cmt
+   altErgoLib__Compat.cmti
+   altErgoLib__Compat.cmx
+   altErgoLib__D_cnf.cmi
+   altErgoLib__D_cnf.cmt
+   altErgoLib__D_cnf.cmti
+   altErgoLib__D_cnf.cmx
+   altErgoLib__D_loop.cmi
+   altErgoLib__D_loop.cmt
+   altErgoLib__D_loop.cmx
+   altErgoLib__D_state_option.cmi
+   altErgoLib__D_state_option.cmt
+   altErgoLib__D_state_option.cmti
+   altErgoLib__D_state_option.cmx
+   altErgoLib__Domains.cmi
+   altErgoLib__Domains.cmt
+   altErgoLib__Domains.cmti
+   altErgoLib__Domains.cmx
+   altErgoLib__Domains_intf.cmi
+   altErgoLib__Domains_intf.cmt
+   altErgoLib__Domains_intf.cmx
+   altErgoLib__Emap.cmi
+   altErgoLib__Emap.cmt
+   altErgoLib__Emap.cmti
+   altErgoLib__Emap.cmx
+   altErgoLib__Errors.cmi
+   altErgoLib__Errors.cmt
+   altErgoLib__Errors.cmti
+   altErgoLib__Errors.cmx
+   altErgoLib__Explanation.cmi
+   altErgoLib__Explanation.cmt
+   altErgoLib__Explanation.cmti
+   altErgoLib__Explanation.cmx
+   altErgoLib__Expr.cmi
+   altErgoLib__Expr.cmt
+   altErgoLib__Expr.cmti
+   altErgoLib__Expr.cmx
+   altErgoLib__Fpa_rounding.cmi
+   altErgoLib__Fpa_rounding.cmt
+   altErgoLib__Fpa_rounding.cmti
+   altErgoLib__Fpa_rounding.cmx
+   altErgoLib__Frontend.cmi
+   altErgoLib__Frontend.cmt
+   altErgoLib__Frontend.cmti
+   altErgoLib__Frontend.cmx
+   altErgoLib__Fun_sat.cmi
+   altErgoLib__Fun_sat.cmt
+   altErgoLib__Fun_sat.cmti
+   altErgoLib__Fun_sat.cmx
+   altErgoLib__Fun_sat_frontend.cmi
+   altErgoLib__Fun_sat_frontend.cmt
+   altErgoLib__Fun_sat_frontend.cmti
+   altErgoLib__Fun_sat_frontend.cmx
+   altErgoLib__Gc_debug.cmi
+   altErgoLib__Gc_debug.cmt
+   altErgoLib__Gc_debug.cmti
+   altErgoLib__Gc_debug.cmx
+   altErgoLib__Hconsing.cmi
+   altErgoLib__Hconsing.cmt
+   altErgoLib__Hconsing.cmti
+   altErgoLib__Hconsing.cmx
+   altErgoLib__Heap.cmi
+   altErgoLib__Heap.cmt
+   altErgoLib__Heap.cmti
+   altErgoLib__Heap.cmx
+   altErgoLib__Hstring.cmi
+   altErgoLib__Hstring.cmt
+   altErgoLib__Hstring.cmti
+   altErgoLib__Hstring.cmx
+   altErgoLib__Id.cmi
+   altErgoLib__Id.cmt
+   altErgoLib__Id.cmti
+   altErgoLib__Id.cmx
+   altErgoLib__Inequalities.cmi
+   altErgoLib__Inequalities.cmt
+   altErgoLib__Inequalities.cmti
+   altErgoLib__Inequalities.cmx
+   altErgoLib__Input.cmi
+   altErgoLib__Input.cmt
+   altErgoLib__Input.cmti
+   altErgoLib__Input.cmx
+   altErgoLib__Instances.cmi
+   altErgoLib__Instances.cmt
+   altErgoLib__Instances.cmti
+   altErgoLib__Instances.cmx
+   altErgoLib__IntervalCalculus.cmi
+   altErgoLib__IntervalCalculus.cmt
+   altErgoLib__IntervalCalculus.cmti
+   altErgoLib__IntervalCalculus.cmx
+   altErgoLib__Intervals.cmi
+   altErgoLib__Intervals.cmt
+   altErgoLib__Intervals.cmti
+   altErgoLib__Intervals.cmx
+   altErgoLib__Intervals_core.cmi
+   altErgoLib__Intervals_core.cmt
+   altErgoLib__Intervals_core.cmti
+   altErgoLib__Intervals_core.cmx
+   altErgoLib__Intervals_intf.cmi
+   altErgoLib__Intervals_intf.cmt
+   altErgoLib__Intervals_intf.cmx
+   altErgoLib__Ite_rel.cmi
+   altErgoLib__Ite_rel.cmt
+   altErgoLib__Ite_rel.cmti
+   altErgoLib__Ite_rel.cmx
+   altErgoLib__Literal.cmi
+   altErgoLib__Literal.cmt
+   altErgoLib__Literal.cmti
+   altErgoLib__Literal.cmx
+   altErgoLib__Loc.cmi
+   altErgoLib__Loc.cmt
+   altErgoLib__Loc.cmti
+   altErgoLib__Loc.cmx
+   altErgoLib__Matching.cmi
+   altErgoLib__Matching.cmt
+   altErgoLib__Matching.cmti
+   altErgoLib__Matching.cmx
+   altErgoLib__Matching_types.cmi
+   altErgoLib__Matching_types.cmti
+   altErgoLib__ModelMap.cmi
+   altErgoLib__ModelMap.cmt
+   altErgoLib__ModelMap.cmti
+   altErgoLib__ModelMap.cmx
+   altErgoLib__Models.cmi
+   altErgoLib__Models.cmt
+   altErgoLib__Models.cmti
+   altErgoLib__Models.cmx
+   altErgoLib__My_list.cmi
+   altErgoLib__My_list.cmt
+   altErgoLib__My_list.cmti
+   altErgoLib__My_list.cmx
+   altErgoLib__My_unix.cmi
+   altErgoLib__My_unix.cmt
+   altErgoLib__My_unix.cmti
+   altErgoLib__My_unix.cmx
+   altErgoLib__My_zip.cmi
+   altErgoLib__My_zip.cmt
+   altErgoLib__My_zip.cmti
+   altErgoLib__My_zip.cmx
+   altErgoLib__Nest.cmi
+   altErgoLib__Nest.cmt
+   altErgoLib__Nest.cmti
+   altErgoLib__Nest.cmx
+   altErgoLib__Numbers.cmi
+   altErgoLib__Numbers.cmt
+   altErgoLib__Numbers.cmti
+   altErgoLib__Numbers.cmx
+   altErgoLib__Objective.cmi
+   altErgoLib__Objective.cmt
+   altErgoLib__Objective.cmti
+   altErgoLib__Objective.cmx
+   altErgoLib__Options.cmi
+   altErgoLib__Options.cmt
+   altErgoLib__Options.cmti
+   altErgoLib__Options.cmx
+   altErgoLib__Parsed.cmi
+   altErgoLib__Parsed.cmt
+   altErgoLib__Parsed.cmti
+   altErgoLib__Parsed.cmx
+   altErgoLib__Parsed_interface.cmi
+   altErgoLib__Parsed_interface.cmt
+   altErgoLib__Parsed_interface.cmti
+   altErgoLib__Parsed_interface.cmx
+   altErgoLib__Polynome.cmi
+   altErgoLib__Polynome.cmt
+   altErgoLib__Polynome.cmti
+   altErgoLib__Polynome.cmx
+   altErgoLib__Printer.cmi
+   altErgoLib__Printer.cmt
+   altErgoLib__Printer.cmti
+   altErgoLib__Printer.cmx
+   altErgoLib__Profiling.cmi
+   altErgoLib__Profiling.cmt
+   altErgoLib__Profiling.cmti
+   altErgoLib__Profiling.cmx
+   altErgoLib__Records.cmi
+   altErgoLib__Records.cmt
+   altErgoLib__Records.cmti
+   altErgoLib__Records.cmx
+   altErgoLib__Records_rel.cmi
+   altErgoLib__Records_rel.cmt
+   altErgoLib__Records_rel.cmti
+   altErgoLib__Records_rel.cmx
+   altErgoLib__Rel_utils.cmi
+   altErgoLib__Rel_utils.cmt
+   altErgoLib__Rel_utils.cmx
+   altErgoLib__Relation.cmi
+   altErgoLib__Relation.cmt
+   altErgoLib__Relation.cmti
+   altErgoLib__Relation.cmx
+   altErgoLib__Sat_solver.cmi
+   altErgoLib__Sat_solver.cmt
+   altErgoLib__Sat_solver.cmti
+   altErgoLib__Sat_solver.cmx
+   altErgoLib__Sat_solver_sig.cmi
+   altErgoLib__Sat_solver_sig.cmt
+   altErgoLib__Sat_solver_sig.cmti
+   altErgoLib__Sat_solver_sig.cmx
+   altErgoLib__Satml.cmi
+   altErgoLib__Satml.cmt
+   altErgoLib__Satml.cmti
+   altErgoLib__Satml.cmx
+   altErgoLib__Satml_frontend.cmi
+   altErgoLib__Satml_frontend.cmt
+   altErgoLib__Satml_frontend.cmti
+   altErgoLib__Satml_frontend.cmx
+   altErgoLib__Satml_frontend_hybrid.cmi
+   altErgoLib__Satml_frontend_hybrid.cmt
+   altErgoLib__Satml_frontend_hybrid.cmti
+   altErgoLib__Satml_frontend_hybrid.cmx
+   altErgoLib__Satml_types.cmi
+   altErgoLib__Satml_types.cmt
+   altErgoLib__Satml_types.cmti
+   altErgoLib__Satml_types.cmx
+   altErgoLib__Shostak.cmi
+   altErgoLib__Shostak.cmt
+   altErgoLib__Shostak.cmti
+   altErgoLib__Shostak.cmx
+   altErgoLib__Sig.cmi
+   altErgoLib__Sig.cmti
+   altErgoLib__Sig_rel.cmi
+   altErgoLib__Sig_rel.cmti
+   altErgoLib__Steps.cmi
+   altErgoLib__Steps.cmt
+   altErgoLib__Steps.cmti
+   altErgoLib__Steps.cmx
+   altErgoLib__Symbols.cmi
+   altErgoLib__Symbols.cmt
+   altErgoLib__Symbols.cmti
+   altErgoLib__Symbols.cmx
+   altErgoLib__Th_util.cmi
+   altErgoLib__Th_util.cmt
+   altErgoLib__Th_util.cmti
+   altErgoLib__Th_util.cmx
+   altErgoLib__Theories.cmi
+   altErgoLib__Theories.cmt
+   altErgoLib__Theories.cmx
+   altErgoLib__Theory.cmi
+   altErgoLib__Theory.cmt
+   altErgoLib__Theory.cmti
+   altErgoLib__Theory.cmx
+   altErgoLib__Timers.cmi
+   altErgoLib__Timers.cmt
+   altErgoLib__Timers.cmti
+   altErgoLib__Timers.cmx
+   altErgoLib__Translate.cmi
+   altErgoLib__Translate.cmt
+   altErgoLib__Translate.cmti
+   altErgoLib__Translate.cmx
+   altErgoLib__Ty.cmi
+   altErgoLib__Ty.cmt
+   altErgoLib__Ty.cmti
+   altErgoLib__Ty.cmx
+   altErgoLib__Typechecker.cmi
+   altErgoLib__Typechecker.cmt
+   altErgoLib__Typechecker.cmti
+   altErgoLib__Typechecker.cmx
+   altErgoLib__Typed.cmi
+   altErgoLib__Typed.cmt
+   altErgoLib__Typed.cmti
+   altErgoLib__Typed.cmx
+   altErgoLib__Uf.cmi
+   altErgoLib__Uf.cmt
+   altErgoLib__Uf.cmti
+   altErgoLib__Uf.cmx
+   altErgoLib__Uid.cmi
+   altErgoLib__Uid.cmt
+   altErgoLib__Uid.cmti
+   altErgoLib__Uid.cmx
+   altErgoLib__Uqueue.cmi
+   altErgoLib__Uqueue.cmt
+   altErgoLib__Uqueue.cmti
+   altErgoLib__Uqueue.cmx
+   altErgoLib__Use.cmi
+   altErgoLib__Use.cmt
+   altErgoLib__Use.cmti
+   altErgoLib__Use.cmx
+   altErgoLib__Util.cmi
+   altErgoLib__Util.cmt
+   altErgoLib__Util.cmti
+   altErgoLib__Util.cmx
+   altErgoLib__Var.cmi
+   altErgoLib__Var.cmt
+   altErgoLib__Var.cmti
+   altErgoLib__Var.cmx
+   altErgoLib__Vec.cmi
+   altErgoLib__Vec.cmt
+   altErgoLib__Vec.cmti
+   altErgoLib__Vec.cmx
+   altErgoLib__Version.cmi
+   altErgoLib__Version.cmt
+   altErgoLib__Version.cmti
+   altErgoLib__Version.cmx
+   altErgoLib__Xliteral.cmi
+   altErgoLib__Xliteral.cmt
+   altErgoLib__Xliteral.cmti
+   altErgoLib__Xliteral.cmx
+   dune-package
+   frontend/cnf.ml
+   frontend/cnf.mli
+   frontend/d_cnf.ml
+   frontend/d_cnf.mli
+   frontend/d_loop.ml
+   frontend/d_state_option.ml
+   frontend/d_state_option.mli
+   frontend/frontend.ml
+   frontend/frontend.mli
+   frontend/input.ml
+   frontend/input.mli
+   frontend/models.ml
+   frontend/models.mli
+   frontend/parsed_interface.ml
+   frontend/parsed_interface.mli
+   frontend/translate.ml
+   frontend/translate.mli
+   frontend/typechecker.ml
+   frontend/typechecker.mli
+   missing_primitives.js
+   opam
+   reasoners/ac.ml
+   reasoners/ac.mli
+   reasoners/adt.ml
+   reasoners/adt.mli
+   reasoners/adt_rel.ml
+   reasoners/adt_rel.mli
+   reasoners/arith.ml
+   reasoners/arith.mli
+   reasoners/arrays_rel.ml
+   reasoners/arrays_rel.mli
+   reasoners/bitlist.ml
+   reasoners/bitlist.mli
+   reasoners/bitv.ml
+   reasoners/bitv.mli
+   reasoners/bitv_rel.ml
+   reasoners/bitv_rel.mli
+   reasoners/ccx.ml
+   reasoners/ccx.mli
+   reasoners/domains.ml
+   reasoners/domains.mli
+   reasoners/domains_intf.ml
+   reasoners/fun_sat.ml
+   reasoners/fun_sat.mli
+   reasoners/fun_sat_frontend.ml
+   reasoners/fun_sat_frontend.mli
+   reasoners/inequalities.ml
+   reasoners/inequalities.mli
+   reasoners/instances.ml
+   reasoners/instances.mli
+   reasoners/intervalCalculus.ml
+   reasoners/intervalCalculus.mli
+   reasoners/intervals.ml
+   reasoners/intervals.mli
+   reasoners/intervals_core.ml
+   reasoners/intervals_core.mli
+   reasoners/intervals_intf.ml
+   reasoners/ite_rel.ml
+   reasoners/ite_rel.mli
+   reasoners/matching.ml
+   reasoners/matching.mli
+   reasoners/matching_types.mli
+   reasoners/polynome.ml
+   reasoners/polynome.mli
+   reasoners/records.ml
+   reasoners/records.mli
+   reasoners/records_rel.ml
+   reasoners/records_rel.mli
+   reasoners/rel_utils.ml
+   reasoners/relation.ml
+   reasoners/relation.mli
+   reasoners/sat_solver.ml
+   reasoners/sat_solver.mli
+   reasoners/sat_solver_sig.ml
+   reasoners/sat_solver_sig.mli
+   reasoners/satml.ml
+   reasoners/satml.mli
+   reasoners/satml_frontend.ml
+   reasoners/satml_frontend.mli
+   reasoners/satml_frontend_hybrid.ml
+   reasoners/satml_frontend_hybrid.mli
+   reasoners/shostak.ml
+   reasoners/shostak.mli
+   reasoners/sig.mli
+   reasoners/sig_rel.mli
+   reasoners/th_util.ml
+   reasoners/th_util.mli
+   reasoners/theory.ml
+   reasoners/theory.mli
+   reasoners/uf.ml
+   reasoners/uf.mli
+   reasoners/use.ml
+   reasoners/use.mli
+   structures/commands.ml
+   structures/commands.mli
+   structures/errors.ml
+   structures/errors.mli
+   structures/explanation.ml
+   structures/explanation.mli
+   structures/expr.ml
+   structures/expr.mli
+   structures/fpa_rounding.ml
+   structures/fpa_rounding.mli
+   structures/id.ml
+   structures/id.mli
+   structures/literal.ml
+   structures/literal.mli
+   structures/modelMap.ml
+   structures/modelMap.mli
+   structures/objective.ml
+   structures/objective.mli
+   structures/parsed.ml
+   structures/parsed.mli
+   structures/profiling.ml
+   structures/profiling.mli
+   structures/satml_types.ml
+   structures/satml_types.mli
+   structures/symbols.ml
+   structures/symbols.mli
+   structures/ty.ml
+   structures/ty.mli
+   structures/typed.ml
+   structures/typed.mli
+   structures/uid.ml
+   structures/uid.mli
+   structures/var.ml
+   structures/var.mli
+   structures/xliteral.ml
+   structures/xliteral.mli
+   util/compat.ml
+   util/compat.mli
+   util/emap.ml
+   util/emap.mli
+   util/gc_debug.ml
+   util/gc_debug.mli
+   util/hconsing.ml
+   util/hconsing.mli
+   util/heap.ml
+   util/heap.mli
+   util/hstring.ml
+   util/hstring.mli
+   util/loc.ml
+   util/loc.mli
+   util/my_list.ml
+   util/my_list.mli
+   util/my_unix.ml
+   util/my_unix.mli
+   util/my_zip.ml
+   util/my_zip.mli
+   util/nest.ml
+   util/nest.mli
+   util/numbers.ml
+   util/numbers.mli
+   util/options.ml
+   util/options.mli
+   util/printer.ml
+   util/printer.mli
+   util/steps.ml
+   util/steps.mli
+   util/theories.ml
+   util/timers.ml
+   util/timers.mli
+   util/uqueue.ml
+   util/uqueue.mli
+   util/util.ml
+   util/util.mli
+   util/vec.ml
+   util/vec.mli
+   util/version.ml
+   util/version.mli))
+ (libexec
+  (AltErgoLib.cmxs __private__/alt_ergo_prelude/alt_ergo_prelude.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md odoc-pages/index.mld)))
+(library
+ (name alt-ergo-lib)
+ (kind normal)
+ (archives (byte AltErgoLib.cma) (native AltErgoLib.cmxa))
+ (plugins (byte AltErgoLib.cma) (native AltErgoLib.cmxs))
+ (native_archives AltErgoLib.a)
+ (jsoo_runtime missing_primitives.js)
+ (requires
+  seq
+  unix
+  str
+  zarith
+  dynlink
+  ocplib-simplex
+  stdlib-shims
+  camlzip
+  dolmen
+  dolmen_type
+  dolmen_loop
+  dune-build-info
+  alt-ergo-lib.__private__.alt_ergo_prelude
+  fmt
+  logs
+  logs.fmt
+  ppx_deriving.runtime)
+ (main_module_name AltErgoLib)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name altErgoLib)
+     (visibility public)
+     (kind alias)
+     (source (path AltErgoLib) (impl (path altErgoLib.ml-gen))))
+    (name AltErgoLib)
+    (modules
+     (module
+      (obj_name altErgoLib__Ac)
+      (visibility public)
+      (source
+       (path Ac)
+       (intf (path reasoners/ac.mli))
+       (impl (path reasoners/ac.ml))))
+     (module
+      (obj_name altErgoLib__Adt)
+      (visibility public)
+      (source
+       (path Adt)
+       (intf (path reasoners/adt.mli))
+       (impl (path reasoners/adt.ml))))
+     (module
+      (obj_name altErgoLib__Adt_rel)
+      (visibility public)
+      (source
+       (path Adt_rel)
+       (intf (path reasoners/adt_rel.mli))
+       (impl (path reasoners/adt_rel.ml))))
+     (module
+      (obj_name altErgoLib__Arith)
+      (visibility public)
+      (source
+       (path Arith)
+       (intf (path reasoners/arith.mli))
+       (impl (path reasoners/arith.ml))))
+     (module
+      (obj_name altErgoLib__Arrays_rel)
+      (visibility public)
+      (source
+       (path Arrays_rel)
+       (intf (path reasoners/arrays_rel.mli))
+       (impl (path reasoners/arrays_rel.ml))))
+     (module
+      (obj_name altErgoLib__Bitlist)
+      (visibility public)
+      (source
+       (path Bitlist)
+       (intf (path reasoners/bitlist.mli))
+       (impl (path reasoners/bitlist.ml))))
+     (module
+      (obj_name altErgoLib__Bitv)
+      (visibility public)
+      (source
+       (path Bitv)
+       (intf (path reasoners/bitv.mli))
+       (impl (path reasoners/bitv.ml))))
+     (module
+      (obj_name altErgoLib__Bitv_rel)
+      (visibility public)
+      (source
+       (path Bitv_rel)
+       (intf (path reasoners/bitv_rel.mli))
+       (impl (path reasoners/bitv_rel.ml))))
+     (module
+      (obj_name altErgoLib__Ccx)
+      (visibility public)
+      (source
+       (path Ccx)
+       (intf (path reasoners/ccx.mli))
+       (impl (path reasoners/ccx.ml))))
+     (module
+      (obj_name altErgoLib__Cnf)
+      (visibility public)
+      (source
+       (path Cnf)
+       (intf (path frontend/cnf.mli))
+       (impl (path frontend/cnf.ml))))
+     (module
+      (obj_name altErgoLib__Commands)
+      (visibility public)
+      (source
+       (path Commands)
+       (intf (path structures/commands.mli))
+       (impl (path structures/commands.ml))))
+     (module
+      (obj_name altErgoLib__Compat)
+      (visibility public)
+      (source
+       (path Compat)
+       (intf (path util/compat.mli))
+       (impl (path util/compat.ml))))
+     (module
+      (obj_name altErgoLib__D_cnf)
+      (visibility public)
+      (source
+       (path D_cnf)
+       (intf (path frontend/d_cnf.mli))
+       (impl (path frontend/d_cnf.ml))))
+     (module
+      (obj_name altErgoLib__D_loop)
+      (visibility public)
+      (source (path D_loop) (impl (path frontend/d_loop.ml))))
+     (module
+      (obj_name altErgoLib__D_state_option)
+      (visibility public)
+      (source
+       (path D_state_option)
+       (intf (path frontend/d_state_option.mli))
+       (impl (path frontend/d_state_option.ml))))
+     (module
+      (obj_name altErgoLib__Domains)
+      (visibility public)
+      (source
+       (path Domains)
+       (intf (path reasoners/domains.mli))
+       (impl (path reasoners/domains.ml))))
+     (module
+      (obj_name altErgoLib__Domains_intf)
+      (visibility public)
+      (source (path Domains_intf) (impl (path reasoners/domains_intf.ml))))
+     (module
+      (obj_name altErgoLib__Emap)
+      (visibility public)
+      (source
+       (path Emap)
+       (intf (path util/emap.mli))
+       (impl (path util/emap.ml))))
+     (module
+      (obj_name altErgoLib__Errors)
+      (visibility public)
+      (source
+       (path Errors)
+       (intf (path structures/errors.mli))
+       (impl (path structures/errors.ml))))
+     (module
+      (obj_name altErgoLib__Explanation)
+      (visibility public)
+      (source
+       (path Explanation)
+       (intf (path structures/explanation.mli))
+       (impl (path structures/explanation.ml))))
+     (module
+      (obj_name altErgoLib__Expr)
+      (visibility public)
+      (source
+       (path Expr)
+       (intf (path structures/expr.mli))
+       (impl (path structures/expr.ml))))
+     (module
+      (obj_name altErgoLib__Fpa_rounding)
+      (visibility public)
+      (source
+       (path Fpa_rounding)
+       (intf (path structures/fpa_rounding.mli))
+       (impl (path structures/fpa_rounding.ml))))
+     (module
+      (obj_name altErgoLib__Frontend)
+      (visibility public)
+      (source
+       (path Frontend)
+       (intf (path frontend/frontend.mli))
+       (impl (path frontend/frontend.ml))))
+     (module
+      (obj_name altErgoLib__Fun_sat)
+      (visibility public)
+      (source
+       (path Fun_sat)
+       (intf (path reasoners/fun_sat.mli))
+       (impl (path reasoners/fun_sat.ml))))
+     (module
+      (obj_name altErgoLib__Fun_sat_frontend)
+      (visibility public)
+      (source
+       (path Fun_sat_frontend)
+       (intf (path reasoners/fun_sat_frontend.mli))
+       (impl (path reasoners/fun_sat_frontend.ml))))
+     (module
+      (obj_name altErgoLib__Gc_debug)
+      (visibility public)
+      (source
+       (path Gc_debug)
+       (intf (path util/gc_debug.mli))
+       (impl (path util/gc_debug.ml))))
+     (module
+      (obj_name altErgoLib__Hconsing)
+      (visibility public)
+      (source
+       (path Hconsing)
+       (intf (path util/hconsing.mli))
+       (impl (path util/hconsing.ml))))
+     (module
+      (obj_name altErgoLib__Heap)
+      (visibility public)
+      (source
+       (path Heap)
+       (intf (path util/heap.mli))
+       (impl (path util/heap.ml))))
+     (module
+      (obj_name altErgoLib__Hstring)
+      (visibility public)
+      (source
+       (path Hstring)
+       (intf (path util/hstring.mli))
+       (impl (path util/hstring.ml))))
+     (module
+      (obj_name altErgoLib__Id)
+      (visibility public)
+      (source
+       (path Id)
+       (intf (path structures/id.mli))
+       (impl (path structures/id.ml))))
+     (module
+      (obj_name altErgoLib__Inequalities)
+      (visibility public)
+      (source
+       (path Inequalities)
+       (intf (path reasoners/inequalities.mli))
+       (impl (path reasoners/inequalities.ml))))
+     (module
+      (obj_name altErgoLib__Input)
+      (visibility public)
+      (source
+       (path Input)
+       (intf (path frontend/input.mli))
+       (impl (path frontend/input.ml))))
+     (module
+      (obj_name altErgoLib__Instances)
+      (visibility public)
+      (source
+       (path Instances)
+       (intf (path reasoners/instances.mli))
+       (impl (path reasoners/instances.ml))))
+     (module
+      (obj_name altErgoLib__IntervalCalculus)
+      (visibility public)
+      (source
+       (path IntervalCalculus)
+       (intf (path reasoners/intervalCalculus.mli))
+       (impl (path reasoners/intervalCalculus.ml))))
+     (module
+      (obj_name altErgoLib__Intervals)
+      (visibility public)
+      (source
+       (path Intervals)
+       (intf (path reasoners/intervals.mli))
+       (impl (path reasoners/intervals.ml))))
+     (module
+      (obj_name altErgoLib__Intervals_core)
+      (visibility public)
+      (source
+       (path Intervals_core)
+       (intf (path reasoners/intervals_core.mli))
+       (impl (path reasoners/intervals_core.ml))))
+     (module
+      (obj_name altErgoLib__Intervals_intf)
+      (visibility public)
+      (source (path Intervals_intf) (impl (path reasoners/intervals_intf.ml))))
+     (module
+      (obj_name altErgoLib__Ite_rel)
+      (visibility public)
+      (source
+       (path Ite_rel)
+       (intf (path reasoners/ite_rel.mli))
+       (impl (path reasoners/ite_rel.ml))))
+     (module
+      (obj_name altErgoLib__Literal)
+      (visibility public)
+      (source
+       (path Literal)
+       (intf (path structures/literal.mli))
+       (impl (path structures/literal.ml))))
+     (module
+      (obj_name altErgoLib__Loc)
+      (visibility public)
+      (source (path Loc) (intf (path util/loc.mli)) (impl (path util/loc.ml))))
+     (module
+      (obj_name altErgoLib__Matching)
+      (visibility public)
+      (source
+       (path Matching)
+       (intf (path reasoners/matching.mli))
+       (impl (path reasoners/matching.ml))))
+     (module
+      (obj_name altErgoLib__Matching_types)
+      (visibility public)
+      (source
+       (path Matching_types)
+       (intf (path reasoners/matching_types.mli))))
+     (module
+      (obj_name altErgoLib__ModelMap)
+      (visibility public)
+      (source
+       (path ModelMap)
+       (intf (path structures/modelMap.mli))
+       (impl (path structures/modelMap.ml))))
+     (module
+      (obj_name altErgoLib__Models)
+      (visibility public)
+      (source
+       (path Models)
+       (intf (path frontend/models.mli))
+       (impl (path frontend/models.ml))))
+     (module
+      (obj_name altErgoLib__My_list)
+      (visibility public)
+      (source
+       (path My_list)
+       (intf (path util/my_list.mli))
+       (impl (path util/my_list.ml))))
+     (module
+      (obj_name altErgoLib__My_unix)
+      (visibility public)
+      (source
+       (path My_unix)
+       (intf (path util/my_unix.mli))
+       (impl (path util/my_unix.ml))))
+     (module
+      (obj_name altErgoLib__My_zip)
+      (visibility public)
+      (source
+       (path My_zip)
+       (intf (path util/my_zip.mli))
+       (impl (path util/my_zip.ml))))
+     (module
+      (obj_name altErgoLib__Nest)
+      (visibility public)
+      (source
+       (path Nest)
+       (intf (path util/nest.mli))
+       (impl (path util/nest.ml))))
+     (module
+      (obj_name altErgoLib__Numbers)
+      (visibility public)
+      (source
+       (path Numbers)
+       (intf (path util/numbers.mli))
+       (impl (path util/numbers.ml))))
+     (module
+      (obj_name altErgoLib__Objective)
+      (visibility public)
+      (source
+       (path Objective)
+       (intf (path structures/objective.mli))
+       (impl (path structures/objective.ml))))
+     (module
+      (obj_name altErgoLib__Options)
+      (visibility public)
+      (source
+       (path Options)
+       (intf (path util/options.mli))
+       (impl (path util/options.ml))))
+     (module
+      (obj_name altErgoLib__Parsed)
+      (visibility public)
+      (source
+       (path Parsed)
+       (intf (path structures/parsed.mli))
+       (impl (path structures/parsed.ml))))
+     (module
+      (obj_name altErgoLib__Parsed_interface)
+      (visibility public)
+      (source
+       (path Parsed_interface)
+       (intf (path frontend/parsed_interface.mli))
+       (impl (path frontend/parsed_interface.ml))))
+     (module
+      (obj_name altErgoLib__Polynome)
+      (visibility public)
+      (source
+       (path Polynome)
+       (intf (path reasoners/polynome.mli))
+       (impl (path reasoners/polynome.ml))))
+     (module
+      (obj_name altErgoLib__Printer)
+      (visibility public)
+      (source
+       (path Printer)
+       (intf (path util/printer.mli))
+       (impl (path util/printer.ml))))
+     (module
+      (obj_name altErgoLib__Profiling)
+      (visibility public)
+      (source
+       (path Profiling)
+       (intf (path structures/profiling.mli))
+       (impl (path structures/profiling.ml))))
+     (module
+      (obj_name altErgoLib__Records)
+      (visibility public)
+      (source
+       (path Records)
+       (intf (path reasoners/records.mli))
+       (impl (path reasoners/records.ml))))
+     (module
+      (obj_name altErgoLib__Records_rel)
+      (visibility public)
+      (source
+       (path Records_rel)
+       (intf (path reasoners/records_rel.mli))
+       (impl (path reasoners/records_rel.ml))))
+     (module
+      (obj_name altErgoLib__Rel_utils)
+      (visibility public)
+      (source (path Rel_utils) (impl (path reasoners/rel_utils.ml))))
+     (module
+      (obj_name altErgoLib__Relation)
+      (visibility public)
+      (source
+       (path Relation)
+       (intf (path reasoners/relation.mli))
+       (impl (path reasoners/relation.ml))))
+     (module
+      (obj_name altErgoLib__Sat_solver)
+      (visibility public)
+      (source
+       (path Sat_solver)
+       (intf (path reasoners/sat_solver.mli))
+       (impl (path reasoners/sat_solver.ml))))
+     (module
+      (obj_name altErgoLib__Sat_solver_sig)
+      (visibility public)
+      (source
+       (path Sat_solver_sig)
+       (intf (path reasoners/sat_solver_sig.mli))
+       (impl (path reasoners/sat_solver_sig.ml))))
+     (module
+      (obj_name altErgoLib__Satml)
+      (visibility public)
+      (source
+       (path Satml)
+       (intf (path reasoners/satml.mli))
+       (impl (path reasoners/satml.ml))))
+     (module
+      (obj_name altErgoLib__Satml_frontend)
+      (visibility public)
+      (source
+       (path Satml_frontend)
+       (intf (path reasoners/satml_frontend.mli))
+       (impl (path reasoners/satml_frontend.ml))))
+     (module
+      (obj_name altErgoLib__Satml_frontend_hybrid)
+      (visibility public)
+      (source
+       (path Satml_frontend_hybrid)
+       (intf (path reasoners/satml_frontend_hybrid.mli))
+       (impl (path reasoners/satml_frontend_hybrid.ml))))
+     (module
+      (obj_name altErgoLib__Satml_types)
+      (visibility public)
+      (source
+       (path Satml_types)
+       (intf (path structures/satml_types.mli))
+       (impl (path structures/satml_types.ml))))
+     (module
+      (obj_name altErgoLib__Shostak)
+      (visibility public)
+      (source
+       (path Shostak)
+       (intf (path reasoners/shostak.mli))
+       (impl (path reasoners/shostak.ml))))
+     (module
+      (obj_name altErgoLib__Sig)
+      (visibility public)
+      (source (path Sig) (intf (path reasoners/sig.mli))))
+     (module
+      (obj_name altErgoLib__Sig_rel)
+      (visibility public)
+      (source (path Sig_rel) (intf (path reasoners/sig_rel.mli))))
+     (module
+      (obj_name altErgoLib__Steps)
+      (visibility public)
+      (source
+       (path Steps)
+       (intf (path util/steps.mli))
+       (impl (path util/steps.ml))))
+     (module
+      (obj_name altErgoLib__Symbols)
+      (visibility public)
+      (source
+       (path Symbols)
+       (intf (path structures/symbols.mli))
+       (impl (path structures/symbols.ml))))
+     (module
+      (obj_name altErgoLib__Th_util)
+      (visibility public)
+      (source
+       (path Th_util)
+       (intf (path reasoners/th_util.mli))
+       (impl (path reasoners/th_util.ml))))
+     (module
+      (obj_name altErgoLib__Theories)
+      (visibility public)
+      (source (path Theories) (impl (path util/theories.ml))))
+     (module
+      (obj_name altErgoLib__Theory)
+      (visibility public)
+      (source
+       (path Theory)
+       (intf (path reasoners/theory.mli))
+       (impl (path reasoners/theory.ml))))
+     (module
+      (obj_name altErgoLib__Timers)
+      (visibility public)
+      (source
+       (path Timers)
+       (intf (path util/timers.mli))
+       (impl (path util/timers.ml))))
+     (module
+      (obj_name altErgoLib__Translate)
+      (visibility public)
+      (source
+       (path Translate)
+       (intf (path frontend/translate.mli))
+       (impl (path frontend/translate.ml))))
+     (module
+      (obj_name altErgoLib__Ty)
+      (visibility public)
+      (source
+       (path Ty)
+       (intf (path structures/ty.mli))
+       (impl (path structures/ty.ml))))
+     (module
+      (obj_name altErgoLib__Typechecker)
+      (visibility public)
+      (source
+       (path Typechecker)
+       (intf (path frontend/typechecker.mli))
+       (impl (path frontend/typechecker.ml))))
+     (module
+      (obj_name altErgoLib__Typed)
+      (visibility public)
+      (source
+       (path Typed)
+       (intf (path structures/typed.mli))
+       (impl (path structures/typed.ml))))
+     (module
+      (obj_name altErgoLib__Uf)
+      (visibility public)
+      (source
+       (path Uf)
+       (intf (path reasoners/uf.mli))
+       (impl (path reasoners/uf.ml))))
+     (module
+      (obj_name altErgoLib__Uid)
+      (visibility public)
+      (source
+       (path Uid)
+       (intf (path structures/uid.mli))
+       (impl (path structures/uid.ml))))
+     (module
+      (obj_name altErgoLib__Uqueue)
+      (visibility public)
+      (source
+       (path Uqueue)
+       (intf (path util/uqueue.mli))
+       (impl (path util/uqueue.ml))))
+     (module
+      (obj_name altErgoLib__Use)
+      (visibility public)
+      (source
+       (path Use)
+       (intf (path reasoners/use.mli))
+       (impl (path reasoners/use.ml))))
+     (module
+      (obj_name altErgoLib__Util)
+      (visibility public)
+      (source
+       (path Util)
+       (intf (path util/util.mli))
+       (impl (path util/util.ml))))
+     (module
+      (obj_name altErgoLib__Var)
+      (visibility public)
+      (source
+       (path Var)
+       (intf (path structures/var.mli))
+       (impl (path structures/var.ml))))
+     (module
+      (obj_name altErgoLib__Vec)
+      (visibility public)
+      (source (path Vec) (intf (path util/vec.mli)) (impl (path util/vec.ml))))
+     (module
+      (obj_name altErgoLib__Version)
+      (visibility public)
+      (source
+       (path Version)
+       (intf (path util/version.mli))
+       (impl (path util/version.ml))))
+     (module
+      (obj_name altErgoLib__Xliteral)
+      (visibility public)
+      (source
+       (path Xliteral)
+       (intf (path structures/xliteral.mli))
+       (impl (path structures/xliteral.ml))))))
+   (wrapped true))))
+(library
+ (name alt-ergo-lib.__private__.alt_ergo_prelude)
+ (kind normal)
+ (archives
+  (byte __private__/alt_ergo_prelude/alt_ergo_prelude.cma)
+  (native __private__/alt_ergo_prelude/alt_ergo_prelude.cmxa))
+ (plugins
+  (byte __private__/alt_ergo_prelude/alt_ergo_prelude.cma)
+  (native __private__/alt_ergo_prelude/alt_ergo_prelude.cmxs))
+ (native_archives __private__/alt_ergo_prelude/alt_ergo_prelude.a)
+ (main_module_name Alt_ergo_prelude)
+ (modes byte native)
+ (obj_dir
+  (public_cmi_ocaml_dir .public_cmi)
+  (public_cmi_melange_dir melange/.public_cmi_melange))
+ (modules
+  (singleton
+   (obj_name alt_ergo_prelude)
+   (visibility public)
+   (source
+    (path Alt_ergo_prelude)
+    (impl (path __private__/alt_ergo_prelude/alt_ergo_prelude.ml))))))

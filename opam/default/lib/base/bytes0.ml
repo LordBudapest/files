@@ -15,7 +15,6 @@
    ocamldep from mistakenly causing a file to depend on [Base.Bytes]. *)
 
 open! Import0
-module Uchar = Uchar0
 module Sys = Sys0
 
 module Primitives = struct
@@ -51,7 +50,7 @@ module Primitives = struct
     -> len:int
     -> unit
     = "caml_blit_string"
-    [@@noalloc]
+  [@@noalloc]
 
   external unsafe_get_int64
     :  (bytes[@local_opt])
@@ -101,31 +100,20 @@ let blit_string = Stdlib.Bytes.blit_string
 let compare = Stdlib.Bytes.compare
 let copy = Stdlib.Bytes.copy
 let create = Stdlib.Bytes.create
-let set_uchar_utf_8 = Stdlib.Bytes.set_utf_8_uchar
-let set_uchar_utf_16le = Stdlib.Bytes.set_utf_16le_uchar
-let set_uchar_utf_16be = Stdlib.Bytes.set_utf_16be_uchar
 
-let set_utf_32_uchar ~set_int32 bytes idx uchar =
-  Uchar.to_int uchar
-  |> Int_conversions.int_to_int32_trunc (* should never have anything to truncate *)
-  |> set_int32 bytes idx;
-  4
-;;
-
-let set_uchar_utf_32le = set_utf_32_uchar ~set_int32:Stdlib.Bytes.set_int32_le
-let set_uchar_utf_32be = set_utf_32_uchar ~set_int32:Stdlib.Bytes.set_int32_be
-
-external unsafe_create_local : int -> bytes = "Base_unsafe_create_local_bytes" 
+external unsafe_create_local : int -> (bytes[@local]) = "Base_unsafe_create_local_bytes"
+[@@noalloc]
 
 let create_local len =
-  if len > Sys0.max_string_length then invalid_arg "Bytes.create_local";
-  unsafe_create_local len
+  
+    (if len > Sys0.max_string_length then invalid_arg "Bytes.create_local";
+     unsafe_create_local len)
 ;;
 
 let fill = Stdlib.Bytes.fill
 let make = Stdlib.Bytes.make
 
-let map t ~(f : _ -> _) =
+let map t ~f:((f : _ -> _) [@local]) =
   let l = length t in
   if l = 0
   then t
@@ -137,7 +125,7 @@ let map t ~(f : _ -> _) =
     r)
 ;;
 
-let mapi t ~(f : _ -> _ -> _) =
+let mapi t ~f:((f : _ -> _ -> _) [@local]) =
   let l = length t in
   if l = 0
   then t
@@ -159,7 +147,7 @@ external unsafe_blit
   -> len:int
   -> unit
   = "caml_blit_bytes"
-  [@@noalloc]
+[@@noalloc]
 
 let to_string = Stdlib.Bytes.to_string
 let of_string = Stdlib.Bytes.of_string

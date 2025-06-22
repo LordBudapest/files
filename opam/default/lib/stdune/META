@@ -1,4 +1,4 @@
-version = "3.19.0"
+version = "3.19.1"
 description =
 "Standard library of Dune.
 This library offers no backwards compatibility guarantees. Use at your own risk."
@@ -10,7 +10,7 @@ plugin(byte) = "stdune.cma"
 plugin(native) = "stdune.cmxs"
 package "filesystem_stubs" (
   directory = "filesystem_stubs"
-  version = "3.19.0"
+  version = "3.19.1"
   description = ""
   requires = "unix"
   archive(byte) = "dune_filesystem_stubs.cma"

@@ -27,3 +27,11 @@
    )* }}} *)
 
 val fresh_env : unit -> Env.t
+
+val rewrite_loc :
+  [ `str of Parsetree.structure
+  | `sg of Parsetree.signature
+  | `fake of Parsetree.structure ] ->
+  [ `str of Parsetree.structure
+  | `sg of Parsetree.signature
+  | `fake of Parsetree.structure ]

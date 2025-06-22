@@ -1,0 +1,61 @@
+(lang dune 3.19)
+(name pp_loc)
+(version d8162fd)
+(sections (lib .) (libexec .) (doc ../../doc/pp_loc))
+(files
+ (lib
+  (.private/pp_loc__Line_offsets.cmi
+   .private/pp_loc__Line_offsets.cmt
+   .private/pp_loc__Line_offsets.cmti
+   META
+   dune-package
+   line_offsets.ml
+   line_offsets.mli
+   opam
+   pp_loc.a
+   pp_loc.cma
+   pp_loc.cmi
+   pp_loc.cmt
+   pp_loc.cmti
+   pp_loc.cmx
+   pp_loc.cmxa
+   pp_loc.ml
+   pp_loc.mli
+   pp_loc__.cmi
+   pp_loc__.cmt
+   pp_loc__.cmx
+   pp_loc__.ml
+   pp_loc__Line_offsets.cmx))
+ (libexec (pp_loc.cmxs))
+ (doc (CHANGES LICENSE README.md)))
+(library
+ (name pp_loc)
+ (kind normal)
+ (archives (byte pp_loc.cma) (native pp_loc.cmxa))
+ (plugins (byte pp_loc.cma) (native pp_loc.cmxs))
+ (native_archives pp_loc.a)
+ (main_module_name Pp_loc)
+ (modes byte native)
+ (obj_dir (private_dir .private))
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name pp_loc__)
+     (visibility public)
+     (kind alias)
+     (source (path Pp_loc__) (impl (path pp_loc__.ml-gen))))
+    (name Pp_loc)
+    (modules
+     (module
+      (obj_name pp_loc__Line_offsets)
+      (visibility private)
+      (source
+       (path Line_offsets)
+       (intf (path line_offsets.mli))
+       (impl (path line_offsets.ml))))
+     (module
+      (obj_name pp_loc)
+      (visibility public)
+      (source (path Pp_loc) (intf (path pp_loc.mli)) (impl (path pp_loc.ml))))))
+   (wrapped true))))

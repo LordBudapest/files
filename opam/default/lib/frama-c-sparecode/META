@@ -1,0 +1,26 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires =
+  "frama-c-eva.core
+   
+   
+   
+   frama-c-inout.core
+   
+   
+   
+   frama-c-pdg.core
+   
+   
+   
+   frama-c-users.core
+   
+   
+   
+   frama-c.kernel"
+  archive(byte) = "Sparecode.cma"
+  archive(native) = "Sparecode.cmxa"
+  plugin(byte) = "Sparecode.cma"
+  plugin(native) = "Sparecode.cmxs"
+)

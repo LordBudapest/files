@@ -1,0 +1,281 @@
+(lang dune 3.19)
+(name yaml)
+(version 3.2.0)
+(sections (lib .) (libexec .) (doc ../../doc/yaml) (stublibs ../stublibs))
+(files
+ (lib
+  (META
+   bindings/types/yaml_bindings_types.a
+   bindings/types/yaml_bindings_types.cma
+   bindings/types/yaml_bindings_types.cmi
+   bindings/types/yaml_bindings_types.cmt
+   bindings/types/yaml_bindings_types.cmti
+   bindings/types/yaml_bindings_types.cmx
+   bindings/types/yaml_bindings_types.cmxa
+   bindings/types/yaml_bindings_types.ml
+   bindings/types/yaml_bindings_types.mli
+   bindings/yaml_bindings.a
+   bindings/yaml_bindings.cma
+   bindings/yaml_bindings.cmi
+   bindings/yaml_bindings.cmt
+   bindings/yaml_bindings.cmx
+   bindings/yaml_bindings.cmxa
+   bindings/yaml_bindings.ml
+   c/libyaml_c_stubs.a
+   c/yaml_c.a
+   c/yaml_c.cma
+   c/yaml_c.cmi
+   c/yaml_c.cmt
+   c/yaml_c.cmx
+   c/yaml_c.cmxa
+   c/yaml_c.ml
+   dune-package
+   ffi/g.ml
+   ffi/libyaml_ffi_stubs.a
+   ffi/m.ml
+   ffi/yaml_ffi.a
+   ffi/yaml_ffi.cma
+   ffi/yaml_ffi.cmi
+   ffi/yaml_ffi.cmt
+   ffi/yaml_ffi.cmx
+   ffi/yaml_ffi.cmxa
+   ffi/yaml_ffi.ml
+   ffi/yaml_ffi__G.cmi
+   ffi/yaml_ffi__G.cmt
+   ffi/yaml_ffi__G.cmx
+   ffi/yaml_ffi__M.cmi
+   ffi/yaml_ffi__M.cmt
+   ffi/yaml_ffi__M.cmx
+   opam
+   stream.ml
+   types.ml
+   types/g.ml
+   types/m.ml
+   types/yaml_types.a
+   types/yaml_types.cma
+   types/yaml_types.cmi
+   types/yaml_types.cmt
+   types/yaml_types.cmx
+   types/yaml_types.cmxa
+   types/yaml_types.ml
+   types/yaml_types__G.cmi
+   types/yaml_types__G.cmt
+   types/yaml_types__G.cmx
+   types/yaml_types__M.cmi
+   types/yaml_types__M.cmt
+   types/yaml_types__M.cmx
+   unix/yaml_unix.a
+   unix/yaml_unix.cma
+   unix/yaml_unix.cmi
+   unix/yaml_unix.cmt
+   unix/yaml_unix.cmti
+   unix/yaml_unix.cmx
+   unix/yaml_unix.cmxa
+   unix/yaml_unix.ml
+   unix/yaml_unix.mli
+   util.ml
+   yaml.a
+   yaml.cma
+   yaml.cmi
+   yaml.cmt
+   yaml.cmti
+   yaml.cmx
+   yaml.cmxa
+   yaml.ml
+   yaml.mli
+   yaml__.cmi
+   yaml__.cmt
+   yaml__.cmx
+   yaml__.ml
+   yaml__Stream.cmi
+   yaml__Stream.cmt
+   yaml__Stream.cmx
+   yaml__Types.cmi
+   yaml__Types.cmt
+   yaml__Types.cmx
+   yaml__Util.cmi
+   yaml__Util.cmt
+   yaml__Util.cmx))
+ (libexec
+  (bindings/types/yaml_bindings_types.cmxs
+   bindings/yaml_bindings.cmxs
+   c/yaml_c.cmxs
+   ffi/yaml_ffi.cmxs
+   types/yaml_types.cmxs
+   unix/yaml_unix.cmxs
+   yaml.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md))
+ (stublibs (dllyaml_c_stubs.so dllyaml_ffi_stubs.so)))
+(library
+ (name yaml)
+ (kind normal)
+ (archives (byte yaml.cma) (native yaml.cmxa))
+ (plugins (byte yaml.cma) (native yaml.cmxs))
+ (native_archives yaml.a)
+ (requires yaml.ffi)
+ (main_module_name Yaml)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name yaml__)
+     (visibility public)
+     (kind alias)
+     (source (path Yaml__) (impl (path yaml__.ml-gen))))
+    (name Yaml)
+    (modules
+     (module
+      (obj_name yaml__Stream)
+      (visibility public)
+      (source (path Stream) (impl (path stream.ml))))
+     (module
+      (obj_name yaml__Types)
+      (visibility public)
+      (source (path Types) (impl (path types.ml))))
+     (module
+      (obj_name yaml__Util)
+      (visibility public)
+      (source (path Util) (impl (path util.ml))))
+     (module
+      (obj_name yaml)
+      (visibility public)
+      (source (path Yaml) (intf (path yaml.mli)) (impl (path yaml.ml))))))
+   (wrapped true))))
+(library
+ (name yaml.bindings)
+ (kind normal)
+ (synopsis "Ctypes bindings that describe the libyaml FFI")
+ (archives
+  (byte bindings/yaml_bindings.cma)
+  (native bindings/yaml_bindings.cmxa))
+ (plugins
+  (byte bindings/yaml_bindings.cma)
+  (native bindings/yaml_bindings.cmxs))
+ (native_archives bindings/yaml_bindings.a)
+ (requires yaml.types ctypes ctypes.stubs)
+ (main_module_name Yaml_bindings)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name yaml_bindings)
+   (visibility public)
+   (source (path Yaml_bindings) (impl (path bindings/yaml_bindings.ml))))))
+(library
+ (name yaml.bindings.types)
+ (kind normal)
+ (archives
+  (byte bindings/types/yaml_bindings_types.cma)
+  (native bindings/types/yaml_bindings_types.cmxa))
+ (plugins
+  (byte bindings/types/yaml_bindings_types.cma)
+  (native bindings/types/yaml_bindings_types.cmxs))
+ (native_archives bindings/types/yaml_bindings_types.a)
+ (requires ctypes ctypes.stubs)
+ (main_module_name Yaml_bindings_types)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name yaml_bindings_types)
+   (visibility public)
+   (source
+    (path Yaml_bindings_types)
+    (intf (path bindings/types/yaml_bindings_types.mli))
+    (impl (path bindings/types/yaml_bindings_types.ml))))))
+(library
+ (name yaml.c)
+ (kind normal)
+ (archives (byte c/yaml_c.cma) (native c/yaml_c.cmxa))
+ (plugins (byte c/yaml_c.cma) (native c/yaml_c.cmxs))
+ (foreign_archives (archives (for all) (files c/libyaml_c_stubs.a)))
+ (foreign_dll_files ../stublibs/dllyaml_c_stubs.so)
+ (native_archives c/yaml_c.a)
+ (main_module_name Yaml_c)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name yaml_c)
+     (visibility public)
+     (kind alias)
+     (source (path Yaml_c) (impl (path c/yaml_c.ml-gen))))
+    (name Yaml_c))
+   (wrapped true))))
+(library
+ (name yaml.ffi)
+ (kind normal)
+ (archives (byte ffi/yaml_ffi.cma) (native ffi/yaml_ffi.cmxa))
+ (plugins (byte ffi/yaml_ffi.cma) (native ffi/yaml_ffi.cmxs))
+ (foreign_objects ffi/yaml_stubs.o)
+ (foreign_archives (archives (for all) (files ffi/libyaml_ffi_stubs.a)))
+ (foreign_dll_files ../stublibs/dllyaml_ffi_stubs.so)
+ (native_archives ffi/yaml_ffi.a)
+ (requires yaml.bindings yaml.types ctypes ctypes.stubs yaml.c)
+ (main_module_name Yaml_ffi)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name yaml_ffi)
+     (visibility public)
+     (kind alias)
+     (source (path Yaml_ffi) (impl (path ffi/yaml_ffi.ml-gen))))
+    (name Yaml_ffi)
+    (modules
+     (module
+      (obj_name yaml_ffi__G)
+      (visibility public)
+      (source (path G) (impl (path ffi/g.ml))))
+     (module
+      (obj_name yaml_ffi__M)
+      (visibility public)
+      (source (path M) (impl (path ffi/m.ml))))))
+   (wrapped true))))
+(library
+ (name yaml.types)
+ (kind normal)
+ (synopsis "Ctypes bindings that describe the libyaml FFI constants")
+ (archives (byte types/yaml_types.cma) (native types/yaml_types.cmxa))
+ (plugins (byte types/yaml_types.cma) (native types/yaml_types.cmxs))
+ (native_archives types/yaml_types.a)
+ (requires yaml.bindings.types ctypes ctypes.stubs)
+ (main_module_name Yaml_types)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name yaml_types)
+     (visibility public)
+     (kind alias)
+     (source (path Yaml_types) (impl (path types/yaml_types.ml-gen))))
+    (name Yaml_types)
+    (modules
+     (module
+      (obj_name yaml_types__G)
+      (visibility public)
+      (source (path G) (impl (path types/g.ml))))
+     (module
+      (obj_name yaml_types__M)
+      (visibility public)
+      (source (path M) (impl (path types/m.ml))))))
+   (wrapped true))))
+(library
+ (name yaml.unix)
+ (kind normal)
+ (archives (byte unix/yaml_unix.cma) (native unix/yaml_unix.cmxa))
+ (plugins (byte unix/yaml_unix.cma) (native unix/yaml_unix.cmxs))
+ (native_archives unix/yaml_unix.a)
+ (requires yaml bos)
+ (main_module_name Yaml_unix)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name yaml_unix)
+   (visibility public)
+   (source
+    (path Yaml_unix)
+    (intf (path unix/yaml_unix.mli))
+    (impl (path unix/yaml_unix.ml))))))

@@ -1,0 +1,6 @@
+OPAM_SWITCH_PREFIX	=	/home/bhaskar/.opam/default	:	target	Prefix\ of\ the\ current\ opam\ switch
+CAML_LD_LIBRARY_PATH	=	/usr/local/lib/ocaml/4.14.1/stublibs:/usr/lib/ocaml/stublibs	:	target	Updated\ by\ package\ ocaml
+CAML_LD_LIBRARY_PATH	+=	/home/bhaskar/.opam/default/lib/stublibs	:	target	Updated\ by\ package\ ocaml
+OCAML_TOPLEVEL_PATH	=	/home/bhaskar/.opam/default/lib/toplevel	Updated\ by\ package\ ocaml
+MANPATH	=:	/home/bhaskar/.opam/default/man	:	host	Current\ opam\ switch\ man\ dir
+PATH	+=	/home/bhaskar/.opam/default/bin	:	target	Binary\ dir\ for\ opam\ switch\ default

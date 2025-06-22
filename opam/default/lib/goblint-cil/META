@@ -1,0 +1,78 @@
+version = "2.0.6"
+description = ""
+requires = "stdlib-shims str unix zarith"
+archive(byte) = "goblintCil.cma"
+archive(native) = "goblintCil.cmxa"
+plugin(byte) = "goblintCil.cma"
+plugin(native) = "goblintCil.cmxs"
+package "dataslicing" (
+  directory = "dataslicing"
+  version = "2.0.6"
+  description = ""
+  requires = "goblint-cil stdlib-shims"
+  archive(byte) = "dataslicing.cma"
+  archive(native) = "dataslicing.cmxa"
+  plugin(byte) = "dataslicing.cma"
+  plugin(native) = "dataslicing.cmxs"
+)
+package "liveness" (
+  directory = "liveness"
+  version = "2.0.6"
+  description = ""
+  requires = "goblint-cil stdlib-shims"
+  archive(byte) = "liveness.cma"
+  archive(native) = "liveness.cmxa"
+  plugin(byte) = "liveness.cma"
+  plugin(native) = "liveness.cmxs"
+)
+package "makecfg" (
+  directory = "makecfg"
+  version = "2.0.6"
+  description = ""
+  requires = "goblint-cil"
+  archive(byte) = "makecfg.cma"
+  archive(native) = "makecfg.cmxa"
+  plugin(byte) = "makecfg.cma"
+  plugin(native) = "makecfg.cmxs"
+)
+package "pta" (
+  directory = "pta"
+  version = "2.0.6"
+  description = ""
+  requires = "goblint-cil stdlib-shims"
+  archive(byte) = "ptranal.cma"
+  archive(native) = "ptranal.cmxa"
+  plugin(byte) = "ptranal.cma"
+  plugin(native) = "ptranal.cmxs"
+)
+package "syntacticsearch" (
+  directory = "syntacticsearch"
+  version = "2.0.6"
+  description = ""
+  requires =
+  "goblint-cil ppx_deriving.runtime ppx_deriving_yojson.runtime yojson"
+  archive(byte) = "syntacticsearch.cma"
+  archive(native) = "syntacticsearch.cmxa"
+  plugin(byte) = "syntacticsearch.cma"
+  plugin(native) = "syntacticsearch.cmxs"
+)
+package "zrapp" (
+  directory = "zrapp"
+  version = "2.0.6"
+  description = ""
+  requires = "goblint-cil goblint-cil.liveness stdlib-shims"
+  archive(byte) = "zrapp.cma"
+  archive(native) = "zrapp.cmxa"
+  plugin(byte) = "zrapp.cma"
+  plugin(native) = "zrapp.cmxs"
+)
+
+package "default-features" (
+requires="goblint-cil.dataslicing goblint-cil.liveness goblint-cil.pta goblint-cil.makecfg goblint-cil.syntacticsearch"
+version = "2.0.6"
+)
+
+package "all-features" (
+requires="goblint-cil.dataslicing goblint-cil.liveness goblint-cil.pta goblint-cil.makecfg goblint-cil.zrapp goblint-cil.syntacticsearch"
+version = "2.0.6"
+)

@@ -1,0 +1,53 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires =
+  "frama-c.kernel ppx_deriving.runtime ppx_deriving_yojson.runtime yojson"
+  archive(byte) = "markdown_report.cma"
+  archive(native) = "markdown_report.cmxa"
+  plugin(byte) = "markdown_report.cma"
+  plugin(native) = "markdown_report.cmxs"
+)
+package "eva-info" (
+  directory = "eva-info"
+  package "core" (
+    directory = "core"
+    description = ""
+    requires =
+    "frama-c-eva.core
+     
+     
+     
+     
+     
+     frama-c-markdown-report.core
+     
+     
+     
+     
+     
+     frama-c.kernel
+     
+     
+     
+     
+     
+     ppx_deriving.runtime
+     
+     
+     
+     
+     
+     ppx_deriving_yojson.runtime
+     
+     
+     
+     
+     
+     yojson"
+    archive(byte) = "markdown_report_eva_info.cma"
+    archive(native) = "markdown_report_eva_info.cmxa"
+    plugin(byte) = "markdown_report_eva_info.cma"
+    plugin(native) = "markdown_report_eva_info.cmxs"
+  )
+)

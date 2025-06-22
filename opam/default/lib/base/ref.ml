@@ -1,47 +1,41 @@
 open! Import
 
 include (
-  struct
-    type 'a t = 'a ref
-    [@@deriving_inline compare ~localize, equal ~localize, globalize, sexp, sexp_grammar]
+struct
+  type 'a t = 'a ref [@@deriving_inline compare, equal, globalize, sexp, sexp_grammar]
 
-    let compare__local : 'a. ('a -> 'a -> int) -> 'a t -> 'a t -> int = compare_ref__local
-    let compare : 'a. ('a -> 'a -> int) -> 'a t -> 'a t -> int = compare_ref
-    let equal__local : 'a. ('a -> 'a -> bool) -> 'a t -> 'a t -> bool = equal_ref__local
-    let equal : 'a. ('a -> 'a -> bool) -> 'a t -> 'a t -> bool = equal_ref
+  let compare : 'a. ('a -> 'a -> int) -> 'a t -> 'a t -> int = compare_ref
+  let equal : 'a. ('a -> 'a -> bool) -> 'a t -> 'a t -> bool = equal_ref
 
-    let globalize : 'a. ('a -> 'a) -> 'a t -> 'a t =
-      fun (type a__017_) : ((a__017_ -> a__017_) -> a__017_ t -> a__017_ t) ->
+  let globalize : 'a. (('a[@ocaml.local]) -> 'a) -> ('a t[@ocaml.local]) -> 'a t =
+    fun (type a__009_)
+        : (((a__009_[@ocaml.local]) -> a__009_) -> (a__009_ t[@ocaml.local]) -> a__009_ t) ->
       globalize_ref
-    ;;
+  ;;
 
-    let t_of_sexp : 'a. (Sexplib0.Sexp.t -> 'a) -> Sexplib0.Sexp.t -> 'a t = ref_of_sexp
-    let sexp_of_t : 'a. ('a -> Sexplib0.Sexp.t) -> 'a t -> Sexplib0.Sexp.t = sexp_of_ref
+  let t_of_sexp : 'a. (Sexplib0.Sexp.t -> 'a) -> Sexplib0.Sexp.t -> 'a t = ref_of_sexp
+  let sexp_of_t : 'a. ('a -> Sexplib0.Sexp.t) -> 'a t -> Sexplib0.Sexp.t = sexp_of_ref
 
-    let t_sexp_grammar : 'a. 'a Sexplib0.Sexp_grammar.t -> 'a t Sexplib0.Sexp_grammar.t =
-      fun _'a_sexp_grammar -> ref_sexp_grammar _'a_sexp_grammar
-    ;;
+  let t_sexp_grammar : 'a. 'a Sexplib0.Sexp_grammar.t -> 'a t Sexplib0.Sexp_grammar.t =
+    fun _'a_sexp_grammar -> ref_sexp_grammar _'a_sexp_grammar
+  ;;
 
-    [@@@end]
-  end :
-    sig
-      type 'a t = 'a ref
-      [@@deriving_inline
-        compare ~localize, equal ~localize, globalize, sexp, sexp_grammar]
+  [@@@end]
+end :
+sig
+  type 'a t = 'a ref [@@deriving_inline compare, equal, globalize, sexp, sexp_grammar]
 
-      include Ppx_compare_lib.Comparable.S1 with type 'a t := 'a t
-      include Ppx_compare_lib.Comparable.S_local1 with type 'a t := 'a t
-      include Ppx_compare_lib.Equal.S1 with type 'a t := 'a t
-      include Ppx_compare_lib.Equal.S_local1 with type 'a t := 'a t
+  include Ppx_compare_lib.Comparable.S1 with type 'a t := 'a t
+  include Ppx_compare_lib.Equal.S1 with type 'a t := 'a t
 
-      val globalize : ('a -> 'a) -> 'a t -> 'a t
+  val globalize : (('a[@ocaml.local]) -> 'a) -> ('a t[@ocaml.local]) -> 'a t
 
-      include Sexplib0.Sexpable.S1 with type 'a t := 'a t
+  include Sexplib0.Sexpable.S1 with type 'a t := 'a t
 
-      val t_sexp_grammar : 'a Sexplib0.Sexp_grammar.t -> 'a t Sexplib0.Sexp_grammar.t
+  val t_sexp_grammar : 'a Sexplib0.Sexp_grammar.t -> 'a t Sexplib0.Sexp_grammar.t
 
-      [@@@end]
-    end)
+  [@@@end]
+end)
 
 (* In the definition of [t], we do not have [[@@deriving compare, sexp]] because
    in general, syntax extensions tend to use the implementation when available rather than

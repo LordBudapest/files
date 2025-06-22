@@ -1,0 +1,58 @@
+opam-version: "2.0"
+added: [
+  "doc/alt-ergo-parsers" {"D"}
+  "doc/alt-ergo-parsers/CHANGES.md" {"F:S31672T1750607206.24"}
+  "doc/alt-ergo-parsers/LICENSE.md" {"F:S1703T1750607206.24"}
+  "doc/alt-ergo-parsers/README.md" {"F:S2739T1750607206.24"}
+  "doc/alt-ergo-parsers/odoc-pages" {"D"}
+  "doc/alt-ergo-parsers/odoc-pages/index.mld" {"F:S1303T1750607206.24"}
+  "lib/alt-ergo-parsers" {"D"}
+  "lib/alt-ergo-parsers/AltErgoParsers.a" {"F:S1049596T1750607206.1"}
+  "lib/alt-ergo-parsers/AltErgoParsers.cma" {"F:S3822833T1750607206.15"}
+  "lib/alt-ergo-parsers/AltErgoParsers.cmxa" {"F:S11764T1750607206.15"}
+  "lib/alt-ergo-parsers/AltErgoParsers.cmxs" {"F:S698880T1750607206.23"}
+  "lib/alt-ergo-parsers/META" {"F:S249T1750607206.15"}
+  "lib/alt-ergo-parsers/altErgoParsers.cmi" {"F:S611T1750607206.15"}
+  "lib/alt-ergo-parsers/altErgoParsers.cmt" {"F:S4084T1750607206.15"}
+  "lib/alt-ergo-parsers/altErgoParsers.cmx" {"F:S235T1750607206.15"}
+  "lib/alt-ergo-parsers/altErgoParsers.ml" {"F:S419T1750607206.15"}
+  "lib/alt-ergo-parsers/altErgoParsers__Native_lexer.cmi"
+    {"F:S4328T1750607206.15"}
+  "lib/alt-ergo-parsers/altErgoParsers__Native_lexer.cmt"
+    {"F:S119662T1750607206.16"}
+  "lib/alt-ergo-parsers/altErgoParsers__Native_lexer.cmx"
+    {"F:S13494T1750607206.16"}
+  "lib/alt-ergo-parsers/altErgoParsers__Native_parser.cmi"
+    {"F:S6223T1750607206.16"}
+  "lib/alt-ergo-parsers/altErgoParsers__Native_parser.cmt"
+    {"F:S5885780T1750607206.22"}
+  "lib/alt-ergo-parsers/altErgoParsers__Native_parser.cmti"
+    {"F:S20708T1750607206.22"}
+  "lib/alt-ergo-parsers/altErgoParsers__Native_parser.cmx"
+    {"F:S77958T1750607206.23"}
+  "lib/alt-ergo-parsers/altErgoParsers__Parsers.cmi"
+    {"F:S3421T1750607206.23"}
+  "lib/alt-ergo-parsers/altErgoParsers__Parsers.cmt"
+    {"F:S52391T1750607206.23"}
+  "lib/alt-ergo-parsers/altErgoParsers__Parsers.cmti"
+    {"F:S19116T1750607206.23"}
+  "lib/alt-ergo-parsers/altErgoParsers__Parsers.cmx"
+    {"F:S4361T1750607206.23"}
+  "lib/alt-ergo-parsers/altErgoParsers__Psmt2_to_alt_ergo.cmi"
+    {"F:S409T1750607206.23"}
+  "lib/alt-ergo-parsers/altErgoParsers__Psmt2_to_alt_ergo.cmt"
+    {"F:S219180T1750607206.23"}
+  "lib/alt-ergo-parsers/altErgoParsers__Psmt2_to_alt_ergo.cmti"
+    {"F:S8416T1750607206.23"}
+  "lib/alt-ergo-parsers/altErgoParsers__Psmt2_to_alt_ergo.cmx"
+    {"F:S9180T1750607206.23"}
+  "lib/alt-ergo-parsers/dune-package" {"F:S2571T1750607206.23"}
+  "lib/alt-ergo-parsers/native_lexer.ml" {"F:S48607T1750607206.23"}
+  "lib/alt-ergo-parsers/native_parser.ml" {"F:S674588T1750607206.23"}
+  "lib/alt-ergo-parsers/native_parser.mli" {"F:S1259T1750607206.23"}
+  "lib/alt-ergo-parsers/opam" {"F:S1383T1750607206.23"}
+  "lib/alt-ergo-parsers/parsers.ml" {"F:S5975T1750607206.23"}
+  "lib/alt-ergo-parsers/parsers.mli" {"F:S3965T1750607206.23"}
+  "lib/alt-ergo-parsers/psmt2_to_alt_ergo.ml" {"F:S19827T1750607206.23"}
+  "lib/alt-ergo-parsers/psmt2_to_alt_ergo.mli" {"F:S2462T1750607206.23"}
+]

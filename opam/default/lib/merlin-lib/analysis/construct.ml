@@ -37,28 +37,26 @@ module Util = struct
       let construct s =
         Ast_helper.Exp.construct (Location.mknoloc (Longident.Lident s)) None
       in
-      let const_string str = Ast_helper.Const.string str in
-      let const_integer ?suffix str = Ast_helper.Const.integer ?suffix str in
-      let const_float ?suffix str = Ast_helper.Const.float ?suffix str in
-      let const_char c = Ast_helper.Const.char c in
       let ident s =
         Ast_helper.Exp.ident (Location.mknoloc (Longident.Lident s))
       in
       List.iter
         ~f:(fun (k, v) -> Hashtbl.add tbl k v)
-        [ (Predef.path_int, constant (const_integer "0"));
-          (Predef.path_float, constant (const_float "0.0"));
-          (Predef.path_char, constant (const_char 'c'));
-          (Predef.path_string, constant (const_string ""));
-          (Predef.path_bool, construct "false");
-          (Predef.path_unit, construct "()");
-          (Predef.path_exn, ident "exn");
-          (Predef.path_array, Ast_helper.Exp.array []);
-          (Predef.path_nativeint, constant (const_integer ~suffix:'n' "0"));
-          (Predef.path_int32, constant (const_integer ~suffix:'l' "0"));
-          (Predef.path_int64, constant (const_integer ~suffix:'L' "0"));
-          (Predef.path_lazy_t, Ast_helper.Exp.lazy_ (construct "()"))
-        ]
+        Parsetree.
+          [ (Predef.path_int, constant (Pconst_integer ("0", None)));
+            (Predef.path_float, constant (Pconst_float ("0.0", None)));
+            (Predef.path_char, constant (Pconst_char 'c'));
+            ( Predef.path_string,
+              constant (Pconst_string ("", Location.none, None)) );
+            (Predef.path_bool, construct "false");
+            (Predef.path_unit, construct "()");
+            (Predef.path_exn, ident "exn");
+            (Predef.path_array, Ast_helper.Exp.array []);
+            (Predef.path_nativeint, constant (Pconst_integer ("0", Some 'n')));
+            (Predef.path_int32, constant (Pconst_integer ("0", Some 'l')));
+            (Predef.path_int64, constant (Pconst_integer ("0", Some 'L')));
+            (Predef.path_lazy_t, Ast_helper.Exp.lazy_ (construct "()"))
+          ]
     in
     tbl
 
@@ -339,22 +337,16 @@ module Gen = struct
       in
       fun env label ty ->
         let open Asttypes in
-        let make_param arg_label pat =
-          { Parsetree.pparam_loc = Location.none;
-            pparam_desc = Pparam_val (arg_label, None, pat)
-          }
-        in
-
         match label with
         | Labelled s | Optional s ->
           (* Pun for labelled arguments *)
-          (make_param label (Ast_helper.Pat.var (Location.mknoloc s)), s)
+          (Ast_helper.Pat.var (Location.mknoloc s), s)
         | Nolabel -> begin
           match get_desc ty with
           | Tconstr (path, _, _) ->
             let name = uniq_name env (Path.last path) in
-            (make_param label (Ast_helper.Pat.var (Location.mknoloc name)), name)
-          | _ -> (make_param label (Ast_helper.Pat.any ()), "_")
+            (Ast_helper.Pat.var (Location.mknoloc name), name)
+          | _ -> (Ast_helper.Pat.any (), "_")
         end
     in
 
@@ -365,9 +357,7 @@ module Gen = struct
       (* [make_constr] builds the PAST repr of a type constructor applied
          to holes *)
       let make_constr env path type_expr cstr_descr =
-        let ty_args, ty_res, _ =
-          Ctype.instance_constructor Keep_existentials_flexible cstr_descr
-        in
+        let ty_args, ty_res, _ = Ctype.instance_constructor cstr_descr in
         match Util.unifiable env type_expr ty_res with
         | Some snap ->
           let lid =
@@ -438,7 +428,7 @@ module Gen = struct
 
       let labels =
         List.map labels ~f:(fun ({ lbl_name; _ } as lbl) ->
-            let _, arg, res = Ctype.instance_label ~fixed:true lbl in
+            let _, arg, res = Ctype.instance_label true lbl in
             Ctype.unify env res typ;
             let lid =
               Util.maybe_prefix env ~env_check:Env.find_label_by_name path
@@ -485,31 +475,23 @@ module Gen = struct
             match def with
             | Type_variant (constrs, _) -> constructor env rtyp path constrs
             | Type_record (labels, _) -> record env rtyp path labels
-            | Type_abstract _ | Type_open -> [])
+            | Type_abstract | Type_open -> [])
         end
-        | Tarrow _ ->
-          let rec left_types acc env ty =
-            match get_desc ty with
-            | Tarrow (label, tyleft, tyright, _) ->
-              let arg, name = make_arg env label tyleft in
-              let value_description =
-                { val_type = tyleft;
-                  val_kind = Val_reg;
-                  val_loc = Location.none;
-                  val_attributes = [];
-                  val_uid = Uid.mk ~current_unit:(Env.get_current_unit ())
-                }
-              in
-              let env =
-                Env.add_value (Ident.create_local name) value_description env
-              in
-              left_types (arg :: acc) env tyright
-            | _ -> (List.rev acc, ty, env)
+        | Tarrow (label, tyleft, tyright, _) ->
+          let argument, name = make_arg env label tyleft in
+          let value_description =
+            { val_type = tyleft;
+              val_kind = Val_reg;
+              val_loc = Location.none;
+              val_attributes = [];
+              val_uid = Uid.mk ~current_unit:(Env.get_unit_name ())
+            }
           in
-          let arguments, body_type, env = left_types [] env rtyp in
-          let exps = arrow_rhs env body_type in
-          List.map exps ~f:(fun e ->
-              Ast_helper.Exp.function_ arguments None (Pfunction_body e))
+          let env =
+            Env.add_value (Ident.create_local name) value_description env
+          in
+          let exps = arrow_rhs env tyright in
+          List.map exps ~f:(Ast_helper.Exp.fun_ label None argument)
         | Ttuple types ->
           let choices =
             List.map types ~f:(exp_or_hole env) |> Util.combinations
@@ -570,7 +552,7 @@ end
 
 let needs_parentheses e =
   match e.Parsetree.pexp_desc with
-  | Pexp_function _ | Pexp_lazy _ | Pexp_apply _
+  | Pexp_fun _ | Pexp_lazy _ | Pexp_apply _
   | Pexp_variant (_, Some _)
   | Pexp_construct (_, Some _) -> true
   | _ -> false

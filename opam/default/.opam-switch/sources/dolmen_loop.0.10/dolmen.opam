@@ -1,0 +1,44 @@
+version: "0.10"
+opam-version: "2.0"
+name: "dolmen"
+maintainer: "Guillaume Bury <guillaume.bury@gmail.com>"
+authors: "Guillaume Bury <guillaume.bury@gmail.com>"
+license: "BSD-2-Clause"
+build: [
+  ["dune" "subst"] {dev}
+  ["dune" "build" "-p" name "-j" jobs "@install" "@runtest" {with-test} "@doc" {with-doc}]
+]
+depends: [
+  "ocaml" {>= "4.08"}
+  "menhir" {>= "20211230" }
+  "dune" { >= "3.0" }
+  "fmt" { >= "0.8.7" }
+  "hmap" { >= "0.8.1" }
+  "seq"
+  "odoc" { with-doc }
+  "qcheck" { with-test }
+  "mdx" { with-test }
+]
+
+tags: [ "parser" "logic" "tptp" "smtlib" "dimacs" ]
+homepage: "https://github.com/Gbury/dolmen"
+dev-repo: "git+https://github.com/Gbury/dolmen.git"
+bug-reports: "https://github.com/Gbury/dolmen/issues"
+
+doc: "https://gbury.github.io/dolmen"
+synopsis: "A parser library for automated deduction"
+description:
+"Dolmen aims at providing tools to help in writing programs in the field of theorem proving,
+SMT solving, and model checking. The project includes a few libraries, a CLI binary and an
+LSP server, split over several opam packages.
+
+This is the Dolmen parser library. It currently targets languages used in automated theorem provers,
+as well as model checking, and may be extended to other domains later.
+
+Dolmen provides functors that takes as arguments a representation of terms and statements,
+and returns a module that can parse files (or streams of tokens) into the provided representation
+of terms or statements. This is meant so that Dolmen can be used as a drop-in replacement of existing
+parser, in order to factorize parsers among projects.
+
+Additionally, Dolmen also provides a standard implementation of terms and statements that can be
+used to instantiate its parsers."

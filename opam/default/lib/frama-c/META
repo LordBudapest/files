@@ -1,0 +1,124 @@
+package "analysis-scripts" (
+  directory = "analysis-scripts"
+  description = ""
+  requires = "frama-c.boot frama-c.init frama-c.kernel"
+  archive(byte) = "analysis_scripts.cma"
+  archive(native) = "analysis_scripts.cmxa"
+  plugin(byte) = "analysis_scripts.cma"
+  plugin(native) = "analysis_scripts.cmxs"
+)
+package "boot" (
+  directory = "boot"
+  description = ""
+  requires = "frama-c.kernel"
+  archive(byte) = "frama_c_boot.cma"
+  archive(native) = "frama_c_boot.cmxa"
+  plugin(byte) = "frama_c_boot.cma"
+  plugin(native) = "frama_c_boot.cmxs"
+)
+package "gui" (
+  directory = "gui"
+  description = ""
+  requires = "frama-c.init.gui frama-c.kernel lablgtk3 lablgtk3-sourceview3"
+  archive(byte) = "frama_c_gui.cma"
+  archive(native) = "frama_c_gui.cmxa"
+  plugin(byte) = "frama_c_gui.cma"
+  plugin(native) = "frama_c_gui.cmxs"
+)
+package "init" (
+  directory = "init"
+  description = ""
+  requires = "threads"
+  archive(byte) = ""
+  archive(native) = ""
+  plugin(byte) = ""
+  plugin(native) = ""
+  package "cmdline" (
+    directory = "cmdline"
+    description = ""
+    requires = "frama-c.init"
+    archive(byte) = "frama_c_very_first_cmdline.cma"
+    archive(native) = "frama_c_very_first_cmdline.cmxa"
+    plugin(byte) = "frama_c_very_first_cmdline.cma"
+    plugin(native) = "frama_c_very_first_cmdline.cmxs"
+  )
+  package "gui" (
+    directory = "gui"
+    description = ""
+    requires = "frama-c.init"
+    archive(byte) = "frama_c_very_first_gui.cma"
+    archive(native) = "frama_c_very_first_gui.cmxa"
+    plugin(byte) = "frama_c_very_first_gui.cma"
+    plugin(native) = "frama_c_very_first_gui.cmxs"
+  )
+)
+package "kernel" (
+  directory = "kernel"
+  description = ""
+  requires =
+  "bytes
+   
+   
+   
+   dune-private-libs.dune-section
+   
+   
+   
+   dune-site
+   
+   
+   
+   dune-site.plugins
+   
+   
+   
+   dynlink
+   
+   
+   
+   fpath
+   
+   
+   
+   frama-c.init
+   
+   
+   
+   menhirLib
+   
+   
+   
+   ocamlgraph
+   
+   
+   
+   ppx_deriving.runtime
+   
+   
+   
+   str
+   
+   
+   
+   unix
+   
+   
+   
+   yaml
+   
+   
+   
+   yaml.unix
+   
+   
+   
+   yojson
+   
+   
+   
+   zarith"
+  archive(byte) = "frama_c_kernel.cma"
+  archive(native) = "frama_c_kernel.cmxa"
+  plugin(byte) = "frama_c_kernel.cma"
+  plugin(native) = "frama_c_kernel.cmxs"
+)

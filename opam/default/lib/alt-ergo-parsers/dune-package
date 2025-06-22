@@ -1,0 +1,88 @@
+(lang dune 3.19)
+(name alt-ergo-parsers)
+(version v2.6.2)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/alt-ergo-parsers)
+ (libexec /home/bhaskar/.opam/default/lib/alt-ergo-parsers)
+ (doc /home/bhaskar/.opam/default/doc/alt-ergo-parsers))
+(files
+ (lib
+  (AltErgoParsers.a
+   AltErgoParsers.cma
+   AltErgoParsers.cmxa
+   META
+   altErgoParsers.cmi
+   altErgoParsers.cmt
+   altErgoParsers.cmx
+   altErgoParsers.ml
+   altErgoParsers__Native_lexer.cmi
+   altErgoParsers__Native_lexer.cmt
+   altErgoParsers__Native_lexer.cmx
+   altErgoParsers__Native_parser.cmi
+   altErgoParsers__Native_parser.cmt
+   altErgoParsers__Native_parser.cmti
+   altErgoParsers__Native_parser.cmx
+   altErgoParsers__Parsers.cmi
+   altErgoParsers__Parsers.cmt
+   altErgoParsers__Parsers.cmti
+   altErgoParsers__Parsers.cmx
+   altErgoParsers__Psmt2_to_alt_ergo.cmi
+   altErgoParsers__Psmt2_to_alt_ergo.cmt
+   altErgoParsers__Psmt2_to_alt_ergo.cmti
+   altErgoParsers__Psmt2_to_alt_ergo.cmx
+   dune-package
+   native_lexer.ml
+   native_parser.ml
+   native_parser.mli
+   opam
+   parsers.ml
+   parsers.mli
+   psmt2_to_alt_ergo.ml
+   psmt2_to_alt_ergo.mli))
+ (libexec (AltErgoParsers.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md odoc-pages/index.mld)))
+(library
+ (name alt-ergo-parsers)
+ (kind normal)
+ (archives (byte AltErgoParsers.cma) (native AltErgoParsers.cmxa))
+ (plugins (byte AltErgoParsers.cma) (native AltErgoParsers.cmxs))
+ (native_archives AltErgoParsers.a)
+ (requires dynlink psmt2-frontend alt-ergo-lib stdlib-shims)
+ (main_module_name AltErgoParsers)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name altErgoParsers)
+     (visibility public)
+     (kind alias)
+     (source (path AltErgoParsers) (impl (path altErgoParsers.ml-gen))))
+    (name AltErgoParsers)
+    (modules
+     (module
+      (obj_name altErgoParsers__Native_lexer)
+      (visibility public)
+      (source (path Native_lexer) (impl (path native_lexer.ml))))
+     (module
+      (obj_name altErgoParsers__Native_parser)
+      (visibility public)
+      (source
+       (path Native_parser)
+       (intf (path native_parser.mli))
+       (impl (path native_parser.ml))))
+     (module
+      (obj_name altErgoParsers__Parsers)
+      (visibility public)
+      (source
+       (path Parsers)
+       (intf (path parsers.mli))
+       (impl (path parsers.ml))))
+     (module
+      (obj_name altErgoParsers__Psmt2_to_alt_ergo)
+      (visibility public)
+      (source
+       (path Psmt2_to_alt_ergo)
+       (intf (path psmt2_to_alt_ergo.mli))
+       (impl (path psmt2_to_alt_ergo.ml))))))
+   (wrapped true))))

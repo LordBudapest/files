@@ -21,7 +21,6 @@ let nullable (type a) : a MenhirInterpreter.nonterminal -> bool =
   | N_option_preceded_EQUAL_module_type__ -> true
   | N_option_preceded_EQUAL_expr__ -> true
   | N_option_preceded_COLON_core_type__ -> true
-  | N_option_preceded_COLON_atomic_type__ -> true
   | N_option_preceded_AS_mkrhs_LIDENT___ -> true
   | N_option_SEMI_ -> true
   | N_option_BAR_ -> true
@@ -49,5 +48,4 @@ let nullable (type a) : a MenhirInterpreter.nonterminal -> bool =
   | N_ext -> true
   | N_class_self_type -> true
   | N_class_self_pattern -> true
-  | N_attr_payload -> true
   | _ -> false

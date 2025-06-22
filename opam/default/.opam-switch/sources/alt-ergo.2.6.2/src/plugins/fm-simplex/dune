@@ -1,0 +1,15 @@
+(documentation
+ (package alt-ergo)
+  (mld_files :standard))
+
+(library
+ (public_name alt-ergo.plugins.fm-simplex)
+ (name FmSimplexPlugin)
+ (libraries alt-ergo-lib)
+ (modules Simplex Simplex_cache FmSimplexIneqs))
+
+(plugin
+ (package alt-ergo)
+ (name fm-simplex)
+ (libraries alt-ergo.plugins.fm-simplex)
+ (site (alt-ergo plugins)))

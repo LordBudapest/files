@@ -49,19 +49,13 @@ type type_expected = private {
 }
 
 (* Variables in patterns *)
-type pattern_variable_kind =
-  | Std_var
-  | As_var
-  | Continuation_var
-
 type pattern_variable =
   {
     pv_id: Ident.t;
     pv_type: type_expr;
     pv_loc: Location.t;
-    pv_kind: pattern_variable_kind;
+    pv_as_var: bool;
     pv_attributes: Typedtree.attributes;
-    pv_uid : Uid.t;
   }
 
 val mk_expected:
@@ -126,6 +120,7 @@ val check_partial:
         ?lev:int -> Env.t -> type_expr ->
         Location.t -> Typedtree.value Typedtree.case list -> Typedtree.partial
 val type_expect:
+        ?in_function:(Location.t * type_expr) ->
         Env.t -> Parsetree.expression -> type_expected -> Typedtree.expression
 val type_exp:
         Env.t -> Parsetree.expression -> Typedtree.expression
@@ -149,35 +144,19 @@ val name_cases : string -> Typedtree.value Typedtree.case list -> Ident.t
 
 val self_coercion : (Path.t * Location.t list ref) list ref
 
-type existential_binding =
-  | Bind_already_bound
-  | Bind_not_in_scope
-  | Bind_non_locally_abstract
-
 type error =
   | Constructor_arity_mismatch of Longident.t * int * int
   | Label_mismatch of Longident.t * Errortrace.unification_error
   | Pattern_type_clash :
-      Errortrace.unification_error * Parsetree.pattern_desc option
+      Errortrace.unification_error * _ Typedtree.pattern_desc option
       -> error
   | Or_pattern_type_clash of Ident.t * Errortrace.unification_error
   | Multiply_bound_variable of string
   | Orpat_vars of Ident.t * Ident.t list
   | Expr_type_clash of
       Errortrace.unification_error * type_forcing_context option
-      * Parsetree.expression option
-  | Function_arity_type_clash of
-      { syntactic_arity :  int;
-        type_constraint : type_expr;
-        trace : Errortrace.unification_error;
-      }
-  | Apply_non_function of {
-      funct : Typedtree.expression;
-      func_ty : type_expr;
-      res_ty : type_expr;
-      previous_arg_loc : Location.t;
-      extra_arg_loc : Location.t;
-    }
+      * Typedtree.expression_desc option
+  | Apply_non_function of type_expr
   | Apply_wrong_label of arg_label * type_expr * bool
   | Label_multiply_defined of string
   | Label_missing of Ident.t list
@@ -215,14 +194,12 @@ type error =
   | Modules_not_allowed
   | Cannot_infer_signature
   | Not_a_packed_module of type_expr
-  | Unexpected_existential of existential_restriction * string
+  | Unexpected_existential of existential_restriction * string * string list
   | Invalid_interval
   | Invalid_for_loop_index
   | No_value_clauses
   | Exception_pattern_disallowed
   | Mixed_value_and_exception_patterns_under_guard
-  | Effect_pattern_below_toplevel
-  | Invalid_continuation_pattern
   | Inlined_record_escape
   | Inlined_record_expected
   | Unrefuted_pattern of Typedtree.pattern
@@ -237,7 +214,6 @@ type error =
   | Andop_type_clash of string * Errortrace.unification_error
   | Bindings_type_clash of Errortrace.unification_error
   | Unbound_existential of Ident.t list * type_expr
-  | Bind_existential of existential_binding * Ident.t * type_expr
   | Missing_type_constraint
   | Wrong_expected_kind of wrong_kind_sort * wrong_kind_context * type_expr
   | Expr_not_a_record_type of type_expr
@@ -271,8 +247,7 @@ val type_package:
 
 val constant: Parsetree.constant -> (Asttypes.constant, error) result
 
-val annotate_recursive_bindings :
-  Env.t -> Typedtree.value_binding list -> Typedtree.value_binding list
+val check_recursive_bindings : Env.t -> Typedtree.value_binding list -> unit
 val check_recursive_class_bindings :
   Env.t -> Ident.t list -> Typedtree.class_expr list -> unit
 
@@ -282,5 +257,7 @@ val partial_pred :
   ?explode:int ->
   Env.t ->
   type_expr ->
-  Typedtree.pattern ->
-  Typedtree.pattern option
+  (label, constructor_description) Hashtbl.t ->
+  (label, label_description) Hashtbl.t ->
+  Parsetree.pattern ->
+  Typedtree.value Typedtree.pattern_desc Typedtree.pattern_data option

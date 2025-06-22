@@ -1,0 +1,43 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_deriving_yaml/META"
+  "_build/install/default/lib/ppx_deriving_yaml/common/ppx_deriving_yaml_common.a"
+    {"common/ppx_deriving_yaml_common.a"}
+  "_build/install/default/lib/ppx_deriving_yaml/common/ppx_deriving_yaml_common.cma"
+    {"common/ppx_deriving_yaml_common.cma"}
+  "_build/install/default/lib/ppx_deriving_yaml/common/ppx_deriving_yaml_common.cmi"
+    {"common/ppx_deriving_yaml_common.cmi"}
+  "_build/install/default/lib/ppx_deriving_yaml/common/ppx_deriving_yaml_common.cmt"
+    {"common/ppx_deriving_yaml_common.cmt"}
+  "_build/install/default/lib/ppx_deriving_yaml/common/ppx_deriving_yaml_common.cmti"
+    {"common/ppx_deriving_yaml_common.cmti"}
+  "_build/install/default/lib/ppx_deriving_yaml/common/ppx_deriving_yaml_common.cmx"
+    {"common/ppx_deriving_yaml_common.cmx"}
+  "_build/install/default/lib/ppx_deriving_yaml/common/ppx_deriving_yaml_common.cmxa"
+    {"common/ppx_deriving_yaml_common.cmxa"}
+  "_build/install/default/lib/ppx_deriving_yaml/common/ppx_deriving_yaml_common.ml"
+    {"common/ppx_deriving_yaml_common.ml"}
+  "_build/install/default/lib/ppx_deriving_yaml/common/ppx_deriving_yaml_common.mli"
+    {"common/ppx_deriving_yaml_common.mli"}
+  "_build/install/default/lib/ppx_deriving_yaml/dune-package"
+  "_build/install/default/lib/ppx_deriving_yaml/opam"
+  "_build/install/default/lib/ppx_deriving_yaml/ppx_deriving_yaml.a"
+  "_build/install/default/lib/ppx_deriving_yaml/ppx_deriving_yaml.cma"
+  "_build/install/default/lib/ppx_deriving_yaml/ppx_deriving_yaml.cmi"
+  "_build/install/default/lib/ppx_deriving_yaml/ppx_deriving_yaml.cmt"
+  "_build/install/default/lib/ppx_deriving_yaml/ppx_deriving_yaml.cmx"
+  "_build/install/default/lib/ppx_deriving_yaml/ppx_deriving_yaml.cmxa"
+  "_build/install/default/lib/ppx_deriving_yaml/ppx_deriving_yaml.ml"
+]
+doc: [
+  "_build/install/default/doc/ppx_deriving_yaml/CHANGES.md"
+  "_build/install/default/doc/ppx_deriving_yaml/LICENSE.md"
+  "_build/install/default/doc/ppx_deriving_yaml/README.md"
+  "_build/install/default/doc/ppx_deriving_yaml/odoc-pages/index.mld"
+    {"odoc-pages/index.mld"}
+]
+libexec: [
+  "_build/install/default/lib/ppx_deriving_yaml/common/ppx_deriving_yaml_common.cmxs"
+    {"common/ppx_deriving_yaml_common.cmxs"}
+  "_build/install/default/lib/ppx_deriving_yaml/ppx_deriving_yaml.cmxs"
+]

@@ -1,0 +1,9 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires = "frama-c-server.core frama-c-studia.core frama-c.kernel"
+  archive(byte) = "dive.cma"
+  archive(native) = "dive.cmxa"
+  plugin(byte) = "dive.cma"
+  plugin(native) = "dive.cmxs"
+)

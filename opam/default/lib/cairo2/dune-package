@@ -1,0 +1,41 @@
+(lang dune 3.19)
+(name cairo2)
+(version 0.6.5)
+(sections (lib .) (libexec .) (doc ../../doc/cairo2) (stublibs ../stublibs))
+(files
+ (lib
+  (META
+   cairo.a
+   cairo.cma
+   cairo.cmi
+   cairo.cmt
+   cairo.cmti
+   cairo.cmx
+   cairo.cmxa
+   cairo.ml
+   cairo.mli
+   cairo_ocaml.h
+   dune-package
+   libcairo_stubs.a
+   opam))
+ (libexec (cairo.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md))
+ (stublibs (dllcairo_stubs.so)))
+(library
+ (name cairo2)
+ (kind normal)
+ (synopsis "Binding to Cairo, a 2D Vector Graphics Library")
+ (archives (byte cairo.cma) (native cairo.cmxa))
+ (plugins (byte cairo.cma) (native cairo.cmxs))
+ (foreign_objects cairo_stubs.o)
+ (foreign_archives (archives (for all) (files libcairo_stubs.a)))
+ (foreign_dll_files ../stublibs/dllcairo_stubs.so)
+ (native_archives cairo.a)
+ (requires bigarray)
+ (main_module_name Cairo)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name cairo)
+   (visibility public)
+   (source (path Cairo) (intf (path cairo.mli)) (impl (path cairo.ml))))))

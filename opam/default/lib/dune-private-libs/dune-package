@@ -1,0 +1,318 @@
+(lang dune 3.19)
+(name dune-private-libs)
+(version 3.19.1)
+(sections (lib .) (libexec .) (doc ../../doc/dune-private-libs))
+(files
+ (lib
+  (META
+   dune-package
+   dune-section/dune_section.a
+   dune-section/dune_section.cma
+   dune-section/dune_section.cmi
+   dune-section/dune_section.cmt
+   dune-section/dune_section.cmti
+   dune-section/dune_section.cmx
+   dune-section/dune_section.cmxa
+   dune-section/dune_section.ml
+   dune-section/dune_section.mli
+   dune_re/automata.ml
+   dune_re/automata.mli
+   dune_re/category.ml
+   dune_re/category.mli
+   dune_re/color_map.ml
+   dune_re/color_map.mli
+   dune_re/core.ml
+   dune_re/core.mli
+   dune_re/cset.ml
+   dune_re/cset.mli
+   dune_re/dune_re.a
+   dune_re/dune_re.cma
+   dune_re/dune_re.cmi
+   dune_re/dune_re.cmt
+   dune_re/dune_re.cmx
+   dune_re/dune_re.cmxa
+   dune_re/dune_re.ml
+   dune_re/dune_re__.cmi
+   dune_re/dune_re__.cmt
+   dune_re/dune_re__.cmx
+   dune_re/dune_re__.ml
+   dune_re/dune_re__Automata.cmi
+   dune_re/dune_re__Automata.cmt
+   dune_re/dune_re__Automata.cmti
+   dune_re/dune_re__Automata.cmx
+   dune_re/dune_re__Category.cmi
+   dune_re/dune_re__Category.cmt
+   dune_re/dune_re__Category.cmti
+   dune_re/dune_re__Category.cmx
+   dune_re/dune_re__Color_map.cmi
+   dune_re/dune_re__Color_map.cmt
+   dune_re/dune_re__Color_map.cmti
+   dune_re/dune_re__Color_map.cmx
+   dune_re/dune_re__Core.cmi
+   dune_re/dune_re__Core.cmt
+   dune_re/dune_re__Core.cmti
+   dune_re/dune_re__Core.cmx
+   dune_re/dune_re__Cset.cmi
+   dune_re/dune_re__Cset.cmt
+   dune_re/dune_re__Cset.cmti
+   dune_re/dune_re__Cset.cmx
+   dune_re/dune_re__Emacs.cmi
+   dune_re/dune_re__Emacs.cmt
+   dune_re/dune_re__Emacs.cmti
+   dune_re/dune_re__Emacs.cmx
+   dune_re/dune_re__Fmt.cmi
+   dune_re/dune_re__Fmt.cmt
+   dune_re/dune_re__Fmt.cmx
+   dune_re/dune_re__Glob.cmi
+   dune_re/dune_re__Glob.cmt
+   dune_re/dune_re__Glob.cmti
+   dune_re/dune_re__Glob.cmx
+   dune_re/dune_re__Group.cmi
+   dune_re/dune_re__Group.cmt
+   dune_re/dune_re__Group.cmti
+   dune_re/dune_re__Group.cmx
+   dune_re/dune_re__Pcre.cmi
+   dune_re/dune_re__Pcre.cmt
+   dune_re/dune_re__Pcre.cmti
+   dune_re/dune_re__Pcre.cmx
+   dune_re/dune_re__Perl.cmi
+   dune_re/dune_re__Perl.cmt
+   dune_re/dune_re__Perl.cmti
+   dune_re/dune_re__Perl.cmx
+   dune_re/dune_re__Pmark.cmi
+   dune_re/dune_re__Pmark.cmt
+   dune_re/dune_re__Pmark.cmti
+   dune_re/dune_re__Pmark.cmx
+   dune_re/dune_re__Posix.cmi
+   dune_re/dune_re__Posix.cmt
+   dune_re/dune_re__Posix.cmti
+   dune_re/dune_re__Posix.cmx
+   dune_re/dune_re__Re.cmi
+   dune_re/dune_re__Re.cmt
+   dune_re/dune_re__Re.cmx
+   dune_re/dune_re__Str.cmi
+   dune_re/dune_re__Str.cmt
+   dune_re/dune_re__Str.cmti
+   dune_re/dune_re__Str.cmx
+   dune_re/emacs.ml
+   dune_re/emacs.mli
+   dune_re/fmt.ml
+   dune_re/glob.ml
+   dune_re/glob.mli
+   dune_re/group.ml
+   dune_re/group.mli
+   dune_re/pcre.ml
+   dune_re/pcre.mli
+   dune_re/perl.ml
+   dune_re/perl.mli
+   dune_re/pmark.ml
+   dune_re/pmark.mli
+   dune_re/posix.ml
+   dune_re/posix.mli
+   dune_re/re.ml
+   dune_re/str.ml
+   dune_re/str.mli
+   meta_parser/dune_meta_parser.a
+   meta_parser/dune_meta_parser.cma
+   meta_parser/dune_meta_parser.cmi
+   meta_parser/dune_meta_parser.cmt
+   meta_parser/dune_meta_parser.cmx
+   meta_parser/dune_meta_parser.cmxa
+   meta_parser/dune_meta_parser.ml
+   meta_parser/dune_meta_parser__Meta_lexer.cmi
+   meta_parser/dune_meta_parser__Meta_lexer.cmt
+   meta_parser/dune_meta_parser__Meta_lexer.cmti
+   meta_parser/dune_meta_parser__Meta_lexer.cmx
+   meta_parser/dune_meta_parser__Meta_parser.cmi
+   meta_parser/dune_meta_parser__Meta_parser.cmt
+   meta_parser/dune_meta_parser__Meta_parser.cmx
+   meta_parser/meta_lexer.ml
+   meta_parser/meta_lexer.mli
+   meta_parser/meta_parser.ml
+   opam))
+ (libexec
+  (dune-section/dune_section.cmxs
+   dune_re/dune_re.cmxs
+   meta_parser/dune_meta_parser.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name dune-private-libs.dune-section)
+ (kind normal)
+ (synopsis "[Internal] section definition")
+ (archives
+  (byte dune-section/dune_section.cma)
+  (native dune-section/dune_section.cmxa))
+ (plugins
+  (byte dune-section/dune_section.cma)
+  (native dune-section/dune_section.cmxs))
+ (native_archives dune-section/dune_section.a)
+ (main_module_name Dune_section)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name dune_section)
+   (visibility public)
+   (source
+    (path Dune_section)
+    (intf (path dune-section/dune_section.mli))
+    (impl (path dune-section/dune_section.ml))))))
+(library
+ (name dune-private-libs.dune_re)
+ (kind normal)
+ (synopsis "Internal Dune library, do not use!")
+ (archives (byte dune_re/dune_re.cma) (native dune_re/dune_re.cmxa))
+ (plugins (byte dune_re/dune_re.cma) (native dune_re/dune_re.cmxs))
+ (native_archives dune_re/dune_re.a)
+ (main_module_name Dune_re)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dune_re__)
+     (visibility public)
+     (kind alias)
+     (source (path Dune_re__) (impl (path dune_re/dune_re__.ml-gen))))
+    (name Dune_re)
+    (modules
+     (module
+      (obj_name dune_re__Automata)
+      (visibility public)
+      (source
+       (path Automata)
+       (intf (path dune_re/automata.mli))
+       (impl (path dune_re/automata.ml))))
+     (module
+      (obj_name dune_re__Category)
+      (visibility public)
+      (source
+       (path Category)
+       (intf (path dune_re/category.mli))
+       (impl (path dune_re/category.ml))))
+     (module
+      (obj_name dune_re__Color_map)
+      (visibility public)
+      (source
+       (path Color_map)
+       (intf (path dune_re/color_map.mli))
+       (impl (path dune_re/color_map.ml))))
+     (module
+      (obj_name dune_re__Core)
+      (visibility public)
+      (source
+       (path Core)
+       (intf (path dune_re/core.mli))
+       (impl (path dune_re/core.ml))))
+     (module
+      (obj_name dune_re__Cset)
+      (visibility public)
+      (source
+       (path Cset)
+       (intf (path dune_re/cset.mli))
+       (impl (path dune_re/cset.ml))))
+     (module
+      (obj_name dune_re)
+      (visibility public)
+      (source (path Dune_re) (impl (path dune_re/dune_re.ml))))
+     (module
+      (obj_name dune_re__Emacs)
+      (visibility public)
+      (source
+       (path Emacs)
+       (intf (path dune_re/emacs.mli))
+       (impl (path dune_re/emacs.ml))))
+     (module
+      (obj_name dune_re__Fmt)
+      (visibility public)
+      (source (path Fmt) (impl (path dune_re/fmt.ml))))
+     (module
+      (obj_name dune_re__Glob)
+      (visibility public)
+      (source
+       (path Glob)
+       (intf (path dune_re/glob.mli))
+       (impl (path dune_re/glob.ml))))
+     (module
+      (obj_name dune_re__Group)
+      (visibility public)
+      (source
+       (path Group)
+       (intf (path dune_re/group.mli))
+       (impl (path dune_re/group.ml))))
+     (module
+      (obj_name dune_re__Pcre)
+      (visibility public)
+      (source
+       (path Pcre)
+       (intf (path dune_re/pcre.mli))
+       (impl (path dune_re/pcre.ml))))
+     (module
+      (obj_name dune_re__Perl)
+      (visibility public)
+      (source
+       (path Perl)
+       (intf (path dune_re/perl.mli))
+       (impl (path dune_re/perl.ml))))
+     (module
+      (obj_name dune_re__Pmark)
+      (visibility public)
+      (source
+       (path Pmark)
+       (intf (path dune_re/pmark.mli))
+       (impl (path dune_re/pmark.ml))))
+     (module
+      (obj_name dune_re__Posix)
+      (visibility public)
+      (source
+       (path Posix)
+       (intf (path dune_re/posix.mli))
+       (impl (path dune_re/posix.ml))))
+     (module
+      (obj_name dune_re__Re)
+      (visibility public)
+      (source (path Re) (impl (path dune_re/re.ml))))
+     (module
+      (obj_name dune_re__Str)
+      (visibility public)
+      (source
+       (path Str)
+       (intf (path dune_re/str.mli))
+       (impl (path dune_re/str.ml))))))
+   (wrapped true))))
+(library
+ (name dune-private-libs.meta_parser)
+ (kind normal)
+ (synopsis "[Internal] findlib META parser")
+ (archives
+  (byte meta_parser/dune_meta_parser.cma)
+  (native meta_parser/dune_meta_parser.cmxa))
+ (plugins
+  (byte meta_parser/dune_meta_parser.cma)
+  (native meta_parser/dune_meta_parser.cmxs))
+ (native_archives meta_parser/dune_meta_parser.a)
+ (main_module_name Dune_meta_parser)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dune_meta_parser)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Dune_meta_parser)
+      (impl (path meta_parser/dune_meta_parser.ml-gen))))
+    (name Dune_meta_parser)
+    (modules
+     (module
+      (obj_name dune_meta_parser__Meta_lexer)
+      (visibility public)
+      (source
+       (path Meta_lexer)
+       (intf (path meta_parser/meta_lexer.mli))
+       (impl (path meta_parser/meta_lexer.ml))))
+     (module
+      (obj_name dune_meta_parser__Meta_parser)
+      (visibility public)
+      (source (path Meta_parser) (impl (path meta_parser/meta_parser.ml))))))
+   (wrapped true))))

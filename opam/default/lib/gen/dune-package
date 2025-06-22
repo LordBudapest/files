@@ -1,0 +1,115 @@
+(lang dune 3.19)
+(name gen)
+(version 1.1)
+(sections (lib .) (libexec .) (doc ../../doc/gen))
+(files
+ (lib
+  (GenShims_.ml
+   META
+   dune-package
+   gen.a
+   gen.cma
+   gen.cmi
+   gen.cmt
+   gen.cmti
+   gen.cmx
+   gen.cmxa
+   gen.ml
+   gen.mli
+   genClone.cmi
+   genClone.cmt
+   genClone.cmti
+   genClone.cmx
+   genClone.ml
+   genClone.mli
+   genLabels.cmi
+   genLabels.cmt
+   genLabels.cmti
+   genLabels.cmx
+   genLabels.ml
+   genLabels.mli
+   genLabels_intf.cmi
+   genLabels_intf.cmt
+   genLabels_intf.cmx
+   genLabels_intf.ml
+   genM.cmi
+   genM.cmt
+   genM.cmti
+   genM.cmx
+   genM.ml
+   genM.mli
+   genMList.cmi
+   genMList.cmt
+   genMList.cmti
+   genMList.cmx
+   genMList.ml
+   genMList.mli
+   genM_intf.cmi
+   genM_intf.cmt
+   genM_intf.cmx
+   genM_intf.ml
+   genShims_.cmi
+   genShims_.cmt
+   genShims_.cmx
+   gen_intf.cmi
+   gen_intf.cmt
+   gen_intf.cmx
+   gen_intf.ml
+   opam))
+ (libexec (gen.cmxs))
+ (doc (CHANGELOG.md LICENSE README.md)))
+(library
+ (name gen)
+ (kind normal)
+ (archives (byte gen.cma) (native gen.cmxa))
+ (plugins (byte gen.cma) (native gen.cmxs))
+ (native_archives gen.a)
+ (requires seq)
+ (modes byte native)
+ (modules
+  (unwrapped
+   (module
+    (obj_name gen)
+    (visibility public)
+    (source (path Gen) (intf (path gen.mli)) (impl (path gen.ml))))
+   (module
+    (obj_name genClone)
+    (visibility public)
+    (source
+     (path GenClone)
+     (intf (path genClone.mli))
+     (impl (path genClone.ml))))
+   (module
+    (obj_name genLabels)
+    (visibility public)
+    (source
+     (path GenLabels)
+     (intf (path genLabels.mli))
+     (impl (path genLabels.ml))))
+   (module
+    (obj_name genLabels_intf)
+    (visibility public)
+    (source (path GenLabels_intf) (impl (path genLabels_intf.ml))))
+   (module
+    (obj_name genM)
+    (visibility public)
+    (source (path GenM) (intf (path genM.mli)) (impl (path genM.ml))))
+   (module
+    (obj_name genMList)
+    (visibility public)
+    (source
+     (path GenMList)
+     (intf (path genMList.mli))
+     (impl (path genMList.ml))))
+   (module
+    (obj_name genM_intf)
+    (visibility public)
+    (source (path GenM_intf) (impl (path genM_intf.ml))))
+   (module
+    (obj_name genShims_)
+    (visibility public)
+    (source (path GenShims_) (impl (path GenShims_.ml))))
+   (module
+    (obj_name gen_intf)
+    (visibility public)
+    (source (path Gen_intf) (impl (path gen_intf.ml)))))))

@@ -2435,8 +2435,8 @@ let wait () = waitpid [] (-1)
 
 external system_job : string -> int job = "lwt_unix_system_job"
 
-# 2445 "src/unix/lwt_unix.cppo.ml"
-external unix_exit : int -> 'a = "caml_unix_exit"
+# 2447 "src/unix/lwt_unix.cppo.ml"
+external unix_exit : int -> 'a = "unix_exit"
 
 # 2450 "src/unix/lwt_unix.cppo.ml"
 let system cmd =

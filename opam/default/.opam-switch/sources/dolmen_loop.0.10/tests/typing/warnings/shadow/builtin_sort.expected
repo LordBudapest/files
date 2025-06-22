@@ -1,0 +1,4 @@
+File "tests/typing/warnings/shadow/builtin_sort.smt2", line 3, character 8-11:
+3 |   (par (Int) (
+            ^^^
+Warning Shadowing: `Int` is already defined by a builtin theory

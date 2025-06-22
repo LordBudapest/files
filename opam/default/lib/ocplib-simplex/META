@@ -1,0 +1,7 @@
+version = "v0.5.1"
+description = ""
+requires = "logs"
+archive(byte) = "OcplibSimplex.cma"
+archive(native) = "OcplibSimplex.cmxa"
+plugin(byte) = "OcplibSimplex.cma"
+plugin(native) = "OcplibSimplex.cmxs"

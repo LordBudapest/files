@@ -16,7 +16,7 @@ module T = struct
     fun x -> func x
   ;;
 
-  let (globalize : t -> t) = (globalize_float : t -> t)
+  let (globalize : (t[@ocaml.local]) -> t) = (globalize_float : (t[@ocaml.local]) -> t)
   let t_of_sexp = (float_of_sexp : Sexplib0.Sexp.t -> t)
   let sexp_of_t = (sexp_of_float : t -> Sexplib0.Sexp.t)
   let (t_sexp_grammar : t Sexplib0.Sexp_grammar.t) = float_sexp_grammar
@@ -442,7 +442,7 @@ let round_nearest_half_to_even t =
     else if diff_floor > diff_ceil
     then ceil_or_succ
     else if (* exact tie, pick the even *)
-            mod_float floor 2. = 0.
+      mod_float floor 2. = 0.
     then floor
     else ceil_or_succ)
 ;;
@@ -511,9 +511,7 @@ let int63_round_nearest_portable_alloc_exn t0 =
       ()
 ;;
 
-let[@inline] int63_round_nearest_arch64_noalloc_exn f =
-  Int63.of_int (iround_nearest_exn f)
-;;
+let int63_round_nearest_arch64_noalloc_exn f = Int63.of_int (iround_nearest_exn f)
 
 let int63_round_nearest_exn =
   match Word_size.word_size with
@@ -536,10 +534,9 @@ module Class = struct
     | Normal
     | Subnormal
     | Zero
-  [@@deriving_inline compare ~localize, enumerate, sexp, sexp_grammar]
+  [@@deriving_inline compare, enumerate, sexp, sexp_grammar]
 
-  let compare__local = (Stdlib.compare : t -> t -> int)
-  let compare = (fun a b -> compare__local a b : t -> t -> int)
+  let compare = (Stdlib.compare : t -> t -> int)
   let all = ([ Infinite; Nan; Normal; Subnormal; Zero ] : t list)
 
   let t_of_sexp =
@@ -566,17 +563,17 @@ module Class = struct
        Sexplib0.Sexp_conv_error.empty_list_invalid_sum error_source__007_ sexp__006_
      | sexp__006_ ->
        Sexplib0.Sexp_conv_error.unexpected_stag error_source__007_ sexp__006_
-      : Sexplib0.Sexp.t -> t)
+       : Sexplib0.Sexp.t -> t)
   ;;
 
   let sexp_of_t =
     (function
-     | Infinite -> Sexplib0.Sexp.Atom "Infinite"
-     | Nan -> Sexplib0.Sexp.Atom "Nan"
-     | Normal -> Sexplib0.Sexp.Atom "Normal"
-     | Subnormal -> Sexplib0.Sexp.Atom "Subnormal"
-     | Zero -> Sexplib0.Sexp.Atom "Zero"
-      : t -> Sexplib0.Sexp.t)
+      | Infinite -> Sexplib0.Sexp.Atom "Infinite"
+      | Nan -> Sexplib0.Sexp.Atom "Nan"
+      | Normal -> Sexplib0.Sexp.Atom "Normal"
+      | Subnormal -> Sexplib0.Sexp.Atom "Subnormal"
+      | Zero -> Sexplib0.Sexp.Atom "Zero"
+                : t -> Sexplib0.Sexp.t)
   ;;
 
   let (t_sexp_grammar : t Sexplib0.Sexp_grammar.t) =
@@ -612,9 +609,9 @@ let classify t =
 
 let insert_underscores ?(delimiter = '_') ?(strip_zero = false) string =
   match String.lsplit2 string ~on:'.' with
-  | None -> Int_string_conversions.insert_delimiter string ~delimiter
+  | None -> Int_conversions.insert_delimiter string ~delimiter
   | Some (left, right) ->
-    let left = Int_string_conversions.insert_delimiter left ~delimiter in
+    let left = Int_conversions.insert_delimiter left ~delimiter in
     let right =
       if strip_zero then String.rstrip right ~drop:(fun c -> Char.( = ) c '0') else right
     in
@@ -677,7 +674,7 @@ let to_padded_compact_string_custom t ?(prefix = "") ~kilo ~mega ~giga ~tera ?pe
     else if diff_right > diff_left
     then k
     else if (* a tie *)
-            Int_replace_polymorphic_compare.( = ) (k mod 2) 0
+      Int_replace_polymorphic_compare.( = ) (k mod 2) 0
     then k
     else k + 1
   in
@@ -824,7 +821,7 @@ let round_gen x ~how =
          integers are, but their inverses in most cases are not. *)
       let abs_dd = Int.abs dd in
       if abs_dd > 22 || sd >= 16
-         (* 10**22 is exactly representable as a float, but 10**23 is not, so use the slow
+      (* 10**22 is exactly representable as a float, but 10**23 is not, so use the slow
          path.  Similarly, if we need 16 significant digits in the result, then the integer
          [round_nearest (x <op> order)] might not be exactly representable as a float, since
          for some ranges we only have 15 digits of precision guaranteed.
@@ -864,21 +861,13 @@ let clamp_exn t ~min ~max =
   (* Also fails if [min] or [max] is nan *)
   assert (min <= max);
   (* clamp_unchecked is in float0.ml *)
-  clamp_unchecked
-    ~to_clamp_maybe_nan:t
-    ~min_which_is_not_nan:min
-    ~max_which_is_not_nan:max
+  clamp_unchecked t ~min ~max
 ;;
 
 let clamp t ~min ~max =
   (* Also fails if [min] or [max] is nan *)
   if min <= max
-  then
-    Ok
-      (clamp_unchecked
-         ~to_clamp_maybe_nan:t
-         ~min_which_is_not_nan:min
-         ~max_which_is_not_nan:max)
+  then Ok (clamp_unchecked t ~min ~max)
   else
     Or_error.error_s
       (Sexp.message
@@ -894,7 +883,7 @@ let ( / ) = ( /. )
 let ( % ) = ( %. )
 let ( ~- ) = ( ~-. )
 
-let[@inline] sign_exn t : Sign.t =
+let sign_exn t : Sign.t =
   if t > 0.
   then Pos
   else if t < 0.
@@ -929,7 +918,7 @@ let ieee_exponent t =
 let ieee_mantissa t =
   let bits = Stdlib.Int64.bits_of_float t in
   (* This is safe because mantissa_mask64 < Int63.max_value *)
-  (Int63.of_int64_trunc [@inlined]) Stdlib.Int64.(logand bits mantissa_mask64)
+  (Int63.of_int64_trunc) Stdlib.Int64.(logand bits mantissa_mask64)
 ;;
 
 let create_ieee_exn ~negative ~exponent ~mantissa =
@@ -967,10 +956,10 @@ module Terse = struct
 end
 
 include Comparable.With_zero (struct
-  include T
+    include T
 
-  let zero = zero
-end)
+    let zero = zero
+  end)
 
 (* These are partly here as a performance hack to avoid some boxing we're getting with
    the versions we get from [With_zero].  They also make [Float.is_negative nan] and
@@ -982,11 +971,11 @@ let is_negative t = t < 0.
 let is_non_positive t = t <= 0.
 
 include Pretty_printer.Register (struct
-  include T
+    include T
 
-  let module_name = "Base.Float"
-  let to_string = to_string
-end)
+    let module_name = "Base.Float"
+    let to_string = to_string
+  end)
 
 module O = struct
   let ( + ) = ( + )

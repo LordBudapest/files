@@ -1,0 +1,6 @@
+description = ""
+requires = "str zarith"
+archive(byte) = "qed.cma"
+archive(native) = "qed.cmxa"
+plugin(byte) = "qed.cma"
+plugin(native) = "qed.cmxs"

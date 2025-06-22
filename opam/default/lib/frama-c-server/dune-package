@@ -1,0 +1,235 @@
+(lang dune 3.19)
+(name frama-c-server)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-server)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-server))
+(files
+ (lib
+  (META
+   core/data.ml
+   core/data.mli
+   core/jbuffer.ml
+   core/jbuffer.mli
+   core/kernel_ast.ml
+   core/kernel_ast.mli
+   core/kernel_main.ml
+   core/kernel_main.mli
+   core/kernel_project.ml
+   core/kernel_project.mli
+   core/kernel_properties.ml
+   core/kernel_properties.mli
+   core/main.ml
+   core/main.mli
+   core/package.ml
+   core/package.mli
+   core/request.ml
+   core/request.mli
+   core/server.a
+   core/server.cma
+   core/server.cmi
+   core/server.cmt
+   core/server.cmx
+   core/server.cmxa
+   core/server.ml
+   core/server__Data.cmi
+   core/server__Data.cmt
+   core/server__Data.cmti
+   core/server__Data.cmx
+   core/server__Jbuffer.cmi
+   core/server__Jbuffer.cmt
+   core/server__Jbuffer.cmti
+   core/server__Jbuffer.cmx
+   core/server__Kernel_ast.cmi
+   core/server__Kernel_ast.cmt
+   core/server__Kernel_ast.cmti
+   core/server__Kernel_ast.cmx
+   core/server__Kernel_main.cmi
+   core/server__Kernel_main.cmt
+   core/server__Kernel_main.cmti
+   core/server__Kernel_main.cmx
+   core/server__Kernel_project.cmi
+   core/server__Kernel_project.cmt
+   core/server__Kernel_project.cmti
+   core/server__Kernel_project.cmx
+   core/server__Kernel_properties.cmi
+   core/server__Kernel_properties.cmt
+   core/server__Kernel_properties.cmti
+   core/server__Kernel_properties.cmx
+   core/server__Main.cmi
+   core/server__Main.cmt
+   core/server__Main.cmti
+   core/server__Main.cmx
+   core/server__Package.cmi
+   core/server__Package.cmt
+   core/server__Package.cmti
+   core/server__Package.cmx
+   core/server__Request.cmi
+   core/server__Request.cmt
+   core/server__Request.cmti
+   core/server__Request.cmx
+   core/server__Server_batch.cmi
+   core/server__Server_batch.cmt
+   core/server__Server_batch.cmti
+   core/server__Server_batch.cmx
+   core/server__Server_doc.cmi
+   core/server__Server_doc.cmt
+   core/server__Server_doc.cmti
+   core/server__Server_doc.cmx
+   core/server__Server_parameters.cmi
+   core/server__Server_parameters.cmt
+   core/server__Server_parameters.cmti
+   core/server__Server_parameters.cmx
+   core/server__Server_socket.cmi
+   core/server__Server_socket.cmt
+   core/server__Server_socket.cmti
+   core/server__Server_socket.cmx
+   core/server__Server_zmq.cmi
+   core/server__Server_zmq.cmt
+   core/server__Server_zmq.cmti
+   core/server__Server_zmq.cmx
+   core/server__States.cmi
+   core/server__States.cmt
+   core/server__States.cmti
+   core/server__States.cmx
+   core/server_batch.ml
+   core/server_batch.mli
+   core/server_doc.ml
+   core/server_doc.mli
+   core/server_parameters.ml
+   core/server_parameters.mli
+   core/server_socket.ml
+   core/server_socket.mli
+   core/server_zmq.ml
+   core/server_zmq.mli
+   core/states.ml
+   core/states.mli
+   dune-package
+   opam))
+ (lib_root (frama-c/plugins/server/META))
+ (libexec (core/server.cmxs)))
+(library
+ (name frama-c-server.core)
+ (kind normal)
+ (archives (byte core/server.cma) (native core/server.cmxa))
+ (plugins (byte core/server.cma) (native core/server.cmxs))
+ (native_archives core/server.a)
+ (requires frama-c.kernel)
+ (main_module_name Server)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name server)
+     (visibility public)
+     (kind alias)
+     (source (path Server) (impl (path core/server.ml-gen))))
+    (name Server)
+    (modules
+     (module
+      (obj_name server__Data)
+      (visibility public)
+      (source
+       (path Data)
+       (intf (path core/data.mli))
+       (impl (path core/data.ml))))
+     (module
+      (obj_name server__Jbuffer)
+      (visibility public)
+      (source
+       (path Jbuffer)
+       (intf (path core/jbuffer.mli))
+       (impl (path core/jbuffer.ml))))
+     (module
+      (obj_name server__Kernel_ast)
+      (visibility public)
+      (source
+       (path Kernel_ast)
+       (intf (path core/kernel_ast.mli))
+       (impl (path core/kernel_ast.ml))))
+     (module
+      (obj_name server__Kernel_main)
+      (visibility public)
+      (source
+       (path Kernel_main)
+       (intf (path core/kernel_main.mli))
+       (impl (path core/kernel_main.ml))))
+     (module
+      (obj_name server__Kernel_project)
+      (visibility public)
+      (source
+       (path Kernel_project)
+       (intf (path core/kernel_project.mli))
+       (impl (path core/kernel_project.ml))))
+     (module
+      (obj_name server__Kernel_properties)
+      (visibility public)
+      (source
+       (path Kernel_properties)
+       (intf (path core/kernel_properties.mli))
+       (impl (path core/kernel_properties.ml))))
+     (module
+      (obj_name server__Main)
+      (visibility public)
+      (source
+       (path Main)
+       (intf (path core/main.mli))
+       (impl (path core/main.ml))))
+     (module
+      (obj_name server__Package)
+      (visibility public)
+      (source
+       (path Package)
+       (intf (path core/package.mli))
+       (impl (path core/package.ml))))
+     (module
+      (obj_name server__Request)
+      (visibility public)
+      (source
+       (path Request)
+       (intf (path core/request.mli))
+       (impl (path core/request.ml))))
+     (module
+      (obj_name server__Server_batch)
+      (visibility public)
+      (source
+       (path Server_batch)
+       (intf (path core/server_batch.mli))
+       (impl (path core/server_batch.ml))))
+     (module
+      (obj_name server__Server_doc)
+      (visibility public)
+      (source
+       (path Server_doc)
+       (intf (path core/server_doc.mli))
+       (impl (path core/server_doc.ml))))
+     (module
+      (obj_name server__Server_parameters)
+      (visibility public)
+      (source
+       (path Server_parameters)
+       (intf (path core/server_parameters.mli))
+       (impl (path core/server_parameters.ml))))
+     (module
+      (obj_name server__Server_socket)
+      (visibility public)
+      (source
+       (path Server_socket)
+       (intf (path core/server_socket.mli))
+       (impl (path core/server_socket.ml))))
+     (module
+      (obj_name server__Server_zmq)
+      (visibility public)
+      (source
+       (path Server_zmq)
+       (intf (path core/server_zmq.mli))
+       (impl (path core/server_zmq.ml))))
+     (module
+      (obj_name server__States)
+      (visibility public)
+      (source
+       (path States)
+       (intf (path core/states.mli))
+       (impl (path core/states.ml))))))
+   (wrapped true))))

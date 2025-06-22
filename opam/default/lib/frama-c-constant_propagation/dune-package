@@ -1,0 +1,79 @@
+(lang dune 3.19)
+(name frama-c-constant_propagation)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-constant_propagation)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-constant_propagation))
+(files
+ (lib
+  (META
+   core/Constant_Propagation.a
+   core/Constant_Propagation.cma
+   core/Constant_Propagation.cmxa
+   core/Constant_Propagation.ml
+   core/api.ml
+   core/api.mli
+   core/constant_Propagation.cmi
+   core/constant_Propagation.cmt
+   core/constant_Propagation.cmx
+   core/constant_Propagation__.cmi
+   core/constant_Propagation__.cmt
+   core/constant_Propagation__.cmx
+   core/constant_Propagation__.ml
+   core/constant_Propagation__Api.cmi
+   core/constant_Propagation__Api.cmt
+   core/constant_Propagation__Api.cmti
+   core/constant_Propagation__Api.cmx
+   core/constant_Propagation__PropagationParameters.cmi
+   core/constant_Propagation__PropagationParameters.cmt
+   core/constant_Propagation__PropagationParameters.cmti
+   core/constant_Propagation__PropagationParameters.cmx
+   core/propagationParameters.ml
+   core/propagationParameters.mli
+   dune-package
+   opam))
+ (lib_root (frama-c/plugins/constant_propagation/META))
+ (libexec (core/Constant_Propagation.cmxs)))
+(library
+ (name frama-c-constant_propagation.core)
+ (kind normal)
+ (archives
+  (byte core/Constant_Propagation.cma)
+  (native core/Constant_Propagation.cmxa))
+ (plugins
+  (byte core/Constant_Propagation.cma)
+  (native core/Constant_Propagation.cmxs))
+ (native_archives core/Constant_Propagation.a)
+ (requires frama-c.kernel frama-c-eva.core)
+ (main_module_name Constant_Propagation)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name constant_Propagation__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Constant_Propagation__)
+      (impl (path core/constant_Propagation__.ml-gen))))
+    (name Constant_Propagation)
+    (modules
+     (module
+      (obj_name constant_Propagation__Api)
+      (visibility public)
+      (source (path Api) (intf (path core/api.mli)) (impl (path core/api.ml))))
+     (module
+      (obj_name constant_Propagation)
+      (visibility public)
+      (source
+       (path Constant_Propagation)
+       (impl (path core/Constant_Propagation.ml))))
+     (module
+      (obj_name constant_Propagation__PropagationParameters)
+      (visibility public)
+      (source
+       (path PropagationParameters)
+       (intf (path core/propagationParameters.mli))
+       (impl (path core/propagationParameters.ml))))))
+   (wrapped true))))

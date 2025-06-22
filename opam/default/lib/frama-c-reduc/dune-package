@@ -1,0 +1,123 @@
+(lang dune 3.19)
+(name frama-c-reduc)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-reduc)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-reduc))
+(files
+ (lib
+  (META
+   core/Reduc.ml
+   core/collect.ml
+   core/collect.mli
+   core/hyp.ml
+   core/hyp.mli
+   core/misc.ml
+   core/misc.mli
+   core/reduc.a
+   core/reduc.cma
+   core/reduc.cmi
+   core/reduc.cmt
+   core/reduc.cmx
+   core/reduc.cmxa
+   core/reduc__.cmi
+   core/reduc__.cmt
+   core/reduc__.cmx
+   core/reduc__.ml
+   core/reduc__Collect.cmi
+   core/reduc__Collect.cmt
+   core/reduc__Collect.cmti
+   core/reduc__Collect.cmx
+   core/reduc__Hyp.cmi
+   core/reduc__Hyp.cmt
+   core/reduc__Hyp.cmti
+   core/reduc__Hyp.cmx
+   core/reduc__Misc.cmi
+   core/reduc__Misc.cmt
+   core/reduc__Misc.cmti
+   core/reduc__Misc.cmx
+   core/reduc__Reduc_options.cmi
+   core/reduc__Reduc_options.cmt
+   core/reduc__Reduc_options.cmti
+   core/reduc__Reduc_options.cmx
+   core/reduc__Register.cmi
+   core/reduc__Register.cmt
+   core/reduc__Register.cmti
+   core/reduc__Register.cmx
+   core/reduc__Value2acsl.cmi
+   core/reduc__Value2acsl.cmt
+   core/reduc__Value2acsl.cmti
+   core/reduc__Value2acsl.cmx
+   core/reduc_options.ml
+   core/reduc_options.mli
+   core/register.ml
+   core/register.mli
+   core/value2acsl.ml
+   core/value2acsl.mli
+   dune-package
+   opam))
+ (lib_root (frama-c/plugins/reduc/META))
+ (libexec (core/reduc.cmxs)))
+(library
+ (name frama-c-reduc.core)
+ (kind normal)
+ (archives (byte core/reduc.cma) (native core/reduc.cmxa))
+ (plugins (byte core/reduc.cma) (native core/reduc.cmxs))
+ (native_archives core/reduc.a)
+ (requires frama-c.kernel frama-c-inout.core frama-c-eva.core)
+ (main_module_name Reduc)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name reduc__)
+     (visibility public)
+     (kind alias)
+     (source (path Reduc__) (impl (path core/reduc__.ml-gen))))
+    (name Reduc)
+    (modules
+     (module
+      (obj_name reduc__Collect)
+      (visibility public)
+      (source
+       (path Collect)
+       (intf (path core/collect.mli))
+       (impl (path core/collect.ml))))
+     (module
+      (obj_name reduc__Hyp)
+      (visibility public)
+      (source (path Hyp) (intf (path core/hyp.mli)) (impl (path core/hyp.ml))))
+     (module
+      (obj_name reduc__Misc)
+      (visibility public)
+      (source
+       (path Misc)
+       (intf (path core/misc.mli))
+       (impl (path core/misc.ml))))
+     (module
+      (obj_name reduc)
+      (visibility public)
+      (source (path Reduc) (impl (path core/Reduc.ml))))
+     (module
+      (obj_name reduc__Reduc_options)
+      (visibility public)
+      (source
+       (path Reduc_options)
+       (intf (path core/reduc_options.mli))
+       (impl (path core/reduc_options.ml))))
+     (module
+      (obj_name reduc__Register)
+      (visibility public)
+      (source
+       (path Register)
+       (intf (path core/register.mli))
+       (impl (path core/register.ml))))
+     (module
+      (obj_name reduc__Value2acsl)
+      (visibility public)
+      (source
+       (path Value2acsl)
+       (intf (path core/value2acsl.mli))
+       (impl (path core/value2acsl.ml))))))
+   (wrapped true))))

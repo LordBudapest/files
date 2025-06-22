@@ -1,0 +1,128 @@
+(lang dune 3.19)
+(name frama-c-security_slicing)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-security_slicing)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-security_slicing))
+(files
+ (lib
+  (META
+   core/Security_slicing.ml
+   core/components.ml
+   core/components.mli
+   core/security_slicing.a
+   core/security_slicing.cma
+   core/security_slicing.cmi
+   core/security_slicing.cmt
+   core/security_slicing.cmx
+   core/security_slicing.cmxa
+   core/security_slicing__.cmi
+   core/security_slicing__.cmt
+   core/security_slicing__.cmx
+   core/security_slicing__.ml
+   core/security_slicing__Components.cmi
+   core/security_slicing__Components.cmt
+   core/security_slicing__Components.cmti
+   core/security_slicing__Components.cmx
+   core/security_slicing__Security_slicing_parameters.cmi
+   core/security_slicing__Security_slicing_parameters.cmt
+   core/security_slicing__Security_slicing_parameters.cmti
+   core/security_slicing__Security_slicing_parameters.cmx
+   core/security_slicing_parameters.ml
+   core/security_slicing_parameters.mli
+   dune-package
+   gui/register_gui.ml
+   gui/register_gui.mli
+   gui/security_slicing_gui.a
+   gui/security_slicing_gui.cma
+   gui/security_slicing_gui.cmi
+   gui/security_slicing_gui.cmt
+   gui/security_slicing_gui.cmx
+   gui/security_slicing_gui.cmxa
+   gui/security_slicing_gui.ml
+   gui/security_slicing_gui__Register_gui.cmi
+   gui/security_slicing_gui__Register_gui.cmt
+   gui/security_slicing_gui__Register_gui.cmti
+   gui/security_slicing_gui__Register_gui.cmx
+   opam))
+ (lib_root
+  (frama-c/plugins/security_slicing/META
+   frama-c/plugins_gui/security_slicing/META))
+ (libexec (core/security_slicing.cmxs gui/security_slicing_gui.cmxs)))
+(library
+ (name frama-c-security_slicing.core)
+ (kind normal)
+ (archives
+  (byte core/security_slicing.cma)
+  (native core/security_slicing.cmxa))
+ (plugins
+  (byte core/security_slicing.cma)
+  (native core/security_slicing.cmxs))
+ (native_archives core/security_slicing.a)
+ (requires frama-c.kernel frama-c-eva.core frama-c-pdg.core)
+ (main_module_name Security_slicing)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name security_slicing__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Security_slicing__)
+      (impl (path core/security_slicing__.ml-gen))))
+    (name Security_slicing)
+    (modules
+     (module
+      (obj_name security_slicing__Components)
+      (visibility public)
+      (source
+       (path Components)
+       (intf (path core/components.mli))
+       (impl (path core/components.ml))))
+     (module
+      (obj_name security_slicing)
+      (visibility public)
+      (source (path Security_slicing) (impl (path core/Security_slicing.ml))))
+     (module
+      (obj_name security_slicing__Security_slicing_parameters)
+      (visibility public)
+      (source
+       (path Security_slicing_parameters)
+       (intf (path core/security_slicing_parameters.mli))
+       (impl (path core/security_slicing_parameters.ml))))))
+   (wrapped true))))
+(library
+ (name frama-c-security_slicing.gui)
+ (kind normal)
+ (archives
+  (byte gui/security_slicing_gui.cma)
+  (native gui/security_slicing_gui.cmxa))
+ (plugins
+  (byte gui/security_slicing_gui.cma)
+  (native gui/security_slicing_gui.cmxs))
+ (native_archives gui/security_slicing_gui.a)
+ (requires frama-c.kernel frama-c.gui frama-c-security_slicing.core)
+ (main_module_name Security_slicing_gui)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name security_slicing_gui)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Security_slicing_gui)
+      (impl (path gui/security_slicing_gui.ml-gen))))
+    (name Security_slicing_gui)
+    (modules
+     (module
+      (obj_name security_slicing_gui__Register_gui)
+      (visibility public)
+      (source
+       (path Register_gui)
+       (intf (path gui/register_gui.mli))
+       (impl (path gui/register_gui.ml))))))
+   (wrapped true))))

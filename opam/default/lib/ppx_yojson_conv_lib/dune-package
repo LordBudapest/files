@@ -1,6 +1,6 @@
 (lang dune 3.19)
 (name ppx_yojson_conv_lib)
-(version v0.17.0)
+(version v0.16.0)
 (sections (lib .) (libexec .) (doc ../../doc/ppx_yojson_conv_lib))
 (files
  (lib

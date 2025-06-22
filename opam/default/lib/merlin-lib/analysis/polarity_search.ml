@@ -19,10 +19,7 @@ let rec normalize_path env path =
     match decl.Types.type_manifest with
     | Some body
       when decl.Types.type_private = Asttypes.Public
-           ||
-           match decl.Types.type_kind with
-           | Types.Type_abstract _ -> false
-           | _ -> true -> begin
+           || decl.Types.type_kind <> Types.Type_abstract -> begin
       match Types.get_desc body with
       | Types.Tconstr (path, _, _) -> normalize_path env path
       | _ -> path
@@ -154,7 +151,7 @@ let execute_query_as_type_search ?(limit = 100) ~env ~query ~modules () =
   |> List.map ~f:(fun (cost, path, desc) ->
          let name =
            Printtyp.wrap_printing_env env @@ fun () ->
-           let path = Out_type.rewrite_double_underscore_paths env path in
+           let path = Printtyp.rewrite_double_underscore_paths env path in
            Format.asprintf "%a" Printtyp.path path
          in
          let doc = None in

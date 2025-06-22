@@ -1,0 +1,56 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires =
+  "frama-c-callgraph.core
+   
+   
+   
+   frama-c-inout.core
+   
+   
+   
+   frama-c-pdg.core
+   
+   
+   
+   frama-c-slicing.core
+   
+   
+   
+   frama-c.kernel"
+  archive(byte) = "impact.cma"
+  archive(native) = "impact.cmxa"
+  plugin(byte) = "impact.cma"
+  plugin(native) = "impact.cmxs"
+)
+package "gui" (
+  directory = "gui"
+  description = ""
+  requires =
+  "frama-c-callgraph.core
+   
+   
+   
+   frama-c-impact.core
+   
+   
+   
+   frama-c-pdg.core
+   
+   
+   
+   frama-c-slicing.core
+   
+   
+   
+   frama-c.gui
+   
+   
+   
+   frama-c.kernel"
+  archive(byte) = "impact_gui.cma"
+  archive(native) = "impact_gui.cmxa"
+  plugin(byte) = "impact_gui.cma"
+  plugin(native) = "impact_gui.cmxs"
+)

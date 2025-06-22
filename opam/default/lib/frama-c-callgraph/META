@@ -1,0 +1,9 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires = "frama-c-eva.core frama-c.kernel"
+  archive(byte) = "callgraph.cma"
+  archive(native) = "callgraph.cmxa"
+  plugin(byte) = "callgraph.cma"
+  plugin(native) = "callgraph.cmxs"
+)

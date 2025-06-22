@@ -24,9 +24,7 @@ module Named = struct
 end
 
 module type Accessors_generic = sig
-  type ('a, 'cmp) t
-
-  include Container.Generic with type ('a, 'cmp, _) t := ('a, 'cmp) t
+  include Container.Generic
 
   type ('a, 'cmp) tree
 
@@ -51,7 +49,7 @@ module type Accessors_generic = sig
     : ( 'a
       , 'cmp
       , ('a, 'cmp) t -> ('a, 'cmp) t -> ('a elt, 'a elt) Either.t Sequence.t )
-      access_options
+        access_options
 
   val compare_direct : ('a, 'cmp, ('a, 'cmp) t -> ('a, 'cmp) t -> int) access_options
   val equal : ('a, 'cmp, ('a, 'cmp) t -> ('a, 'cmp) t -> bool) access_options
@@ -63,35 +61,42 @@ module type Accessors_generic = sig
       : ( 'a
         , 'cmp
         , ('a, 'cmp) t Named.t -> of_:('a, 'cmp) t Named.t -> unit Or_error.t )
-        access_options
+          access_options
 
     val equal
       : ( 'a
         , 'cmp
         , ('a, 'cmp) t Named.t -> ('a, 'cmp) t Named.t -> unit Or_error.t )
-        access_options
+          access_options
   end
 
   val fold_until
     :  ('a, _) t
     -> init:'acc
-    -> f:('acc -> 'a elt -> ('acc, 'final) Container.Continue_or_stop.t)
-    -> finish:('acc -> 'final)
+    -> f:(('acc -> 'a elt -> ('acc, 'final) Container.Continue_or_stop.t)[@local])
+    -> finish:(('acc -> 'final)[@local])
     -> 'final
 
-  val fold_right : ('a, _) t -> init:'acc -> f:('a elt -> 'acc -> 'acc) -> 'acc
+  val fold_right : ('a, _) t -> init:'acc -> f:(('a elt -> 'acc -> 'acc)[@local]) -> 'acc
 
   val iter2
     : ( 'a
       , 'cmp
       , ('a, 'cmp) t
-        -> ('a, 'cmp) t
-        -> f:([ `Left of 'a elt | `Right of 'a elt | `Both of 'a elt * 'a elt ] -> unit)
-        -> unit )
-      access_options
+      -> ('a, 'cmp) t
+      -> f:
+           (([ `Left of 'a elt | `Right of 'a elt | `Both of 'a elt * 'a elt ] -> unit)
+            [@local])
+      -> unit )
+        access_options
 
-  val filter : ('a, 'cmp) t -> f:('a elt -> bool) -> ('a, 'cmp) t
-  val partition_tf : ('a, 'cmp) t -> f:('a elt -> bool) -> ('a, 'cmp) t * ('a, 'cmp) t
+  val filter : ('a, 'cmp) t -> f:(('a elt -> bool)[@local]) -> ('a, 'cmp) t
+
+  val partition_tf
+    :  ('a, 'cmp) t
+    -> f:(('a elt -> bool)[@local])
+    -> ('a, 'cmp) t * ('a, 'cmp) t
+
   val elements : ('a, _) t -> 'a elt list
   val min_elt : ('a, _) t -> 'a elt option
   val min_elt_exn : ('a, _) t -> 'a elt
@@ -104,7 +109,7 @@ module type Accessors_generic = sig
     : ( 'a
       , 'cmp
       , ('a, 'cmp) t -> 'a elt -> ('a, 'cmp) t * 'a elt option * ('a, 'cmp) t )
-      access_options
+        access_options
 
   val split_le_gt
     : ('a, 'cmp, ('a, 'cmp) t -> 'a elt -> ('a, 'cmp) t * ('a, 'cmp) t) access_options
@@ -112,51 +117,55 @@ module type Accessors_generic = sig
   val split_lt_ge
     : ('a, 'cmp, ('a, 'cmp) t -> 'a elt -> ('a, 'cmp) t * ('a, 'cmp) t) access_options
 
-  val group_by : ('a, 'cmp) t -> equiv:('a elt -> 'a elt -> bool) -> ('a, 'cmp) t list
-  val find_exn : ('a, _) t -> f:('a elt -> bool) -> 'a elt
+  val group_by
+    :  ('a, 'cmp) t
+    -> equiv:(('a elt -> 'a elt -> bool)[@local])
+    -> ('a, 'cmp) t list
+
+  val find_exn : ('a, _) t -> f:(('a elt -> bool)[@local]) -> 'a elt
   val nth : ('a, _) t -> int -> 'a elt option
   val remove_index : ('a, 'cmp, ('a, 'cmp) t -> int -> ('a, 'cmp) t) access_options
-  val to_tree : ('a, 'cmp) t -> ('a, 'cmp) tree
+  val to_tree : ('a, 'cmp) t -> ('a elt, 'cmp cmp) tree
 
   val to_sequence
     : ( 'a
       , 'cmp
       , ?order:[ `Increasing | `Decreasing ]
-        -> ?greater_or_equal_to:'a elt
-        -> ?less_or_equal_to:'a elt
-        -> ('a, 'cmp) t
-        -> 'a elt Sequence.t )
-      access_options
+      -> ?greater_or_equal_to:'a elt
+      -> ?less_or_equal_to:'a elt
+      -> ('a, 'cmp) t
+      -> 'a elt Sequence.t )
+        access_options
 
   val binary_search
     : ( 'a
       , 'cmp
       , ('a, 'cmp) t
-        -> compare:('a elt -> 'key -> int)
-        -> Binary_searchable.Which_target_by_key.t
-        -> 'key
-        -> 'a elt option )
-      access_options
+      -> compare:(('a elt -> 'key -> int)[@local])
+      -> Binary_searchable.Which_target_by_key.t
+      -> 'key
+      -> 'a elt option )
+        access_options
 
   val binary_search_segmented
     : ( 'a
       , 'cmp
       , ('a, 'cmp) t
-        -> segment_of:('a elt -> [ `Left | `Right ])
-        -> Binary_searchable.Which_target_by_segment.t
-        -> 'a elt option )
-      access_options
+      -> segment_of:(('a elt -> [ `Left | `Right ])[@local])
+      -> Binary_searchable.Which_target_by_segment.t
+      -> 'a elt option )
+        access_options
 
   val merge_to_sequence
     : ( 'a
       , 'cmp
       , ?order:[ `Increasing | `Decreasing ]
-        -> ?greater_or_equal_to:'a elt
-        -> ?less_or_equal_to:'a elt
-        -> ('a, 'cmp) t
-        -> ('a, 'cmp) t
-        -> ('a elt, 'a elt) Merge_to_sequence_element.t Sequence.t )
-      access_options
+      -> ?greater_or_equal_to:'a elt
+      -> ?less_or_equal_to:'a elt
+      -> ('a, 'cmp) t
+      -> ('a, 'cmp) t
+      -> ('a elt, 'a elt) Merge_to_sequence_element.t Sequence.t )
+        access_options
 end
 
 module type Creators_generic = sig
@@ -177,10 +186,9 @@ module type Creators_generic = sig
   val of_sorted_array_unchecked : ('a, 'cmp, 'a elt array -> ('a, 'cmp) t) create_options
 
   val of_increasing_iterator_unchecked
-    : ('a, 'cmp, len:int -> f:(int -> 'a elt) -> ('a, 'cmp) t) create_options
+    : ('a, 'cmp, len:int -> f:((int -> 'a elt)[@local]) -> ('a, 'cmp) t) create_options
 
   val stable_dedup_list : ('a, _, 'a elt list -> 'a elt list) create_options
-    [@@deprecated "[since 2023-04] Use [List.stable_dedup] instead."]
 
   (** The types of [map] and [filter_map] are subtle.  The input set, [('a, _) set],
       reflects the fact that these functions take a set of *any* type, with any
@@ -191,16 +199,19 @@ module type Creators_generic = sig
       - [Set.map] -- comparator comes as an argument
       - [Set.Poly.map] -- comparator is polymorphic comparison
       - [Foo.Set.map] -- comparator is [Foo.comparator] *)
-  val map : ('b, 'cmp, ('a, _) set -> f:('a -> 'b elt) -> ('b, 'cmp) t) create_options
+  val map
+    : ('b, 'cmp, ('a, _) set -> f:(('a -> 'b elt)[@local]) -> ('b, 'cmp) t) create_options
 
   val filter_map
-    : ('b, 'cmp, ('a, _) set -> f:('a -> 'b elt option) -> ('b, 'cmp) t) create_options
+    : ( 'b
+      , 'cmp
+      , ('a, _) set -> f:(('a -> 'b elt option)[@local]) -> ('b, 'cmp) t )
+        create_options
 
-  val of_tree : ('a, 'cmp, ('a, 'cmp) tree -> ('a, 'cmp) t) create_options
+  val of_tree : ('a, 'cmp, ('a elt, 'cmp cmp) tree -> ('a, 'cmp) t) create_options
 end
 
 module type Creators_and_accessors_generic = sig
-  type ('elt, 'cmp) set
   type ('elt, 'cmp) t
   type ('elt, 'cmp) tree
   type 'elt elt
@@ -208,35 +219,32 @@ module type Creators_and_accessors_generic = sig
 
   include
     Accessors_generic
-      with type ('a, 'b) t := ('a, 'b) t
-      with type ('a, 'b) tree := ('a, 'b) tree
-      with type 'a elt := 'a elt
-      with type 'cmp cmp := 'cmp cmp
+    with type ('a, 'b) t := ('a, 'b) t
+    with type ('a, 'b) tree := ('a, 'b) tree
+    with type 'a elt := 'a elt
+    with type 'cmp cmp := 'cmp cmp
 
   include
     Creators_generic
-      with type ('a, 'b) set := ('a, 'b) set
-      with type ('a, 'b) t := ('a, 'b) t
-      with type ('a, 'b) tree := ('a, 'b) tree
-      with type 'a elt := 'a elt
-      with type 'cmp cmp := 'cmp cmp
+    with type ('a, 'b) t := ('a, 'b) t
+    with type ('a, 'b) tree := ('a, 'b) tree
+    with type 'a elt := 'a elt
+    with type 'cmp cmp := 'cmp cmp
 end
 
 module type S_poly = sig
-  type ('elt, 'cmp) set
   type 'elt t
   type 'elt tree
   type comparator_witness
 
   include
     Creators_and_accessors_generic
-      with type ('elt, 'cmp) set := ('elt, 'cmp) set
-      with type ('elt, 'cmp) t := 'elt t
-      with type ('elt, 'cmp) tree := 'elt tree
-      with type 'a elt := 'a
-      with type 'c cmp := comparator_witness
-      with type ('a, 'b, 'c) create_options := ('a, 'b, 'c) Without_comparator.t
-      with type ('a, 'b, 'c) access_options := ('a, 'b, 'c) Without_comparator.t
+    with type ('elt, 'cmp) t := 'elt t
+    with type ('elt, 'cmp) tree := 'elt tree
+    with type 'a elt := 'a
+    with type 'c cmp := comparator_witness
+    with type ('a, 'b, 'c) create_options := ('a, 'b, 'c) Without_comparator.t
+    with type ('a, 'b, 'c) access_options := ('a, 'b, 'c) Without_comparator.t
 end
 
 module type For_deriving = sig
@@ -312,6 +320,9 @@ module type Set = sig
 
   [@@@end]
 
+  type ('k, 'cmp) comparator = ('k, 'cmp) Comparator.Module.t
+  [@@deprecated "[since 2021-12] use [Comparator.Module.t] instead"]
+
   (** Tests internal invariants of the set data structure.  Returns true on success. *)
   val invariants : (_, _) t -> bool
 
@@ -348,7 +359,7 @@ module type Set = sig
   (** [union t1 t2] returns the union of the two sets.  [O(length t1 + length t2)]. *)
   val union : ('a, 'cmp) t -> ('a, 'cmp) t -> ('a, 'cmp) t
 
-  (** [union_list c list] returns the union of all the sets in [list].  The
+  (** [union c list] returns the union of all the sets in [list].  The
       [comparator] argument is required for the case where [list] is empty.
       [O(max(List.length list, n log n))], where [n] is the sum of sizes of the input sets. *)
   val union_list : ('a, 'cmp) Comparator.Module.t -> ('a, 'cmp) t list -> ('a, 'cmp) t
@@ -383,36 +394,36 @@ module type Set = sig
 
   (** [exists t ~f] returns [true] iff there exists an [a] in [t] for which [f a].  [O(n)],
       but returns as soon as it finds an [a] for which [f a]. *)
-  val exists : ('a, _) t -> f:('a -> bool) -> bool
+  val exists : ('a, _) t -> f:(('a -> bool)[@local]) -> bool
 
   (** [for_all t ~f] returns [true] iff for all [a] in [t], [f a].  [O(n)], but returns as
       soon as it finds an [a] for which [not (f a)]. *)
-  val for_all : ('a, _) t -> f:('a -> bool) -> bool
+  val for_all : ('a, _) t -> f:(('a -> bool)[@local]) -> bool
 
   (** [count t] returns the number of elements of [t] for which [f] returns [true].
       [O(n)]. *)
-  val count : ('a, _) t -> f:('a -> bool) -> int
+  val count : ('a, _) t -> f:(('a -> bool)[@local]) -> int
 
   (** [sum t] returns the sum of [f t] for each [t] in the set.
       [O(n)]. *)
   val sum
     :  (module Container.Summable with type t = 'sum)
     -> ('a, _) t
-    -> f:('a -> 'sum)
+    -> f:(('a -> 'sum)[@local])
     -> 'sum
 
   (** [find t f] returns an element of [t] for which [f] returns true, with no guarantee as
       to which element is returned.  [O(n)], but returns as soon as a suitable element is
       found. *)
-  val find : ('a, _) t -> f:('a -> bool) -> 'a option
+  val find : ('a, _) t -> f:(('a -> bool)[@local]) -> 'a option
 
   (** [find_map t f] returns [b] for some [a] in [t] for which [f a = Some b].  If no such
       [a] exists, then [find] returns [None].  [O(n)], but returns as soon as a suitable
       element is found. *)
-  val find_map : ('a, _) t -> f:('a -> 'b option) -> 'b option
+  val find_map : ('a, _) t -> f:(('a -> 'b option)[@local]) -> 'b option
 
   (** Like [find], but throws an exception on failure. *)
-  val find_exn : ('a, _) t -> f:('a -> bool) -> 'a
+  val find_exn : ('a, _) t -> f:(('a -> bool)[@local]) -> 'a
 
   (** [nth t i] returns the [i]th smallest element of [t], in [O(log n)] time.  The
       smallest element has [i = 0].  Returns [None] if [i < 0] or [i >= length t]. *)
@@ -499,7 +510,7 @@ module type Set = sig
   val of_increasing_iterator_unchecked
     :  ('a, 'cmp) Comparator.Module.t
     -> len:int
-    -> f:(int -> 'a)
+    -> f:((int -> 'a)[@local])
     -> ('a, 'cmp) t
 
   (** [stable_dedup_list] is here rather than in the [List] module because the
@@ -507,32 +518,35 @@ module type Set = sig
       of polymorphic comparison by instantiating the functor at a different implementation
       of [Comparator] and using the resulting [stable_dedup_list]. *)
   val stable_dedup_list : ('a, _) Comparator.Module.t -> 'a list -> 'a list
-    [@@deprecated "[since 2023-04] Use [List.stable_dedup] instead."]
 
   (** [map c t ~f] returns a new set created by applying [f] to every element in
       [t].  The returned set is based on the provided [comparator].  [O(n log n)]. *)
-  val map : ('b, 'cmp) Comparator.Module.t -> ('a, _) t -> f:('a -> 'b) -> ('b, 'cmp) t
+  val map
+    :  ('b, 'cmp) Comparator.Module.t
+    -> ('a, _) t
+    -> f:(('a -> 'b)[@local])
+    -> ('b, 'cmp) t
 
   (** Like {!map}, except elements for which [f] returns [None] will be dropped.  *)
   val filter_map
     :  ('b, 'cmp) Comparator.Module.t
     -> ('a, _) t
-    -> f:('a -> 'b option)
+    -> f:(('a -> 'b option)[@local])
     -> ('b, 'cmp) t
 
   (** [filter t ~f] returns the subset of [t] for which [f] evaluates to true.  [O(n log
       n)]. *)
-  val filter : ('a, 'cmp) t -> f:('a -> bool) -> ('a, 'cmp) t
+  val filter : ('a, 'cmp) t -> f:(('a -> bool)[@local]) -> ('a, 'cmp) t
 
   (** [fold t ~init ~f] folds over the elements of the set from smallest to largest. *)
-  val fold : ('a, _) t -> init:'acc -> f:('acc -> 'a -> 'acc) -> 'acc
+  val fold : ('a, _) t -> init:'acc -> f:(('acc -> 'a -> 'acc)[@local]) -> 'acc
 
   (** [fold_result ~init ~f] folds over the elements of the set from smallest to
       largest, short circuiting the fold if [f accum x] is an [Error _] *)
   val fold_result
     :  ('a, _) t
     -> init:'acc
-    -> f:('acc -> 'a -> ('acc, 'e) Result.t)
+    -> f:(('acc -> 'a -> ('acc, 'e) Result.t)[@local])
     -> ('acc, 'e) Result.t
 
   (** [fold_until t ~init ~f] is a short-circuiting version of [fold]. If [f]
@@ -541,16 +555,17 @@ module type Set = sig
   val fold_until
     :  ('a, _) t
     -> init:'acc
-    -> f:('acc -> 'a -> ('acc, 'final) Container.Continue_or_stop.t)
-    -> finish:('acc -> 'final)
+    -> f:(('acc -> 'a -> ('acc, 'final) Container.Continue_or_stop.t)[@local])
+    -> finish:(('acc -> 'final)[@local])
     -> 'final
 
+
   (** Like {!fold}, except that it goes from the largest to the smallest element. *)
-  val fold_right : ('a, _) t -> init:'acc -> f:('a -> 'acc -> 'acc) -> 'acc
+  val fold_right : ('a, _) t -> init:'acc -> f:(('a -> 'acc -> 'acc)[@local]) -> 'acc
 
   (** [iter t ~f] calls [f] on every element of [t], going in order from the smallest to
       largest.  *)
-  val iter : ('a, _) t -> f:('a -> unit) -> unit
+  val iter : ('a, _) t -> f:(('a -> unit)[@local]) -> unit
 
   (** Iterate two sets side by side.  Complexity is [O(m+n)] where [m] and [n] are the sizes
       of the two input sets.  As an example, with the inputs [0; 1] and [1; 2], [f] will be
@@ -558,12 +573,15 @@ module type Set = sig
   val iter2
     :  ('a, 'cmp) t
     -> ('a, 'cmp) t
-    -> f:([ `Left of 'a | `Right of 'a | `Both of 'a * 'a ] -> unit)
+    -> f:(([ `Left of 'a | `Right of 'a | `Both of 'a * 'a ] -> unit)[@local])
     -> unit
 
   (** if [a, b = partition_tf set ~f] then [a] is the elements on which [f] produced [true],
       and [b] is the elements on which [f] produces [false]. *)
-  val partition_tf : ('a, 'cmp) t -> f:('a -> bool) -> ('a, 'cmp) t * ('a, 'cmp) t
+  val partition_tf
+    :  ('a, 'cmp) t
+    -> f:(('a -> bool)[@local])
+    -> ('a, 'cmp) t * ('a, 'cmp) t
 
   (** Same as {!to_list}. *)
   val elements : ('a, _) t -> 'a list
@@ -622,7 +640,7 @@ module type Set = sig
 
       [group_by] runs in O(n^2) time, so if you have a comparison function, it's usually
       much faster to use [Set.of_list]. *)
-  val group_by : ('a, 'cmp) t -> equiv:('a -> 'a -> bool) -> ('a, 'cmp) t list
+  val group_by : ('a, 'cmp) t -> equiv:(('a -> 'a -> bool)[@local]) -> ('a, 'cmp) t list
 
   (** [to_sequence t] converts the set [t] to a sequence of the elements between
       [greater_or_equal_to] and [less_or_equal_to] inclusive in the order indicated by
@@ -653,7 +671,7 @@ module type Set = sig
       [compare] mutates [t]. *)
   val binary_search
     :  ('a, 'cmp) t
-    -> compare:('a -> 'key -> int)
+    -> compare:(('a -> 'key -> int)[@local])
     -> [ `Last_strictly_less_than (**        {v | < elt X |                       v} *)
        | `Last_less_than_or_equal_to (**     {v |      <= elt       X |           v} *)
        | `Last_equal_to (**                  {v           |   = elt X |           v} *)
@@ -681,7 +699,7 @@ module type Set = sig
       is also unspecified if [segment_of] mutates [t]. *)
   val binary_search_segmented
     :  ('a, 'cmp) t
-    -> segment_of:('a -> [ `Left | `Right ])
+    -> segment_of:(('a -> [ `Left | `Right ])[@local])
     -> [ `Last_on_left | `First_on_right ]
     -> 'a option
 
@@ -727,13 +745,16 @@ module type Set = sig
       doesn't (because there is no such thing as, say, String.sexp_of_comparator_witness,
       instead you would want to pass the comparator directly). *)
   module M (Elt : sig
-    type t
-    type comparator_witness
-  end) : sig
+      type t
+      type comparator_witness
+    end) : sig
     type nonrec t = (Elt.t, Elt.comparator_witness) t
   end
 
   include For_deriving with type ('a, 'b) t := ('a, 'b) t
+
+  (** A polymorphic Set. *)
+  module Poly : S_poly with type 'elt t = ('elt, Comparator.Poly.comparator_witness) t
 
   (** Using comparator is a similar interface as the toplevel of [Set], except the functions
       take a [~comparator:('elt, 'cmp) Comparator.t] where the functions at the toplevel of
@@ -777,26 +798,26 @@ module type Set = sig
 
       include
         Creators_and_accessors_generic
-          with type ('a, 'b) set := ('a, 'b) t
-          with type ('a, 'b) t := ('a, 'b) t
-          with type ('a, 'b) tree := ('a, 'b) t
-          with type 'a elt := 'a
-          with type 'c cmp := 'c
-          with type ('a, 'b, 'c) create_options := ('a, 'b, 'c) With_comparator.t
-          with type ('a, 'b, 'c) access_options := ('a, 'b, 'c) With_comparator.t
+        with type ('a, 'b) set := ('a, 'b) t
+        with type ('a, 'b) t := ('a, 'b) t
+        with type ('a, 'b) tree := ('a, 'b) t
+        with type 'a elt := 'a
+        with type 'c cmp := 'c
+        with type ('a, 'b, 'c) create_options := ('a, 'b, 'c) With_comparator.t
+        with type ('a, 'b, 'c) access_options := ('a, 'b, 'c) With_comparator.t
 
       val empty_without_value_restriction : (_, _) t
     end
 
     include
       Creators_and_accessors_generic
-        with type ('a, 'b) t := ('a, 'b) t
-        with type ('a, 'b) tree := ('a, 'b) Tree.t
-        with type ('a, 'b) set := ('a, 'b) t
-        with type 'a elt := 'a
-        with type 'c cmp := 'c
-        with type ('a, 'b, 'c) access_options := ('a, 'b, 'c) Without_comparator.t
-        with type ('a, 'b, 'c) create_options := ('a, 'b, 'c) With_comparator.t
+      with type ('a, 'b) t := ('a, 'b) t
+      with type ('a, 'b) tree := ('a, 'b) Tree.t
+      with type ('a, 'b) set := ('a, 'b) t
+      with type 'a elt := 'a
+      with type 'c cmp := 'c
+      with type ('a, 'b, 'c) access_options := ('a, 'b, 'c) Without_comparator.t
+      with type ('a, 'b, 'c) create_options := ('a, 'b, 'c) With_comparator.t
 
     val comparator_s : ('a, 'cmp) t -> ('a, 'cmp) Comparator.Module.t
     val comparator : ('a, 'cmp) t -> ('a, 'cmp) Comparator.t
@@ -813,15 +834,6 @@ module type Set = sig
     :  ('a, 'cmp) Comparator.Module.t
     -> ('a, 'cmp) Using_comparator.Tree.t
     -> ('a, 'cmp) t
-
-  (** A polymorphic Set. *)
-  module Poly :
-    S_poly
-      with type 'elt t = ('elt, Comparator.Poly.comparator_witness) t
-      with type comparator_witness := Comparator.Poly.comparator_witness
-      with type 'elt tree :=
-        ('elt, Comparator.Poly.comparator_witness) Using_comparator.Tree.t
-      with type ('elt, 'cmp) set := ('elt, 'cmp) t
 
   (** {2 Modules and module types for extending [Set]}
 

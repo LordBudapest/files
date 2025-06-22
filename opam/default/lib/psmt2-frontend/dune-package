@@ -1,0 +1,148 @@
+(lang dune 3.19)
+(name psmt2-frontend)
+(version 0.4.0)
+(sections (lib .) (libexec .) (doc ../../doc/psmt2-frontend))
+(files
+ (lib
+  (META
+   dune-package
+   main.ml
+   opam
+   options.ml
+   options.mli
+   psmt2Frontend.a
+   psmt2Frontend.cma
+   psmt2Frontend.cmi
+   psmt2Frontend.cmt
+   psmt2Frontend.cmx
+   psmt2Frontend.cmxa
+   psmt2Frontend.ml
+   psmt2Frontend__Main.cmi
+   psmt2Frontend__Main.cmt
+   psmt2Frontend__Main.cmx
+   psmt2Frontend__Options.cmi
+   psmt2Frontend__Options.cmt
+   psmt2Frontend__Options.cmti
+   psmt2Frontend__Options.cmx
+   psmt2Frontend__Smtlib_error.cmi
+   psmt2Frontend__Smtlib_error.cmt
+   psmt2Frontend__Smtlib_error.cmx
+   psmt2Frontend__Smtlib_lexer.cmi
+   psmt2Frontend__Smtlib_lexer.cmt
+   psmt2Frontend__Smtlib_lexer.cmx
+   psmt2Frontend__Smtlib_parser.cmi
+   psmt2Frontend__Smtlib_parser.cmt
+   psmt2Frontend__Smtlib_parser.cmti
+   psmt2Frontend__Smtlib_parser.cmx
+   psmt2Frontend__Smtlib_printer.cmi
+   psmt2Frontend__Smtlib_printer.cmt
+   psmt2Frontend__Smtlib_printer.cmx
+   psmt2Frontend__Smtlib_syntax.cmi
+   psmt2Frontend__Smtlib_syntax.cmt
+   psmt2Frontend__Smtlib_syntax.cmx
+   psmt2Frontend__Smtlib_ty.cmi
+   psmt2Frontend__Smtlib_ty.cmt
+   psmt2Frontend__Smtlib_ty.cmx
+   psmt2Frontend__Smtlib_typed_env.cmi
+   psmt2Frontend__Smtlib_typed_env.cmt
+   psmt2Frontend__Smtlib_typed_env.cmx
+   psmt2Frontend__Smtlib_typed_logic.cmi
+   psmt2Frontend__Smtlib_typed_logic.cmt
+   psmt2Frontend__Smtlib_typed_logic.cmx
+   psmt2Frontend__Smtlib_typing.cmi
+   psmt2Frontend__Smtlib_typing.cmt
+   psmt2Frontend__Smtlib_typing.cmx
+   psmt2Frontend__Version.cmi
+   psmt2Frontend__Version.cmt
+   psmt2Frontend__Version.cmti
+   psmt2Frontend__Version.cmx
+   smtlib_error.ml
+   smtlib_lexer.ml
+   smtlib_parser.ml
+   smtlib_parser.mli
+   smtlib_printer.ml
+   smtlib_syntax.ml
+   smtlib_ty.ml
+   smtlib_typed_env.ml
+   smtlib_typed_logic.ml
+   smtlib_typing.ml
+   version.ml
+   version.mli))
+ (libexec (psmt2Frontend.cmxs))
+ (doc (CHANGES.md LICENSE LICENSE.md README.md odoc-pages/index.mld)))
+(library
+ (name psmt2-frontend)
+ (kind normal)
+ (archives (byte psmt2Frontend.cma) (native psmt2Frontend.cmxa))
+ (plugins (byte psmt2Frontend.cma) (native psmt2Frontend.cmxs))
+ (native_archives psmt2Frontend.a)
+ (main_module_name Psmt2Frontend)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name psmt2Frontend)
+     (visibility public)
+     (kind alias)
+     (source (path Psmt2Frontend) (impl (path psmt2Frontend.ml-gen))))
+    (name Psmt2Frontend)
+    (modules
+     (module
+      (obj_name psmt2Frontend__Main)
+      (visibility public)
+      (source (path Main) (impl (path main.ml))))
+     (module
+      (obj_name psmt2Frontend__Options)
+      (visibility public)
+      (source
+       (path Options)
+       (intf (path options.mli))
+       (impl (path options.ml))))
+     (module
+      (obj_name psmt2Frontend__Smtlib_error)
+      (visibility public)
+      (source (path Smtlib_error) (impl (path smtlib_error.ml))))
+     (module
+      (obj_name psmt2Frontend__Smtlib_lexer)
+      (visibility public)
+      (source (path Smtlib_lexer) (impl (path smtlib_lexer.ml))))
+     (module
+      (obj_name psmt2Frontend__Smtlib_parser)
+      (visibility public)
+      (source
+       (path Smtlib_parser)
+       (intf (path smtlib_parser.mli))
+       (impl (path smtlib_parser.ml))))
+     (module
+      (obj_name psmt2Frontend__Smtlib_printer)
+      (visibility public)
+      (source (path Smtlib_printer) (impl (path smtlib_printer.ml))))
+     (module
+      (obj_name psmt2Frontend__Smtlib_syntax)
+      (visibility public)
+      (source (path Smtlib_syntax) (impl (path smtlib_syntax.ml))))
+     (module
+      (obj_name psmt2Frontend__Smtlib_ty)
+      (visibility public)
+      (source (path Smtlib_ty) (impl (path smtlib_ty.ml))))
+     (module
+      (obj_name psmt2Frontend__Smtlib_typed_env)
+      (visibility public)
+      (source (path Smtlib_typed_env) (impl (path smtlib_typed_env.ml))))
+     (module
+      (obj_name psmt2Frontend__Smtlib_typed_logic)
+      (visibility public)
+      (source (path Smtlib_typed_logic) (impl (path smtlib_typed_logic.ml))))
+     (module
+      (obj_name psmt2Frontend__Smtlib_typing)
+      (visibility public)
+      (source (path Smtlib_typing) (impl (path smtlib_typing.ml))))
+     (module
+      (obj_name psmt2Frontend__Version)
+      (visibility public)
+      (source
+       (path Version)
+       (intf (path version.mli))
+       (impl (path version.ml))))))
+   (wrapped true))))

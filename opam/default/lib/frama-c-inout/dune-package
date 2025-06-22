@@ -1,0 +1,156 @@
+(lang dune 3.19)
+(name frama-c-inout)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-inout)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-inout))
+(files
+ (lib
+  (META
+   core/Inout.ml
+   core/Inout.mli
+   core/context.ml
+   core/cumulative_analysis.ml
+   core/cumulative_analysis.mli
+   core/derefs.ml
+   core/derefs.mli
+   core/inout.a
+   core/inout.cma
+   core/inout.cmi
+   core/inout.cmt
+   core/inout.cmti
+   core/inout.cmx
+   core/inout.cmxa
+   core/inout__.cmi
+   core/inout__.cmt
+   core/inout__.cmx
+   core/inout__.ml
+   core/inout__Context.cmi
+   core/inout__Context.cmt
+   core/inout__Context.cmx
+   core/inout__Cumulative_analysis.cmi
+   core/inout__Cumulative_analysis.cmt
+   core/inout__Cumulative_analysis.cmti
+   core/inout__Cumulative_analysis.cmx
+   core/inout__Derefs.cmi
+   core/inout__Derefs.cmt
+   core/inout__Derefs.cmti
+   core/inout__Derefs.cmx
+   core/inout__Inout_parameters.cmi
+   core/inout__Inout_parameters.cmt
+   core/inout__Inout_parameters.cmti
+   core/inout__Inout_parameters.cmx
+   core/inout__Inputs.cmi
+   core/inout__Inputs.cmt
+   core/inout__Inputs.cmti
+   core/inout__Inputs.cmx
+   core/inout__Operational_inputs.cmi
+   core/inout__Operational_inputs.cmt
+   core/inout__Operational_inputs.cmti
+   core/inout__Operational_inputs.cmx
+   core/inout__Outputs.cmi
+   core/inout__Outputs.cmt
+   core/inout__Outputs.cmti
+   core/inout__Outputs.cmx
+   core/inout__Register.cmi
+   core/inout__Register.cmt
+   core/inout__Register.cmti
+   core/inout__Register.cmx
+   core/inout_parameters.ml
+   core/inout_parameters.mli
+   core/inputs.ml
+   core/inputs.mli
+   core/operational_inputs.ml
+   core/operational_inputs.mli
+   core/outputs.ml
+   core/outputs.mli
+   core/register.ml
+   core/register.mli
+   dune-package
+   opam))
+ (lib_root (frama-c/plugins/inout/META))
+ (libexec (core/inout.cmxs)))
+(library
+ (name frama-c-inout.core)
+ (kind normal)
+ (archives (byte core/inout.cma) (native core/inout.cmxa))
+ (plugins (byte core/inout.cma) (native core/inout.cmxs))
+ (native_archives core/inout.a)
+ (requires
+  frama-c.kernel
+  frama-c-callgraph.core
+  frama-c-eva.core
+  frama-c-from.core)
+ (main_module_name Inout)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name inout__)
+     (visibility public)
+     (kind alias)
+     (source (path Inout__) (impl (path core/inout__.ml-gen))))
+    (name Inout)
+    (modules
+     (module
+      (obj_name inout__Context)
+      (visibility public)
+      (source (path Context) (impl (path core/context.ml))))
+     (module
+      (obj_name inout__Cumulative_analysis)
+      (visibility public)
+      (source
+       (path Cumulative_analysis)
+       (intf (path core/cumulative_analysis.mli))
+       (impl (path core/cumulative_analysis.ml))))
+     (module
+      (obj_name inout__Derefs)
+      (visibility public)
+      (source
+       (path Derefs)
+       (intf (path core/derefs.mli))
+       (impl (path core/derefs.ml))))
+     (module
+      (obj_name inout)
+      (visibility public)
+      (source
+       (path Inout)
+       (intf (path core/Inout.mli))
+       (impl (path core/Inout.ml))))
+     (module
+      (obj_name inout__Inout_parameters)
+      (visibility public)
+      (source
+       (path Inout_parameters)
+       (intf (path core/inout_parameters.mli))
+       (impl (path core/inout_parameters.ml))))
+     (module
+      (obj_name inout__Inputs)
+      (visibility public)
+      (source
+       (path Inputs)
+       (intf (path core/inputs.mli))
+       (impl (path core/inputs.ml))))
+     (module
+      (obj_name inout__Operational_inputs)
+      (visibility public)
+      (source
+       (path Operational_inputs)
+       (intf (path core/operational_inputs.mli))
+       (impl (path core/operational_inputs.ml))))
+     (module
+      (obj_name inout__Outputs)
+      (visibility public)
+      (source
+       (path Outputs)
+       (intf (path core/outputs.mli))
+       (impl (path core/outputs.ml))))
+     (module
+      (obj_name inout__Register)
+      (visibility public)
+      (source
+       (path Register)
+       (intf (path core/register.mli))
+       (impl (path core/register.ml))))))
+   (wrapped true))))

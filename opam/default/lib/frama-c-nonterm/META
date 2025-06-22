@@ -1,0 +1,9 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires = "frama-c-eva.core frama-c.kernel"
+  archive(byte) = "nonterm.cma"
+  archive(native) = "nonterm.cmxa"
+  plugin(byte) = "nonterm.cma"
+  plugin(native) = "nonterm.cmxs"
+)

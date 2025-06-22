@@ -5,7 +5,9 @@ include Nativeint_replace_polymorphic_compare
 module T = struct
   type t = nativeint [@@deriving_inline globalize, hash, sexp, sexp_grammar]
 
-  let (globalize : t -> t) = (globalize_nativeint : t -> t)
+  let (globalize : (t[@ocaml.local]) -> t) =
+    (globalize_nativeint : (t[@ocaml.local]) -> t)
+  ;;
 
   let (hash_fold_t : Ppx_hash_lib.Std.Hash.state -> t -> Ppx_hash_lib.Std.Hash.state) =
     hash_fold_nativeint
@@ -32,46 +34,45 @@ include T
 include Comparator.Make (T)
 
 include Comparable.With_zero (struct
-  include T
+    include T
 
-  let zero = zero
-end)
+    let zero = zero
+  end)
 
 module Conv = Int_conversions
-include Int_string_conversions.Make (T)
+include Conv.Make (T)
 
-include Int_string_conversions.Make_hex (struct
-  open Nativeint_replace_polymorphic_compare
+include Conv.Make_hex (struct
+    open Nativeint_replace_polymorphic_compare
 
-  type t = nativeint [@@deriving_inline compare ~localize, hash]
+    type t = nativeint [@@deriving_inline compare, hash]
 
-  let compare__local = (compare_nativeint__local : t -> t -> int)
-  let compare = (fun a b -> compare__local a b : t -> t -> int)
+    let compare = (compare_nativeint : t -> t -> int)
 
-  let (hash_fold_t : Ppx_hash_lib.Std.Hash.state -> t -> Ppx_hash_lib.Std.Hash.state) =
-    hash_fold_nativeint
+    let (hash_fold_t : Ppx_hash_lib.Std.Hash.state -> t -> Ppx_hash_lib.Std.Hash.state) =
+      hash_fold_nativeint
 
-  and (hash : t -> Ppx_hash_lib.Std.Hash.hash_value) =
-    let func = hash_nativeint in
-    fun x -> func x
-  ;;
+    and (hash : t -> Ppx_hash_lib.Std.Hash.hash_value) =
+      let func = hash_nativeint in
+      fun x -> func x
+    ;;
 
-  [@@@end]
+    [@@@end]
 
-  let zero = zero
-  let neg = neg
-  let ( < ) = ( < )
-  let to_string i = Printf.sprintf "%nx" i
-  let of_string s = Stdlib.Scanf.sscanf s "%nx" Fn.id
-  let module_name = "Base.Nativeint.Hex"
-end)
+    let zero = zero
+    let neg = neg
+    let ( < ) = ( < )
+    let to_string i = Printf.sprintf "%nx" i
+    let of_string s = Stdlib.Scanf.sscanf s "%nx" Fn.id
+    let module_name = "Base.Nativeint.Hex"
+  end)
 
 include Pretty_printer.Register (struct
-  type nonrec t = t
+    type nonrec t = t
 
-  let to_string = to_string
-  let module_name = "Base.Nativeint"
-end)
+    let to_string = to_string
+    let module_name = "Base.Nativeint"
+  end)
 
 (* Open replace_polymorphic_compare after including functor instantiations so they do not
    shadow its definitions. This is here so that efficient versions of the comparison
@@ -104,7 +105,7 @@ let of_float_unchecked = of_float
 
 let of_float f =
   if Float_replace_polymorphic_compare.( >= ) f float_lower_bound
-     && Float_replace_polymorphic_compare.( <= ) f float_upper_bound
+  && Float_replace_polymorphic_compare.( <= ) f float_upper_bound
   then of_float f
   else
     Printf.invalid_argf
@@ -164,13 +165,13 @@ module Pow2 = struct
     :  (nativeint[@unboxed])
     -> (int[@untagged])
     = "Base_int_math_nativeint_clz" "Base_int_math_nativeint_clz_unboxed"
-    [@@noalloc]
+  [@@noalloc]
 
   external ctz
     :  (nativeint[@unboxed])
     -> (int[@untagged])
     = "Base_int_math_nativeint_ctz" "Base_int_math_nativeint_ctz_unboxed"
-    [@@noalloc]
+  [@@noalloc]
 
   (** Hacker's Delight Second Edition p106 *)
   let floor_log2 i =
@@ -200,7 +201,7 @@ end
 include Pow2
 
 let between t ~low ~high = low <= t && t <= high
-let clamp_unchecked t ~min:min_ ~max:max_ = min t max_ |> max min_
+let clamp_unchecked t ~min ~max = if t < min then min else if t <= max then t else max
 
 let clamp_exn t ~min ~max =
   assert (min <= max);
@@ -238,45 +239,13 @@ let of_int32 = Conv.int32_to_nativeint
 let of_int32_exn = of_int32
 let to_int32 = Conv.nativeint_to_int32
 let to_int32_exn = Conv.nativeint_to_int32_exn
-
-external to_int32_trunc
-  :  (nativeint[@local_opt])
-  -> (int32[@local_opt])
-  = "%nativeint_to_int32"
-
+let to_int32_trunc = Conv.nativeint_to_int32_trunc
 let of_int64 = Conv.int64_to_nativeint
 let of_int64_exn = Conv.int64_to_nativeint_exn
 let of_int64_trunc = Conv.int64_to_nativeint_trunc
 let to_int64 = Conv.nativeint_to_int64
 let pow b e = of_int_exn (Int_math.Private.int_pow (to_int_exn b) (to_int_exn e))
 let ( ** ) b e = pow b e
-
-include Int_string_conversions.Make_binary (struct
-  type t = nativeint [@@deriving_inline compare ~localize, equal ~localize, hash]
-
-  let compare__local = (compare_nativeint__local : t -> t -> int)
-  let compare = (fun a b -> compare__local a b : t -> t -> int)
-  let equal__local = (equal_nativeint__local : t -> t -> bool)
-  let equal = (fun a b -> equal__local a b : t -> t -> bool)
-
-  let (hash_fold_t : Ppx_hash_lib.Std.Hash.state -> t -> Ppx_hash_lib.Std.Hash.state) =
-    hash_fold_nativeint
-
-  and (hash : t -> Ppx_hash_lib.Std.Hash.hash_value) =
-    let func = hash_nativeint in
-    fun x -> func x
-  ;;
-
-  [@@@end]
-
-  let ( land ) = ( land )
-  let ( lsr ) = ( lsr )
-  let clz = clz
-  let num_bits = num_bits
-  let one = one
-  let to_int_exn = to_int_exn
-  let zero = zero
-end)
 
 module Pre_O = struct
   let ( + ) = ( + )
@@ -298,16 +267,16 @@ module O = struct
   include Pre_O
 
   include Int_math.Make (struct
-    type nonrec t = t
+      type nonrec t = t
 
-    include Pre_O
+      include Pre_O
 
-    let rem = rem
-    let to_float = to_float
-    let of_float = of_float
-    let of_string = T.of_string
-    let to_string = T.to_string
-  end)
+      let rem = rem
+      let to_float = to_float
+      let of_float = of_float
+      let of_string = T.of_string
+      let to_string = T.to_string
+    end)
 
   let ( land ) = bit_and
   let ( lor ) = bit_or

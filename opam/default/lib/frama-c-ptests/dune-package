@@ -1,0 +1,6 @@
+(lang dune 3.19)
+(name frama-c-ptests)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-ptests)
+ (bin /home/bhaskar/.opam/default/bin))
+(files (lib (META dune-package)) (bin (frama-c-ptests frama-c-wtests)))

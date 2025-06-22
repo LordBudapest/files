@@ -1,0 +1,1775 @@
+(lang dune 3.19)
+(name frama-c-eva)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-eva)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-eva))
+(files
+ (lib
+  (META
+   core/Eva.ml
+   core/Eva.mli
+   core/alarmset.ml
+   core/alarmset.mli
+   core/api/general_requests.ml
+   core/api/general_requests.mli
+   core/api/values_request.ml
+   core/api/values_request.mli
+   core/ast/eva_ast.ml
+   core/ast/eva_ast.mli
+   core/ast/eva_ast_builder.ml
+   core/ast/eva_ast_builder.mli
+   core/ast/eva_ast_datatype.ml
+   core/ast/eva_ast_datatype.mli
+   core/ast/eva_ast_printer.ml
+   core/ast/eva_ast_printer.mli
+   core/ast/eva_ast_types.ml
+   core/ast/eva_ast_types.mli
+   core/ast/eva_ast_typing.ml
+   core/ast/eva_ast_typing.mli
+   core/ast/eva_ast_utils.ml
+   core/ast/eva_ast_utils.mli
+   core/ast/eva_ast_visitor.ml
+   core/ast/eva_ast_visitor.mli
+   core/ast/eva_automata.ml
+   core/ast/eva_automata.mli
+   core/contexts/abstract_context.ml
+   core/contexts/context_product.ml
+   core/contexts/context_product.mli
+   core/contexts/unit_context.ml
+   core/contexts/unit_context.mli
+   core/domains/abstract_domain.ml
+   core/domains/cvalue/builtins.ml
+   core/domains/cvalue/builtins.mli
+   core/domains/cvalue/builtins_float.ml
+   core/domains/cvalue/builtins_float.mli
+   core/domains/cvalue/builtins_malloc.ml
+   core/domains/cvalue/builtins_malloc.mli
+   core/domains/cvalue/builtins_memory.ml
+   core/domains/cvalue/builtins_memory.mli
+   core/domains/cvalue/builtins_misc.ml
+   core/domains/cvalue/builtins_misc.mli
+   core/domains/cvalue/builtins_print_c.ml
+   core/domains/cvalue/builtins_print_c.mli
+   core/domains/cvalue/builtins_split.ml
+   core/domains/cvalue/builtins_split.mli
+   core/domains/cvalue/builtins_string.ml
+   core/domains/cvalue/builtins_string.mli
+   core/domains/cvalue/builtins_watchpoint.ml
+   core/domains/cvalue/builtins_watchpoint.mli
+   core/domains/cvalue/cvalue_domain.ml
+   core/domains/cvalue/cvalue_domain.mli
+   core/domains/cvalue/cvalue_init.ml
+   core/domains/cvalue/cvalue_init.mli
+   core/domains/cvalue/cvalue_offsetmap.ml
+   core/domains/cvalue/cvalue_offsetmap.mli
+   core/domains/cvalue/cvalue_queries.ml
+   core/domains/cvalue/cvalue_queries.mli
+   core/domains/cvalue/cvalue_results.ml
+   core/domains/cvalue/cvalue_results.mli
+   core/domains/cvalue/cvalue_transfer.ml
+   core/domains/cvalue/cvalue_transfer.mli
+   core/domains/cvalue/locals_scoping.ml
+   core/domains/cvalue/locals_scoping.mli
+   core/domains/domain_builder.ml
+   core/domains/domain_builder.mli
+   core/domains/domain_lift.ml
+   core/domains/domain_lift.mli
+   core/domains/domain_mode.ml
+   core/domains/domain_mode.mli
+   core/domains/domain_product.ml
+   core/domains/domain_product.mli
+   core/domains/domain_store.ml
+   core/domains/domain_store.mli
+   core/domains/equality/equality.ml
+   core/domains/equality/equality.mli
+   core/domains/equality/equality_domain.ml
+   core/domains/equality/equality_domain.mli
+   core/domains/gauges/gauges_domain.ml
+   core/domains/gauges/gauges_domain.mli
+   core/domains/hcexprs.ml
+   core/domains/hcexprs.mli
+   core/domains/inout_domain.ml
+   core/domains/inout_domain.mli
+   core/domains/multidim/abstract_memory.ml
+   core/domains/multidim/abstract_memory.mli
+   core/domains/multidim/abstract_offset.ml
+   core/domains/multidim/abstract_offset.mli
+   core/domains/multidim/abstract_structure.ml
+   core/domains/multidim/abstract_structure.mli
+   core/domains/multidim/multidim.ml
+   core/domains/multidim/multidim.mli
+   core/domains/multidim/multidim_domain.ml
+   core/domains/multidim/multidim_domain.mli
+   core/domains/multidim/pretty_memory.ml
+   core/domains/multidim/pretty_memory.mli
+   core/domains/multidim/segmentation.ml
+   core/domains/multidim/segmentation.mli
+   core/domains/multidim/typed_memory.ml
+   core/domains/multidim/typed_memory.mli
+   core/domains/octagons.ml
+   core/domains/octagons.mli
+   core/domains/offsm_domain.ml
+   core/domains/offsm_domain.mli
+   core/domains/powerset.ml
+   core/domains/powerset.mli
+   core/domains/printer_domain.ml
+   core/domains/printer_domain.mli
+   core/domains/sign_domain.ml
+   core/domains/sign_domain.mli
+   core/domains/simple_memory.ml
+   core/domains/simple_memory.mli
+   core/domains/simpler_domains.ml
+   core/domains/symbolic_locs.ml
+   core/domains/symbolic_locs.mli
+   core/domains/taint_domain.ml
+   core/domains/taint_domain.mli
+   core/domains/traces_domain.ml
+   core/domains/traces_domain.mli
+   core/domains/unit_domain.ml
+   core/domains/unit_domain.mli
+   core/engine/abstractions.ml
+   core/engine/abstractions.mli
+   core/engine/analysis.ml
+   core/engine/analysis.mli
+   core/engine/compute_functions.ml
+   core/engine/compute_functions.mli
+   core/engine/evaluation.ml
+   core/engine/evaluation.mli
+   core/engine/evaluation_sig.ml
+   core/engine/function_calls.ml
+   core/engine/function_calls.mli
+   core/engine/initialization.ml
+   core/engine/initialization.mli
+   core/engine/iterator.ml
+   core/engine/iterator.mli
+   core/engine/mem_exec.ml
+   core/engine/mem_exec.mli
+   core/engine/recursion.ml
+   core/engine/recursion.mli
+   core/engine/subdivided_evaluation.ml
+   core/engine/subdivided_evaluation.mli
+   core/engine/transfer_logic.ml
+   core/engine/transfer_logic.mli
+   core/engine/transfer_specification.ml
+   core/engine/transfer_specification.mli
+   core/engine/transfer_stmt.ml
+   core/engine/transfer_stmt.mli
+   core/eva.a
+   core/eva.cma
+   core/eva.cmi
+   core/eva.cmt
+   core/eva.cmti
+   core/eva.cmx
+   core/eva.cmxa
+   core/eva__.cmi
+   core/eva__.cmt
+   core/eva__.cmx
+   core/eva__.ml
+   core/eva__Abstract.cmi
+   core/eva__Abstract.cmt
+   core/eva__Abstract.cmti
+   core/eva__Abstract.cmx
+   core/eva__Abstract_context.cmi
+   core/eva__Abstract_context.cmt
+   core/eva__Abstract_context.cmx
+   core/eva__Abstract_domain.cmi
+   core/eva__Abstract_domain.cmt
+   core/eva__Abstract_domain.cmx
+   core/eva__Abstract_location.cmi
+   core/eva__Abstract_location.cmt
+   core/eva__Abstract_location.cmx
+   core/eva__Abstract_memory.cmi
+   core/eva__Abstract_memory.cmt
+   core/eva__Abstract_memory.cmti
+   core/eva__Abstract_memory.cmx
+   core/eva__Abstract_offset.cmi
+   core/eva__Abstract_offset.cmt
+   core/eva__Abstract_offset.cmti
+   core/eva__Abstract_offset.cmx
+   core/eva__Abstract_structure.cmi
+   core/eva__Abstract_structure.cmt
+   core/eva__Abstract_structure.cmti
+   core/eva__Abstract_structure.cmx
+   core/eva__Abstract_value.cmi
+   core/eva__Abstract_value.cmt
+   core/eva__Abstract_value.cmx
+   core/eva__Abstractions.cmi
+   core/eva__Abstractions.cmt
+   core/eva__Abstractions.cmti
+   core/eva__Abstractions.cmx
+   core/eva__Active_behaviors.cmi
+   core/eva__Active_behaviors.cmt
+   core/eva__Active_behaviors.cmti
+   core/eva__Active_behaviors.cmx
+   core/eva__Alarmset.cmi
+   core/eva__Alarmset.cmt
+   core/eva__Alarmset.cmti
+   core/eva__Alarmset.cmx
+   core/eva__Analysis.cmi
+   core/eva__Analysis.cmt
+   core/eva__Analysis.cmti
+   core/eva__Analysis.cmx
+   core/eva__Assigns.cmi
+   core/eva__Assigns.cmt
+   core/eva__Assigns.cmti
+   core/eva__Assigns.cmx
+   core/eva__Auto_loop_unroll.cmi
+   core/eva__Auto_loop_unroll.cmt
+   core/eva__Auto_loop_unroll.cmti
+   core/eva__Auto_loop_unroll.cmx
+   core/eva__Backward_formals.cmi
+   core/eva__Backward_formals.cmt
+   core/eva__Backward_formals.cmti
+   core/eva__Backward_formals.cmx
+   core/eva__Builtins.cmi
+   core/eva__Builtins.cmt
+   core/eva__Builtins.cmti
+   core/eva__Builtins.cmx
+   core/eva__Builtins_float.cmi
+   core/eva__Builtins_float.cmt
+   core/eva__Builtins_float.cmti
+   core/eva__Builtins_float.cmx
+   core/eva__Builtins_malloc.cmi
+   core/eva__Builtins_malloc.cmt
+   core/eva__Builtins_malloc.cmti
+   core/eva__Builtins_malloc.cmx
+   core/eva__Builtins_memory.cmi
+   core/eva__Builtins_memory.cmt
+   core/eva__Builtins_memory.cmti
+   core/eva__Builtins_memory.cmx
+   core/eva__Builtins_misc.cmi
+   core/eva__Builtins_misc.cmt
+   core/eva__Builtins_misc.cmti
+   core/eva__Builtins_misc.cmx
+   core/eva__Builtins_print_c.cmi
+   core/eva__Builtins_print_c.cmt
+   core/eva__Builtins_print_c.cmti
+   core/eva__Builtins_print_c.cmx
+   core/eva__Builtins_split.cmi
+   core/eva__Builtins_split.cmt
+   core/eva__Builtins_split.cmti
+   core/eva__Builtins_split.cmx
+   core/eva__Builtins_string.cmi
+   core/eva__Builtins_string.cmt
+   core/eva__Builtins_string.cmti
+   core/eva__Builtins_string.cmx
+   core/eva__Builtins_watchpoint.cmi
+   core/eva__Builtins_watchpoint.cmt
+   core/eva__Builtins_watchpoint.cmti
+   core/eva__Builtins_watchpoint.cmx
+   core/eva__Callstack.cmi
+   core/eva__Callstack.cmt
+   core/eva__Callstack.cmti
+   core/eva__Callstack.cmx
+   core/eva__Compute_functions.cmi
+   core/eva__Compute_functions.cmt
+   core/eva__Compute_functions.cmti
+   core/eva__Compute_functions.cmx
+   core/eva__Context_product.cmi
+   core/eva__Context_product.cmt
+   core/eva__Context_product.cmti
+   core/eva__Context_product.cmx
+   core/eva__Cvalue_backward.cmi
+   core/eva__Cvalue_backward.cmt
+   core/eva__Cvalue_backward.cmti
+   core/eva__Cvalue_backward.cmx
+   core/eva__Cvalue_callbacks.cmi
+   core/eva__Cvalue_callbacks.cmt
+   core/eva__Cvalue_callbacks.cmti
+   core/eva__Cvalue_callbacks.cmx
+   core/eva__Cvalue_domain.cmi
+   core/eva__Cvalue_domain.cmt
+   core/eva__Cvalue_domain.cmti
+   core/eva__Cvalue_domain.cmx
+   core/eva__Cvalue_forward.cmi
+   core/eva__Cvalue_forward.cmt
+   core/eva__Cvalue_forward.cmti
+   core/eva__Cvalue_forward.cmx
+   core/eva__Cvalue_init.cmi
+   core/eva__Cvalue_init.cmt
+   core/eva__Cvalue_init.cmti
+   core/eva__Cvalue_init.cmx
+   core/eva__Cvalue_offsetmap.cmi
+   core/eva__Cvalue_offsetmap.cmt
+   core/eva__Cvalue_offsetmap.cmti
+   core/eva__Cvalue_offsetmap.cmx
+   core/eva__Cvalue_queries.cmi
+   core/eva__Cvalue_queries.cmt
+   core/eva__Cvalue_queries.cmti
+   core/eva__Cvalue_queries.cmx
+   core/eva__Cvalue_results.cmi
+   core/eva__Cvalue_results.cmt
+   core/eva__Cvalue_results.cmti
+   core/eva__Cvalue_results.cmx
+   core/eva__Cvalue_transfer.cmi
+   core/eva__Cvalue_transfer.cmt
+   core/eva__Cvalue_transfer.cmti
+   core/eva__Cvalue_transfer.cmx
+   core/eva__Deps.cmi
+   core/eva__Deps.cmt
+   core/eva__Deps.cmti
+   core/eva__Deps.cmx
+   core/eva__Domain_builder.cmi
+   core/eva__Domain_builder.cmt
+   core/eva__Domain_builder.cmti
+   core/eva__Domain_builder.cmx
+   core/eva__Domain_lift.cmi
+   core/eva__Domain_lift.cmt
+   core/eva__Domain_lift.cmti
+   core/eva__Domain_lift.cmx
+   core/eva__Domain_mode.cmi
+   core/eva__Domain_mode.cmt
+   core/eva__Domain_mode.cmti
+   core/eva__Domain_mode.cmx
+   core/eva__Domain_product.cmi
+   core/eva__Domain_product.cmt
+   core/eva__Domain_product.cmti
+   core/eva__Domain_product.cmx
+   core/eva__Domain_store.cmi
+   core/eva__Domain_store.cmt
+   core/eva__Domain_store.cmti
+   core/eva__Domain_store.cmx
+   core/eva__Equality.cmi
+   core/eva__Equality.cmt
+   core/eva__Equality.cmti
+   core/eva__Equality.cmx
+   core/eva__Equality_domain.cmi
+   core/eva__Equality_domain.cmt
+   core/eva__Equality_domain.cmti
+   core/eva__Equality_domain.cmx
+   core/eva__Eva_annotations.cmi
+   core/eva__Eva_annotations.cmt
+   core/eva__Eva_annotations.cmti
+   core/eva__Eva_annotations.cmx
+   core/eva__Eva_ast.cmi
+   core/eva__Eva_ast.cmt
+   core/eva__Eva_ast.cmti
+   core/eva__Eva_ast.cmx
+   core/eva__Eva_ast_builder.cmi
+   core/eva__Eva_ast_builder.cmt
+   core/eva__Eva_ast_builder.cmti
+   core/eva__Eva_ast_builder.cmx
+   core/eva__Eva_ast_datatype.cmi
+   core/eva__Eva_ast_datatype.cmt
+   core/eva__Eva_ast_datatype.cmti
+   core/eva__Eva_ast_datatype.cmx
+   core/eva__Eva_ast_printer.cmi
+   core/eva__Eva_ast_printer.cmt
+   core/eva__Eva_ast_printer.cmti
+   core/eva__Eva_ast_printer.cmx
+   core/eva__Eva_ast_types.cmi
+   core/eva__Eva_ast_types.cmt
+   core/eva__Eva_ast_types.cmti
+   core/eva__Eva_ast_types.cmx
+   core/eva__Eva_ast_typing.cmi
+   core/eva__Eva_ast_typing.cmt
+   core/eva__Eva_ast_typing.cmti
+   core/eva__Eva_ast_typing.cmx
+   core/eva__Eva_ast_utils.cmi
+   core/eva__Eva_ast_utils.cmt
+   core/eva__Eva_ast_utils.cmti
+   core/eva__Eva_ast_utils.cmx
+   core/eva__Eva_ast_visitor.cmi
+   core/eva__Eva_ast_visitor.cmt
+   core/eva__Eva_ast_visitor.cmti
+   core/eva__Eva_ast_visitor.cmx
+   core/eva__Eva_audit.cmi
+   core/eva__Eva_audit.cmt
+   core/eva__Eva_audit.cmti
+   core/eva__Eva_audit.cmx
+   core/eva__Eva_automata.cmi
+   core/eva__Eva_automata.cmt
+   core/eva__Eva_automata.cmti
+   core/eva__Eva_automata.cmx
+   core/eva__Eva_dynamic.cmi
+   core/eva__Eva_dynamic.cmt
+   core/eva__Eva_dynamic.cmti
+   core/eva__Eva_dynamic.cmx
+   core/eva__Eva_perf.cmi
+   core/eva__Eva_perf.cmt
+   core/eva__Eva_perf.cmti
+   core/eva__Eva_perf.cmx
+   core/eva__Eva_results.cmi
+   core/eva__Eva_results.cmt
+   core/eva__Eva_results.cmti
+   core/eva__Eva_results.cmx
+   core/eva__Eva_utils.cmi
+   core/eva__Eva_utils.cmt
+   core/eva__Eva_utils.cmti
+   core/eva__Eva_utils.cmx
+   core/eva__Eval.cmi
+   core/eva__Eval.cmt
+   core/eva__Eval.cmti
+   core/eva__Eval.cmx
+   core/eva__Eval_annots.cmi
+   core/eva__Eval_annots.cmt
+   core/eva__Eval_annots.cmti
+   core/eva__Eval_annots.cmx
+   core/eva__Eval_op.cmi
+   core/eva__Eval_op.cmt
+   core/eva__Eval_op.cmti
+   core/eva__Eval_op.cmx
+   core/eva__Eval_terms.cmi
+   core/eva__Eval_terms.cmt
+   core/eva__Eval_terms.cmti
+   core/eva__Eval_terms.cmx
+   core/eva__Eval_typ.cmi
+   core/eva__Eval_typ.cmt
+   core/eva__Eval_typ.cmti
+   core/eva__Eval_typ.cmx
+   core/eva__Evaluation.cmi
+   core/eva__Evaluation.cmt
+   core/eva__Evaluation.cmti
+   core/eva__Evaluation.cmx
+   core/eva__Evaluation_sig.cmi
+   core/eva__Evaluation_sig.cmt
+   core/eva__Evaluation_sig.cmx
+   core/eva__Function_calls.cmi
+   core/eva__Function_calls.cmt
+   core/eva__Function_calls.cmti
+   core/eva__Function_calls.cmx
+   core/eva__Gauges_domain.cmi
+   core/eva__Gauges_domain.cmt
+   core/eva__Gauges_domain.cmti
+   core/eva__Gauges_domain.cmx
+   core/eva__General_requests.cmi
+   core/eva__General_requests.cmt
+   core/eva__General_requests.cmti
+   core/eva__General_requests.cmx
+   core/eva__Hcexprs.cmi
+   core/eva__Hcexprs.cmt
+   core/eva__Hcexprs.cmti
+   core/eva__Hcexprs.cmx
+   core/eva__Initialization.cmi
+   core/eva__Initialization.cmt
+   core/eva__Initialization.cmti
+   core/eva__Initialization.cmx
+   core/eva__Inout_domain.cmi
+   core/eva__Inout_domain.cmt
+   core/eva__Inout_domain.cmti
+   core/eva__Inout_domain.cmx
+   core/eva__Iterator.cmi
+   core/eva__Iterator.cmt
+   core/eva__Iterator.cmti
+   core/eva__Iterator.cmx
+   core/eva__Library_functions.cmi
+   core/eva__Library_functions.cmt
+   core/eva__Library_functions.cmti
+   core/eva__Library_functions.cmx
+   core/eva__Locals_scoping.cmi
+   core/eva__Locals_scoping.cmt
+   core/eva__Locals_scoping.cmti
+   core/eva__Locals_scoping.cmx
+   core/eva__Location_lift.cmi
+   core/eva__Location_lift.cmt
+   core/eva__Location_lift.cmti
+   core/eva__Location_lift.cmx
+   core/eva__Locations_product.cmi
+   core/eva__Locations_product.cmt
+   core/eva__Locations_product.cmti
+   core/eva__Locations_product.cmx
+   core/eva__Logic_inout.cmi
+   core/eva__Logic_inout.cmt
+   core/eva__Logic_inout.cmti
+   core/eva__Logic_inout.cmx
+   core/eva__Main_locations.cmi
+   core/eva__Main_locations.cmt
+   core/eva__Main_locations.cmti
+   core/eva__Main_locations.cmx
+   core/eva__Main_values.cmi
+   core/eva__Main_values.cmt
+   core/eva__Main_values.cmti
+   core/eva__Main_values.cmx
+   core/eva__Mem_exec.cmi
+   core/eva__Mem_exec.cmt
+   core/eva__Mem_exec.cmti
+   core/eva__Mem_exec.cmx
+   core/eva__Multidim.cmi
+   core/eva__Multidim.cmt
+   core/eva__Multidim.cmti
+   core/eva__Multidim.cmx
+   core/eva__Multidim_domain.cmi
+   core/eva__Multidim_domain.cmt
+   core/eva__Multidim_domain.cmti
+   core/eva__Multidim_domain.cmx
+   core/eva__Octagons.cmi
+   core/eva__Octagons.cmt
+   core/eva__Octagons.cmti
+   core/eva__Octagons.cmx
+   core/eva__Offsm_domain.cmi
+   core/eva__Offsm_domain.cmt
+   core/eva__Offsm_domain.cmti
+   core/eva__Offsm_domain.cmx
+   core/eva__Offsm_value.cmi
+   core/eva__Offsm_value.cmt
+   core/eva__Offsm_value.cmti
+   core/eva__Offsm_value.cmx
+   core/eva__Parameters.cmi
+   core/eva__Parameters.cmt
+   core/eva__Parameters.cmti
+   core/eva__Parameters.cmx
+   core/eva__Partition.cmi
+   core/eva__Partition.cmt
+   core/eva__Partition.cmti
+   core/eva__Partition.cmx
+   core/eva__Partitioning_index.cmi
+   core/eva__Partitioning_index.cmt
+   core/eva__Partitioning_index.cmti
+   core/eva__Partitioning_index.cmx
+   core/eva__Partitioning_parameters.cmi
+   core/eva__Partitioning_parameters.cmt
+   core/eva__Partitioning_parameters.cmti
+   core/eva__Partitioning_parameters.cmx
+   core/eva__Per_stmt_slevel.cmi
+   core/eva__Per_stmt_slevel.cmt
+   core/eva__Per_stmt_slevel.cmti
+   core/eva__Per_stmt_slevel.cmx
+   core/eva__Powerset.cmi
+   core/eva__Powerset.cmt
+   core/eva__Powerset.cmti
+   core/eva__Powerset.cmx
+   core/eva__Pretty_memory.cmi
+   core/eva__Pretty_memory.cmt
+   core/eva__Pretty_memory.cmti
+   core/eva__Pretty_memory.cmx
+   core/eva__Printer_domain.cmi
+   core/eva__Printer_domain.cmt
+   core/eva__Printer_domain.cmti
+   core/eva__Printer_domain.cmx
+   core/eva__Private.cmi
+   core/eva__Private.cmt
+   core/eva__Private.cmti
+   core/eva__Private.cmx
+   core/eva__Recursion.cmi
+   core/eva__Recursion.cmt
+   core/eva__Recursion.cmti
+   core/eva__Recursion.cmx
+   core/eva__Red_statuses.cmi
+   core/eva__Red_statuses.cmt
+   core/eva__Red_statuses.cmti
+   core/eva__Red_statuses.cmx
+   core/eva__Results.cmi
+   core/eva__Results.cmt
+   core/eva__Results.cmti
+   core/eva__Results.cmx
+   core/eva__Segmentation.cmi
+   core/eva__Segmentation.cmt
+   core/eva__Segmentation.cmti
+   core/eva__Segmentation.cmx
+   core/eva__Self.cmi
+   core/eva__Self.cmt
+   core/eva__Self.cmti
+   core/eva__Self.cmx
+   core/eva__Sign_domain.cmi
+   core/eva__Sign_domain.cmt
+   core/eva__Sign_domain.cmti
+   core/eva__Sign_domain.cmx
+   core/eva__Sign_value.cmi
+   core/eva__Sign_value.cmt
+   core/eva__Sign_value.cmti
+   core/eva__Sign_value.cmx
+   core/eva__Simple_memory.cmi
+   core/eva__Simple_memory.cmt
+   core/eva__Simple_memory.cmti
+   core/eva__Simple_memory.cmx
+   core/eva__Simpler_domains.cmi
+   core/eva__Simpler_domains.cmt
+   core/eva__Simpler_domains.cmx
+   core/eva__Split_return.cmi
+   core/eva__Split_return.cmt
+   core/eva__Split_return.cmti
+   core/eva__Split_return.cmx
+   core/eva__Split_strategy.cmi
+   core/eva__Split_strategy.cmt
+   core/eva__Split_strategy.cmti
+   core/eva__Split_strategy.cmx
+   core/eva__Statistics.cmi
+   core/eva__Statistics.cmt
+   core/eva__Statistics.cmti
+   core/eva__Statistics.cmx
+   core/eva__Structure.cmi
+   core/eva__Structure.cmt
+   core/eva__Structure.cmti
+   core/eva__Structure.cmx
+   core/eva__Subdivided_evaluation.cmi
+   core/eva__Subdivided_evaluation.cmt
+   core/eva__Subdivided_evaluation.cmti
+   core/eva__Subdivided_evaluation.cmx
+   core/eva__Summary.cmi
+   core/eva__Summary.cmt
+   core/eva__Summary.cmti
+   core/eva__Summary.cmx
+   core/eva__Symbolic_locs.cmi
+   core/eva__Symbolic_locs.cmt
+   core/eva__Symbolic_locs.cmti
+   core/eva__Symbolic_locs.cmx
+   core/eva__Taint_domain.cmi
+   core/eva__Taint_domain.cmt
+   core/eva__Taint_domain.cmti
+   core/eva__Taint_domain.cmx
+   core/eva__Trace_partitioning.cmi
+   core/eva__Trace_partitioning.cmt
+   core/eva__Trace_partitioning.cmti
+   core/eva__Trace_partitioning.cmx
+   core/eva__Traces_domain.cmi
+   core/eva__Traces_domain.cmt
+   core/eva__Traces_domain.cmti
+   core/eva__Traces_domain.cmx
+   core/eva__Transfer_logic.cmi
+   core/eva__Transfer_logic.cmt
+   core/eva__Transfer_logic.cmti
+   core/eva__Transfer_logic.cmx
+   core/eva__Transfer_specification.cmi
+   core/eva__Transfer_specification.cmt
+   core/eva__Transfer_specification.cmti
+   core/eva__Transfer_specification.cmx
+   core/eva__Transfer_stmt.cmi
+   core/eva__Transfer_stmt.cmt
+   core/eva__Transfer_stmt.cmti
+   core/eva__Transfer_stmt.cmx
+   core/eva__Typed_memory.cmi
+   core/eva__Typed_memory.cmt
+   core/eva__Typed_memory.cmti
+   core/eva__Typed_memory.cmx
+   core/eva__Unit_context.cmi
+   core/eva__Unit_context.cmt
+   core/eva__Unit_context.cmti
+   core/eva__Unit_context.cmx
+   core/eva__Unit_domain.cmi
+   core/eva__Unit_domain.cmt
+   core/eva__Unit_domain.cmti
+   core/eva__Unit_domain.cmx
+   core/eva__Unit_tests.cmi
+   core/eva__Unit_tests.cmt
+   core/eva__Unit_tests.cmti
+   core/eva__Unit_tests.cmx
+   core/eva__Value_lift.cmi
+   core/eva__Value_lift.cmt
+   core/eva__Value_lift.cmti
+   core/eva__Value_lift.cmx
+   core/eva__Value_product.cmi
+   core/eva__Value_product.cmt
+   core/eva__Value_product.cmti
+   core/eva__Value_product.cmx
+   core/eva__Values_request.cmi
+   core/eva__Values_request.cmt
+   core/eva__Values_request.cmti
+   core/eva__Values_request.cmx
+   core/eva__Widen.cmi
+   core/eva__Widen.cmt
+   core/eva__Widen.cmti
+   core/eva__Widen.cmx
+   core/eva__Widen_hints_ext.cmi
+   core/eva__Widen_hints_ext.cmt
+   core/eva__Widen_hints_ext.cmti
+   core/eva__Widen_hints_ext.cmx
+   core/eval.ml
+   core/eval.mli
+   core/legacy/eval_annots.ml
+   core/legacy/eval_annots.mli
+   core/legacy/eval_op.ml
+   core/legacy/eval_op.mli
+   core/legacy/eval_terms.ml
+   core/legacy/eval_terms.mli
+   core/legacy/logic_inout.ml
+   core/legacy/logic_inout.mli
+   core/locations/locations_product.ml
+   core/locations/locations_product.mli
+   core/parameters.ml
+   core/parameters.mli
+   core/partitioning/auto_loop_unroll.ml
+   core/partitioning/auto_loop_unroll.mli
+   core/partitioning/partition.ml
+   core/partitioning/partition.mli
+   core/partitioning/partitioning_index.ml
+   core/partitioning/partitioning_index.mli
+   core/partitioning/partitioning_parameters.ml
+   core/partitioning/partitioning_parameters.mli
+   core/partitioning/per_stmt_slevel.ml
+   core/partitioning/per_stmt_slevel.mli
+   core/partitioning/split_return.ml
+   core/partitioning/split_return.mli
+   core/partitioning/split_strategy.ml
+   core/partitioning/split_strategy.mli
+   core/partitioning/trace_partitioning.ml
+   core/partitioning/trace_partitioning.mli
+   core/self.ml
+   core/self.mli
+   core/types/assigns.ml
+   core/types/assigns.mli
+   core/types/callstack.ml
+   core/types/callstack.mli
+   core/types/deps.ml
+   core/types/deps.mli
+   core/utils/abstract.ml
+   core/utils/abstract.mli
+   core/utils/active_behaviors.ml
+   core/utils/active_behaviors.mli
+   core/utils/backward_formals.ml
+   core/utils/backward_formals.mli
+   core/utils/cvalue_callbacks.ml
+   core/utils/cvalue_callbacks.mli
+   core/utils/eva_annotations.ml
+   core/utils/eva_annotations.mli
+   core/utils/eva_audit.ml
+   core/utils/eva_audit.mli
+   core/utils/eva_dynamic.ml
+   core/utils/eva_dynamic.mli
+   core/utils/eva_perf.ml
+   core/utils/eva_perf.mli
+   core/utils/eva_results.ml
+   core/utils/eva_results.mli
+   core/utils/eva_utils.ml
+   core/utils/eva_utils.mli
+   core/utils/eval_typ.ml
+   core/utils/eval_typ.mli
+   core/utils/library_functions.ml
+   core/utils/library_functions.mli
+   core/utils/private.ml
+   core/utils/private.mli
+   core/utils/red_statuses.ml
+   core/utils/red_statuses.mli
+   core/utils/results.ml
+   core/utils/results.mli
+   core/utils/statistics.ml
+   core/utils/statistics.mli
+   core/utils/structure.ml
+   core/utils/structure.mli
+   core/utils/summary.ml
+   core/utils/summary.mli
+   core/utils/unit_tests.ml
+   core/utils/unit_tests.mli
+   core/utils/widen.ml
+   core/utils/widen.mli
+   core/utils/widen_hints_ext.ml
+   core/utils/widen_hints_ext.mli
+   core/values/abstract_location.ml
+   core/values/abstract_value.ml
+   core/values/cvalue_backward.ml
+   core/values/cvalue_backward.mli
+   core/values/cvalue_forward.ml
+   core/values/cvalue_forward.mli
+   core/values/location_lift.ml
+   core/values/location_lift.mli
+   core/values/main_locations.ml
+   core/values/main_locations.mli
+   core/values/main_values.ml
+   core/values/main_values.mli
+   core/values/offsm_value.ml
+   core/values/offsm_value.mli
+   core/values/sign_value.ml
+   core/values/sign_value.mli
+   core/values/value_lift.ml
+   core/values/value_lift.mli
+   core/values/value_product.ml
+   core/values/value_product.mli
+   dune-package
+   gui/eva_gui.a
+   gui/eva_gui.cma
+   gui/eva_gui.cmi
+   gui/eva_gui.cmt
+   gui/eva_gui.cmx
+   gui/eva_gui.cmxa
+   gui/eva_gui.ml
+   gui/eva_gui__Gui_callstacks_filters.cmi
+   gui/eva_gui__Gui_callstacks_filters.cmt
+   gui/eva_gui__Gui_callstacks_filters.cmti
+   gui/eva_gui__Gui_callstacks_filters.cmx
+   gui/eva_gui__Gui_callstacks_manager.cmi
+   gui/eva_gui__Gui_callstacks_manager.cmt
+   gui/eva_gui__Gui_callstacks_manager.cmti
+   gui/eva_gui__Gui_callstacks_manager.cmx
+   gui/eva_gui__Gui_eval.cmi
+   gui/eva_gui__Gui_eval.cmt
+   gui/eva_gui__Gui_eval.cmti
+   gui/eva_gui__Gui_eval.cmx
+   gui/eva_gui__Gui_red.cmi
+   gui/eva_gui__Gui_red.cmt
+   gui/eva_gui__Gui_red.cmti
+   gui/eva_gui__Gui_red.cmx
+   gui/eva_gui__Gui_types.cmi
+   gui/eva_gui__Gui_types.cmt
+   gui/eva_gui__Gui_types.cmti
+   gui/eva_gui__Gui_types.cmx
+   gui/eva_gui__Register_gui.cmi
+   gui/eva_gui__Register_gui.cmt
+   gui/eva_gui__Register_gui.cmti
+   gui/eva_gui__Register_gui.cmx
+   gui/gui_callstacks_filters.ml
+   gui/gui_callstacks_filters.mli
+   gui/gui_callstacks_manager.ml
+   gui/gui_callstacks_manager.mli
+   gui/gui_eval.ml
+   gui/gui_eval.mli
+   gui/gui_red.ml
+   gui/gui_red.mli
+   gui/gui_types.ml
+   gui/gui_types.mli
+   gui/register_gui.ml
+   gui/register_gui.mli
+   opam))
+ (lib_root (frama-c/plugins/eva/META frama-c/plugins_gui/eva-gui/META))
+ (libexec (core/eva.cmxs gui/eva_gui.cmxs)))
+(library
+ (name frama-c-eva.core)
+ (kind normal)
+ (archives (byte core/eva.cma) (native core/eva.cmxa))
+ (plugins (byte core/eva.cma) (native core/eva.cmxs))
+ (native_archives core/eva.a)
+ (requires frama-c.kernel frama-c-server.core ppx_deriving.runtime)
+ (main_module_name Eva)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name eva__)
+     (visibility public)
+     (kind alias)
+     (source (path Eva__) (impl (path core/eva__.ml-gen))))
+    (name Eva)
+    (modules
+     (module
+      (obj_name eva__Abstract)
+      (visibility public)
+      (source
+       (path Abstract)
+       (intf (path core/utils/abstract.mli))
+       (impl (path core/utils/abstract.ml))))
+     (module
+      (obj_name eva__Abstract_context)
+      (visibility public)
+      (source
+       (path Abstract_context)
+       (impl (path core/contexts/abstract_context.ml))))
+     (module
+      (obj_name eva__Abstract_domain)
+      (visibility public)
+      (source
+       (path Abstract_domain)
+       (impl (path core/domains/abstract_domain.ml))))
+     (module
+      (obj_name eva__Abstract_location)
+      (visibility public)
+      (source
+       (path Abstract_location)
+       (impl (path core/values/abstract_location.ml))))
+     (module
+      (obj_name eva__Abstract_memory)
+      (visibility public)
+      (source
+       (path Abstract_memory)
+       (intf (path core/domains/multidim/abstract_memory.mli))
+       (impl (path core/domains/multidim/abstract_memory.ml))))
+     (module
+      (obj_name eva__Abstract_offset)
+      (visibility public)
+      (source
+       (path Abstract_offset)
+       (intf (path core/domains/multidim/abstract_offset.mli))
+       (impl (path core/domains/multidim/abstract_offset.ml))))
+     (module
+      (obj_name eva__Abstract_structure)
+      (visibility public)
+      (source
+       (path Abstract_structure)
+       (intf (path core/domains/multidim/abstract_structure.mli))
+       (impl (path core/domains/multidim/abstract_structure.ml))))
+     (module
+      (obj_name eva__Abstract_value)
+      (visibility public)
+      (source
+       (path Abstract_value)
+       (impl (path core/values/abstract_value.ml))))
+     (module
+      (obj_name eva__Abstractions)
+      (visibility public)
+      (source
+       (path Abstractions)
+       (intf (path core/engine/abstractions.mli))
+       (impl (path core/engine/abstractions.ml))))
+     (module
+      (obj_name eva__Active_behaviors)
+      (visibility public)
+      (source
+       (path Active_behaviors)
+       (intf (path core/utils/active_behaviors.mli))
+       (impl (path core/utils/active_behaviors.ml))))
+     (module
+      (obj_name eva__Alarmset)
+      (visibility public)
+      (source
+       (path Alarmset)
+       (intf (path core/alarmset.mli))
+       (impl (path core/alarmset.ml))))
+     (module
+      (obj_name eva__Analysis)
+      (visibility public)
+      (source
+       (path Analysis)
+       (intf (path core/engine/analysis.mli))
+       (impl (path core/engine/analysis.ml))))
+     (module
+      (obj_name eva__Assigns)
+      (visibility public)
+      (source
+       (path Assigns)
+       (intf (path core/types/assigns.mli))
+       (impl (path core/types/assigns.ml))))
+     (module
+      (obj_name eva__Auto_loop_unroll)
+      (visibility public)
+      (source
+       (path Auto_loop_unroll)
+       (intf (path core/partitioning/auto_loop_unroll.mli))
+       (impl (path core/partitioning/auto_loop_unroll.ml))))
+     (module
+      (obj_name eva__Backward_formals)
+      (visibility public)
+      (source
+       (path Backward_formals)
+       (intf (path core/utils/backward_formals.mli))
+       (impl (path core/utils/backward_formals.ml))))
+     (module
+      (obj_name eva__Builtins)
+      (visibility public)
+      (source
+       (path Builtins)
+       (intf (path core/domains/cvalue/builtins.mli))
+       (impl (path core/domains/cvalue/builtins.ml))))
+     (module
+      (obj_name eva__Builtins_float)
+      (visibility public)
+      (source
+       (path Builtins_float)
+       (intf (path core/domains/cvalue/builtins_float.mli))
+       (impl (path core/domains/cvalue/builtins_float.ml))))
+     (module
+      (obj_name eva__Builtins_malloc)
+      (visibility public)
+      (source
+       (path Builtins_malloc)
+       (intf (path core/domains/cvalue/builtins_malloc.mli))
+       (impl (path core/domains/cvalue/builtins_malloc.ml))))
+     (module
+      (obj_name eva__Builtins_memory)
+      (visibility public)
+      (source
+       (path Builtins_memory)
+       (intf (path core/domains/cvalue/builtins_memory.mli))
+       (impl (path core/domains/cvalue/builtins_memory.ml))))
+     (module
+      (obj_name eva__Builtins_misc)
+      (visibility public)
+      (source
+       (path Builtins_misc)
+       (intf (path core/domains/cvalue/builtins_misc.mli))
+       (impl (path core/domains/cvalue/builtins_misc.ml))))
+     (module
+      (obj_name eva__Builtins_print_c)
+      (visibility public)
+      (source
+       (path Builtins_print_c)
+       (intf (path core/domains/cvalue/builtins_print_c.mli))
+       (impl (path core/domains/cvalue/builtins_print_c.ml))))
+     (module
+      (obj_name eva__Builtins_split)
+      (visibility public)
+      (source
+       (path Builtins_split)
+       (intf (path core/domains/cvalue/builtins_split.mli))
+       (impl (path core/domains/cvalue/builtins_split.ml))))
+     (module
+      (obj_name eva__Builtins_string)
+      (visibility public)
+      (source
+       (path Builtins_string)
+       (intf (path core/domains/cvalue/builtins_string.mli))
+       (impl (path core/domains/cvalue/builtins_string.ml))))
+     (module
+      (obj_name eva__Builtins_watchpoint)
+      (visibility public)
+      (source
+       (path Builtins_watchpoint)
+       (intf (path core/domains/cvalue/builtins_watchpoint.mli))
+       (impl (path core/domains/cvalue/builtins_watchpoint.ml))))
+     (module
+      (obj_name eva__Callstack)
+      (visibility public)
+      (source
+       (path Callstack)
+       (intf (path core/types/callstack.mli))
+       (impl (path core/types/callstack.ml))))
+     (module
+      (obj_name eva__Compute_functions)
+      (visibility public)
+      (source
+       (path Compute_functions)
+       (intf (path core/engine/compute_functions.mli))
+       (impl (path core/engine/compute_functions.ml))))
+     (module
+      (obj_name eva__Context_product)
+      (visibility public)
+      (source
+       (path Context_product)
+       (intf (path core/contexts/context_product.mli))
+       (impl (path core/contexts/context_product.ml))))
+     (module
+      (obj_name eva__Cvalue_backward)
+      (visibility public)
+      (source
+       (path Cvalue_backward)
+       (intf (path core/values/cvalue_backward.mli))
+       (impl (path core/values/cvalue_backward.ml))))
+     (module
+      (obj_name eva__Cvalue_callbacks)
+      (visibility public)
+      (source
+       (path Cvalue_callbacks)
+       (intf (path core/utils/cvalue_callbacks.mli))
+       (impl (path core/utils/cvalue_callbacks.ml))))
+     (module
+      (obj_name eva__Cvalue_domain)
+      (visibility public)
+      (source
+       (path Cvalue_domain)
+       (intf (path core/domains/cvalue/cvalue_domain.mli))
+       (impl (path core/domains/cvalue/cvalue_domain.ml))))
+     (module
+      (obj_name eva__Cvalue_forward)
+      (visibility public)
+      (source
+       (path Cvalue_forward)
+       (intf (path core/values/cvalue_forward.mli))
+       (impl (path core/values/cvalue_forward.ml))))
+     (module
+      (obj_name eva__Cvalue_init)
+      (visibility public)
+      (source
+       (path Cvalue_init)
+       (intf (path core/domains/cvalue/cvalue_init.mli))
+       (impl (path core/domains/cvalue/cvalue_init.ml))))
+     (module
+      (obj_name eva__Cvalue_offsetmap)
+      (visibility public)
+      (source
+       (path Cvalue_offsetmap)
+       (intf (path core/domains/cvalue/cvalue_offsetmap.mli))
+       (impl (path core/domains/cvalue/cvalue_offsetmap.ml))))
+     (module
+      (obj_name eva__Cvalue_queries)
+      (visibility public)
+      (source
+       (path Cvalue_queries)
+       (intf (path core/domains/cvalue/cvalue_queries.mli))
+       (impl (path core/domains/cvalue/cvalue_queries.ml))))
+     (module
+      (obj_name eva__Cvalue_results)
+      (visibility public)
+      (source
+       (path Cvalue_results)
+       (intf (path core/domains/cvalue/cvalue_results.mli))
+       (impl (path core/domains/cvalue/cvalue_results.ml))))
+     (module
+      (obj_name eva__Cvalue_transfer)
+      (visibility public)
+      (source
+       (path Cvalue_transfer)
+       (intf (path core/domains/cvalue/cvalue_transfer.mli))
+       (impl (path core/domains/cvalue/cvalue_transfer.ml))))
+     (module
+      (obj_name eva__Deps)
+      (visibility public)
+      (source
+       (path Deps)
+       (intf (path core/types/deps.mli))
+       (impl (path core/types/deps.ml))))
+     (module
+      (obj_name eva__Domain_builder)
+      (visibility public)
+      (source
+       (path Domain_builder)
+       (intf (path core/domains/domain_builder.mli))
+       (impl (path core/domains/domain_builder.ml))))
+     (module
+      (obj_name eva__Domain_lift)
+      (visibility public)
+      (source
+       (path Domain_lift)
+       (intf (path core/domains/domain_lift.mli))
+       (impl (path core/domains/domain_lift.ml))))
+     (module
+      (obj_name eva__Domain_mode)
+      (visibility public)
+      (source
+       (path Domain_mode)
+       (intf (path core/domains/domain_mode.mli))
+       (impl (path core/domains/domain_mode.ml))))
+     (module
+      (obj_name eva__Domain_product)
+      (visibility public)
+      (source
+       (path Domain_product)
+       (intf (path core/domains/domain_product.mli))
+       (impl (path core/domains/domain_product.ml))))
+     (module
+      (obj_name eva__Domain_store)
+      (visibility public)
+      (source
+       (path Domain_store)
+       (intf (path core/domains/domain_store.mli))
+       (impl (path core/domains/domain_store.ml))))
+     (module
+      (obj_name eva__Equality)
+      (visibility public)
+      (source
+       (path Equality)
+       (intf (path core/domains/equality/equality.mli))
+       (impl (path core/domains/equality/equality.ml))))
+     (module
+      (obj_name eva__Equality_domain)
+      (visibility public)
+      (source
+       (path Equality_domain)
+       (intf (path core/domains/equality/equality_domain.mli))
+       (impl (path core/domains/equality/equality_domain.ml))))
+     (module
+      (obj_name eva)
+      (visibility public)
+      (source (path Eva) (intf (path core/Eva.mli)) (impl (path core/Eva.ml))))
+     (module
+      (obj_name eva__Eva_annotations)
+      (visibility public)
+      (source
+       (path Eva_annotations)
+       (intf (path core/utils/eva_annotations.mli))
+       (impl (path core/utils/eva_annotations.ml))))
+     (module
+      (obj_name eva__Eva_ast)
+      (visibility public)
+      (source
+       (path Eva_ast)
+       (intf (path core/ast/eva_ast.mli))
+       (impl (path core/ast/eva_ast.ml))))
+     (module
+      (obj_name eva__Eva_ast_builder)
+      (visibility public)
+      (source
+       (path Eva_ast_builder)
+       (intf (path core/ast/eva_ast_builder.mli))
+       (impl (path core/ast/eva_ast_builder.ml))))
+     (module
+      (obj_name eva__Eva_ast_datatype)
+      (visibility public)
+      (source
+       (path Eva_ast_datatype)
+       (intf (path core/ast/eva_ast_datatype.mli))
+       (impl (path core/ast/eva_ast_datatype.ml))))
+     (module
+      (obj_name eva__Eva_ast_printer)
+      (visibility public)
+      (source
+       (path Eva_ast_printer)
+       (intf (path core/ast/eva_ast_printer.mli))
+       (impl (path core/ast/eva_ast_printer.ml))))
+     (module
+      (obj_name eva__Eva_ast_types)
+      (visibility public)
+      (source
+       (path Eva_ast_types)
+       (intf (path core/ast/eva_ast_types.mli))
+       (impl (path core/ast/eva_ast_types.ml))))
+     (module
+      (obj_name eva__Eva_ast_typing)
+      (visibility public)
+      (source
+       (path Eva_ast_typing)
+       (intf (path core/ast/eva_ast_typing.mli))
+       (impl (path core/ast/eva_ast_typing.ml))))
+     (module
+      (obj_name eva__Eva_ast_utils)
+      (visibility public)
+      (source
+       (path Eva_ast_utils)
+       (intf (path core/ast/eva_ast_utils.mli))
+       (impl (path core/ast/eva_ast_utils.ml))))
+     (module
+      (obj_name eva__Eva_ast_visitor)
+      (visibility public)
+      (source
+       (path Eva_ast_visitor)
+       (intf (path core/ast/eva_ast_visitor.mli))
+       (impl (path core/ast/eva_ast_visitor.ml))))
+     (module
+      (obj_name eva__Eva_audit)
+      (visibility public)
+      (source
+       (path Eva_audit)
+       (intf (path core/utils/eva_audit.mli))
+       (impl (path core/utils/eva_audit.ml))))
+     (module
+      (obj_name eva__Eva_automata)
+      (visibility public)
+      (source
+       (path Eva_automata)
+       (intf (path core/ast/eva_automata.mli))
+       (impl (path core/ast/eva_automata.ml))))
+     (module
+      (obj_name eva__Eva_dynamic)
+      (visibility public)
+      (source
+       (path Eva_dynamic)
+       (intf (path core/utils/eva_dynamic.mli))
+       (impl (path core/utils/eva_dynamic.ml))))
+     (module
+      (obj_name eva__Eva_perf)
+      (visibility public)
+      (source
+       (path Eva_perf)
+       (intf (path core/utils/eva_perf.mli))
+       (impl (path core/utils/eva_perf.ml))))
+     (module
+      (obj_name eva__Eva_results)
+      (visibility public)
+      (source
+       (path Eva_results)
+       (intf (path core/utils/eva_results.mli))
+       (impl (path core/utils/eva_results.ml))))
+     (module
+      (obj_name eva__Eva_utils)
+      (visibility public)
+      (source
+       (path Eva_utils)
+       (intf (path core/utils/eva_utils.mli))
+       (impl (path core/utils/eva_utils.ml))))
+     (module
+      (obj_name eva__Eval)
+      (visibility public)
+      (source
+       (path Eval)
+       (intf (path core/eval.mli))
+       (impl (path core/eval.ml))))
+     (module
+      (obj_name eva__Eval_annots)
+      (visibility public)
+      (source
+       (path Eval_annots)
+       (intf (path core/legacy/eval_annots.mli))
+       (impl (path core/legacy/eval_annots.ml))))
+     (module
+      (obj_name eva__Eval_op)
+      (visibility public)
+      (source
+       (path Eval_op)
+       (intf (path core/legacy/eval_op.mli))
+       (impl (path core/legacy/eval_op.ml))))
+     (module
+      (obj_name eva__Eval_terms)
+      (visibility public)
+      (source
+       (path Eval_terms)
+       (intf (path core/legacy/eval_terms.mli))
+       (impl (path core/legacy/eval_terms.ml))))
+     (module
+      (obj_name eva__Eval_typ)
+      (visibility public)
+      (source
+       (path Eval_typ)
+       (intf (path core/utils/eval_typ.mli))
+       (impl (path core/utils/eval_typ.ml))))
+     (module
+      (obj_name eva__Evaluation)
+      (visibility public)
+      (source
+       (path Evaluation)
+       (intf (path core/engine/evaluation.mli))
+       (impl (path core/engine/evaluation.ml))))
+     (module
+      (obj_name eva__Evaluation_sig)
+      (visibility public)
+      (source
+       (path Evaluation_sig)
+       (impl (path core/engine/evaluation_sig.ml))))
+     (module
+      (obj_name eva__Function_calls)
+      (visibility public)
+      (source
+       (path Function_calls)
+       (intf (path core/engine/function_calls.mli))
+       (impl (path core/engine/function_calls.ml))))
+     (module
+      (obj_name eva__Gauges_domain)
+      (visibility public)
+      (source
+       (path Gauges_domain)
+       (intf (path core/domains/gauges/gauges_domain.mli))
+       (impl (path core/domains/gauges/gauges_domain.ml))))
+     (module
+      (obj_name eva__General_requests)
+      (visibility public)
+      (source
+       (path General_requests)
+       (intf (path core/api/general_requests.mli))
+       (impl (path core/api/general_requests.ml))))
+     (module
+      (obj_name eva__Hcexprs)
+      (visibility public)
+      (source
+       (path Hcexprs)
+       (intf (path core/domains/hcexprs.mli))
+       (impl (path core/domains/hcexprs.ml))))
+     (module
+      (obj_name eva__Initialization)
+      (visibility public)
+      (source
+       (path Initialization)
+       (intf (path core/engine/initialization.mli))
+       (impl (path core/engine/initialization.ml))))
+     (module
+      (obj_name eva__Inout_domain)
+      (visibility public)
+      (source
+       (path Inout_domain)
+       (intf (path core/domains/inout_domain.mli))
+       (impl (path core/domains/inout_domain.ml))))
+     (module
+      (obj_name eva__Iterator)
+      (visibility public)
+      (source
+       (path Iterator)
+       (intf (path core/engine/iterator.mli))
+       (impl (path core/engine/iterator.ml))))
+     (module
+      (obj_name eva__Library_functions)
+      (visibility public)
+      (source
+       (path Library_functions)
+       (intf (path core/utils/library_functions.mli))
+       (impl (path core/utils/library_functions.ml))))
+     (module
+      (obj_name eva__Locals_scoping)
+      (visibility public)
+      (source
+       (path Locals_scoping)
+       (intf (path core/domains/cvalue/locals_scoping.mli))
+       (impl (path core/domains/cvalue/locals_scoping.ml))))
+     (module
+      (obj_name eva__Location_lift)
+      (visibility public)
+      (source
+       (path Location_lift)
+       (intf (path core/values/location_lift.mli))
+       (impl (path core/values/location_lift.ml))))
+     (module
+      (obj_name eva__Locations_product)
+      (visibility public)
+      (source
+       (path Locations_product)
+       (intf (path core/locations/locations_product.mli))
+       (impl (path core/locations/locations_product.ml))))
+     (module
+      (obj_name eva__Logic_inout)
+      (visibility public)
+      (source
+       (path Logic_inout)
+       (intf (path core/legacy/logic_inout.mli))
+       (impl (path core/legacy/logic_inout.ml))))
+     (module
+      (obj_name eva__Main_locations)
+      (visibility public)
+      (source
+       (path Main_locations)
+       (intf (path core/values/main_locations.mli))
+       (impl (path core/values/main_locations.ml))))
+     (module
+      (obj_name eva__Main_values)
+      (visibility public)
+      (source
+       (path Main_values)
+       (intf (path core/values/main_values.mli))
+       (impl (path core/values/main_values.ml))))
+     (module
+      (obj_name eva__Mem_exec)
+      (visibility public)
+      (source
+       (path Mem_exec)
+       (intf (path core/engine/mem_exec.mli))
+       (impl (path core/engine/mem_exec.ml))))
+     (module
+      (obj_name eva__Multidim)
+      (visibility public)
+      (source
+       (path Multidim)
+       (intf (path core/domains/multidim/multidim.mli))
+       (impl (path core/domains/multidim/multidim.ml))))
+     (module
+      (obj_name eva__Multidim_domain)
+      (visibility public)
+      (source
+       (path Multidim_domain)
+       (intf (path core/domains/multidim/multidim_domain.mli))
+       (impl (path core/domains/multidim/multidim_domain.ml))))
+     (module
+      (obj_name eva__Octagons)
+      (visibility public)
+      (source
+       (path Octagons)
+       (intf (path core/domains/octagons.mli))
+       (impl (path core/domains/octagons.ml))))
+     (module
+      (obj_name eva__Offsm_domain)
+      (visibility public)
+      (source
+       (path Offsm_domain)
+       (intf (path core/domains/offsm_domain.mli))
+       (impl (path core/domains/offsm_domain.ml))))
+     (module
+      (obj_name eva__Offsm_value)
+      (visibility public)
+      (source
+       (path Offsm_value)
+       (intf (path core/values/offsm_value.mli))
+       (impl (path core/values/offsm_value.ml))))
+     (module
+      (obj_name eva__Parameters)
+      (visibility public)
+      (source
+       (path Parameters)
+       (intf (path core/parameters.mli))
+       (impl (path core/parameters.ml))))
+     (module
+      (obj_name eva__Partition)
+      (visibility public)
+      (source
+       (path Partition)
+       (intf (path core/partitioning/partition.mli))
+       (impl (path core/partitioning/partition.ml))))
+     (module
+      (obj_name eva__Partitioning_index)
+      (visibility public)
+      (source
+       (path Partitioning_index)
+       (intf (path core/partitioning/partitioning_index.mli))
+       (impl (path core/partitioning/partitioning_index.ml))))
+     (module
+      (obj_name eva__Partitioning_parameters)
+      (visibility public)
+      (source
+       (path Partitioning_parameters)
+       (intf (path core/partitioning/partitioning_parameters.mli))
+       (impl (path core/partitioning/partitioning_parameters.ml))))
+     (module
+      (obj_name eva__Per_stmt_slevel)
+      (visibility public)
+      (source
+       (path Per_stmt_slevel)
+       (intf (path core/partitioning/per_stmt_slevel.mli))
+       (impl (path core/partitioning/per_stmt_slevel.ml))))
+     (module
+      (obj_name eva__Powerset)
+      (visibility public)
+      (source
+       (path Powerset)
+       (intf (path core/domains/powerset.mli))
+       (impl (path core/domains/powerset.ml))))
+     (module
+      (obj_name eva__Pretty_memory)
+      (visibility public)
+      (source
+       (path Pretty_memory)
+       (intf (path core/domains/multidim/pretty_memory.mli))
+       (impl (path core/domains/multidim/pretty_memory.ml))))
+     (module
+      (obj_name eva__Printer_domain)
+      (visibility public)
+      (source
+       (path Printer_domain)
+       (intf (path core/domains/printer_domain.mli))
+       (impl (path core/domains/printer_domain.ml))))
+     (module
+      (obj_name eva__Private)
+      (visibility public)
+      (source
+       (path Private)
+       (intf (path core/utils/private.mli))
+       (impl (path core/utils/private.ml))))
+     (module
+      (obj_name eva__Recursion)
+      (visibility public)
+      (source
+       (path Recursion)
+       (intf (path core/engine/recursion.mli))
+       (impl (path core/engine/recursion.ml))))
+     (module
+      (obj_name eva__Red_statuses)
+      (visibility public)
+      (source
+       (path Red_statuses)
+       (intf (path core/utils/red_statuses.mli))
+       (impl (path core/utils/red_statuses.ml))))
+     (module
+      (obj_name eva__Results)
+      (visibility public)
+      (source
+       (path Results)
+       (intf (path core/utils/results.mli))
+       (impl (path core/utils/results.ml))))
+     (module
+      (obj_name eva__Segmentation)
+      (visibility public)
+      (source
+       (path Segmentation)
+       (intf (path core/domains/multidim/segmentation.mli))
+       (impl (path core/domains/multidim/segmentation.ml))))
+     (module
+      (obj_name eva__Self)
+      (visibility public)
+      (source
+       (path Self)
+       (intf (path core/self.mli))
+       (impl (path core/self.ml))))
+     (module
+      (obj_name eva__Sign_domain)
+      (visibility public)
+      (source
+       (path Sign_domain)
+       (intf (path core/domains/sign_domain.mli))
+       (impl (path core/domains/sign_domain.ml))))
+     (module
+      (obj_name eva__Sign_value)
+      (visibility public)
+      (source
+       (path Sign_value)
+       (intf (path core/values/sign_value.mli))
+       (impl (path core/values/sign_value.ml))))
+     (module
+      (obj_name eva__Simple_memory)
+      (visibility public)
+      (source
+       (path Simple_memory)
+       (intf (path core/domains/simple_memory.mli))
+       (impl (path core/domains/simple_memory.ml))))
+     (module
+      (obj_name eva__Simpler_domains)
+      (visibility public)
+      (source
+       (path Simpler_domains)
+       (impl (path core/domains/simpler_domains.ml))))
+     (module
+      (obj_name eva__Split_return)
+      (visibility public)
+      (source
+       (path Split_return)
+       (intf (path core/partitioning/split_return.mli))
+       (impl (path core/partitioning/split_return.ml))))
+     (module
+      (obj_name eva__Split_strategy)
+      (visibility public)
+      (source
+       (path Split_strategy)
+       (intf (path core/partitioning/split_strategy.mli))
+       (impl (path core/partitioning/split_strategy.ml))))
+     (module
+      (obj_name eva__Statistics)
+      (visibility public)
+      (source
+       (path Statistics)
+       (intf (path core/utils/statistics.mli))
+       (impl (path core/utils/statistics.ml))))
+     (module
+      (obj_name eva__Structure)
+      (visibility public)
+      (source
+       (path Structure)
+       (intf (path core/utils/structure.mli))
+       (impl (path core/utils/structure.ml))))
+     (module
+      (obj_name eva__Subdivided_evaluation)
+      (visibility public)
+      (source
+       (path Subdivided_evaluation)
+       (intf (path core/engine/subdivided_evaluation.mli))
+       (impl (path core/engine/subdivided_evaluation.ml))))
+     (module
+      (obj_name eva__Summary)
+      (visibility public)
+      (source
+       (path Summary)
+       (intf (path core/utils/summary.mli))
+       (impl (path core/utils/summary.ml))))
+     (module
+      (obj_name eva__Symbolic_locs)
+      (visibility public)
+      (source
+       (path Symbolic_locs)
+       (intf (path core/domains/symbolic_locs.mli))
+       (impl (path core/domains/symbolic_locs.ml))))
+     (module
+      (obj_name eva__Taint_domain)
+      (visibility public)
+      (source
+       (path Taint_domain)
+       (intf (path core/domains/taint_domain.mli))
+       (impl (path core/domains/taint_domain.ml))))
+     (module
+      (obj_name eva__Trace_partitioning)
+      (visibility public)
+      (source
+       (path Trace_partitioning)
+       (intf (path core/partitioning/trace_partitioning.mli))
+       (impl (path core/partitioning/trace_partitioning.ml))))
+     (module
+      (obj_name eva__Traces_domain)
+      (visibility public)
+      (source
+       (path Traces_domain)
+       (intf (path core/domains/traces_domain.mli))
+       (impl (path core/domains/traces_domain.ml))))
+     (module
+      (obj_name eva__Transfer_logic)
+      (visibility public)
+      (source
+       (path Transfer_logic)
+       (intf (path core/engine/transfer_logic.mli))
+       (impl (path core/engine/transfer_logic.ml))))
+     (module
+      (obj_name eva__Transfer_specification)
+      (visibility public)
+      (source
+       (path Transfer_specification)
+       (intf (path core/engine/transfer_specification.mli))
+       (impl (path core/engine/transfer_specification.ml))))
+     (module
+      (obj_name eva__Transfer_stmt)
+      (visibility public)
+      (source
+       (path Transfer_stmt)
+       (intf (path core/engine/transfer_stmt.mli))
+       (impl (path core/engine/transfer_stmt.ml))))
+     (module
+      (obj_name eva__Typed_memory)
+      (visibility public)
+      (source
+       (path Typed_memory)
+       (intf (path core/domains/multidim/typed_memory.mli))
+       (impl (path core/domains/multidim/typed_memory.ml))))
+     (module
+      (obj_name eva__Unit_context)
+      (visibility public)
+      (source
+       (path Unit_context)
+       (intf (path core/contexts/unit_context.mli))
+       (impl (path core/contexts/unit_context.ml))))
+     (module
+      (obj_name eva__Unit_domain)
+      (visibility public)
+      (source
+       (path Unit_domain)
+       (intf (path core/domains/unit_domain.mli))
+       (impl (path core/domains/unit_domain.ml))))
+     (module
+      (obj_name eva__Unit_tests)
+      (visibility public)
+      (source
+       (path Unit_tests)
+       (intf (path core/utils/unit_tests.mli))
+       (impl (path core/utils/unit_tests.ml))))
+     (module
+      (obj_name eva__Value_lift)
+      (visibility public)
+      (source
+       (path Value_lift)
+       (intf (path core/values/value_lift.mli))
+       (impl (path core/values/value_lift.ml))))
+     (module
+      (obj_name eva__Value_product)
+      (visibility public)
+      (source
+       (path Value_product)
+       (intf (path core/values/value_product.mli))
+       (impl (path core/values/value_product.ml))))
+     (module
+      (obj_name eva__Values_request)
+      (visibility public)
+      (source
+       (path Values_request)
+       (intf (path core/api/values_request.mli))
+       (impl (path core/api/values_request.ml))))
+     (module
+      (obj_name eva__Widen)
+      (visibility public)
+      (source
+       (path Widen)
+       (intf (path core/utils/widen.mli))
+       (impl (path core/utils/widen.ml))))
+     (module
+      (obj_name eva__Widen_hints_ext)
+      (visibility public)
+      (source
+       (path Widen_hints_ext)
+       (intf (path core/utils/widen_hints_ext.mli))
+       (impl (path core/utils/widen_hints_ext.ml))))))
+   (wrapped true))))
+(library
+ (name frama-c-eva.gui)
+ (kind normal)
+ (archives (byte gui/eva_gui.cma) (native gui/eva_gui.cmxa))
+ (plugins (byte gui/eva_gui.cma) (native gui/eva_gui.cmxs))
+ (native_archives gui/eva_gui.a)
+ (requires frama-c-eva.core frama-c.kernel frama-c.gui)
+ (main_module_name Eva_gui)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name eva_gui)
+     (visibility public)
+     (kind alias)
+     (source (path Eva_gui) (impl (path gui/eva_gui.ml-gen))))
+    (name Eva_gui)
+    (modules
+     (module
+      (obj_name eva_gui__Gui_callstacks_filters)
+      (visibility public)
+      (source
+       (path Gui_callstacks_filters)
+       (intf (path gui/gui_callstacks_filters.mli))
+       (impl (path gui/gui_callstacks_filters.ml))))
+     (module
+      (obj_name eva_gui__Gui_callstacks_manager)
+      (visibility public)
+      (source
+       (path Gui_callstacks_manager)
+       (intf (path gui/gui_callstacks_manager.mli))
+       (impl (path gui/gui_callstacks_manager.ml))))
+     (module
+      (obj_name eva_gui__Gui_eval)
+      (visibility public)
+      (source
+       (path Gui_eval)
+       (intf (path gui/gui_eval.mli))
+       (impl (path gui/gui_eval.ml))))
+     (module
+      (obj_name eva_gui__Gui_red)
+      (visibility public)
+      (source
+       (path Gui_red)
+       (intf (path gui/gui_red.mli))
+       (impl (path gui/gui_red.ml))))
+     (module
+      (obj_name eva_gui__Gui_types)
+      (visibility public)
+      (source
+       (path Gui_types)
+       (intf (path gui/gui_types.mli))
+       (impl (path gui/gui_types.ml))))
+     (module
+      (obj_name eva_gui__Register_gui)
+      (visibility public)
+      (source
+       (path Register_gui)
+       (intf (path gui/register_gui.mli))
+       (impl (path gui/register_gui.ml))))))
+   (wrapped true))))

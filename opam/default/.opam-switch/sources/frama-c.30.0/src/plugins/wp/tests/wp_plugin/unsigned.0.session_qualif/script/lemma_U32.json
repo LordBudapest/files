@@ -1,0 +1,9 @@
+[ { "prover": "script", "verdict": "unknown" },
+  { "header": "Bitwise Eq.", "tactic": "Wp.bitwised",
+    "params": { "Wp.bitwised.range": 32 },
+    "select": { "select": "clause-goal",
+                "target": "(land 4294967295 x_0)=x_0",
+                "pattern": "=land$x4294967295$x" },
+    "children": { "range": [ { "prover": "Alt-Ergo:2.5.3",
+                               "verdict": "timeout", "time": 10. } ],
+                  "bitwise": [ { "prover": "qed", "verdict": "valid" } ] } } ]

@@ -1,0 +1,30 @@
+package "dune-section" (
+  directory = "dune-section"
+  version = "3.19.1"
+  description = "[Internal] section definition"
+  requires = ""
+  archive(byte) = "dune_section.cma"
+  archive(native) = "dune_section.cmxa"
+  plugin(byte) = "dune_section.cma"
+  plugin(native) = "dune_section.cmxs"
+)
+package "dune_re" (
+  directory = "dune_re"
+  version = "3.19.1"
+  description = "Internal Dune library, do not use!"
+  requires = ""
+  archive(byte) = "dune_re.cma"
+  archive(native) = "dune_re.cmxa"
+  plugin(byte) = "dune_re.cma"
+  plugin(native) = "dune_re.cmxs"
+)
+package "meta_parser" (
+  directory = "meta_parser"
+  version = "3.19.1"
+  description = "[Internal] findlib META parser"
+  requires = ""
+  archive(byte) = "dune_meta_parser.cma"
+  archive(native) = "dune_meta_parser.cmxa"
+  plugin(byte) = "dune_meta_parser.cma"
+  plugin(native) = "dune_meta_parser.cmxs"
+)

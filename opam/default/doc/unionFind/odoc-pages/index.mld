@@ -1,0 +1,45 @@
+{0 The Union-Find Data Structure in Several Guises}
+
+The OCaml library [unionFind] offers two implementations of {b the
+union-find data structure}. Both implementations are based on disjoint
+sets forests, with path compression and linking-by-rank, so as to
+guarantee good asymptotic complexity: every operation requires a
+quasi-constant number of accesses to the store.
+
+{1 Over Primitive Mutable State}
+
+The first implementation uses {b heap-allocated mutable state}. It is
+provided by the type [elem] and the operations [make], [get], [set],
+[eq], [union], [find] in the module {!UnionFind}.
+
+{!modules:
+UnionFind
+}
+
+{1 Over a User-Provided Store}
+
+The second implementation is {b parameterized over an implementation
+of stores}. Its operations explicitly take a store as a parameter, and
+update it in place. It is provided by the functor {!UnionFind.Make}.
+This functor is parameterized over an implementation of stores,
+described by the signature {!UnionFind.STORE}. Its result signature is
+also {!UnionFind.STORE}, extended with a [union] operation that merges
+two references.
+
+{!modules:
+UnionFind.Make
+}
+
+{1 Stores}
+
+The functor {!UnionFind.Make} can be applied to many different
+implementations of stores, such as persistent stores, mutable stores
+backed by mutable arrays, and more. The following modules provide
+{b several different implementations of stores}.
+
+{!modules:
+UnionFind.StoreRef
+UnionFind.StoreVector
+UnionFind.StoreMap
+UnionFind.StoreTransactionalRef
+}

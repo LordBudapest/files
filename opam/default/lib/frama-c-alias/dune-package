@@ -1,0 +1,117 @@
+(lang dune 3.19)
+(name frama-c-alias)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-alias)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-alias)
+ (doc /home/bhaskar/.opam/default/doc/frama-c-alias))
+(files
+ (lib
+  (META
+   core/API.ml
+   core/API.mli
+   core/Alias.a
+   core/Alias.cma
+   core/Alias.cmxa
+   core/Alias.ml
+   core/Alias.mli
+   core/abstract_state.ml
+   core/abstract_state.mli
+   core/alias.cmi
+   core/alias.cmt
+   core/alias.cmti
+   core/alias.cmx
+   core/alias__.cmi
+   core/alias__.cmt
+   core/alias__.cmx
+   core/alias__.ml
+   core/alias__API.cmi
+   core/alias__API.cmt
+   core/alias__API.cmti
+   core/alias__API.cmx
+   core/alias__Abstract_state.cmi
+   core/alias__Abstract_state.cmt
+   core/alias__Abstract_state.cmti
+   core/alias__Abstract_state.cmx
+   core/alias__Analysis.cmi
+   core/alias__Analysis.cmt
+   core/alias__Analysis.cmti
+   core/alias__Analysis.cmx
+   core/alias__Options.cmi
+   core/alias__Options.cmt
+   core/alias__Options.cmti
+   core/alias__Options.cmx
+   core/alias__Simplified.cmi
+   core/alias__Simplified.cmt
+   core/alias__Simplified.cmti
+   core/alias__Simplified.cmx
+   core/analysis.ml
+   core/analysis.mli
+   core/options.ml
+   core/options.mli
+   core/simplified.ml
+   core/simplified.mli
+   dune-package
+   opam))
+ (lib_root (frama-c/plugins/alias/META))
+ (libexec (core/Alias.cmxs))
+ (doc (README.md)))
+(library
+ (name frama-c-alias.core)
+ (kind normal)
+ (archives (byte core/Alias.cma) (native core/Alias.cmxa))
+ (plugins (byte core/Alias.cma) (native core/Alias.cmxs))
+ (native_archives core/Alias.a)
+ (requires frama-c.kernel ocamlgraph unionFind)
+ (main_module_name Alias)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name alias__)
+     (visibility public)
+     (kind alias)
+     (source (path Alias__) (impl (path core/alias__.ml-gen))))
+    (name Alias)
+    (modules
+     (module
+      (obj_name alias__API)
+      (visibility public)
+      (source (path API) (intf (path core/API.mli)) (impl (path core/API.ml))))
+     (module
+      (obj_name alias__Abstract_state)
+      (visibility public)
+      (source
+       (path Abstract_state)
+       (intf (path core/abstract_state.mli))
+       (impl (path core/abstract_state.ml))))
+     (module
+      (obj_name alias)
+      (visibility public)
+      (source
+       (path Alias)
+       (intf (path core/Alias.mli))
+       (impl (path core/Alias.ml))))
+     (module
+      (obj_name alias__Analysis)
+      (visibility public)
+      (source
+       (path Analysis)
+       (intf (path core/analysis.mli))
+       (impl (path core/analysis.ml))))
+     (module
+      (obj_name alias__Options)
+      (visibility public)
+      (source
+       (path Options)
+       (intf (path core/options.mli))
+       (impl (path core/options.ml))))
+     (module
+      (obj_name alias__Simplified)
+      (visibility public)
+      (source
+       (path Simplified)
+       (intf (path core/simplified.mli))
+       (impl (path core/simplified.ml))))))
+   (wrapped true))))

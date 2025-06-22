@@ -69,7 +69,7 @@
   (byte bigstring/ocplib_endian_bigstring.cma)
   (native bigstring/ocplib_endian_bigstring.cmxs))
  (native_archives bigstring/ocplib_endian_bigstring.a)
- (requires ocplib-endian bytes)
+ (requires ocplib-endian bigarray bytes)
  (modes byte native)
  (modules
   (singleton

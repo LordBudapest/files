@@ -1,6 +1,6 @@
 (lang dune 3.19)
 (name chrome-trace)
-(version 3.19.0)
+(version 3.19.1)
 (sections (lib .) (libexec .) (doc ../../doc/chrome-trace))
 (files
  (lib

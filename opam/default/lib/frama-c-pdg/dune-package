@@ -1,0 +1,261 @@
+(lang dune 3.19)
+(name frama-c-pdg)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-pdg)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-pdg))
+(files
+ (lib
+  (META
+   core/Pdg.ml
+   core/Pdg.mli
+   core/annot.ml
+   core/annot.mli
+   core/api.ml
+   core/api.mli
+   core/build.ml
+   core/build.mli
+   core/ctrlDpds.ml
+   core/ctrlDpds.mli
+   core/marks.ml
+   core/marks.mli
+   core/pdg.a
+   core/pdg.cma
+   core/pdg.cmi
+   core/pdg.cmt
+   core/pdg.cmti
+   core/pdg.cmx
+   core/pdg.cmxa
+   core/pdg__.cmi
+   core/pdg__.cmt
+   core/pdg__.cmx
+   core/pdg__.ml
+   core/pdg__Annot.cmi
+   core/pdg__Annot.cmt
+   core/pdg__Annot.cmti
+   core/pdg__Annot.cmx
+   core/pdg__Api.cmi
+   core/pdg__Api.cmt
+   core/pdg__Api.cmti
+   core/pdg__Api.cmx
+   core/pdg__Build.cmi
+   core/pdg__Build.cmt
+   core/pdg__Build.cmti
+   core/pdg__Build.cmx
+   core/pdg__CtrlDpds.cmi
+   core/pdg__CtrlDpds.cmt
+   core/pdg__CtrlDpds.cmti
+   core/pdg__CtrlDpds.cmx
+   core/pdg__Marks.cmi
+   core/pdg__Marks.cmt
+   core/pdg__Marks.cmti
+   core/pdg__Marks.cmx
+   core/pdg__Pdg_parameters.cmi
+   core/pdg__Pdg_parameters.cmt
+   core/pdg__Pdg_parameters.cmti
+   core/pdg__Pdg_parameters.cmx
+   core/pdg__Pdg_state.cmi
+   core/pdg__Pdg_state.cmt
+   core/pdg__Pdg_state.cmti
+   core/pdg__Pdg_state.cmx
+   core/pdg__Pdg_tbl.cmi
+   core/pdg__Pdg_tbl.cmt
+   core/pdg__Pdg_tbl.cmti
+   core/pdg__Pdg_tbl.cmx
+   core/pdg__Register.cmi
+   core/pdg__Register.cmt
+   core/pdg__Register.cmti
+   core/pdg__Register.cmx
+   core/pdg__Sets.cmi
+   core/pdg__Sets.cmt
+   core/pdg__Sets.cmti
+   core/pdg__Sets.cmx
+   core/pdg_parameters.ml
+   core/pdg_parameters.mli
+   core/pdg_state.ml
+   core/pdg_state.mli
+   core/pdg_tbl.ml
+   core/pdg_tbl.mli
+   core/register.ml
+   core/register.mli
+   core/sets.ml
+   core/sets.mli
+   dune-package
+   opam
+   types/core/Pdg_types.a
+   types/core/Pdg_types.cma
+   types/core/Pdg_types.cmxa
+   types/core/Pdg_types.ml
+   types/core/Pdg_types.mli
+   types/core/pdgIndex.ml
+   types/core/pdgIndex.mli
+   types/core/pdgMarks.ml
+   types/core/pdgMarks.mli
+   types/core/pdgTypes.ml
+   types/core/pdgTypes.mli
+   types/core/pdg_types.cmi
+   types/core/pdg_types.cmt
+   types/core/pdg_types.cmti
+   types/core/pdg_types.cmx
+   types/core/pdg_types__.cmi
+   types/core/pdg_types__.cmt
+   types/core/pdg_types__.cmx
+   types/core/pdg_types__.ml
+   types/core/pdg_types__PdgIndex.cmi
+   types/core/pdg_types__PdgIndex.cmt
+   types/core/pdg_types__PdgIndex.cmti
+   types/core/pdg_types__PdgIndex.cmx
+   types/core/pdg_types__PdgMarks.cmi
+   types/core/pdg_types__PdgMarks.cmt
+   types/core/pdg_types__PdgMarks.cmti
+   types/core/pdg_types__PdgMarks.cmx
+   types/core/pdg_types__PdgTypes.cmi
+   types/core/pdg_types__PdgTypes.cmt
+   types/core/pdg_types__PdgTypes.cmti
+   types/core/pdg_types__PdgTypes.cmx))
+ (lib_root (frama-c/plugins/pdg-types/META frama-c/plugins/pdg/META))
+ (libexec (core/pdg.cmxs types/core/Pdg_types.cmxs)))
+(library
+ (name frama-c-pdg.core)
+ (kind normal)
+ (archives (byte core/pdg.cma) (native core/pdg.cmxa))
+ (plugins (byte core/pdg.cma) (native core/pdg.cmxs))
+ (native_archives core/pdg.a)
+ (requires
+  frama-c.kernel
+  frama-c-pdg.types.core
+  frama-c-callgraph.core
+  frama-c-from.core
+  frama-c-eva.core)
+ (main_module_name Pdg)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name pdg__)
+     (visibility public)
+     (kind alias)
+     (source (path Pdg__) (impl (path core/pdg__.ml-gen))))
+    (name Pdg)
+    (modules
+     (module
+      (obj_name pdg__Annot)
+      (visibility public)
+      (source
+       (path Annot)
+       (intf (path core/annot.mli))
+       (impl (path core/annot.ml))))
+     (module
+      (obj_name pdg__Api)
+      (visibility public)
+      (source (path Api) (intf (path core/api.mli)) (impl (path core/api.ml))))
+     (module
+      (obj_name pdg__Build)
+      (visibility public)
+      (source
+       (path Build)
+       (intf (path core/build.mli))
+       (impl (path core/build.ml))))
+     (module
+      (obj_name pdg__CtrlDpds)
+      (visibility public)
+      (source
+       (path CtrlDpds)
+       (intf (path core/ctrlDpds.mli))
+       (impl (path core/ctrlDpds.ml))))
+     (module
+      (obj_name pdg__Marks)
+      (visibility public)
+      (source
+       (path Marks)
+       (intf (path core/marks.mli))
+       (impl (path core/marks.ml))))
+     (module
+      (obj_name pdg)
+      (visibility public)
+      (source (path Pdg) (intf (path core/Pdg.mli)) (impl (path core/Pdg.ml))))
+     (module
+      (obj_name pdg__Pdg_parameters)
+      (visibility public)
+      (source
+       (path Pdg_parameters)
+       (intf (path core/pdg_parameters.mli))
+       (impl (path core/pdg_parameters.ml))))
+     (module
+      (obj_name pdg__Pdg_state)
+      (visibility public)
+      (source
+       (path Pdg_state)
+       (intf (path core/pdg_state.mli))
+       (impl (path core/pdg_state.ml))))
+     (module
+      (obj_name pdg__Pdg_tbl)
+      (visibility public)
+      (source
+       (path Pdg_tbl)
+       (intf (path core/pdg_tbl.mli))
+       (impl (path core/pdg_tbl.ml))))
+     (module
+      (obj_name pdg__Register)
+      (visibility public)
+      (source
+       (path Register)
+       (intf (path core/register.mli))
+       (impl (path core/register.ml))))
+     (module
+      (obj_name pdg__Sets)
+      (visibility public)
+      (source
+       (path Sets)
+       (intf (path core/sets.mli))
+       (impl (path core/sets.ml))))))
+   (wrapped true))))
+(library
+ (name frama-c-pdg.types.core)
+ (kind normal)
+ (archives (byte types/core/Pdg_types.cma) (native types/core/Pdg_types.cmxa))
+ (plugins (byte types/core/Pdg_types.cma) (native types/core/Pdg_types.cmxs))
+ (native_archives types/core/Pdg_types.a)
+ (requires frama-c.kernel)
+ (main_module_name Pdg_types)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name pdg_types__)
+     (visibility public)
+     (kind alias)
+     (source (path Pdg_types__) (impl (path types/core/pdg_types__.ml-gen))))
+    (name Pdg_types)
+    (modules
+     (module
+      (obj_name pdg_types__PdgIndex)
+      (visibility public)
+      (source
+       (path PdgIndex)
+       (intf (path types/core/pdgIndex.mli))
+       (impl (path types/core/pdgIndex.ml))))
+     (module
+      (obj_name pdg_types__PdgMarks)
+      (visibility public)
+      (source
+       (path PdgMarks)
+       (intf (path types/core/pdgMarks.mli))
+       (impl (path types/core/pdgMarks.ml))))
+     (module
+      (obj_name pdg_types__PdgTypes)
+      (visibility public)
+      (source
+       (path PdgTypes)
+       (intf (path types/core/pdgTypes.mli))
+       (impl (path types/core/pdgTypes.ml))))
+     (module
+      (obj_name pdg_types)
+      (visibility public)
+      (source
+       (path Pdg_types)
+       (intf (path types/core/Pdg_types.mli))
+       (impl (path types/core/Pdg_types.ml))))))
+   (wrapped true))))

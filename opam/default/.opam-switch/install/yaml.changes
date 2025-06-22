@@ -1,0 +1,120 @@
+opam-version: "2.0"
+added: [
+  "doc/yaml" {"D"}
+  "doc/yaml/CHANGES.md" {"F:S4300T1750607155.82"}
+  "doc/yaml/LICENSE.md" {"F:S750T1750607155.82"}
+  "doc/yaml/README.md" {"F:S9149T1750607155.82"}
+  "lib/stublibs/dllyaml_c_stubs.so" {"F:S393936T1750607155.82"}
+  "lib/stublibs/dllyaml_ffi_stubs.so" {"F:S46824T1750607155.82"}
+  "lib/yaml" {"D"}
+  "lib/yaml/META" {"F:S1893T1750607155.72"}
+  "lib/yaml/bindings" {"D"}
+  "lib/yaml/bindings/types" {"D"}
+  "lib/yaml/bindings/types/yaml_bindings_types.a" {"F:S57528T1750607155.72"}
+  "lib/yaml/bindings/types/yaml_bindings_types.cma"
+    {"F:S61679T1750607155.75"}
+  "lib/yaml/bindings/types/yaml_bindings_types.cmi"
+    {"F:S14248T1750607155.75"}
+  "lib/yaml/bindings/types/yaml_bindings_types.cmt"
+    {"F:S140837T1750607155.75"}
+  "lib/yaml/bindings/types/yaml_bindings_types.cmti"
+    {"F:S66858T1750607155.75"}
+  "lib/yaml/bindings/types/yaml_bindings_types.cmx" {"F:S1250T1750607155.75"}
+  "lib/yaml/bindings/types/yaml_bindings_types.cmxa" {"F:S993T1750607155.75"}
+  "lib/yaml/bindings/types/yaml_bindings_types.cmxs"
+    {"F:S67912T1750607155.79"}
+  "lib/yaml/bindings/types/yaml_bindings_types.ml" {"F:S11555T1750607155.75"}
+  "lib/yaml/bindings/types/yaml_bindings_types.mli" {"F:S6471T1750607155.75"}
+  "lib/yaml/bindings/yaml_bindings.a" {"F:S36420T1750607155.75"}
+  "lib/yaml/bindings/yaml_bindings.cma" {"F:S56468T1750607155.75"}
+  "lib/yaml/bindings/yaml_bindings.cmi" {"F:S27509T1750607155.75"}
+  "lib/yaml/bindings/yaml_bindings.cmt" {"F:S120651T1750607155.75"}
+  "lib/yaml/bindings/yaml_bindings.cmx" {"F:S11962T1750607155.75"}
+  "lib/yaml/bindings/yaml_bindings.cmxa" {"F:S1162T1750607155.75"}
+  "lib/yaml/bindings/yaml_bindings.cmxs" {"F:S46640T1750607155.79"}
+  "lib/yaml/bindings/yaml_bindings.ml" {"F:S5148T1750607155.75"}
+  "lib/yaml/c" {"D"}
+  "lib/yaml/c/libyaml_c_stubs.a" {"F:S673554T1750607155.75"}
+  "lib/yaml/c/yaml_c.a" {"F:S1950T1750607155.75"}
+  "lib/yaml/c/yaml_c.cma" {"F:S1890T1750607155.75"}
+  "lib/yaml/c/yaml_c.cmi" {"F:S113T1750607155.75"}
+  "lib/yaml/c/yaml_c.cmt" {"F:S2058T1750607155.75"}
+  "lib/yaml/c/yaml_c.cmx" {"F:S97T1750607155.75"}
+  "lib/yaml/c/yaml_c.cmxa" {"F:S119T1750607155.75"}
+  "lib/yaml/c/yaml_c.cmxs" {"F:S16040T1750607155.79"}
+  "lib/yaml/c/yaml_c.ml" {"F:S24T1750607155.75"}
+  "lib/yaml/dune-package" {"F:S7414T1750607155.75"}
+  "lib/yaml/ffi" {"D"}
+  "lib/yaml/ffi/g.ml" {"F:S12675T1750607155.76"}
+  "lib/yaml/ffi/libyaml_ffi_stubs.a" {"F:S58318T1750607155.76"}
+  "lib/yaml/ffi/m.ml" {"F:S819T1750607155.76"}
+  "lib/yaml/ffi/yaml_ffi.a" {"F:S38580T1750607155.76"}
+  "lib/yaml/ffi/yaml_ffi.cma" {"F:S97745T1750607155.76"}
+  "lib/yaml/ffi/yaml_ffi.cmi" {"F:S263T1750607155.76"}
+  "lib/yaml/ffi/yaml_ffi.cmt" {"F:S2854T1750607155.76"}
+  "lib/yaml/ffi/yaml_ffi.cmx" {"F:S129T1750607155.76"}
+  "lib/yaml/ffi/yaml_ffi.cmxa" {"F:S2506T1750607155.76"}
+  "lib/yaml/ffi/yaml_ffi.cmxs" {"F:S83624T1750607155.79"}
+  "lib/yaml/ffi/yaml_ffi.ml" {"F:S130T1750607155.76"}
+  "lib/yaml/ffi/yaml_ffi__G.cmi" {"F:S9925T1750607155.76"}
+  "lib/yaml/ffi/yaml_ffi__G.cmt" {"F:S153879T1750607155.76"}
+  "lib/yaml/ffi/yaml_ffi__G.cmx" {"F:S1635T1750607155.76"}
+  "lib/yaml/ffi/yaml_ffi__M.cmi" {"F:S27879T1750607155.76"}
+  "lib/yaml/ffi/yaml_ffi__M.cmt" {"F:S110374T1750607155.76"}
+  "lib/yaml/ffi/yaml_ffi__M.cmx" {"F:S12183T1750607155.76"}
+  "lib/yaml/opam" {"F:S1473T1750607155.76"}
+  "lib/yaml/stream.ml" {"F:S12256T1750607155.76"}
+  "lib/yaml/types" {"D"}
+  "lib/yaml/types.ml" {"F:S1704T1750607155.76"}
+  "lib/yaml/types/g.ml" {"F:S19181T1750607155.76"}
+  "lib/yaml/types/m.ml" {"F:S853T1750607155.76"}
+  "lib/yaml/types/yaml_types.a" {"F:S55476T1750607155.76"}
+  "lib/yaml/types/yaml_types.cma" {"F:S129238T1750607155.78"}
+  "lib/yaml/types/yaml_types.cmi" {"F:S279T1750607155.78"}
+  "lib/yaml/types/yaml_types.cmt" {"F:S2899T1750607155.78"}
+  "lib/yaml/types/yaml_types.cmx" {"F:S135T1750607155.78"}
+  "lib/yaml/types/yaml_types.cmxa" {"F:S2331T1750607155.78"}
+  "lib/yaml/types/yaml_types.cmxs" {"F:S59440T1750607155.79"}
+  "lib/yaml/types/yaml_types.ml" {"F:S138T1750607155.78"}
+  "lib/yaml/types/yaml_types__G.cmi" {"F:S20385T1750607155.78"}
+  "lib/yaml/types/yaml_types__G.cmt" {"F:S267322T1750607155.78"}
+  "lib/yaml/types/yaml_types__G.cmx" {"F:S12128T1750607155.78"}
+  "lib/yaml/types/yaml_types__M.cmi" {"F:S13835T1750607155.78"}
+  "lib/yaml/types/yaml_types__M.cmt" {"F:S76804T1750607155.78"}
+  "lib/yaml/types/yaml_types__M.cmx" {"F:S1454T1750607155.78"}
+  "lib/yaml/unix" {"D"}
+  "lib/yaml/unix/yaml_unix.a" {"F:S7420T1750607155.78"}
+  "lib/yaml/unix/yaml_unix.cma" {"F:S6248T1750607155.78"}
+  "lib/yaml/unix/yaml_unix.cmi" {"F:S1180T1750607155.78"}
+  "lib/yaml/unix/yaml_unix.cmt" {"F:S12994T1750607155.78"}
+  "lib/yaml/unix/yaml_unix.cmti" {"F:S8285T1750607155.78"}
+  "lib/yaml/unix/yaml_unix.cmx" {"F:S1218T1750607155.78"}
+  "lib/yaml/unix/yaml_unix.cmxa" {"F:S1076T1750607155.78"}
+  "lib/yaml/unix/yaml_unix.cmxs" {"F:S19648T1750607155.79"}
+  "lib/yaml/unix/yaml_unix.ml" {"F:S1118T1750607155.78"}
+  "lib/yaml/unix/yaml_unix.mli" {"F:S1534T1750607155.78"}
+  "lib/yaml/util.ml" {"F:S2194T1750607155.78"}
+  "lib/yaml/yaml.a" {"F:S142396T1750607155.78"}
+  "lib/yaml/yaml.cma" {"F:S157895T1750607155.78"}
+  "lib/yaml/yaml.cmi" {"F:S13208T1750607155.78"}
+  "lib/yaml/yaml.cmt" {"F:S126337T1750607155.78"}
+  "lib/yaml/yaml.cmti" {"F:S78613T1750607155.78"}
+  "lib/yaml/yaml.cmx" {"F:S6918T1750607155.79"}
+  "lib/yaml/yaml.cmxa" {"F:S4157T1750607155.79"}
+  "lib/yaml/yaml.cmxs" {"F:S132312T1750607155.79"}
+  "lib/yaml/yaml.ml" {"F:S8183T1750607155.79"}
+  "lib/yaml/yaml.mli" {"F:S15146T1750607155.79"}
+  "lib/yaml/yaml__.cmi" {"F:S332T1750607155.79"}
+  "lib/yaml/yaml__.cmt" {"F:S3218T1750607155.79"}
+  "lib/yaml/yaml__.cmx" {"F:S142T1750607155.79"}
+  "lib/yaml/yaml__.ml" {"F:S195T1750607155.79"}
+  "lib/yaml/yaml__Stream.cmi" {"F:S11961T1750607155.79"}
+  "lib/yaml/yaml__Stream.cmt" {"F:S161913T1750607155.79"}
+  "lib/yaml/yaml__Stream.cmx" {"F:S4620T1750607155.79"}
+  "lib/yaml/yaml__Types.cmi" {"F:S2608T1750607155.79"}
+  "lib/yaml/yaml__Types.cmt" {"F:S13936T1750607155.79"}
+  "lib/yaml/yaml__Types.cmx" {"F:S201T1750607155.79"}
+  "lib/yaml/yaml__Util.cmi" {"F:S4755T1750607155.79"}
+  "lib/yaml/yaml__Util.cmt" {"F:S33606T1750607155.79"}
+  "lib/yaml/yaml__Util.cmx" {"F:S1797T1750607155.79"}
+]

@@ -1,0 +1,160 @@
+(lang dune 3.19)
+(name frama-c-rtegen)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-rtegen)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-rtegen))
+(files
+ (lib
+  (META
+   core/.private/rteGen__Api.cmi
+   core/.private/rteGen__Api.cmt
+   core/.private/rteGen__Api.cmti
+   core/.private/rteGen__Generator.cmi
+   core/.private/rteGen__Generator.cmt
+   core/.private/rteGen__Generator.cmti
+   core/.private/rteGen__Options.cmi
+   core/.private/rteGen__Options.cmt
+   core/.private/rteGen__Options.cmti
+   core/.private/rteGen__Register.cmi
+   core/.private/rteGen__Register.cmt
+   core/.private/rteGen__Register.cmti
+   core/.private/rteGen__Rte.cmi
+   core/.private/rteGen__Rte.cmt
+   core/.private/rteGen__Rte.cmti
+   core/.private/rteGen__Visit.cmi
+   core/.private/rteGen__Visit.cmt
+   core/.private/rteGen__Visit.cmti
+   core/RteGen.a
+   core/RteGen.cma
+   core/RteGen.cmxa
+   core/RteGen.ml
+   core/RteGen.mli
+   core/api.ml
+   core/api.mli
+   core/flags.ml
+   core/flags.mli
+   core/generator.ml
+   core/generator.mli
+   core/options.ml
+   core/options.mli
+   core/register.ml
+   core/register.mli
+   core/rte.ml
+   core/rte.mli
+   core/rteGen.cmi
+   core/rteGen.cmt
+   core/rteGen.cmti
+   core/rteGen.cmx
+   core/rteGen__.cmi
+   core/rteGen__.cmt
+   core/rteGen__.cmx
+   core/rteGen__.ml
+   core/rteGen__Api.cmx
+   core/rteGen__Flags.cmi
+   core/rteGen__Flags.cmt
+   core/rteGen__Flags.cmti
+   core/rteGen__Flags.cmx
+   core/rteGen__Generator.cmx
+   core/rteGen__Options.cmx
+   core/rteGen__Register.cmx
+   core/rteGen__Rte.cmx
+   core/rteGen__Visit.cmx
+   core/visit.ml
+   core/visit.mli
+   dune-package
+   gui/rtegen_gui.a
+   gui/rtegen_gui.cma
+   gui/rtegen_gui.cmi
+   gui/rtegen_gui.cmt
+   gui/rtegen_gui.cmx
+   gui/rtegen_gui.cmxa
+   gui/rtegen_gui.ml
+   opam))
+ (lib_root (frama-c/plugins/rtegen/META frama-c/plugins_gui/rtegen-gui/META))
+ (libexec (core/RteGen.cmxs gui/rtegen_gui.cmxs)))
+(library
+ (name frama-c-rtegen.core)
+ (kind normal)
+ (archives (byte core/RteGen.cma) (native core/RteGen.cmxa))
+ (plugins (byte core/RteGen.cma) (native core/RteGen.cmxs))
+ (native_archives core/RteGen.a)
+ (requires frama-c.kernel)
+ (main_module_name RteGen)
+ (modes byte native)
+ (obj_dir (private_dir .private))
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name rteGen__)
+     (visibility public)
+     (kind alias)
+     (source (path RteGen__) (impl (path core/rteGen__.ml-gen))))
+    (name RteGen)
+    (modules
+     (module
+      (obj_name rteGen__Api)
+      (visibility private)
+      (source (path Api) (intf (path core/api.mli)) (impl (path core/api.ml))))
+     (module
+      (obj_name rteGen__Flags)
+      (visibility public)
+      (source
+       (path Flags)
+       (intf (path core/flags.mli))
+       (impl (path core/flags.ml))))
+     (module
+      (obj_name rteGen__Generator)
+      (visibility private)
+      (source
+       (path Generator)
+       (intf (path core/generator.mli))
+       (impl (path core/generator.ml))))
+     (module
+      (obj_name rteGen__Options)
+      (visibility private)
+      (source
+       (path Options)
+       (intf (path core/options.mli))
+       (impl (path core/options.ml))))
+     (module
+      (obj_name rteGen__Register)
+      (visibility private)
+      (source
+       (path Register)
+       (intf (path core/register.mli))
+       (impl (path core/register.ml))))
+     (module
+      (obj_name rteGen__Rte)
+      (visibility private)
+      (source (path Rte) (intf (path core/rte.mli)) (impl (path core/rte.ml))))
+     (module
+      (obj_name rteGen)
+      (visibility public)
+      (source
+       (path RteGen)
+       (intf (path core/RteGen.mli))
+       (impl (path core/RteGen.ml))))
+     (module
+      (obj_name rteGen__Visit)
+      (visibility private)
+      (source
+       (path Visit)
+       (intf (path core/visit.mli))
+       (impl (path core/visit.ml))))))
+   (wrapped true))))
+(library
+ (name frama-c-rtegen.gui)
+ (kind normal)
+ (archives (byte gui/rtegen_gui.cma) (native gui/rtegen_gui.cmxa))
+ (plugins (byte gui/rtegen_gui.cma) (native gui/rtegen_gui.cmxs))
+ (native_archives gui/rtegen_gui.a)
+ (requires frama-c.kernel frama-c.gui frama-c-rtegen.core)
+ (main_module_name Rtegen_gui)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name rtegen_gui)
+   (visibility public)
+   (source (path Rtegen_gui) (impl (path gui/rtegen_gui.ml))))))

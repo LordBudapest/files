@@ -1,0 +1,304 @@
+(lang dune 3.19)
+(name dune-site)
+(version 3.19.1)
+(sections (lib .) (libexec .) (doc ../../doc/dune-site))
+(files
+ (lib
+  (META
+   dune-package
+   dune_site.a
+   dune_site.cma
+   dune_site.cmi
+   dune_site.cmt
+   dune_site.cmx
+   dune_site.cmxa
+   dune_site.ml
+   dune_site__.cmi
+   dune_site__.cmt
+   dune_site__.cmx
+   dune_site__.ml
+   dune_site__Dune_site_data.cmi
+   dune_site__Dune_site_data.cmti
+   dune_site__Helpers.cmi
+   dune_site__Helpers.cmt
+   dune_site__Helpers.cmti
+   dune_site__Helpers.cmx
+   dune_site_data.mli
+   dynlink/dune_site_backend.cmi
+   dynlink/dune_site_backend.cmx
+   dynlink/dune_site_backend__Linker.cmi
+   dynlink/dune_site_backend__Linker.cmt
+   dynlink/dune_site_backend__Linker.cmx
+   dynlink/dune_site_backend__dune_site_dynlink_linker__.cmi
+   dynlink/dune_site_backend__dune_site_dynlink_linker__.cmt
+   dynlink/dune_site_backend__dune_site_dynlink_linker__.cmx
+   dynlink/dune_site_backend__dune_site_dynlink_linker__.ml
+   dynlink/dune_site_dynlink_linker.a
+   dynlink/dune_site_dynlink_linker.cma
+   dynlink/dune_site_dynlink_linker.cmxa
+   dynlink/linker.ml
+   helpers.ml
+   helpers.mli
+   linker/dune_site_backend.cmi
+   linker/dune_site_backend.cmo
+   linker/dune_site_backend.cmt
+   linker/dune_site_backend.cmx
+   linker/dune_site_backend.ml
+   linker/dune_site_backend.o
+   linker/dune_site_backend__Linker.cmi
+   linker/dune_site_backend__Linker.cmti
+   linker/linker.mli
+   opam
+   plugins/dune_site_plugins.a
+   plugins/dune_site_plugins.cma
+   plugins/dune_site_plugins.cmi
+   plugins/dune_site_plugins.cmt
+   plugins/dune_site_plugins.cmti
+   plugins/dune_site_plugins.cmx
+   plugins/dune_site_plugins.cmxa
+   plugins/dune_site_plugins.ml
+   plugins/dune_site_plugins.mli
+   plugins/dune_site_plugins__.cmi
+   plugins/dune_site_plugins__.cmt
+   plugins/dune_site_plugins__.cmx
+   plugins/dune_site_plugins__.ml
+   plugins/dune_site_plugins__Dune_site_plugins_data.cmi
+   plugins/dune_site_plugins__Dune_site_plugins_data.cmti
+   plugins/dune_site_plugins__Meta_parser.cmi
+   plugins/dune_site_plugins__Meta_parser.cmt
+   plugins/dune_site_plugins__Meta_parser.cmti
+   plugins/dune_site_plugins__Meta_parser.cmx
+   plugins/dune_site_plugins__Plugins.cmi
+   plugins/dune_site_plugins__Plugins.cmt
+   plugins/dune_site_plugins__Plugins.cmti
+   plugins/dune_site_plugins__Plugins.cmx
+   plugins/dune_site_plugins_data.mli
+   plugins/meta_parser.ml
+   plugins/meta_parser.mli
+   plugins/plugins.ml
+   plugins/plugins.mli
+   private/dune_site_private.a
+   private/dune_site_private.cma
+   private/dune_site_private.cmi
+   private/dune_site_private.cmt
+   private/dune_site_private.cmti
+   private/dune_site_private.cmx
+   private/dune_site_private.cmxa
+   private/dune_site_private.ml
+   private/dune_site_private.mli
+   toplevel/dune_site_backend.cmi
+   toplevel/dune_site_backend__Linker.cmi
+   toplevel/dune_site_backend__Linker.cmt
+   toplevel/dune_site_backend__dune_site_toplevel_linker__.cmi
+   toplevel/dune_site_backend__dune_site_toplevel_linker__.cmt
+   toplevel/dune_site_backend__dune_site_toplevel_linker__.ml
+   toplevel/dune_site_toplevel_linker.cma
+   toplevel/linker.ml))
+ (libexec
+  (dune_site.cmxs
+   dynlink/dune_site_dynlink_linker.cmxs
+   plugins/dune_site_plugins.cmxs
+   private/dune_site_private.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name dune-site)
+ (kind normal)
+ (archives (byte dune_site.cma) (native dune_site.cmxa))
+ (plugins (byte dune_site.cma) (native dune_site.cmxs))
+ (native_archives dune_site.a)
+ (requires (re_export dune-private-libs.dune-section) dune-site.private)
+ (main_module_name Dune_site)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dune_site__)
+     (visibility public)
+     (kind alias)
+     (source (path Dune_site__) (impl (path dune_site__.ml-gen))))
+    (name Dune_site)
+    (modules
+     (module
+      (obj_name dune_site)
+      (visibility public)
+      (source (path Dune_site) (impl (path dune_site.ml))))
+     (module
+      (obj_name dune_site__Dune_site_data)
+      (visibility public)
+      (source (path Dune_site_data) (intf (path dune_site_data.mli))))
+     (module
+      (obj_name dune_site__Helpers)
+      (visibility public)
+      (source
+       (path Helpers)
+       (intf (path helpers.mli))
+       (impl (path helpers.ml))))))
+   (wrapped true)))
+ (special_builtin_support (dune_site (data_module Dune_site_data))))
+(library
+ (name dune-site.dynlink)
+ (kind normal)
+ (archives
+  (byte dynlink/dune_site_dynlink_linker.cma)
+  (native dynlink/dune_site_dynlink_linker.cmxa))
+ (plugins
+  (byte dynlink/dune_site_dynlink_linker.cma)
+  (native dynlink/dune_site_dynlink_linker.cmxs))
+ (native_archives dynlink/dune_site_dynlink_linker.a)
+ (requires dune-site.linker dynlink)
+ (implements dune-site.linker)
+ (main_module_name Dune_site_backend)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dune_site_backend__dune_site_dynlink_linker__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Dune_site_backend__dune_site_dynlink_linker__)
+      (impl
+       (path dynlink/dune_site_backend__dune_site_dynlink_linker__.ml-gen))))
+    (name Dune_site_backend)
+    (modules
+     (module
+      (obj_name dune_site_backend__Linker)
+      (visibility public)
+      (kind impl_vmodule)
+      (source (path Linker) (impl (path dynlink/linker.ml))))))
+   (wrapped true))))
+(library
+ (name dune-site.linker)
+ (kind normal)
+ (virtual)
+ (default_implementation dune-site.dynlink)
+ (main_module_name Dune_site_backend)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dune_site_backend)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Dune_site_backend)
+      (impl (path linker/dune_site_backend.ml-gen))))
+    (name Dune_site_backend)
+    (modules
+     (module
+      (obj_name dune_site_backend__Linker)
+      (visibility public)
+      (kind virtual)
+      (source (path Linker) (intf (path linker/linker.mli))))))
+   (wrapped true))))
+(library
+ (name dune-site.plugins)
+ (kind normal)
+ (archives
+  (byte plugins/dune_site_plugins.cma)
+  (native plugins/dune_site_plugins.cmxa))
+ (plugins
+  (byte plugins/dune_site_plugins.cma)
+  (native plugins/dune_site_plugins.cmxs))
+ (native_archives plugins/dune_site_plugins.a)
+ (requires
+  dune-private-libs.dune-section
+  dune-site
+  dune-private-libs.meta_parser
+  dune-site.linker)
+ (main_module_name Dune_site_plugins)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dune_site_plugins__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Dune_site_plugins__)
+      (impl (path plugins/dune_site_plugins__.ml-gen))))
+    (name Dune_site_plugins)
+    (modules
+     (module
+      (obj_name dune_site_plugins)
+      (visibility public)
+      (source
+       (path Dune_site_plugins)
+       (intf (path plugins/dune_site_plugins.mli))
+       (impl (path plugins/dune_site_plugins.ml))))
+     (module
+      (obj_name dune_site_plugins__Dune_site_plugins_data)
+      (visibility public)
+      (source
+       (path Dune_site_plugins_data)
+       (intf (path plugins/dune_site_plugins_data.mli))))
+     (module
+      (obj_name dune_site_plugins__Meta_parser)
+      (visibility public)
+      (source
+       (path Meta_parser)
+       (intf (path plugins/meta_parser.mli))
+       (impl (path plugins/meta_parser.ml))))
+     (module
+      (obj_name dune_site_plugins__Plugins)
+      (visibility public)
+      (source
+       (path Plugins)
+       (intf (path plugins/plugins.mli))
+       (impl (path plugins/plugins.ml))))))
+   (wrapped true)))
+ (special_builtin_support
+  (dune_site (data_module Dune_site_plugins_data) (plugins))))
+(library
+ (name dune-site.private)
+ (kind normal)
+ (archives
+  (byte private/dune_site_private.cma)
+  (native private/dune_site_private.cmxa))
+ (plugins
+  (byte private/dune_site_private.cma)
+  (native private/dune_site_private.cmxs))
+ (native_archives private/dune_site_private.a)
+ (requires dune-private-libs.dune-section)
+ (main_module_name Dune_site_private)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name dune_site_private)
+   (visibility public)
+   (source
+    (path Dune_site_private)
+    (intf (path private/dune_site_private.mli))
+    (impl (path private/dune_site_private.ml))))))
+(library
+ (name dune-site.toplevel)
+ (kind normal)
+ (archives (byte toplevel/dune_site_toplevel_linker.cma))
+ (plugins (byte toplevel/dune_site_toplevel_linker.cma))
+ (requires dune-site.linker compiler-libs.toplevel)
+ (implements dune-site.linker)
+ (main_module_name Dune_site_backend)
+ (modes byte)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name dune_site_backend__dune_site_toplevel_linker__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Dune_site_backend__dune_site_toplevel_linker__)
+      (impl
+       (path toplevel/dune_site_backend__dune_site_toplevel_linker__.ml-gen))))
+    (name Dune_site_backend)
+    (modules
+     (module
+      (obj_name dune_site_backend__Linker)
+      (visibility public)
+      (kind impl_vmodule)
+      (source (path Linker) (impl (path toplevel/linker.ml))))))
+   (wrapped true))))

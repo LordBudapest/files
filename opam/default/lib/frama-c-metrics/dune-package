@@ -1,0 +1,224 @@
+(lang dune 3.19)
+(name frama-c-metrics)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-metrics)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-metrics))
+(files
+ (lib
+  (META
+   core/css_html.ml
+   core/css_html.mli
+   core/metrics.a
+   core/metrics.cma
+   core/metrics.cmi
+   core/metrics.cmt
+   core/metrics.cmti
+   core/metrics.cmx
+   core/metrics.cmxa
+   core/metrics.ml
+   core/metrics.mli
+   core/metrics__.cmi
+   core/metrics__.cmt
+   core/metrics__.cmx
+   core/metrics__.ml
+   core/metrics__Css_html.cmi
+   core/metrics__Css_html.cmt
+   core/metrics__Css_html.cmti
+   core/metrics__Css_html.cmx
+   core/metrics__Metrics_acsl.cmi
+   core/metrics__Metrics_acsl.cmt
+   core/metrics__Metrics_acsl.cmti
+   core/metrics__Metrics_acsl.cmx
+   core/metrics__Metrics_base.cmi
+   core/metrics__Metrics_base.cmt
+   core/metrics__Metrics_base.cmti
+   core/metrics__Metrics_base.cmx
+   core/metrics__Metrics_cabs.cmi
+   core/metrics__Metrics_cabs.cmt
+   core/metrics__Metrics_cabs.cmti
+   core/metrics__Metrics_cabs.cmx
+   core/metrics__Metrics_cilast.cmi
+   core/metrics__Metrics_cilast.cmt
+   core/metrics__Metrics_cilast.cmti
+   core/metrics__Metrics_cilast.cmx
+   core/metrics__Metrics_coverage.cmi
+   core/metrics__Metrics_coverage.cmt
+   core/metrics__Metrics_coverage.cmti
+   core/metrics__Metrics_coverage.cmx
+   core/metrics__Metrics_parameters.cmi
+   core/metrics__Metrics_parameters.cmt
+   core/metrics__Metrics_parameters.cmti
+   core/metrics__Metrics_parameters.cmx
+   core/metrics__Metrics_pivot.cmi
+   core/metrics__Metrics_pivot.cmt
+   core/metrics__Metrics_pivot.cmti
+   core/metrics__Metrics_pivot.cmx
+   core/metrics__Register.cmi
+   core/metrics__Register.cmt
+   core/metrics__Register.cmti
+   core/metrics__Register.cmx
+   core/metrics_acsl.ml
+   core/metrics_acsl.mli
+   core/metrics_base.ml
+   core/metrics_base.mli
+   core/metrics_cabs.ml
+   core/metrics_cabs.mli
+   core/metrics_cilast.ml
+   core/metrics_cilast.mli
+   core/metrics_coverage.ml
+   core/metrics_coverage.mli
+   core/metrics_parameters.ml
+   core/metrics_parameters.mli
+   core/metrics_pivot.ml
+   core/metrics_pivot.mli
+   core/register.ml
+   core/register.mli
+   dune-package
+   gui/metrics_gui.a
+   gui/metrics_gui.cma
+   gui/metrics_gui.cmi
+   gui/metrics_gui.cmt
+   gui/metrics_gui.cmx
+   gui/metrics_gui.cmxa
+   gui/metrics_gui.ml
+   gui/metrics_gui__Metrics_gui_panels.cmi
+   gui/metrics_gui__Metrics_gui_panels.cmt
+   gui/metrics_gui__Metrics_gui_panels.cmti
+   gui/metrics_gui__Metrics_gui_panels.cmx
+   gui/metrics_gui__Register_gui.cmi
+   gui/metrics_gui__Register_gui.cmt
+   gui/metrics_gui__Register_gui.cmti
+   gui/metrics_gui__Register_gui.cmx
+   gui/metrics_gui_panels.ml
+   gui/metrics_gui_panels.mli
+   gui/register_gui.ml
+   gui/register_gui.mli
+   opam))
+ (lib_root
+  (frama-c/plugins/metrics/META frama-c/plugins_gui/metrics-gui/META))
+ (libexec (core/metrics.cmxs gui/metrics_gui.cmxs)))
+(library
+ (name frama-c-metrics.core)
+ (kind normal)
+ (archives (byte core/metrics.cma) (native core/metrics.cmxa))
+ (plugins (byte core/metrics.cma) (native core/metrics.cmxs))
+ (native_archives core/metrics.a)
+ (requires frama-c.kernel frama-c-eva.core frama-c-server.core)
+ (main_module_name Metrics)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name metrics__)
+     (visibility public)
+     (kind alias)
+     (source (path Metrics__) (impl (path core/metrics__.ml-gen))))
+    (name Metrics)
+    (modules
+     (module
+      (obj_name metrics__Css_html)
+      (visibility public)
+      (source
+       (path Css_html)
+       (intf (path core/css_html.mli))
+       (impl (path core/css_html.ml))))
+     (module
+      (obj_name metrics)
+      (visibility public)
+      (source
+       (path Metrics)
+       (intf (path core/metrics.mli))
+       (impl (path core/metrics.ml))))
+     (module
+      (obj_name metrics__Metrics_acsl)
+      (visibility public)
+      (source
+       (path Metrics_acsl)
+       (intf (path core/metrics_acsl.mli))
+       (impl (path core/metrics_acsl.ml))))
+     (module
+      (obj_name metrics__Metrics_base)
+      (visibility public)
+      (source
+       (path Metrics_base)
+       (intf (path core/metrics_base.mli))
+       (impl (path core/metrics_base.ml))))
+     (module
+      (obj_name metrics__Metrics_cabs)
+      (visibility public)
+      (source
+       (path Metrics_cabs)
+       (intf (path core/metrics_cabs.mli))
+       (impl (path core/metrics_cabs.ml))))
+     (module
+      (obj_name metrics__Metrics_cilast)
+      (visibility public)
+      (source
+       (path Metrics_cilast)
+       (intf (path core/metrics_cilast.mli))
+       (impl (path core/metrics_cilast.ml))))
+     (module
+      (obj_name metrics__Metrics_coverage)
+      (visibility public)
+      (source
+       (path Metrics_coverage)
+       (intf (path core/metrics_coverage.mli))
+       (impl (path core/metrics_coverage.ml))))
+     (module
+      (obj_name metrics__Metrics_parameters)
+      (visibility public)
+      (source
+       (path Metrics_parameters)
+       (intf (path core/metrics_parameters.mli))
+       (impl (path core/metrics_parameters.ml))))
+     (module
+      (obj_name metrics__Metrics_pivot)
+      (visibility public)
+      (source
+       (path Metrics_pivot)
+       (intf (path core/metrics_pivot.mli))
+       (impl (path core/metrics_pivot.ml))))
+     (module
+      (obj_name metrics__Register)
+      (visibility public)
+      (source
+       (path Register)
+       (intf (path core/register.mli))
+       (impl (path core/register.ml))))))
+   (wrapped true))))
+(library
+ (name frama-c-metrics.gui)
+ (kind normal)
+ (archives (byte gui/metrics_gui.cma) (native gui/metrics_gui.cmxa))
+ (plugins (byte gui/metrics_gui.cma) (native gui/metrics_gui.cmxs))
+ (native_archives gui/metrics_gui.a)
+ (requires frama-c.kernel frama-c.gui frama-c-metrics.core)
+ (main_module_name Metrics_gui)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name metrics_gui)
+     (visibility public)
+     (kind alias)
+     (source (path Metrics_gui) (impl (path gui/metrics_gui.ml-gen))))
+    (name Metrics_gui)
+    (modules
+     (module
+      (obj_name metrics_gui__Metrics_gui_panels)
+      (visibility public)
+      (source
+       (path Metrics_gui_panels)
+       (intf (path gui/metrics_gui_panels.mli))
+       (impl (path gui/metrics_gui_panels.ml))))
+     (module
+      (obj_name metrics_gui__Register_gui)
+      (visibility public)
+      (source
+       (path Register_gui)
+       (intf (path gui/register_gui.mli))
+       (impl (path gui/register_gui.ml))))))
+   (wrapped true))))

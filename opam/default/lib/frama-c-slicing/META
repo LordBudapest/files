@@ -1,0 +1,19 @@
+package "core" (
+  directory = "core"
+  description = ""
+  requires =
+  "frama-c-inout.core frama-c-pdg.core frama-c-sparecode.core frama-c.kernel"
+  archive(byte) = "slicing.cma"
+  archive(native) = "slicing.cmxa"
+  plugin(byte) = "slicing.cma"
+  plugin(native) = "slicing.cmxs"
+)
+package "gui" (
+  directory = "gui"
+  description = ""
+  requires = "frama-c-slicing.core frama-c.gui frama-c.kernel"
+  archive(byte) = "slicing_gui.cma"
+  archive(native) = "slicing_gui.cmxa"
+  plugin(byte) = "slicing_gui.cma"
+  plugin(native) = "slicing_gui.cmxs"
+)

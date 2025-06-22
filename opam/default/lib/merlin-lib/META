@@ -1,11 +1,10 @@
 package "analysis" (
   directory = "analysis"
-  version = "5.4.1-503"
+  version = "4.18-414"
   description = ""
   requires =
   "merlin-lib.config
    merlin-lib.extend
-   merlin-lib.index_format
    merlin-lib.kernel
    merlin-lib.ocaml_merlin_specific
    merlin-lib.ocaml_parsing
@@ -15,8 +14,7 @@ package "analysis" (
    merlin-lib.query_protocol
    merlin-lib.sherlodoc
    merlin-lib.utils
-   str
-   unix"
+   str"
   archive(byte) = "merlin_analysis.cma"
   archive(native) = "merlin_analysis.cmxa"
   plugin(byte) = "merlin_analysis.cma"
@@ -24,7 +22,7 @@ package "analysis" (
 )
 package "commands" (
   directory = "commands"
-  version = "5.4.1-503"
+  version = "4.18-414"
   description = ""
   requires =
   "merlin-lib.kernel
@@ -39,7 +37,7 @@ package "commands" (
 )
 package "config" (
   directory = "config"
-  version = "5.4.1-503"
+  version = "4.18-414"
   description = ""
   requires = ""
   archive(byte) = "merlin_config.cma"
@@ -49,7 +47,7 @@ package "config" (
 )
 package "dot_protocol" (
   directory = "dot_protocol"
-  version = "5.4.1-503"
+  version = "4.18-414"
   description = ""
   requires = "csexp merlin-lib.utils"
   archive(byte) = "merlin_dot_protocol.cma"
@@ -59,7 +57,7 @@ package "dot_protocol" (
 )
 package "extend" (
   directory = "extend"
-  version = "5.4.1-503"
+  version = "4.18-414"
   description = ""
   requires =
   "merlin-lib.ocaml_parsing
@@ -71,29 +69,14 @@ package "extend" (
   plugin(byte) = "merlin_extend.cma"
   plugin(native) = "merlin_extend.cmxs"
 )
-package "index_format" (
-  directory = "index_format"
-  version = "5.4.1-503"
-  description = ""
-  requires =
-  "merlin-lib.ocaml_parsing
-   merlin-lib.ocaml_typing
-   merlin-lib.ocaml_utils
-   merlin-lib.utils"
-  archive(byte) = "merlin_index_format.cma"
-  archive(native) = "merlin_index_format.cmxa"
-  plugin(byte) = "merlin_index_format.cma"
-  plugin(native) = "merlin_index_format.cmxs"
-)
 package "kernel" (
   directory = "kernel"
-  version = "5.4.1-503"
+  version = "4.18-414"
   description = ""
   requires =
   "merlin-lib.config
    merlin-lib.dot_protocol
    merlin-lib.extend
-   merlin-lib.index_format
    merlin-lib.ocaml_merlin_specific
    merlin-lib.ocaml_parsing
    merlin-lib.ocaml_preprocess
@@ -108,19 +91,9 @@ package "kernel" (
   plugin(byte) = "merlin_kernel.cma"
   plugin(native) = "merlin_kernel.cmxs"
 )
-package "ocaml_compression" (
-  directory = "ocaml_compression"
-  version = "5.4.1-503"
-  description = ""
-  requires = "compiler-libs.common"
-  archive(byte) = "ocaml_compression.cma"
-  archive(native) = "ocaml_compression.cmxa"
-  plugin(byte) = "ocaml_compression.cma"
-  plugin(native) = "ocaml_compression.cmxs"
-)
 package "ocaml_merlin_specific" (
   directory = "ocaml_merlin_specific"
-  version = "5.4.1-503"
+  version = "4.18-414"
   description = ""
   requires =
   "merlin-lib.ocaml_parsing
@@ -135,7 +108,7 @@ package "ocaml_merlin_specific" (
 )
 package "ocaml_parsing" (
   directory = "ocaml_parsing"
-  version = "5.4.1-503"
+  version = "4.18-414"
   description = ""
   requires = "merlin-lib.ocaml_utils merlin-lib.utils"
   archive(byte) = "ocaml_parsing.cma"
@@ -145,7 +118,7 @@ package "ocaml_parsing" (
 )
 package "ocaml_preprocess" (
   directory = "ocaml_preprocess"
-  version = "5.4.1-503"
+  version = "4.18-414"
   description = ""
   requires =
   "merlin-lib.ocaml_parsing merlin-lib.ocaml_utils merlin-lib.utils"
@@ -156,13 +129,10 @@ package "ocaml_preprocess" (
 )
 package "ocaml_typing" (
   directory = "ocaml_typing"
-  version = "5.4.1-503"
+  version = "4.18-414"
   description = ""
   requires =
-  "merlin-lib.ocaml_compression
-   merlin-lib.ocaml_parsing
-   merlin-lib.ocaml_utils
-   merlin-lib.utils"
+  "merlin-lib.ocaml_parsing merlin-lib.ocaml_utils merlin-lib.utils"
   archive(byte) = "ocaml_typing.cma"
   archive(native) = "ocaml_typing.cmxa"
   plugin(byte) = "ocaml_typing.cma"
@@ -170,7 +140,7 @@ package "ocaml_typing" (
 )
 package "ocaml_utils" (
   directory = "ocaml_utils"
-  version = "5.4.1-503"
+  version = "4.18-414"
   description = ""
   requires = "merlin-lib.config merlin-lib.utils"
   archive(byte) = "ocaml_utils.cma"
@@ -180,7 +150,7 @@ package "ocaml_utils" (
 )
 package "os_ipc" (
   directory = "os_ipc"
-  version = "5.4.1-503"
+  version = "4.18-414"
   description = ""
   requires = ""
   archive(byte) = "os_ipc.cma"
@@ -190,11 +160,12 @@ package "os_ipc" (
 )
 package "query_commands" (
   directory = "query_commands"
-  version = "5.4.1-503"
+  version = "4.18-414"
   description = ""
   requires =
   "merlin-lib.analysis
    merlin-lib.config
+   merlin-lib.extend
    merlin-lib.kernel
    merlin-lib.ocaml_merlin_specific
    merlin-lib.ocaml_parsing
@@ -211,7 +182,7 @@ package "query_commands" (
 )
 package "query_protocol" (
   directory = "query_protocol"
-  version = "5.4.1-503"
+  version = "4.18-414"
   description = ""
   requires = "merlin-lib.kernel merlin-lib.ocaml_parsing merlin-lib.utils"
   archive(byte) = "query_protocol.cma"
@@ -221,7 +192,7 @@ package "query_protocol" (
 )
 package "sherlodoc" (
   directory = "sherlodoc"
-  version = "5.4.1-503"
+  version = "4.18-414"
   description = ""
   requires = ""
   archive(byte) = "merlin_sherlodoc.cma"
@@ -231,7 +202,7 @@ package "sherlodoc" (
 )
 package "utils" (
   directory = "utils"
-  version = "5.4.1-503"
+  version = "4.18-414"
   description = ""
   requires = "str unix"
   archive(byte) = "merlin_utils.cma"

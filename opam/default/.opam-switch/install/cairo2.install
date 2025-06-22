@@ -1,0 +1,24 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/cairo2/META"
+  "_build/install/default/lib/cairo2/cairo.a"
+  "_build/install/default/lib/cairo2/cairo.cma"
+  "_build/install/default/lib/cairo2/cairo.cmi"
+  "_build/install/default/lib/cairo2/cairo.cmt"
+  "_build/install/default/lib/cairo2/cairo.cmti"
+  "_build/install/default/lib/cairo2/cairo.cmx"
+  "_build/install/default/lib/cairo2/cairo.cmxa"
+  "_build/install/default/lib/cairo2/cairo.ml"
+  "_build/install/default/lib/cairo2/cairo.mli"
+  "_build/install/default/lib/cairo2/cairo_ocaml.h"
+  "_build/install/default/lib/cairo2/dune-package"
+  "_build/install/default/lib/cairo2/libcairo_stubs.a"
+  "_build/install/default/lib/cairo2/opam"
+]
+stublibs: "_build/install/default/lib/stublibs/dllcairo_stubs.so"
+doc: [
+  "_build/install/default/doc/cairo2/CHANGES.md"
+  "_build/install/default/doc/cairo2/LICENSE.md"
+  "_build/install/default/doc/cairo2/README.md"
+]
+libexec: "_build/install/default/lib/cairo2/cairo.cmxs"

@@ -1,13 +1,12 @@
 open! Import
 module Array = Array0
-include Bytes_intf
 
 let stage = Staged.stage
 
 module T = struct
   type t = bytes [@@deriving_inline globalize, sexp, sexp_grammar]
 
-  let (globalize : t -> t) = (globalize_bytes : t -> t)
+  let (globalize : (t[@ocaml.local]) -> t) = (globalize_bytes : (t[@ocaml.local]) -> t)
   let t_of_sexp = (bytes_of_sexp : Sexplib0.Sexp.t -> t)
   let sexp_of_t = (sexp_of_bytes : t -> Sexplib0.Sexp.t)
   let (t_sexp_grammar : t Sexplib0.Sexp_grammar.t) = bytes_sexp_grammar
@@ -23,10 +22,10 @@ end
 include T
 
 module To_bytes = Blit.Make (struct
-  include T
+    include T
 
-  let create ~len = create len
-end)
+    let create ~len = create len
+  end)
 
 include To_bytes
 include Comparator.Make (T)
@@ -152,26 +151,6 @@ let contains ?pos ?len t char =
   in
   loop pos
 ;;
-
-module Utf8 = struct
-  let set = set_uchar_utf_8
-end
-
-module Utf16le = struct
-  let set = set_uchar_utf_16le
-end
-
-module Utf16be = struct
-  let set = set_uchar_utf_16be
-end
-
-module Utf32le = struct
-  let set = set_uchar_utf_32le
-end
-
-module Utf32be = struct
-  let set = set_uchar_utf_32be
-end
 
 (* Include type-specific [Replace_polymorphic_compare] at the end, after
    including functor application that could shadow its definitions. This is

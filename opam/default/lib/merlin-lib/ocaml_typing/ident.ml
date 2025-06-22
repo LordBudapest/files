@@ -16,8 +16,7 @@
 open Local_store
 
 let lowest_scope  = 0
-let highest_scope = 100_000_000
-  (* assumed to fit in 27 bits, see Types.scope_field *)
+let highest_scope = 100000000
 
 type t =
   | Local of { name: string; stamp: int }
@@ -112,9 +111,6 @@ let stamp = function
   | Scoped { stamp; _ } -> stamp
   | _ -> 0
 
-let compare_stamp id1 id2 =
-  compare (stamp id1) (stamp id2)
-
 let scope = function
   | Scoped { scope; _ } -> scope
   | Local _ -> highest_scope
@@ -138,7 +134,7 @@ let is_predef = function
   | _ -> false
 
 let print ~with_scope ppf =
-  let open Format_doc in
+  let open Format in
   function
   | Global name -> fprintf ppf "%s!" name
   | Predef { name; stamp = n } ->
@@ -147,25 +143,12 @@ let print ~with_scope ppf =
       fprintf ppf "%s/%i" name n
   | Scoped { name; stamp = n; scope } ->
       fprintf ppf "%s/%i%s" name n
-        (if with_scope then asprintf "[%i]" scope else "")
+        (if with_scope then sprintf "[%i]" scope else "")
 
 let print_with_scope ppf id = print ~with_scope:true ppf id
 
-let doc_print ppf id = print ~with_scope:false ppf id
-let print ppf id = Format_doc.compat doc_print ppf id
-(* For the documentation of ['a Ident.tbl], see ident.mli.
+let print ppf id = print ~with_scope:false ppf id
 
-   The implementation is a copy-paste specialization of
-   a balanced-tree implementation similar to Map.
-     ['a tbl]
-   is a slightly more compact version of
-     [(Ident.t * 'a) list Map.Make(String)]
-
-   This implementation comes from Caml Light where duplication was
-   unavoidable in absence of functors. It works well enough, and so
-   far we have not had strong incentives to do the deduplication work
-   (implementation, tests, benchmarks, etc.).
-*)
 type 'a tbl =
     Empty
   | Node of 'a tbl * 'a data * 'a tbl * int
@@ -297,21 +280,6 @@ let rec find_all n = function
         (k.ident, k.data) :: get_all k.previous
       else
         find_all n (if c < 0 then l else r)
-
-let get_all_seq k () =
-  Seq.unfold (Option.map (fun k -> (k.ident, k.data), k.previous))
-    k ()
-
-let rec find_all_seq n tbl () =
-  match tbl with
-  | Empty -> Seq.Nil
-  | Node(l, k, r, _) ->
-      let c = String.compare n (name k.ident) in
-      if c = 0 then
-        Seq.Cons((k.ident, k.data), get_all_seq k.previous)
-      else
-        find_all_seq n (if c < 0 then l else r) ()
-
 
 let rec fold_aux f stack accu = function
     Empty ->

@@ -1,0 +1,131 @@
+(lang dune 3.19)
+(name unionFind)
+(sections (lib .) (libexec .) (doc ../../doc/unionFind))
+(files
+ (lib
+  (META
+   Store.ml
+   StoreMap.ml
+   StoreMap.mli
+   StoreRef.ml
+   StoreRef.mli
+   StoreTransactionalRef.ml
+   StoreTransactionalRef.mli
+   StoreVector.ml
+   StoreVector.mli
+   UnionFind.ml
+   UnionFindBasic.ml
+   UnionFindBasic.mli
+   UnionFindOverStore.ml
+   UnionFindOverStore.mli
+   dune-package
+   opam
+   unionFind.a
+   unionFind.cma
+   unionFind.cmi
+   unionFind.cmt
+   unionFind.cmx
+   unionFind.cmxa
+   unionFind__.cmi
+   unionFind__.cmt
+   unionFind__.cmx
+   unionFind__.ml
+   unionFind__Store.cmi
+   unionFind__Store.cmt
+   unionFind__Store.cmx
+   unionFind__StoreMap.cmi
+   unionFind__StoreMap.cmt
+   unionFind__StoreMap.cmti
+   unionFind__StoreMap.cmx
+   unionFind__StoreRef.cmi
+   unionFind__StoreRef.cmt
+   unionFind__StoreRef.cmti
+   unionFind__StoreRef.cmx
+   unionFind__StoreTransactionalRef.cmi
+   unionFind__StoreTransactionalRef.cmt
+   unionFind__StoreTransactionalRef.cmti
+   unionFind__StoreTransactionalRef.cmx
+   unionFind__StoreVector.cmi
+   unionFind__StoreVector.cmt
+   unionFind__StoreVector.cmti
+   unionFind__StoreVector.cmx
+   unionFind__UnionFindBasic.cmi
+   unionFind__UnionFindBasic.cmt
+   unionFind__UnionFindBasic.cmti
+   unionFind__UnionFindBasic.cmx
+   unionFind__UnionFindOverStore.cmi
+   unionFind__UnionFindOverStore.cmt
+   unionFind__UnionFindOverStore.cmti
+   unionFind__UnionFindOverStore.cmx))
+ (libexec (unionFind.cmxs))
+ (doc (CHANGES.md LICENSE README.md odoc-pages/index.mld)))
+(library
+ (name unionFind)
+ (kind normal)
+ (synopsis "Implementations of the union-find data structure")
+ (archives (byte unionFind.cma) (native unionFind.cmxa))
+ (plugins (byte unionFind.cma) (native unionFind.cmxs))
+ (native_archives unionFind.a)
+ (main_module_name UnionFind)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name unionFind__)
+     (visibility public)
+     (kind alias)
+     (source (path UnionFind__) (impl (path unionFind__.ml-gen))))
+    (name UnionFind)
+    (modules
+     (module
+      (obj_name unionFind__Store)
+      (visibility public)
+      (source (path Store) (impl (path Store.ml))))
+     (module
+      (obj_name unionFind__StoreMap)
+      (visibility public)
+      (source
+       (path StoreMap)
+       (intf (path StoreMap.mli))
+       (impl (path StoreMap.ml))))
+     (module
+      (obj_name unionFind__StoreRef)
+      (visibility public)
+      (source
+       (path StoreRef)
+       (intf (path StoreRef.mli))
+       (impl (path StoreRef.ml))))
+     (module
+      (obj_name unionFind__StoreTransactionalRef)
+      (visibility public)
+      (source
+       (path StoreTransactionalRef)
+       (intf (path StoreTransactionalRef.mli))
+       (impl (path StoreTransactionalRef.ml))))
+     (module
+      (obj_name unionFind__StoreVector)
+      (visibility public)
+      (source
+       (path StoreVector)
+       (intf (path StoreVector.mli))
+       (impl (path StoreVector.ml))))
+     (module
+      (obj_name unionFind)
+      (visibility public)
+      (source (path UnionFind) (impl (path UnionFind.ml))))
+     (module
+      (obj_name unionFind__UnionFindBasic)
+      (visibility public)
+      (source
+       (path UnionFindBasic)
+       (intf (path UnionFindBasic.mli))
+       (impl (path UnionFindBasic.ml))))
+     (module
+      (obj_name unionFind__UnionFindOverStore)
+      (visibility public)
+      (source
+       (path UnionFindOverStore)
+       (intf (path UnionFindOverStore.mli))
+       (impl (path UnionFindOverStore.ml))))))
+   (wrapped true))))

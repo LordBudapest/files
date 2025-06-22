@@ -6,8 +6,10 @@ include Container_intf
 
 let with_return = With_return.with_return
 
-type ('t, 'a, 'accum) fold = 't -> init:'accum -> f:('accum -> 'a -> 'accum) -> 'accum
-type ('t, 'a) iter = 't -> f:('a -> unit) -> unit
+type ('t, 'a, 'accum) fold =
+  't -> init:'accum -> f:(('accum -> 'a -> 'accum)[@local]) -> 'accum
+
+type ('t, 'a) iter = 't -> f:(('a -> unit)[@local]) -> unit
 type 't length = 't -> int
 
 let iter ~(fold : (_, _, _) fold) t ~f = fold t ~init:() ~f:(fun () a -> f a) [@nontail]
@@ -103,9 +105,8 @@ let to_array ~length ~iter c =
 ;;
 
 module Make_gen (T : Make_gen_arg) :
-  Generic
-    with type ('a, 'phantom1, 'phantom2) t := ('a, 'phantom1, 'phantom2) T.t
-     and type 'a elt := 'a T.elt = struct
+  Generic with type ('a, 'phantom) t := ('a, 'phantom) T.t and type 'a elt := 'a T.elt =
+struct
   let fold = T.fold
 
   let iter =
@@ -138,30 +139,29 @@ end
 
 module Make (T : Make_arg) = struct
   include Make_gen (struct
-    include T
+      include T
 
-    type ('a, _, _) t = 'a T.t
-    type 'a elt = 'a
-  end)
+      type ('a, _) t = 'a T.t
+      type 'a elt = 'a
+    end)
 end
 
 module Make0 (T : Make0_arg) = struct
   include Make_gen (struct
-    include T
+      include T
 
-    type ('a, _, _) t = T.t
-    type 'a elt = T.Elt.t
-  end)
+      type ('a, _) t = T.t
+      type 'a elt = T.Elt.t
+    end)
 
   let mem t x = mem t x ~equal:T.Elt.equal
 end
 
 module Make_gen_with_creators (T : Make_gen_with_creators_arg) :
   Generic_with_creators
-    with type ('a, 'phantom1, 'phantom2) t := ('a, 'phantom1, 'phantom2) T.t
-     and type 'a elt := 'a T.elt
-     and type ('a, 'phantom1, 'phantom2) concat := ('a, 'phantom1, 'phantom2) T.concat =
-struct
+  with type ('a, 'phantom) t := ('a, 'phantom) T.t
+   and type 'a elt := 'a T.elt
+   and type ('a, 'phantom) concat := ('a, 'phantom) T.concat = struct
   include Make_gen (T)
 
   let of_list = T.of_list
@@ -205,26 +205,26 @@ end
 
 module Make_with_creators (T : Make_with_creators_arg) = struct
   include Make_gen_with_creators (struct
-    include T
+      include T
 
-    type ('a, _, _) t = 'a T.t
-    type 'a elt = 'a
-    type ('a, _, _) concat = 'a T.t
+      type ('a, _) t = 'a T.t
+      type 'a elt = 'a
+      type ('a, _) concat = 'a T.t
 
-    let concat_of_array = of_array
-  end)
+      let concat_of_array = of_array
+    end)
 end
 
 module Make0_with_creators (T : Make0_with_creators_arg) = struct
   include Make_gen_with_creators (struct
-    include T
+      include T
 
-    type ('a, _, _) t = T.t
-    type 'a elt = T.Elt.t
-    type ('a, _, _) concat = 'a list
+      type ('a, _) t = T.t
+      type 'a elt = T.Elt.t
+      type ('a, _) concat = 'a list
 
-    let concat_of_array = Array.to_list
-  end)
+      let concat_of_array = Array.to_list
+    end)
 
   let mem t x = mem t x ~equal:T.Elt.equal
 end

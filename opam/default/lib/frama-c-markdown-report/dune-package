@@ -1,0 +1,187 @@
+(lang dune 3.19)
+(name frama-c-markdown-report)
+(sections
+ (lib /home/bhaskar/.opam/default/lib/frama-c-markdown-report)
+ (lib_root /home/bhaskar/.opam/default/lib)
+ (libexec /home/bhaskar/.opam/default/lib/frama-c-markdown-report)
+ (doc /home/bhaskar/.opam/default/doc/frama-c-markdown-report))
+(files
+ (lib
+  (META
+   core/Mardown_report.ml
+   core/markdown_report.a
+   core/markdown_report.cma
+   core/markdown_report.cmi
+   core/markdown_report.cmt
+   core/markdown_report.cmx
+   core/markdown_report.cmxa
+   core/markdown_report.ml
+   core/markdown_report__Mardown_report.cmi
+   core/markdown_report__Mardown_report.cmt
+   core/markdown_report__Mardown_report.cmx
+   core/markdown_report__Md_gen.cmi
+   core/markdown_report__Md_gen.cmt
+   core/markdown_report__Md_gen.cmti
+   core/markdown_report__Md_gen.cmx
+   core/markdown_report__Mdr_params.cmi
+   core/markdown_report__Mdr_params.cmt
+   core/markdown_report__Mdr_params.cmti
+   core/markdown_report__Mdr_params.cmx
+   core/markdown_report__Mdr_register.cmi
+   core/markdown_report__Mdr_register.cmt
+   core/markdown_report__Mdr_register.cmti
+   core/markdown_report__Mdr_register.cmx
+   core/markdown_report__Parse_remarks.cmi
+   core/markdown_report__Parse_remarks.cmt
+   core/markdown_report__Parse_remarks.cmti
+   core/markdown_report__Parse_remarks.cmx
+   core/markdown_report__Sarif.cmi
+   core/markdown_report__Sarif.cmt
+   core/markdown_report__Sarif.cmti
+   core/markdown_report__Sarif.cmx
+   core/markdown_report__Sarif_gen.cmi
+   core/markdown_report__Sarif_gen.cmt
+   core/markdown_report__Sarif_gen.cmti
+   core/markdown_report__Sarif_gen.cmx
+   core/md_gen.ml
+   core/md_gen.mli
+   core/mdr_params.ml
+   core/mdr_params.mli
+   core/mdr_register.ml
+   core/mdr_register.mli
+   core/parse_remarks.ml
+   core/parse_remarks.mli
+   core/sarif.ml
+   core/sarif.mli
+   core/sarif_gen.ml
+   core/sarif_gen.mli
+   dune-package
+   eva-info/core/eva_info.ml
+   eva-info/core/eva_info.mli
+   eva-info/core/markdown_report_eva_info.a
+   eva-info/core/markdown_report_eva_info.cma
+   eva-info/core/markdown_report_eva_info.cmi
+   eva-info/core/markdown_report_eva_info.cmt
+   eva-info/core/markdown_report_eva_info.cmx
+   eva-info/core/markdown_report_eva_info.cmxa
+   eva-info/core/markdown_report_eva_info.ml
+   eva-info/core/markdown_report_eva_info__Eva_info.cmi
+   eva-info/core/markdown_report_eva_info__Eva_info.cmt
+   eva-info/core/markdown_report_eva_info__Eva_info.cmti
+   eva-info/core/markdown_report_eva_info__Eva_info.cmx
+   opam))
+ (lib_root
+  (frama-c/plugins/markdown-report.eva-info/META
+   frama-c/plugins/markdown-report/META))
+ (libexec
+  (core/markdown_report.cmxs eva-info/core/markdown_report_eva_info.cmxs))
+ (doc (README.md)))
+(library
+ (name frama-c-markdown-report.core)
+ (kind normal)
+ (archives (byte core/markdown_report.cma) (native core/markdown_report.cmxa))
+ (plugins (byte core/markdown_report.cma) (native core/markdown_report.cmxs))
+ (native_archives core/markdown_report.a)
+ (requires
+  frama-c.kernel
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime
+  yojson)
+ (main_module_name Markdown_report)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name markdown_report)
+     (visibility public)
+     (kind alias)
+     (source (path Markdown_report) (impl (path core/markdown_report.ml-gen))))
+    (name Markdown_report)
+    (modules
+     (module
+      (obj_name markdown_report__Mardown_report)
+      (visibility public)
+      (source (path Mardown_report) (impl (path core/Mardown_report.ml))))
+     (module
+      (obj_name markdown_report__Md_gen)
+      (visibility public)
+      (source
+       (path Md_gen)
+       (intf (path core/md_gen.mli))
+       (impl (path core/md_gen.ml))))
+     (module
+      (obj_name markdown_report__Mdr_params)
+      (visibility public)
+      (source
+       (path Mdr_params)
+       (intf (path core/mdr_params.mli))
+       (impl (path core/mdr_params.ml))))
+     (module
+      (obj_name markdown_report__Mdr_register)
+      (visibility public)
+      (source
+       (path Mdr_register)
+       (intf (path core/mdr_register.mli))
+       (impl (path core/mdr_register.ml))))
+     (module
+      (obj_name markdown_report__Parse_remarks)
+      (visibility public)
+      (source
+       (path Parse_remarks)
+       (intf (path core/parse_remarks.mli))
+       (impl (path core/parse_remarks.ml))))
+     (module
+      (obj_name markdown_report__Sarif)
+      (visibility public)
+      (source
+       (path Sarif)
+       (intf (path core/sarif.mli))
+       (impl (path core/sarif.ml))))
+     (module
+      (obj_name markdown_report__Sarif_gen)
+      (visibility public)
+      (source
+       (path Sarif_gen)
+       (intf (path core/sarif_gen.mli))
+       (impl (path core/sarif_gen.ml))))))
+   (wrapped true))))
+(library
+ (name frama-c-markdown-report.eva-info.core)
+ (kind normal)
+ (archives
+  (byte eva-info/core/markdown_report_eva_info.cma)
+  (native eva-info/core/markdown_report_eva_info.cmxa))
+ (plugins
+  (byte eva-info/core/markdown_report_eva_info.cma)
+  (native eva-info/core/markdown_report_eva_info.cmxs))
+ (native_archives eva-info/core/markdown_report_eva_info.a)
+ (requires
+  frama-c.kernel
+  frama-c-eva.core
+  frama-c-markdown-report.core
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime
+  yojson)
+ (main_module_name Markdown_report_eva_info)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name markdown_report_eva_info)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Markdown_report_eva_info)
+      (impl (path eva-info/core/markdown_report_eva_info.ml-gen))))
+    (name Markdown_report_eva_info)
+    (modules
+     (module
+      (obj_name markdown_report_eva_info__Eva_info)
+      (visibility public)
+      (source
+       (path Eva_info)
+       (intf (path eva-info/core/eva_info.mli))
+       (impl (path eva-info/core/eva_info.ml))))))
+   (wrapped true))))

@@ -12,9 +12,6 @@ module Sexp_conv_error = Sexplib0__Sexp_conv_error
 (** @canonical Sexplib0.Sexp_conv_grammar *)
 module Sexp_conv_grammar = Sexplib0__Sexp_conv_grammar
 
-(** @canonical Sexplib0.Sexp_conv_labeled_tuple *)
-module Sexp_conv_labeled_tuple = Sexplib0__Sexp_conv_labeled_tuple
-
 (** @canonical Sexplib0.Sexp_conv_record *)
 module Sexp_conv_record = Sexplib0__Sexp_conv_record
 
@@ -23,6 +20,3 @@ module Sexp_grammar = Sexplib0__Sexp_grammar
 
 (** @canonical Sexplib0.Sexpable *)
 module Sexpable = Sexplib0__Sexpable
-
-module Sexplib0__ = struct end
-[@@deprecated "this module is shadowed"]

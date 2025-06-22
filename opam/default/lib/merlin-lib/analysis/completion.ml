@@ -47,23 +47,21 @@ type raw_info =
 
 let raw_info_printer : raw_info -> _ = function
   | `Constructor c -> `Print (Out_type (Browse_misc.print_constructor c))
-  | `Modtype mt -> `Print (Out_module_type (Out_type.tree_of_modtype mt))
+  | `Modtype mt -> `Print (Out_module_type (Printtyp.tree_of_modtype mt))
   | `Modtype_declaration (id, mtd) ->
-    `Print (Out_sig_item (Out_type.tree_of_modtype_declaration id mtd))
+    `Print (Out_sig_item (Printtyp.tree_of_modtype_declaration id mtd))
   | `None -> `String ""
   | `String s -> `String s
   | `Type_declaration (id, tdecl) ->
     `Print
       (Out_sig_item
-         (Out_type.tree_of_type_declaration id tdecl Types.Trec_first))
-  | `Type_scheme te ->
-    `Print (Out_type (Type_utils.Printtyp.tree_of_typ_scheme te))
+         (Printtyp.tree_of_type_declaration id tdecl Types.Trec_first))
+  | `Type_scheme te -> `Print (Out_type (Printtyp.tree_of_type_scheme te))
   | `Variant (label, arg) -> begin
     match arg with
     | None -> `String label
     | Some te ->
-      `Concat
-        (label ^ " of ", Out_type (Type_utils.Printtyp.tree_of_typ_scheme te))
+      `Concat (label ^ " of ", Out_type (Printtyp.tree_of_type_scheme te))
   end
 
 (* List methods of an object.
@@ -217,8 +215,8 @@ let make_candidate ~get_doc ~attrs ~exact ~prefix_path name ?loc ?path ty =
         let namespace =
           (* FIXME: that's just terrible *)
           match kind with
-          | `Value -> Shape.Sig_component_kind.Value
-          | `Type -> Type
+          | `Value -> `Vals
+          | `Type -> `Type
           | _ -> assert false
         in
         begin
@@ -280,7 +278,7 @@ let fold_sumtype_constructors ~env ~init ~f t =
     begin
       match Env.find_type_descrs path env with
       | exception Not_found -> init
-      | Type_record _ | Type_abstract _ | Type_open -> init
+      | Type_record _ | Type_abstract | Type_open -> init
       | Type_variant (constrs, _) -> List.fold_right constrs ~init ~f
     end
   | _ -> init
@@ -509,10 +507,7 @@ let complete_methods ~env ~prefix obj =
   in
   let methods = List.filter ~f:has_prefix (methods_of_type env t) in
   List.map methods ~f:(fun (name, ty) ->
-      let info =
-        `None
-        (* TODO: get documentation. *)
-      in
+      let info = `None (* TODO: get documentation. *) in
       { name;
         kind = `MethodCall;
         desc = `Type_scheme ty;
@@ -694,7 +689,7 @@ let branch_complete buffer ?get_doc ?target_type ?kinds ~keywords prefix =
                 List.map lbls ~f:(fun (_, lbl) ->
                     try
                       let _, lbl_arg, lbl_res =
-                        Ctype.instance_label ~fixed:false lbl
+                        Ctype.instance_label false lbl
                       in
                       begin
                         try Ctype.unify_var env ty lbl_res with _ -> ()
@@ -831,7 +826,7 @@ let application_context ~prefix path =
          type, but not across different invocations.
          [reset] followed by calls to [mark_loops] and [type_sch] provide
          that *)
-      Out_type.reset ();
+      Printtyp.reset ();
       let pr t =
         let ppf, to_string = Format.to_string () in
         Printtyp.shared_type_scheme ppf t;
